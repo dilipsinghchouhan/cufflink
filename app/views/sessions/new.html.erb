@@ -1,0 +1,17 @@
+<h1>Sign In</h1>
+
+<%= form_tag(controller: "sessions", action: "create") do %>
+  <label>Email Address:<br>
+    <input type="text" name="user[email]" value="<%= @user.email %>">
+  </label>
+
+  <br>
+
+  <label>Password:<br>
+    <input type="password" name="user[password]">
+  </label>
+
+  <br><br>
+
+  <%= submit_tag("Sign In") %>
+<% end %>
