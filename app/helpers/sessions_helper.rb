@@ -23,4 +23,8 @@ module SessionsHelper
   def prohibit_logged_in_user
     redirect_to root_url if current_user
   end
+
+  def require_profile_owner
+    redirect_to :back unless current_user.id == params[:id].to_i
+  end
 end

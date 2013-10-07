@@ -1,0 +1,86 @@
+<script>
+  $(document).ready( function(){
+    $('.current-value').on("click", function(event) {
+      var $target = $(event.target);
+      $target.parent().addClass("editing");
+    });
+
+    $('button').on("click", function(event) {
+      var $target = $(event.target);
+      $target.parent().removeClass("editing");
+
+      var $field = $target.siblings().filter('.field');
+      var $currentVal = $target.siblings().filter('.current-value');
+      var fieldName = $field.attr('name');
+      var fieldVal = $field.val();
+      var userID = $field.attr('data-user-id');
+
+      var obj = {};
+      obj[fieldName] = fieldVal;
+
+      $.ajax({
+        url: "/users/" + userID,
+        type: "PUT",
+        data: obj,
+        success: function() {
+          console.log("Success!");
+          $currentVal.text(fieldVal);
+        },
+        error: function() {
+          console.log("Error!");
+        }
+      });
+    });
+  });
+</script>
+
+<h1><%= @user.name %> (You!)</h1>
+
+<br><br>
+
+<div class="property">
+  <h2 class="current-value"><%=
+    @user.tagline ? @user.tagline : "(enter tagline)"
+    %></h2>
+
+  <input class="field" type="text" name="user[tagline]"
+    value="<%= @user.tagline %>" data-user-id="<%= @user.id %>">
+
+  <button>Save</button>
+</div>
+
+<% if @user.city || @user.state %>
+  <b>Location:</b>
+  <%= @user.city %>
+  <%= ", " unless @user.state.nil? || @user.city.nil? %>
+  <%= @user.state %>
+
+  <br><br>
+<% end %>
+
+<% if @user.industry %>
+  <b>Industry:</b> <%= @user.industry %>
+
+  <br>
+<% end %>
+
+<% if @user.summary %>
+  <h3>Summary</h3>
+    <p>
+      <%= @user.summary %>
+    </p>
+<% end %>
+
+<h3>Contact Information</h3>
+  <ul id="contact_information">
+    <li>
+      <%= @user.email %>
+    </li>
+  </ul>
+
+<h3>Education History</h3>
+  <% @user.educations.each do |education| %>
+    <%= render partial: "educations/show", locals: { user: @user, education: education } %>
+  <% end %>
+
+

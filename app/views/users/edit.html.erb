@@ -1,0 +1,41 @@
+<h1><%= @user.name %>: Edit Profile</h1>
+
+<%= form_for @user, url: { action: "update" } do %>
+
+  <label>Tagline:<br>
+    <input type="text" name="user[tagline]" value="<%= @user.tagline %>">
+  </label>
+
+  <br><br>
+
+  <label>Summary:<br>
+    <textarea name="user[summary]"><%= @user.summary %></textarea>
+  </label>
+
+  <br><br>
+
+  <label>City:<br>
+    <input type="text" name="user[city]" value="<%= @user.city %>">
+  </label>
+
+  <br><br>
+
+  <label>State:<br>
+    <input type="text" name="user[state]" value="<%= @user.state %>">
+  </label>
+
+  <br><br>
+
+  <label>Industry:<br>
+    <%= industry_select("user", @user.industry) %>
+  </label>
+
+  <br><br>
+
+  <% @user.educations.each do |education| %>
+    <%= render partial: "educations/edit", locals: { user: @user, education: education } %>
+  <% end %>
+
+  <input type="submit" value="Edit Profile">
+
+<% end %>

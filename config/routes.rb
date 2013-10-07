@@ -2,7 +2,12 @@ Cufflink::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :users, only: [:new, :create, :show, :edit, :update, :feed]
+  resources :users, only: [:new, :create, :show, :update, :feed] do
+    resources :educations, only: [:update, :destroy, :create]
+    resources :links, only: [:update, :destroy, :create]
+    resources :phone_numbers, only: [:update, :destroy, :create]
+    resources :positions, only: [:update, :destroy, :create]
+  end
 
   resource :session, only: [:new, :create, :destroy]
 

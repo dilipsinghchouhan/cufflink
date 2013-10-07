@@ -28,6 +28,8 @@ class SessionsController < ApplicationController
   def destroy
     log_out_user!
 
+    flash[:notice] = "Sign out successful!"
+
     redirect_to new_session_url
   end
 end

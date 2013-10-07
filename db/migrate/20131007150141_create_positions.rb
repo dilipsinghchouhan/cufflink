@@ -8,7 +8,7 @@ class CreatePositions < ActiveRecord::Migration
       t.string :industry
       t.string :city
       t.string :state
-      t.date :state_date
+      t.date :start_date
       t.date :end_date
       t.boolean :current_position, default: false
       t.text :description

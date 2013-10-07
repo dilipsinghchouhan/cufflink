@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
  */
+
+.property > .field, .property > button {
+  display: none;
+}
+
+.property.editing > .field, .property.editing > button {
+  display: block;
+}
+
+.property.editing > .current_value {
+  display: none;
+}

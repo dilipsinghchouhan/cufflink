@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20131007150147) do
     t.integer  "school_id",       :default => 0
     t.string   "city"
     t.string   "state"
-    t.date     "state_date"
+    t.date     "start_date"
     t.date     "end_date"
     t.boolean  "current_student", :default => false
     t.string   "area"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20131007150147) do
     t.string   "industry"
     t.string   "city"
     t.string   "state"
-    t.date     "state_date"
+    t.date     "start_date"
     t.date     "end_date"
     t.boolean  "current_position", :default => false
     t.text     "description"

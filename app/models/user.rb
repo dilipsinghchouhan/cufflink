@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password
+  attr_accessible :name, :email, :password, :tagline, :city, :state,
+    :industry, :summary
   attr_reader :password
 
   validates :password_digest, presence: { message: "Password can't be blank." }
+  validates :tagline, length: { minimum: 1, allow_nil: true }
   validates :name, :email, :status, :session_token, presence: true
   validates :email, uniqueness: true #make it an email? regex?
 
@@ -10,6 +12,8 @@ class User < ActiveRecord::Base
   #require a complex password?
 
   after_initialize :ensure_session_token
+
+  has_many :educations, foreign_key: :owner_id
 
   def self.gen_session_token
     SecureRandom::urlsafe_base64

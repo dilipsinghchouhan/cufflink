@@ -18,3 +18,11 @@ User.create(name: 'Maeby Funke', email: 'maeby.funke@gmail.com', password: 'pass
 User.create(name: 'Lucille Austero', email: 'lucille@standpoor.com', password: 'password')
 User.create(name: 'Stan Sitwell', email: 'stan@sitwellenterprises.com', password: 'password')
 User.create(name: 'Sally Sitwell', email: 'sally@sitwellenterprises.com', password: 'password')
+
+# Education.create(owner_id: 1, school: "University of Phoenix")
+# Link.create(owner_id: 1, title: "Bluth Company Website", url: "http://thebluthcompany.tumblr.com/",
+#   type: "Company Website")
+# PhoneNumber.create(owner_id: 1, number: "800-867-5309", type: "Office")
+# Position.create(owner_id: 1, title: "President", company: "The Bluth Company",
+#   industry: "Real Estate", city: "Orange County", state: "CA", start_date: "01 Jan 1990",
+#   current_position: true)
