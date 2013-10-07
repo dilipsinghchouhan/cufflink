@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validates :password_digest, presence: { message: "Password can't be blank." }
-  validates :tagline, length: { minimum: 1, allow_nil: true }
+
+  validates :tagline, :city, length: { minimum: 1, allow_nil: true }
+  validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
+
   validates :name, :email, :status, :session_token, presence: true
   validates :email, uniqueness: true #make it an email? regex?
 

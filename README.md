@@ -5,8 +5,8 @@ Oh man, this is going to be intense.
 ##To Do: ASAP
 
 * Models for education, link, phone number, position...
-* Get current student stuff working
 * Find a way to edit educations...?
+* Allow removal of things...
 * Make schools etc part of system.
 * consolidate similaries between users & educations
 * Add email address model...?

@@ -34,46 +34,13 @@ class UsersController < ApplicationController
   end
 
   def update
-
     @user = user_from_params
-
-    # new_user_params = {}
-#
-#     params[:user].each_pair do |key, value|
-#       if value == ""
-#         new_user_params[key] = nil
-#       else
-#         new_user_params[key] = value
-#       end
-#     end
 
     if @user.update_attributes(params[:user])
       render json: @user
     else
-      render json: @user, status: 422
+      render json: @user.errors.full_messages, status: 422
     end
-
-    #this is the old edit page way...
-
-    # @user = user_from_params
-#
-#     new_user_params = {}
-#
-#     params[:user].each_pair do |key, value|
-#       if value == ""
-#         new_user_params[key] = nil
-#       else
-#         new_user_params[key] = value
-#       end
-#     end
-#
-#     if @user.update_attributes(new_user_params)
-#       flash[:notice] = "Update Successful!"
-#       redirect_to user_url(@user)
-#     else
-#       flash[:errors] = @user.errors.full_messages
-#       render :edit
-#     end
   end
 
   def feed

@@ -1,62 +1,112 @@
 <script>
   $(document).ready( function(){
+    function delayedRemove(jQueryObj) {
+      timeoutID = window.setTimeout(function() {
+        jQueryObj.remove();
+      }, 1000);
+    }
+
     $('.current-value').on("click", function(event) {
       var $target = $(event.target);
+      $target.addClass("active");
+
+      var notifications = '<div class="notifications"></div>'
+      $target.parent().prepend(notifications);
+
+      var buttons = '<button class="save">Save</button>'
+      buttons += '<button class="remove">Remove</button>'
+
+      var fieldType = $target.attr('data-field');
+      var fieldValue = $target.text().trim();
+      var fieldHTML = createField(fieldType, fieldValue);
+
+      $target.after(fieldHTML);
       $target.parent().addClass("editing");
     });
 
     $('button').on("click", function(event) {
       var $target = $(event.target);
-      $target.parent().removeClass("editing");
+
+      var $activeCurrentVal = $target
+        .siblings().filter('.current-value.active');
+      var fieldName = $activeCurrentVal.attr('data-field');
+      var fieldNameAsHash = "user[" + fieldName + "]";
+      var userID = $('h1').attr('data-user-id');
+      var obj = {};
+
+      if ($target //has class)
 
       var $field = $target.siblings().filter('.field');
-      var $currentVal = $target.siblings().filter('.current-value');
-      var fieldName = $field.attr('name');
+      var $notifications = $target.siblings().filter('.notifications');
       var fieldVal = $field.val();
-      var userID = $field.attr('data-user-id');
 
-      var obj = {};
-      obj[fieldName] = fieldVal;
+      obj[fieldNameAsHash] = fieldVal;
 
       $.ajax({
         url: "/users/" + userID,
         type: "PUT",
         data: obj,
         success: function() {
-          console.log("Success!");
-          $currentVal.text(fieldVal);
+          $activeCurrentVal.text(fieldVal);
+          $field.remove();
+          $activeCurrentVal.removeClass("active");
+          $target.parent().removeClass("editing");
+          $notifications.text(fieldName + " updated successfully!");
+          $notifications.addClass("green");
+          delayedRemove($notifications);
         },
-        error: function() {
-          console.log("Error!");
+        error: function(jqXHR) {
+          $field.val($activeCurrentVal.text().trim())
+          $notifications.text(jqXHR.responseText);
+          $notifications.addClass("red");
+          delayedRemove($notifications);
         }
       });
     });
+
+    function createField(fieldType, fieldValue) {
+      if (fieldType == "state") {
+        var html = '<select class="field">';
+        html += '<option>Select a State</option>';
+        var states = ["NY", "CA"];
+        states.forEach( function(state) {
+          html += '<option value="' + state + '">'
+          html += state + '</option>';
+        })
+      } else {
+        var html = '<input class="field" type="text" value="';
+        html += fieldValue + '">';
+      }
+
+      return html;
+    }
   });
 </script>
 
-<h1><%= @user.name %> (You!)</h1>
-
-<br><br>
+<h1 data-user-id="<%= @user.id %>"><%= @user.name %></h1>
 
 <div class="property">
-  <h2 class="current-value"><%=
+  <h2 class="current-value" data-field="tagline"><%=
     @user.tagline ? @user.tagline : "(enter tagline)"
     %></h2>
 
-  <input class="field" type="text" name="user[tagline]"
-    value="<%= @user.tagline %>" data-user-id="<%= @user.id %>">
-
-  <button>Save</button>
+  <button class="save">Save</button>
+  <button class="remove">Remove</button>
 </div>
 
-<% if @user.city || @user.state %>
+<div class="property">
   <b>Location:</b>
-  <%= @user.city %>
-  <%= ", " unless @user.state.nil? || @user.city.nil? %>
-  <%= @user.state %>
+  <span class="current-value" data-field="city">
+    <%= @user.city ? @user.city : "(enter city)" %></span>,
+  <span class="current-value" data-field="state">
+    <%= @user.state ? @user.state : "(enter state)" %>
+  </span>
 
-  <br><br>
-<% end %>
+  <button class="save">Save</button>
+  <button class="remove">Remove</button>
+</div>
+
+  <br>
 
 <% if @user.industry %>
   <b>Industry:</b> <%= @user.industry %>

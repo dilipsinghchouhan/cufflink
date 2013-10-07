@@ -12,14 +12,20 @@
  *= require_tree .
  */
 
-.property > .field, .property > button {
+/*h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, checkbox {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}*/
+
+.property.editing > .current-value.active {
   display: none;
 }
 
-.property.editing > .field, .property.editing > button {
-  display: block;
+.property > .notifications.red {
+  color: red;
 }
 
-.property.editing > .current_value {
-  display: none;
+.property > .notifications.green {
+  color: green;
 }
