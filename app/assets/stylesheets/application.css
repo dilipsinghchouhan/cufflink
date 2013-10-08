@@ -12,11 +12,15 @@
  *= require_tree .
  */
 
-/*h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, checkbox {
+h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, checkbox {
   margin: 0;
   padding: 0;
   border: 0;
-}*/
+}
+
+input[type="text"], textarea {
+  border: 1px solid black;
+}
 
 .property.editing > .current-value.active {
   display: none;

@@ -2,6 +2,12 @@
 
 Oh man, this is going to be intense.
 
+##HELP!
+
+* buttons on user show page.
+* global variables??
+
+
 ##To Do: ASAP
 
 * Models for education, link, phone number, position...
@@ -16,6 +22,7 @@ Oh man, this is going to be intense.
 * end date grayed out if current student
 * state dropdown...
 * relate states and cities?
+* get rid of app helper?
 
 ##To Do: Soon
 

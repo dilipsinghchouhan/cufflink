@@ -1,12 +1,21 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :tagline, :city, :state,
-    :industry, :summary
+    :industry, :summary, :null
   attr_reader :password
 
   validates :password_digest, presence: { message: "Password can't be blank." }
 
-  validates :tagline, :city, length: { minimum: 1, allow_nil: true }
+  validates :tagline, :city, :summary, length: { minimum: 1, allow_nil: true }
   validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
+  validates :industry, inclusion: { in: [
+      "Real Estate",
+      "Technology",
+      "Advertising",
+      "Hospitality",
+      "Health/Medicine",
+      "Banana Stand",
+      "Other"
+    ], allow_nil: true }
 
   validates :name, :email, :status, :session_token, presence: true
   validates :email, uniqueness: true #make it an email? regex?
@@ -29,6 +38,10 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+  
+  def null=(field)
+    self.send("#{field}=", nil)
   end
 
   def password=(password)

@@ -5,6 +5,8 @@
         jQueryObj.remove();
       }, 1000);
     }
+	
+	var userID = $('h1').attr('data-user-id');
 
     $('.current-value').on("click", function(event) {
       var $target = $(event.target);
@@ -13,11 +15,18 @@
       var notifications = '<div class="notifications"></div>'
       $target.parent().prepend(notifications);
 
-      var buttons = '<button class="save">Save</button>'
-      buttons += '<button class="remove">Remove</button>'
+	  //       var buttons = '<button class="save">Save</button>'
+	  //       buttons += '<button class="remove">Remove</button>'
+	  // $target.parent().append(buttons);
 
       var fieldType = $target.attr('data-field');
-      var fieldValue = $target.text().trim();
+	  
+	  if ($target.attr("data-nil") === "true") {
+	  	var fieldValue = "";
+	  } else {
+	  	var fieldValue = $target.text().trim();
+	  }
+      
       var fieldHTML = createField(fieldType, fieldValue);
 
       $target.after(fieldHTML);
@@ -30,73 +39,138 @@
       var $activeCurrentVal = $target
         .siblings().filter('.current-value.active');
       var fieldName = $activeCurrentVal.attr('data-field');
-      var fieldNameAsHash = "user[" + fieldName + "]";
-      var userID = $('h1').attr('data-user-id');
       var obj = {};
-
-      if ($target //has class)
-
       var $field = $target.siblings().filter('.field');
       var $notifications = $target.siblings().filter('.notifications');
-      var fieldVal = $field.val();
 
-      obj[fieldNameAsHash] = fieldVal;
-
-      $.ajax({
-        url: "/users/" + userID,
-        type: "PUT",
-        data: obj,
-        success: function() {
-          $activeCurrentVal.text(fieldVal);
-          $field.remove();
-          $activeCurrentVal.removeClass("active");
-          $target.parent().removeClass("editing");
-          $notifications.text(fieldName + " updated successfully!");
-          $notifications.addClass("green");
-          delayedRemove($notifications);
-        },
-        error: function(jqXHR) {
-          $field.val($activeCurrentVal.text().trim())
-          $notifications.text(jqXHR.responseText);
-          $notifications.addClass("red");
-          delayedRemove($notifications);
-        }
-      });
+      if ($target.hasClass('save')) {
+		  var fieldNameAsHash = "user[" + fieldName + "]";
+	      var fieldVal = $field.val();
+	      obj[fieldNameAsHash] = fieldVal;
+		  
+	      $.ajax({
+	        url: "/users/" + userID,
+	        type: "PUT",
+	        data: obj,
+	        success: function() {
+	          $activeCurrentVal.text(fieldVal);
+			  $activeCurrentVal.attr("data-nil", "false");
+	          $field.remove();
+	          $activeCurrentVal.removeClass("active");
+	          $target.parent().removeClass("editing");
+	          $notifications.text(fieldName + " updated successfully!");
+	          $notifications.addClass("green");
+	          delayedRemove($notifications);
+	        },
+	        error: function(jqXHR) {
+		  	  if ($activeCurrentVal.attr("data-nil") === "true") {
+		  	  	var fieldValue = "";
+		  	  } else {
+		  	  	var fieldValue = $target.text().trim();
+		  	  }
+	          
+			  $field.val(fieldValue);
+	          
+			  $notifications.text(jqXHR.responseText);
+	          $notifications.addClass("red");
+	          delayedRemove($notifications);
+	        }
+	      });
+		  
+	  } else if ($target.hasClass('remove')) {		
+		  obj["user[null]"] = fieldName;
+		    
+	      $.ajax({
+	        url: "/users/" + userID,
+	        type: "PUT",
+	        data: obj,
+	        success: function() {
+			  $activeCurrentVal.attr("data-nil", "true");
+			  $activeCurrentVal.text("(enter " + fieldName + ")");
+	          $activeCurrentVal.removeClass("active");
+	          $target.parent().removeClass("editing");
+			  $field.remove();
+	          $notifications.text(fieldName + " removed successfully!");
+	          $notifications.addClass("green");
+	          delayedRemove($notifications);
+	        }
+	      });
+	  }
     });
 
     function createField(fieldType, fieldValue) {
-      if (fieldType == "state") {
-        var html = '<select class="field">';
-        html += '<option>Select a State</option>';
-        var states = ["NY", "CA"];
-        states.forEach( function(state) {
-          html += '<option value="' + state + '">'
-          html += state + '</option>';
-        })
+      if (["state", "industry", "summary"]
+	    .indexOf(fieldType) === -1) {
+          var html = '<input class="field" type="text" value="';
+          html += fieldValue + '">';
+      } else if (fieldType == "summary") {
+      	  var html = '<textarea class="field">';
+		  html += fieldValue + '</textarea>';
       } else {
-        var html = '<input class="field" type="text" value="';
-        html += fieldValue + '">';
-      }
+		  var html = '<select class="field">';
+		  
+		  if (fieldType === "state") {
+		      var options = ["NY", "CA"];
+			  html += '<option>Select a State</option>';
+		  } else {
+			  var options = [
+			        "Real Estate",
+			        "Technology",
+			        "Advertising",
+			        "Hospitality",
+			        "Health/Medicine",
+			        "Banana Stand",
+			        "Other"
+			      ];
+			  html += '<option>Select an Industry</option>';
+		  }
+          
+          options.forEach( function(option) {
+	          html += '<option value="' + option + '"';
+			  
+			  if (fieldValue == option) {
+				  html += " selected";
+			  }
+			  
+	          html += '>' + option + '</option>';
+	      });
+	  }
 
       return html;
     }
+	
+	$('#education').on("click", function(event) {
+		event.preventDefault();
+		
+		var html = "<form><label>School name <i>(Required)</i>:<br>"
+		html += '<input type="text" name="education[school]"><br>'
+		html += '</label><label>City:<br>'
+		html += '<input type="text" name="education[city]"><br>'
+		html += '</label><label>State:<br>'
+		html += '<input type="submit" value="Add Education">'
+		
+        var $target = $(event.target);
+        $target.after(html);
+	})
   });
 </script>
 
 <h1 data-user-id="<%= @user.id %>"><%= @user.name %></h1>
 
 <div class="property">
-  <h2 class="current-value" data-field="tagline"><%=
+  <h2 class="current-value" data-field="tagline" data-nil="<%=
+  	@user.tagline ? false : true %>"><%=
     @user.tagline ? @user.tagline : "(enter tagline)"
     %></h2>
-
-  <button class="save">Save</button>
-  <button class="remove">Remove</button>
+	
+    <button class="save">Save</button>
+    <button class="remove">Remove</button>
 </div>
 
 <div class="property">
   <b>Location:</b>
-  <span class="current-value" data-field="city">
+  <span class="current-value" data-field="city" data-nil="<%=
+  	@user.city ? false : true %>">
     <%= @user.city ? @user.city : "(enter city)" %></span>,
   <span class="current-value" data-field="state">
     <%= @user.state ? @user.state : "(enter state)" %>
@@ -106,20 +180,27 @@
   <button class="remove">Remove</button>
 </div>
 
-  <br>
+<div class="property">
+  <b>Industry:</b>
+  <span class="current-value" data-field="industry">
+    <%= @user.industry ? @user.industry : "(enter industry)" %>
+  </span>
 
-<% if @user.industry %>
-  <b>Industry:</b> <%= @user.industry %>
+  <button class="save">Save</button>
+  <button class="remove">Remove</button>
+</div>
 
-  <br>
-<% end %>
+<div class="property">
+  <h3>Summary:</h3>
+  <span class="current-value" data-field="summary" data-nil="<%=
+  	@user.summary ? false : true %>">
+    <%= @user.summary ? @user.summary : "(enter summary)" %>
+  </span>
 
-<% if @user.summary %>
-  <h3>Summary</h3>
-    <p>
-      <%= @user.summary %>
-    </p>
-<% end %>
+  <button class="save">Save</button>
+  <button class="remove">Remove</button>
+</div>
+  
 
 <h3>Contact Information</h3>
   <ul id="contact_information">
@@ -129,6 +210,8 @@
   </ul>
 
 <h3>Education History</h3>
+  <a href="#" id="education">Add Education</a>
+
   <% @user.educations.each do |education| %>
     <%= render partial: "educations/show", locals: { user: @user, education: education } %>
   <% end %>
