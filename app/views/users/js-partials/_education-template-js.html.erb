@@ -1,0 +1,56 @@
+<script type="text/template" id="education_template">
+  <div class="profile-data" id="<%%= education.id %>">
+    <h4><%%= education.school %></h4>
+
+    <div class="property">
+      <b>Location:</b>
+      <span class="current-value" data-field="education-city" data-nil="<%%=
+      	education.city ? false : true %>">
+        <%%= education.city ? education.city : "(enter city)" %></span>,
+      <span class="current-value" data-field="education-state">
+        <%%= education.state ? education.state : "(enter state)" %>
+      </span>
+    </div>
+
+    <div class="property">
+      <b>Dates of Attendance:</b>
+      <span class="current-value" data-field="education-start_date"
+        data-nil="<%%= education.start_date ? false : true %>">
+        <%%= education.start_date ?
+          education.start_date : "(enter start date)" %></span> to
+      <span class="current-value" data-field="education-end_date">
+        <%%= education.end_date ? education.end_date : "(enter end_date)" %>
+      </span>
+    </div>
+
+    <div class="property">
+      <span class="current-student">Current Student</span>
+      <span class="current-value" data-field="education-current_student">
+         <input type="checkbox"
+        <%%= education.current_student ? "checked" : "" %>>
+      </span>
+    </div>
+
+    <div class="property">
+      <b>Area of Study:</b>
+      <span class="current-value" data-field="education-area" data-nil="<%%=
+      	education.area ? false : true %>">
+        <%%= education.area ? education.area : "(enter area)" %></span>
+    </div>
+
+    <div class="property">
+      <b>Degree:</b>
+      <span class="current-value" data-field="education-degree" data-nil="<%%=
+      	education.degree ? false : true %>">
+        <%%= education.degree ? education.degree : "(enter degree)" %></span>
+    </div>
+
+    <div class="property">
+      <b>Awards & Activities:</b><br>
+      <span class="current-value" data-field="education-awards" data-nil="<%%=
+      	education.awards ? false : true %>">
+        <%%= education.awards ? education.awards : "(enter awards)" %></span>
+    </div>
+
+  </div>
+</script>

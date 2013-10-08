@@ -1,28 +1,36 @@
 class EducationsController < ApplicationController
   def create
+    @education = Education.new(params[:education])
+    @education.owner_id = params[:user_id]
 
+    if @education.save
+      render json: @education
+    else
+      render json: @education.errors.full_messages, status: 422
+    end
   end
 
   def update
+    @education = current_education
 
+    if @education.update_attributes(params[:education])
+      render json: @education
+    else
+      render json: @education.errors.full_messages, status: 422
+    end
   end
 
   def destroy
-    @user, @education = current_user_and_education
+    @education = current_education
 
     @education.destroy
 
-    flash[:notice] = "School successfully deleted."
-
-    redirect_to user_url(@user)
+    render json: ""
   end
 
   private
 
-  def current_user_and_education
-    @user = User.find_by_id(params[:user_id])
-    @education = Education.find_by_id(params[:id])
-
-    [@user, @education]
+  def current_education
+    Education.find_by_id(params[:id])
   end
 end

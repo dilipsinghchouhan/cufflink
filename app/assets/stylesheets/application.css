@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textare
   border: 0;
 }
 
-input[type="text"], textarea {
+input[type="text"], input[type="password"], input[type="checkbox"], input[type="date"], textarea {
   border: 1px solid black;
 }
 

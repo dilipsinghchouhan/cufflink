@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
       nil
     end
   end
-  
+
   def null=(field)
     self.send("#{field}=", nil)
   end

@@ -1,0 +1,26 @@
+<script>
+$(document).ready( function(){
+
+  function populateEducations() {
+    var edDataArray = JSON.parse($("#bootstrapped_educations_json").html());
+
+    edDataArray.educations.forEach(function(edData) {
+      appendEducation(edData);
+    })
+  }
+
+  function appendEducation(edData) {
+    var templateCode = $("#education_template").html();
+    var templateFn = _.template(templateCode);
+
+    var renderedContent = templateFn({
+     education: edData
+    });
+
+    $("#educations").append(renderedContent);
+  }
+
+  populateEducations();
+
+});
+</script>
