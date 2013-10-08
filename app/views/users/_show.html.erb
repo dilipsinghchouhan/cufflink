@@ -2,6 +2,14 @@
 
 <br><br>
 
+<% unless current_user.connections.include?(@user) %>
+
+  <%= render partial: "friendship-form", locals: { user: @user } %>
+
+  <br><br>
+
+<% end %>
+
 <% if @user.tagline %>
     <h2 class="current-value"><%= @user.tagline %></h2>
 

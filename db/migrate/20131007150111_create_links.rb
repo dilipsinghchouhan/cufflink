@@ -8,5 +8,7 @@ class CreateLinks < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :links, :owner_id
   end
 end

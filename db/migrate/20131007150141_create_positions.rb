@@ -15,5 +15,7 @@ class CreatePositions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :positions, :owner_id
   end
 end

@@ -15,5 +15,7 @@ class CreateEducations < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :educations, :owner_id
   end
 end

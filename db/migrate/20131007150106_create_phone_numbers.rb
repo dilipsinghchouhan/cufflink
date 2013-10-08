@@ -7,5 +7,7 @@ class CreatePhoneNumbers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :phone_numbers, :owner_id
   end
 end

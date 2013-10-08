@@ -1,0 +1,26 @@
+<h3>Connect with <%= user.name %></h3>
+
+<%= form_tag(user_friendships_url(current_user), method: "post") do |f| %>
+  <label>Message:<br>
+    <textarea name="friendship[message]"></textarea>
+  </label>
+
+  <br><br>
+
+  <label>How do you know <%= user.name %>?<br>
+    <select name="friendship[connection_type]">
+      <option>Choose a Connection</option>
+
+      <% ["Friend", "Colleague", "Classmate", "Other"].each do |connection| %>
+        <option value="<%= connection.downcase %>"><%= connection %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <br><br>
+
+  <input type="hidden" name="friendship[friendee_id]" value="<%= user.id %>">
+
+  <input type="submit" value="Submit">
+
+<% end %>

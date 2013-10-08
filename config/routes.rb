@@ -3,6 +3,7 @@ Cufflink::Application.routes.draw do
   # first created -> highest priority.
 
   resources :users, only: [:new, :create, :show, :update, :feed] do
+    resources :friendships, only: [:create, :destroy]
     resources :educations, only: [:create, :index]
     resources :links, only: [:create, :index]
     resources :phone_numbers, only: [:create, :index]
