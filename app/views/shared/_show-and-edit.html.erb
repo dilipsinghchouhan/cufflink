@@ -1,0 +1,88 @@
+<h1 data-id="<%= object.id %>">
+  <%= object.name %>
+</h1>
+
+<div id="edit-profile-body">
+  <% if type == "user" %>
+    <div class="property">
+      <h4 class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
+      	object.tagline ? false : true %>"><%=
+        object.tagline ? object.tagline : "(enter tagline)"
+        %></h4>
+    </div>
+  <% end %>
+
+  <div class="property">
+    <b>Location:</b>
+    <% if type == "company" %>
+      <span class="current-value" data-field="<%=
+        type %>-address1" data-nil="<%= object.address1 ? false : true %>">
+        <%= object.address1 ? object.address1 : "(enter address1)" %></span>
+        <br>
+      <span class="current-value" data-field="<%=
+        type %>-address2" data-nil="<%= object.address2 ? false : true %>">
+        <%= object.address2 ? object.address2 : "(enter address2)" %></span>
+      <br>
+    <% end %>
+
+    <span class="current-value" data-field="<%= type %>-city" data-nil="<%=
+    	object.city ? false : true %>">
+      <%= object.city ? object.city : "(enter city)" %></span>,
+    <span class="current-value" data-field="<%= type %>-state">
+      <%= object.state ? object.state : "(enter state)" %>
+    </span>
+
+    <% if type == "company" %>
+      <br>
+      <span class="current-value" data-field="<%= type %>-zip"
+        data-nil="<%= object.zip ? false : true %>">
+        <%= object.zip ? object.zip : "(enter zip)" %></span>
+    <% end %>
+  </div>
+
+  <div class="property">
+    <b>Industry:</b>
+    <span class="current-value" data-field="<%= type %>-industry">
+      <%= object.industry ? object.industry : "(enter industry)" %>
+    </span>
+  </div>
+
+  <div class="property">
+    <h3>Summary:</h3>
+    <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
+    	object.summary ? false : true %>">
+      <%= object.summary ? object.summary : "(enter summary)" %>
+    </span>
+  </div>
+
+  <% if type == "user" %>
+
+    <h3>Contact Information</h3>
+
+    <ul id="contact_information">
+      <li>
+        <%= object.email %>
+      </li>
+    </ul>
+
+    <h3>Education History</h3>
+
+    <a href="#" id="education-link" data-<%= type %>-id="<%= object.id %>">
+      Add Education
+    </a>
+
+    <div id="educations"></div>
+
+    <script type="application/json" id="bootstrapped_educations_json">
+      { "educations": <%= object.educations.to_json.html_safe %> }
+    </script>
+
+    <%= render partial: "users/js-partials/education-template-js" %>
+
+    <%= render partial: "users/js-partials/data-js" %>
+
+  <% end %>
+
+  <%= render partial: "users/js-partials/profile-js" %>
+
+</div>

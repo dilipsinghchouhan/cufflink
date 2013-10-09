@@ -1,0 +1,61 @@
+<h1>Create a Company</h1>
+
+<%= form_for @company, url: { action: "create" } do |f| %>
+  <label>Name <i>(Required)</i>:<br>
+    <%= f.text_field :name %>
+  </label>
+
+  <br>
+
+  <label>Industry <i>(Required)</i>:<br>
+    <%= industry_select("company", @company.industry) %>
+  </label>
+
+  <br>
+
+  <label>Address 1:<br>
+    <%= f.text_field :address1 %>
+  </label>
+
+  <br>
+
+  <label>Address 2:<br>
+    <%= f.text_field :address2 %>
+  </label>
+
+  <br>
+
+  <label>City:<br>
+    <%= f.text_field :city %>
+  </label>
+
+  <br>
+
+  <label>State:<br>
+    <select name="company[state]">
+      <option value="">Select a State</option>
+
+      <% ["NY", "CA"].each do |state| %>
+        <option value="<%= state %>"
+          <%= " selected" if state == @company.state %>
+          ><%= state %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <br>
+
+  <label>Zip Code:<br>
+    <%= f.text_field :zip %>
+  </label>
+
+  <br>
+
+  <label>Summary:<br>
+    <%= f.text_area :summary %>
+  </label>
+
+  <br><br>
+
+  <%= f.submit "Create" %>
+<% end %>

@@ -30,6 +30,10 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.5)
     arel (3.0.2)
+    aws-sdk (1.20.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4, < 1.6.0)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
@@ -37,6 +41,10 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.2)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -48,6 +56,9 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.0.2)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -64,6 +75,12 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     multi_json (1.8.1)
+    nokogiri (1.5.10)
+    paperclip (3.5.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.17.0)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -110,17 +127,21 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   bcrypt-ruby
   better_errors
   binding_of_caller
   coffee-rails (~> 3.2.1)
+  figaro
   jquery-rails
   letter_opener
+  paperclip
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)

@@ -3,7 +3,7 @@ class CreateEducations < ActiveRecord::Migration
     create_table :educations do |t|
       t.integer :owner_id, null: false
       t.string :school, default: ""
-      t.integer :school_id, default: 0
+      t.integer :school_id
       t.string :city
       t.string :state
       t.date :start_date

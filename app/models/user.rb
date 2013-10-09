@@ -1,3 +1,4 @@
+require 'company'
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :tagline, :city,
     :state, :industry, :summary, :null
@@ -66,6 +67,16 @@ class User < ActiveRecord::Base
       friendship = Friendship.find_by_friender_id_and_friendee_id(
         self.id, user.id)
       friendship && friendship.status == 1
+    end
+  end
+
+  def owned_companies
+    [].tap do |owned_companies|
+      self.memberships.each do |membership|
+        if membership.status == 2
+          owned_companies << membership.company
+        end
+      end
     end
   end
 

@@ -1,0 +1,86 @@
+<h1><%= object.name %></h1>
+
+<% if type == "user" %>
+  <div id="friendship-status">
+
+    <% status = current_user.friendship_status_with(object) %>
+
+    <% if status == :pending %>
+      Your connection request to <b><%= object.first_name %></b> is awaiting approval.
+    <% elsif status == :connected  %>
+      <b><%= object.first_name %></b> is a friend.
+    <% elsif status == :denied %>
+      <b><%= object.first_name %></b> denied your earlier friend request.
+    <% else %>
+      <%= render partial: "friendship-form", locals: { user: object } %>
+    <% end %>
+
+  </div>
+
+  <% if object.tagline %>
+      <h4 class="current-value"><%= object.tagline %></h4>
+
+      <input type="text" name="user[tagline]"
+        value="<%= object.tagline %>">
+
+      <button>Save</button>
+  <% end %>
+<% end %>
+
+<% if type == "company" %>
+
+  <% if object.address1 || object.address1 || object.city || object.state %>
+    <b>Location:</b><br>
+
+    <%= object.address1 %>
+    <%= raw("<br>") if object.address1 && object.address2 %>
+    <%= object.address2 %>
+
+    <%= raw("<br>") if object.city || object.state %>
+
+    <%= city_state(object) %>
+
+    <%= object.zip %>
+
+    <br><br>
+  <% end %>
+
+<% else %>
+
+  <% if object.city || object.state %>
+    <b>Location:</b>
+    <%= city_state(object) %>
+
+    <br><br>
+  <% end %>
+
+<% end %>
+
+<% if object.industry %>
+  <b>Industry:</b> <%= object.industry %>
+
+  <br>
+<% end %>
+
+<% if object.summary %>
+  <h3>Summary</h3>
+    <p>
+      <%= object.summary %>
+    </p>
+<% end %>
+
+<% if type == "user" %>
+  <h3>Contact Information</h3>
+    <ul id="contact_information">
+      <li>
+        <%= object.email %>
+      </li>
+    </ul>
+
+  <h3>Education History</h3>
+    <% object.educations.each do |education| %>
+      <%= render partial: "educations/show", locals: { user: object, education: education } %>
+    <% end %>
+<% end %>
+
+

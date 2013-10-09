@@ -11,25 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008230214) do
+ActiveRecord::Schema.define(:version => 20131009142721) do
 
   create_table "companies", :force => true do |t|
-    t.string   "name",        :null => false
-    t.string   "industry",    :null => false
+    t.string   "name",       :null => false
+    t.string   "industry",   :null => false
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "summary"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "educations", :force => true do |t|
     t.integer  "owner_id",                           :null => false
     t.string   "school",          :default => ""
-    t.integer  "school_id",       :default => 0
+    t.integer  "school_id"
     t.string   "city"
     t.string   "state"
     t.date     "start_date"

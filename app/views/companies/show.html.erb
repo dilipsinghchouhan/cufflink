@@ -1,1 +1,5 @@
-<h1><%= @company.name %></h1>
+<% if @company.admins.include?(current_user) %>
+  <%= render partial: "shared/show-and-edit", locals: { type: "company", object: @company } %>
+<% else %>
+  <%= render partial: "shared/show", locals: { type: "company", object: @company } %>
+<% end %>

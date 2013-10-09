@@ -18,7 +18,16 @@ $(document).ready( function(){
     delayedRemove($notifications);
   }
 
-  var urlId = $('h1').attr('data-user-id');
+  function genUrl(modelType, urlId) {
+    if (modelType == "company") {
+      var plural = "companies"
+    } else {
+      var plural = modelType + "s"
+    }
+    return "/" + plural + "/" + urlId;
+  }
+
+  var urlId = $('h1').attr('data-id');
 
   $("#edit-profile-body").on("click", ".current-value", function(event) {
     var $target = $(event.target);
@@ -31,12 +40,16 @@ $(document).ready( function(){
     $property.prepend(notifications);
 
     var fieldArray = $activeCurrentVal.attr('data-field').split("-");
+    var modelType = fieldArray[0]
     var fieldType = fieldArray[1];
 
     var buttons = '<button class="save">Save</button>';
-    if (fieldType !== "current_student") {
-      buttons += '<button class="remove">Remove</button>';
+
+    if ((fieldType !== "current_student") &&
+      (!(fieldType == "industry" && modelType == "company"))) {
+        buttons += '<button class="remove">Remove</button>';
     }
+
     $property.append(buttons);
 
     // var fieldValue = ""
@@ -69,6 +82,7 @@ $(document).ready( function(){
       .siblings().filter('.current-value.active');
 
     var fieldArray = $activeCurrentVal.attr('data-field').split("-");
+
     var modelType = fieldArray[0];
     var fieldType = fieldArray[1];
 
@@ -82,11 +96,11 @@ $(document).ready( function(){
 
     var $containingDiv = $target.closest(".profile-data")
 
-    if (modelType !== "user") {
+    if (["user", "company"].indexOf(modelType) == -1) {
       urlId = $containingDiv.attr("id");
     }
 
-    var url = "/" + modelType + "s/" + urlId;
+    var url = genUrl(modelType, urlId);
 
     if ($target.hasClass('save')) {
 

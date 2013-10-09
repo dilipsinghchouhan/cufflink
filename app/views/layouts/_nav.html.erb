@@ -12,13 +12,23 @@
           </ul>
         </li>
         <li class="nest"><%= link_to "Companies", companies_url %>
-          <% unless current_user.companies.empty? %>
             <ul>
               <% current_user.companies.each do |company| %>
-                <li><%= link_to company.name, company_url(company) %></li>
+                <li>
+                  <a href="<%= company_url(company) %>"><%= company.name %>
+                    <% if company.owner == current_user %>
+                      <i class="icon-suitcase"></i>
+                    <% end %>
+                  </a>
+                </li>
               <% end %>
+                <li><%= link_to "Create a Company", new_company_url %></li>
             </ul>
-          <% end %>
+
+            <!-- different icon color for admin -->
+            <!--
+              ask how to make this the right width
+            -->
         </li>
         <li><%= link_to "My Profile", user_url(current_user) %></li>
       </ul>

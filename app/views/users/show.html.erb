@@ -1,5 +1,5 @@
 <% if current_user == @user %>
-  <%= render partial: "show-and-edit", locals: { user: @user } %>
+  <%= render partial: "shared/show-and-edit", locals: { type: "user", object: @user } %>
 <% else %>
-  <%= render partial: "show", locals: { user: @user } %>
+  <%= render partial: "shared/show", locals: { type: "user", object: @user } %>
 <% end %>

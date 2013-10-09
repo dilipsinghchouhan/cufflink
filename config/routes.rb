@@ -21,7 +21,7 @@ Cufflink::Application.routes.draw do
   resources :phone_numbers, only: [:update, :destroy]
   resources :positions, only: [:update, :destroy]
 
-  resources :companies, only: [:index, :show]
+  resources :companies, only: [:index, :show, :new, :create, :update]
 
   resource :session, only: [:new, :create, :destroy]
 
