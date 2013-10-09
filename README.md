@@ -11,6 +11,10 @@ Oh man, this is going to be intense.
 
 ##To Do: ASAP
 
+* confirm accounts
+* approve connections
+
+
 * clean up profile js. also, maybe (enter awards) should be better
 * get rid of save button for checkboxes... dont load any buttons and copy the button click handler to its own method so it can work when you click remove or a checkbox...
 
