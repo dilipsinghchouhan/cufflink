@@ -1,8 +1,36 @@
-<h1 data-id="<%= object.id %>">
-  <%= object.name %>
-</h1>
+<h3>Update Status</h3>
 
-<div id="edit-profile-body">
+<% action_url = (type == "user") ? user_statuses_url(object) :
+  company_statuses_url(object) %>
+
+<form action="<%= action_url %>" method="post">
+  <input type="hidden" value="<%= form_authenticity_token %>"
+    name="authenticity_token">
+
+  <label>
+    Body:<br>
+    <textarea name="status[body]"></textarea>
+  </label>
+
+  <br><br>
+
+  <label>
+    Link:<br>
+    <input type="text" name="status[link]">
+  </label>
+
+  <br><br>
+
+  (Image upload field! OMG!)
+
+  <br><br>
+
+  <input type="submit" value="Update Status">
+</form>
+
+<div id="profile-info" class="profile-box">
+  <h2>Information</h2>
+
   <% if type == "user" %>
     <div class="property">
       <h4 class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
@@ -65,24 +93,8 @@
       </li>
     </ul>
 
-    <h3>Education History</h3>
-
-    <a href="#" id="education-link" data-<%= type %>-id="<%= object.id %>">
-      Add Education
-    </a>
-
-    <div id="educations"></div>
-
-    <script type="application/json" id="bootstrapped_educations_json">
-      { "educations": <%= object.educations.to_json.html_safe %> }
-    </script>
-
-    <%= render partial: "users/js-partials/education-template-js" %>
-
-    <%= render partial: "users/js-partials/data-js" %>
-
   <% end %>
 
-  <%= render partial: "users/js-partials/profile-js" %>
-
 </div>
+
+

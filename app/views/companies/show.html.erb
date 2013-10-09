@@ -1,5 +1,7 @@
 <% if @company.admins.include?(current_user) %>
-  <%= render partial: "shared/show-and-edit", locals: { type: "company", object: @company } %>
+  <%= render partial: "shared/show-router", locals: { type: "company",
+    object: @company, edit: true } %>
 <% else %>
-  <%= render partial: "shared/show", locals: { type: "company", object: @company } %>
+  <%= render partial: "shared/show-router", locals: { type: "company", object:
+    @company, edit: false } %>
 <% end %>

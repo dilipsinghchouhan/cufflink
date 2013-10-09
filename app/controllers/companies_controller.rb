@@ -10,17 +10,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    user_params = {}
-
-    params[:company].each do |key, value|
-      if value == ""
-        user_params[key] = nil
-      else
-        user_params[key] = value
-      end
-    end
-
-    @company = Company.new(user_params)
+    @company = Company.new(clean_params_hash(params[:company]))
 
     if @company.save
       flash[:notice] = "Company created successfully!"

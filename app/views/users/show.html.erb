@@ -1,5 +1,8 @@
 <% if current_user == @user %>
-  <%= render partial: "shared/show-and-edit", locals: { type: "user", object: @user } %>
+  <%= render partial: "shared/show-router", locals: { type: "user",
+    object: @user, edit: true } %>
 <% else %>
-  <%= render partial: "shared/show", locals: { type: "user", object: @user } %>
+  <%= render partial: "shared/show-router", locals: { type: "user", object:
+    @user, edit: false } %>
 <% end %>
+

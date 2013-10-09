@@ -1,14 +1,15 @@
 <script>
-$(document).ready( function(){
+$(document).ready( function(root){
+  var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
 
-  function delayedRemove(jQueryObj) {
+  var delayedRemove = ProfileLib.delayedRemove = function(jQueryObj) {
     timeoutID = window.setTimeout(function() {
       jQueryObj.remove();
     }, 1000);
   }
 
-  function cleanUp($field, $clicked_button, $other_button, $activeCurrentVal,
-    $target, $notifications) {
+  var cleanUp = ProfileLib.cleanUp = function($field, $clicked_button,
+    $other_button, $activeCurrentVal, $target, $notifications) {
     $field.remove();
     $clicked_button.remove();
     $other_button.remove();
@@ -18,7 +19,7 @@ $(document).ready( function(){
     delayedRemove($notifications);
   }
 
-  function genUrl(modelType, urlId) {
+  var genUrl = ProfileLib.genUrl = function(modelType, urlId) {
     if (modelType == "company") {
       var plural = "companies"
     } else {
@@ -29,7 +30,7 @@ $(document).ready( function(){
 
   var urlId = $('h1').attr('data-id');
 
-  $("#edit-profile-body").on("click", ".current-value", function(event) {
+  $("#profile-info").on("click", ".current-value", function(event) {
     var $target = $(event.target);
     var $activeCurrentVal = $target.closest('.current-value')
     $activeCurrentVal.addClass("active");
@@ -75,7 +76,7 @@ $(document).ready( function(){
     $property.addClass("editing");
   });
 
-  $("#edit-profile-body").on("click", "button", function(event) {
+  $("#profile-info").on("click", "button", function(event) {
     var $target = $(event.target);
 
     var $activeCurrentVal = $target
@@ -161,7 +162,7 @@ $(document).ready( function(){
   }
   });
 
-  function createField(fieldType, fieldValue) {
+  var createField = ProfileLib.createField = function(fieldType, fieldValue) {
     if (["state", "industry", "summary",
       "current_student", "awards"].indexOf(fieldType) === -1) {
         if (["start_date", "end_date", "current_student"]
@@ -229,6 +230,8 @@ $(document).ready( function(){
   $('#education-link').on("click", function(event) {
   	event.preventDefault();
 
+    console.log("link clicked")
+
     $(this).hide();
 
   	var html = '<form id="education-form">'
@@ -271,13 +274,13 @@ $(document).ready( function(){
       var $form = $(event.currentTarget);
       var formData = $form.serializeJSON();
 
-
       $.ajax({
-        url: '/users/' + userId + '/educations',
+        url: '/users/' + urlId + '/educations',
         type: 'POST',
         data: formData,
         success: function(obj) {
           $('#education-link').show();
+          ProfileLib.append("education", obj);
         },
         error: function() {
           console.log("error")

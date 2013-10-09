@@ -1,6 +1,6 @@
 class EducationsController < ApplicationController
   def create
-    @education = Education.new(params[:education])
+    @education = Education.new(clean_params_hash(params[:education]))
     @education.owner_id = params[:user_id]
 
     if @education.save

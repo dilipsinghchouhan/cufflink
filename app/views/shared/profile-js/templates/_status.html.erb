@@ -1,0 +1,19 @@
+<script type="text/template" id="status_template">
+  <div class="profile-data" id="<%%= status.id %>">
+
+   <%% if (status.company_id && status.user_id) { %>
+     <div class="both">
+   <%% } else if (status.user_id) { %>
+     <div class="user">
+   <%% } else { %>
+     <div class="company">
+   <%% } %>
+
+      <%% if (status.body) { %>
+        <div class="status-body"><%%= status.body %></div>
+      <%% } %>
+
+      <div>Posted at <%%= status.created_at %></div>
+    </div>
+  </div>
+</script>

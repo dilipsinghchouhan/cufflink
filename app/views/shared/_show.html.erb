@@ -1,5 +1,3 @@
-<h1><%= object.name %></h1>
-
 <% if type == "user" %>
   <div id="friendship-status">
 
@@ -27,60 +25,58 @@
   <% end %>
 <% end %>
 
-<% if type == "company" %>
+<div id="profile-info" class="profile-box">
+  <h2>Information</h2>
 
-  <% if object.address1 || object.address1 || object.city || object.state %>
-    <b>Location:</b><br>
+  <% if type == "company" %>
 
-    <%= object.address1 %>
-    <%= raw("<br>") if object.address1 && object.address2 %>
-    <%= object.address2 %>
+    <% if object.address1 || object.address1 || object.city || object.state %>
+      <b>Location:</b><br>
 
-    <%= raw("<br>") if object.city || object.state %>
+      <%= object.address1 %>
+      <%= raw("<br>") if object.address1 && object.address2 %>
+      <%= object.address2 %>
 
-    <%= city_state(object) %>
+      <%= raw("<br>") if object.city || object.state %>
 
-    <%= object.zip %>
+      <%= city_state(object) %>
 
-    <br><br>
-  <% end %>
+      <%= object.zip %>
 
-<% else %>
-
-  <% if object.city || object.state %>
-    <b>Location:</b>
-    <%= city_state(object) %>
-
-    <br><br>
-  <% end %>
-
-<% end %>
-
-<% if object.industry %>
-  <b>Industry:</b> <%= object.industry %>
-
-  <br>
-<% end %>
-
-<% if object.summary %>
-  <h3>Summary</h3>
-    <p>
-      <%= object.summary %>
-    </p>
-<% end %>
-
-<% if type == "user" %>
-  <h3>Contact Information</h3>
-    <ul id="contact_information">
-      <li>
-        <%= object.email %>
-      </li>
-    </ul>
-
-  <h3>Education History</h3>
-    <% object.educations.each do |education| %>
-      <%= render partial: "educations/show", locals: { user: object, education: education } %>
+      <br><br>
     <% end %>
-<% end %>
 
+  <% else %>
 
+    <% if object.city || object.state %>
+      <b>Location:</b>
+      <%= city_state(object) %>
+
+      <br><br>
+    <% end %>
+
+  <% end %>
+
+  <% if object.industry %>
+    <b>Industry:</b> <%= object.industry %>
+
+    <br>
+  <% end %>
+
+  <% if object.summary %>
+    <h3>Summary</h3>
+      <p>
+        <%= object.summary %>
+      </p>
+  <% end %>
+
+  <% if type == "user" %>
+    <h3>Contact Information</h3>
+      <ul id="contact_information">
+        <li>
+          <%= object.email %>
+        </li>
+      </ul>
+  <% end %>
+
+</div>

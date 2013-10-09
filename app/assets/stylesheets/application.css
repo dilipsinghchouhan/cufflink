@@ -30,13 +30,21 @@ h1, h2 {
   color: #333;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 input[type="text"], input[type="password"], input[type="checkbox"], input[type="date"], textarea {
   border: 1px solid black;
 }
 
-section#main, nav {
+section, nav {
   width: 960px;
   margin: 0 auto;
+}
+
+section#main {
+  padding-top: 80px;
 }
 
 .group:after {
@@ -49,7 +57,8 @@ section#main, nav {
 
 header {
   background-color: #ABE1E5;
-  margin-bottom: 30px;
+  position: fixed;
+  width: 100%;
 }
 
 header > nav > h2#logo {
@@ -111,6 +120,9 @@ header > nav > ul#nav-left > li.nest > ul > li > a {
 
 header > nav > ul#nav-left > li.nest > ul > li > a > i {
   color: #fff;
+  margin-left: 2px;
+  position: relative;
+  bottom: 1px;;
 }
 
 header > nav > ul#nav-left > li.nest > ul > li > a:hover {
@@ -124,6 +136,39 @@ header > nav > ul#nav-left > li > a:hover {
 header > nav > ul#nav-right {
   list-style: none;
   float: right;
+}
+
+/* Profile Nav */
+
+ul#profile-nav {
+  list-style: none;
+  float: right;
+  position: relative;
+  bottom: 30px;
+}
+
+ul#profile-nav > li {
+  float: left;
+  margin-left: 10px;
+}
+
+ul#profile-nav > li.active > a {
+  background-color: #ABE1E5;
+  border-radius: 4px;
+  color: #333;
+}
+
+ul#profile-nav > li > a {
+  text-decoration: none;
+  padding: 2px 4px 3px;
+}
+
+.profile-box {
+  display: none;
+}
+
+#profile-info {
+  display: block;
 }
 
 /* Profile Editing */
@@ -145,7 +190,5 @@ header > nav > ul#nav-right {
 }
 
 #edit-profile-body > div > h4 {
-  float: right;
-  position: relative;
-  bottom: 30px;
+  /* tagline styling */
 }

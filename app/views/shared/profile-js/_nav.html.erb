@@ -1,0 +1,21 @@
+<script>
+
+$(document).ready( function() {
+  $("#profile-nav > li > a").on("click", function(event) {
+    var $clicked_li = $(event.target).parent();
+    var $other_lis = $clicked_li.siblings();
+
+    if ($clicked_li.hasClass("active")) return;
+
+    var target_tab = $clicked_li.attr("data-tab");
+    var $profile_body = $("#profile-body");
+
+    $(".profile-box").hide();
+    $("#profile-" + target_tab).show();
+
+    $clicked_li.addClass("active");
+    $other_lis.removeClass("active");
+  });
+});
+
+</script>

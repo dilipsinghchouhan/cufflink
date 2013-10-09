@@ -9,6 +9,7 @@ Cufflink::Application.routes.draw do
   get "friendships/deny" => "friendships#deny"
 
   resources :users, only: [:new, :create, :show, :update, :feed, :index] do
+    resources :statuses, only: [:create]
     resources :friendships, only: [:create, :destroy]
     resources :educations, only: [:create, :index]
     resources :links, only: [:create, :index]
@@ -21,7 +22,11 @@ Cufflink::Application.routes.draw do
   resources :phone_numbers, only: [:update, :destroy]
   resources :positions, only: [:update, :destroy]
 
-  resources :companies, only: [:index, :show, :new, :create, :update]
+  resources :companies, only: [:index, :show, :new, :create, :update] do
+    resources :statuses, only: [:create]
+  end
+
+  resources :statuses, only: [:new]
 
   resource :session, only: [:new, :create, :destroy]
 

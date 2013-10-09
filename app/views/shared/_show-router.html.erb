@@ -1,0 +1,64 @@
+<h1 data-id="<%= object.id %>">
+  <%= object.name %>
+</h1>
+
+<ul id="profile-nav">
+  <li data-tab="info" class="active"><a href="#">Information</a></li>
+
+  <% if type == "user" %>
+    <li data-tab="education"><a href="#">Education</a></li>
+  <% end %>
+
+  <li data-tab="updates"><a href="#">Updates</a></li>
+</ul>
+
+<% if edit %>
+  <%= render partial: "shared/show-and-edit", locals: { type: type,
+    object: object } %>
+<% else %>
+  <%= render partial: "shared/show", locals: { type: type, object:
+    object } %>
+<% end %>
+
+<% if type == "user" %>
+
+  <div id="profile-education" class="profile-box">
+
+    <h2>Education History</h2>
+
+    <% if edit %>
+      <a href="#" id="education-link" data-<%= type %>-id="<%= object.id %>">
+        Add Education
+      </a>
+    <% end %>
+
+    <div id="education-list"></div>
+
+    <script type="application/json" id="bootstrapped_education_data_json">
+      { "education_list": <%= object.educations.to_json.html_safe %> }
+    </script>
+
+  </div>
+
+<% end %>
+
+
+<div id="profile-updates" class="profile-box">
+  <h2>Status Updates</h2>
+
+  <div id="status-list"></div>
+</div>
+
+<script type="application/json" id="bootstrapped_status_data_json">
+  { "status_list": <%= object.statuses.to_json.html_safe %> }
+</script>
+
+<%= render partial: "shared/profile-js/templates/education" %>
+
+<%= render partial: "shared/profile-js/edit" %>
+
+<%= render partial: "shared/profile-js/nav" %>
+
+<%= render partial: "shared/profile-js/templates/status" %>
+
+<%= render partial: "shared/profile-js/data" %>

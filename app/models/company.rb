@@ -23,6 +23,8 @@ class Company < ActiveRecord::Base
   has_many :memberships
   has_many :members, through: :memberships, source: :member
 
+  has_many :statuses
+
   def null=(field)
     self.send("#{field}=", nil)
   end

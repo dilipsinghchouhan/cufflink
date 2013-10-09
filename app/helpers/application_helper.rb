@@ -33,4 +33,16 @@ module ApplicationHelper
     ", " unless object.state.nil? || object.city.nil?
     object.state
   end
+
+  def clean_params_hash(params)
+    {}.tap do |new_params|
+      params.each do |key, value|
+        if value == ""
+          new_params[key] = nil
+        else
+          new_params[key] = value
+        end
+      end
+    end
+  end
 end

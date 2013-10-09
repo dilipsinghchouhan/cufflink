@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   has_many :memberships, foreign_key: :member_id
   has_many :companies, through: :memberships, source: :company
 
+  has_many :statuses
+
   def self.gen_random_token
     SecureRandom::urlsafe_base64
   end
@@ -55,6 +57,24 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  # def personal_statuses
+  #   self.statuses.reject { |status| status.company_id }
+  # end
+
+  def get_feed_data
+    updates = {}
+
+    self.connections
+
+    #friends updates
+    #friends profile changes
+
+    #companies updates
+    #companies profile changes
+
+    #likes and comments on my statuses/updates
   end
 
   def name

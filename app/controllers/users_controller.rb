@@ -14,11 +14,6 @@ class UsersController < ApplicationController
     render :connections
   end
 
-  # def companies
-  #   @companies = current_user.companies
-  #   render :companies
-  # end
-
   def new
     @user = User.new
     render :new
