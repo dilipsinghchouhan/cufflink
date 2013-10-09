@@ -1,0 +1,7 @@
+<h1><%= display %></h1>
+
+<ul>
+  <% objects.each do |object| %>
+    <li><a href="/<%= type %>/<%= object.id %>"><%= object.name %></a></li>
+  <% end %>
+</ul>

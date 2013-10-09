@@ -3,21 +3,21 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   cities = City.create([{ first_name: 'Chicago' }, { first_name: 'Copenhagen' }])
+#   Mayor.create(first_name: 'Emanuel', city: cities.first)
 
-User.create(name: 'Michael Bluth', email: 'michael@bluthcompany.com', password: 'password')
-User.create(name: 'George Bluth (Senior)', email: 'george@bluthcompany.com', password: 'password')
-User.create(name: 'Lucille Bluth', email: 'lucille@bluthcompany.com', password: 'password')
-User.create(name: 'George Oscar (GOB) Bluth', email: 'gob@bluthcompany.com', password: 'password')
-User.create(name: 'Buster Bluth', email: 'buster@bluthcompany.com', password: 'password')
-User.create(name: 'Lindsay Funke', email: 'lindsay@bluthcompany.com', password: 'password')
-User.create(name: 'George Michael Bluth', email: 'george_michael@bluthcompany.com', password: 'password')
-User.create(name: 'Tobias Funke', email: 'tobias@analrapist.com', password: 'password')
-User.create(name: 'Maeby Funke', email: 'maeby.funke@gmail.com', password: 'password')
-User.create(name: 'Lucille Austero', email: 'lucille@standpoor.com', password: 'password')
-User.create(name: 'Stan Sitwell', email: 'stan@sitwellenterprises.com', password: 'password')
-User.create(name: 'Sally Sitwell', email: 'sally@sitwellenterprises.com', password: 'password')
+User.create(first_name: 'Michael', last_name: 'Bluth', email: 'michael@bluthcompany.com', password: 'password')
+User.create(first_name: 'George', last_name: 'Bluth (Senior)', email: 'george@bluthcompany.com', password: 'password')
+User.create(first_name: 'Lucille', last_name: 'Bluth', email: 'lucille@bluthcompany.com', password: 'password')
+User.create(first_name: 'George Oscar (GOB)', last_name: 'Bluth', email: 'gob@bluthcompany.com', password: 'password')
+User.create(first_name: 'Buster', last_name: 'Bluth', email: 'buster@bluthcompany.com', password: 'password')
+User.create(first_name: 'Lindsay', last_name: 'Funke', email: 'lindsay@bluthcompany.com', password: 'password')
+User.create(first_name: 'George Michael', last_name: 'Bluth', email: 'george_michael@bluthcompany.com', password: 'password')
+User.create(first_name: 'Tobias', last_name: 'Funke', email: 'tobias@analrapist.com', password: 'password')
+User.create(first_name: 'Maeby', last_name: 'Funke', email: 'maeby.funke@gmail.com', password: 'password')
+User.create(first_name: 'Lucille', last_name: 'Austero', email: 'lucille@standpoor.com', password: 'password')
+User.create(first_name: 'Stan', last_name: 'Sitwell', email: 'stan@sitwellenterprises.com', password: 'password')
+User.create(first_name: 'Sally', last_name: 'Sitwell', email: 'sally@sitwellenterprises.com', password: 'password')
 
 # Education.create(owner_id: 1, school: "University of Phoenix")
 # Link.create(owner_id: 1, title: "Bluth Company Website", url: "http://thebluthcompany.tumblr.com/",

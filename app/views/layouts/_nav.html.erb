@@ -1,14 +1,39 @@
-<% if current_user %>
+<header>
+  <nav class="group">
+    <h2 id="logo">cufflink</h2>
 
-  <%= link_to "Feed", root_url %> |
-  <%= link_to "My Profile", user_url(current_user) %>
-  <%= button_to "Sign Out", session_url, method: :delete %>
+    <% if current_user %>
 
-<% else %>
+      <ul id="nav-left">
+        <li><%= link_to "Feed", root_url %></li>
+        <li class="nest"><%= link_to "Users", users_url %>
+          <ul>
+            <li><%= link_to "Connections", connections_url %></li>
+          </ul>
+        </li>
+        <li class="nest"><%= link_to "Companies", companies_url %>
+          <% unless current_user.companies.empty? %>
+            <ul>
+              <% current_user.companies.each do |company| %>
+                <li><%= link_to company.name, company_url(company) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+        <li><%= link_to "My Profile", user_url(current_user) %></li>
+      </ul>
 
-  <%= link_to "Sign Up", new_user_url %>
-  <%= link_to "Sign In", new_session_url %>
+      <ul id="nav-right">
+        <li><%= button_to "Sign Out", session_url, method: :delete %></li>
+      </ul>
 
-<% end %>
+    <% else %>
 
-<hr>
+      <ul id="nav-left">
+        <li><%= link_to "Sign Up", new_user_url %></li>
+        <li><%= link_to "Sign In", new_session_url %></li>
+      </ul>
+
+    <% end %>
+  </nav>
+</header>

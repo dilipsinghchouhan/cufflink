@@ -12,32 +12,115 @@
  *= require_tree .
  */
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900|Pacifico);
 
-h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, checkbox {
+h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, checkbox, body {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
+h1, h2 {
+  font-family: 'Pacifico', serif;
+  font-size: 24px;
+}
+
 * {
   font-family: 'Lato', arial, sans-serif;
+  color: #333;
 }
 
 input[type="text"], input[type="password"], input[type="checkbox"], input[type="date"], textarea {
   border: 1px solid black;
 }
 
-section#main {
+section#main, nav {
   width: 960px;
   margin: 0 auto;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Nav */
+
+header {
+  background-color: #ABE1E5;
+  margin-bottom: 30px;
+}
+
+header > nav > h2#logo {
+  font-size: 36px;
+  float: left;
+  padding: 0 10px 5px 0;
+}
+
+header > nav > ul#nav-left {
+  list-style: none;
+  float: left;
+}
+
+header > nav > ul#nav-left > li {
+  float: left;
+  padding: 24px 0 24px 24px;
+  text-transform: uppercase;
+}
+
+header > nav > ul#nav-left > li.nest {
+  position: relative;
+}
+
+header > nav > ul#nav-left > li.nest > ul {
+  list-style: none;
+  display: none;
+}
+
+header > nav > ul#nav-left > li.nest:hover > ul {
+  display: block;
+  position: absolute;
+  top: 52px;
+  background: #333;
+  padding: 10px;
+  font-size: 14px;
+}
+
+header > nav > ul#nav-left > li > a, header > nav > ul#nav-left > li.nest > ul > li > a {
+  text-decoration: none;
+  -webkit-transition: color .2s;
+}
+
+header > nav > ul#nav-left > li.nest > ul > li {
+  padding: 0 0 7px;
+}
+
+header > nav > ul#nav-left > li.nest > ul > li:last-child {
+  padding: 0;
+}
+
+header > nav > ul#nav-left > li.nest > ul > li > a {
+  color: #fff;
+}
+
+header > nav > ul#nav-left > li.nest > ul > li > a:hover {
+  color: #ABE1E5
+}
+
+header > nav > ul#nav-left > li > a:hover {
+  color: #fff;
+}
+
+header > nav > ul#nav-right {
+  list-style: none;
+  float: right;
 }
 
 /* Profile Editing */
 
 .property {
-  margin: 10px 0;
-  border: 1px solid #ccc;
+
 }
 
 .property.editing > .current-value.active {
@@ -50,4 +133,10 @@ section#main {
 
 .property > .notifications.green {
   color: green;
+}
+
+#edit-profile-body > div > h4 {
+  float: right;
+  position: relative;
+  bottom: 30px;
 }

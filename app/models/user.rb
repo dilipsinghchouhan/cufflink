@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :tagline, :city, :state,
-    :industry, :summary, :null
+  attr_accessible :first_name, :last_name, :email, :password, :tagline, :city,
+    :state, :industry, :summary, :null
   attr_reader :password
 
   validates :password_digest, presence: { message: "Password can't be blank." }
@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
       "Other"
     ], allow_nil: true }
 
-  validates :name, :email, :status, :session_token, presence: true
+  validates :first_name, :last_name, :email, :status, :session_token,
+    presence: true
   validates :email, uniqueness: true #make it an email? regex?
 
   validates :password, length: { minimum: 6, allow_nil: true }
@@ -39,7 +40,10 @@ class User < ActiveRecord::Base
   has_many :received_connections, through: :received_friendships,
     source: :friender
 
-  def self.gen_session_token
+  has_many :memberships, foreign_key: :member_id
+  has_many :companies, through: :memberships, source: :company
+
+  def self.gen_random_token
     SecureRandom::urlsafe_base64
   end
 
@@ -52,8 +56,28 @@ class User < ActiveRecord::Base
     end
   end
 
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+
   def connections
-    self.requested_connections + self.received_connections
+    connections = self.requested_connections + self.received_connections
+    connections.select do |user|
+      friendship = Friendship.find_by_friender_id_and_friendee_id(
+        self.id, user.id)
+      friendship && friendship.status == 1
+    end
+  end
+
+  def friendship_status_with(user)
+    return :connected if self.connections.include?(user)
+
+    friendship = Friendship.find_by_friender_id_and_friendee_id(
+      self.id, user.id)
+
+    return :not_connected unless friendship
+
+    return (friendship.status == 0) ? :pending : :denied
   end
 
   def null=(field)
@@ -70,14 +94,14 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.session_token = self.class.gen_session_token
+    self.session_token = self.class.gen_random_token
     self.save!
   end
 
   private
 
   def ensure_session_token
-    self.session_token ||= self.class.gen_session_token
+    self.session_token ||= self.class.gen_random_token
   end
 
 end

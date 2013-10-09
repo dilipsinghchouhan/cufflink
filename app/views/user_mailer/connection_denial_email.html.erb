@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @friender.first_name %>,</h1>
+
+    <p>
+      <a href="<%= user_url(@friendee) %>"><b><%= @friendee.name %></b></a> has denied your connection request.
+    </p>
+
+    <p>
+      Better luck next time!<br>The Cufflink Team
+    </p>
+  </body>
+</html>

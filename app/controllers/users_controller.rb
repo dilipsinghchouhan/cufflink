@@ -3,6 +3,22 @@ class UsersController < ApplicationController
   before_filter :prohibit_logged_in_user, only: [:new, :create]
   before_filter :require_profile_owner, only: [:edit, :update]
 
+  def index
+    @users = User.all
+    @users -= [current_user]
+    render :index
+  end
+
+  def connections
+    @users = current_user.connections
+    render :connections
+  end
+
+  # def companies
+  #   @companies = current_user.companies
+  #   render :companies
+  # end
+
   def new
     @user = User.new
     render :new

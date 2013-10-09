@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008182052) do
+ActiveRecord::Schema.define(:version => 20131008230214) do
 
   create_table "companies", :force => true do |t|
     t.string   "name",        :null => false
@@ -52,10 +52,12 @@ ActiveRecord::Schema.define(:version => 20131008182052) do
     t.integer  "status",          :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.string   "token"
   end
 
   add_index "friendships", ["friendee_id"], :name => "index_friendships_on_friendee_id"
   add_index "friendships", ["friender_id"], :name => "index_friendships_on_friender_id"
+  add_index "friendships", ["token"], :name => "index_friendships_on_token"
 
   create_table "links", :force => true do |t|
     t.integer  "owner_id",   :null => false
@@ -67,6 +69,17 @@ ActiveRecord::Schema.define(:version => 20131008182052) do
   end
 
   add_index "links", ["owner_id"], :name => "index_links_on_owner_id"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "company_id",                :null => false
+    t.integer  "member_id",                 :null => false
+    t.integer  "status",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "memberships", ["company_id"], :name => "index_memberships_on_company_id"
+  add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
 
   create_table "phone_numbers", :force => true do |t|
     t.integer  "owner_id",   :null => false
@@ -97,7 +110,8 @@ ActiveRecord::Schema.define(:version => 20131008182052) do
   add_index "positions", ["owner_id"], :name => "index_positions_on_owner_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name",                           :null => false
+    t.string   "first_name",                     :null => false
+    t.string   "last_name",                      :null => false
     t.string   "email",                          :null => false
     t.string   "password_digest",                :null => false
     t.string   "session_token",                  :null => false

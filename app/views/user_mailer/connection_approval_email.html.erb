@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @friender.first_name %>!</h1>
+
+    <p>
+     Great news! <a href="<%= user_url(@friendee) %>"><b><%= @friendee.name %></b></a> has approved your connection request.
+    </p>
+
+    <p>
+      Cuffily yours,<br>The Cufflink Team
+    </p>
+  </body>
+</html>

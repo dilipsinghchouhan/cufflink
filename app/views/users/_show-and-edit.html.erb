@@ -1,11 +1,13 @@
-<h1 data-user-id="<%= @user.id %>"><%= @user.name %></h1>
+<h1 data-user-id="<%= @user.id %>">
+  <%= @user.name %>
+</h1>
 
 <div id="edit-profile-body">
   <div class="property">
-    <h2 class="current-value" data-field="user-tagline" data-nil="<%=
+    <h4 class="current-value" data-field="user-tagline" data-nil="<%=
     	@user.tagline ? false : true %>"><%=
       @user.tagline ? @user.tagline : "(enter tagline)"
-      %></h2>
+      %></h4>
   </div>
 
   <div class="property">

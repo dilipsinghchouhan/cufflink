@@ -1,17 +1,25 @@
 <h1><%= @user.name %></h1>
 
-<br><br>
+<div id="friendship-status">
 
-<% unless current_user.connections.include?(@user) %>
+  <% status = current_user.friendship_status_with(@user) %>
 
-  <%= render partial: "friendship-form", locals: { user: @user } %>
+  <% if status == :pending %>
+    Your connection request to <b><%= @user.first_name %></b> is awaiting approval.
+  <% elsif status == :connected  %>
+    <b><%= @user.first_name %></b> is a friend.
+  <% elsif status == :denied %>
+    <b><%= @user.first_name %></b> denied your earlier friend request.
+  <% else %>
+    <%= render partial: "friendship-form", locals: { user: @user } %>
+  <% end %>
 
-  <br><br>
+</div>
 
-<% end %>
+
 
 <% if @user.tagline %>
-    <h2 class="current-value"><%= @user.tagline %></h2>
+    <h4 class="current-value"><%= @user.tagline %></h4>
 
     <input type="text" name="user[tagline]"
       value="<%= @user.tagline %>">

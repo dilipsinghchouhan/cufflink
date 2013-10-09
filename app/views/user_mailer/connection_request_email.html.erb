@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @friendee.first_name %>!</h1>
+
+    <p>
+      <a href="<%= user_url(@friender) %>"><b><%= @friender.name %></b></a> has sent you a connection request with the following message:
+    </p>
+
+    <blockquote>
+      <p>
+        <%= @friendship.message %>
+      </p>
+
+      <p>
+        <b>Connection Type:</b> <%= @friendship.connection_type %>
+      </p>
+    </blockquote>
+
+    <p>
+      Please <a href="<%= @approve_url %>">click here</a> to approve <%= @friender.first_name %>'s request.
+    </p>
+
+    <p>
+      Not interested in connecting? <a href="<%= @deny_url %>">Click here</a> to deny the request.
+    </p>
+
+    <p>
+      Cheers!<br>The Cufflink Team
+    </p>
+  </body>
+</html>

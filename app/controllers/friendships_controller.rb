@@ -12,7 +12,37 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def approve
+    @friendship = Friendship.find_by_token(params[:code])
+    @friendship.update_attributes(status: 1)
+
+    send_approval_message!(@friendship)
+
+    redirect_to root_url
+  end
+
+  def deny
+    @friendship = Friendship.find_by_token(params[:code])
+    @friendship.update_attributes(status: 2)
+
+    send_denial_message!(@friendship)
+
+    redirect_to root_url
+  end
+
   def destroy
 
+  end
+
+  private
+
+  def send_approval_message!(friendship)
+    msg = UserMailer.connection_approval_email(friendship)
+    msg.deliver!
+  end
+
+  def send_denial_message!(friendship)
+    msg = UserMailer.connection_denial_email(friendship)
+    msg.deliver!
   end
 end
