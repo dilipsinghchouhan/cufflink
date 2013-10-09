@@ -1,4 +1,4 @@
-<h3>Update Status</h3>
+<h4>Update Status</h4>
 
 <% action_url = (type == "user") ? user_statuses_url(object) :
   company_statuses_url(object) %>
@@ -29,7 +29,15 @@
 </form>
 
 <div id="profile-info" class="profile-box">
-  <h2>Information</h2>
+  <h3>Information</h3>
+
+  <form action="<%= user_url(object) %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
+  <input name="user[pic]" type="file">
+  <input type="submit" value="goooo">
+  </form>
+
 
   <% if type == "user" %>
     <div class="property">
@@ -76,7 +84,7 @@
   </div>
 
   <div class="property">
-    <h3>Summary:</h3>
+    <h4>Summary:</h4>
     <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
     	object.summary ? false : true %>">
       <%= object.summary ? object.summary : "(enter summary)" %>
@@ -85,7 +93,7 @@
 
   <% if type == "user" %>
 
-    <h3>Contact Information</h3>
+    <h4>Contact Information</h4>
 
     <ul id="contact_information">
       <li>

@@ -37,4 +37,14 @@ Cufflink::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => "cufflinkdev",
+      :access_key_id => ENV["aws_key"],
+      :secret_access_key => ENV["aws_secret"],
+      :s3_host_name => 's3-us-west-2.amazonaws.com' # or whatever your region host name is
+    }
+  }
 end

@@ -22,7 +22,23 @@ h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textare
 
 h1, h2 {
   font-family: 'Pacifico', serif;
-  font-size: 24px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 36px;
+}
+
+h3 {
+  border-bottom: 2px solid #BA15A5;
+  text-transform: uppercase;
+  margin: 10px 0 20px;
+}
+
+h4 {
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 * {
@@ -44,13 +60,26 @@ section, nav {
 }
 
 section#main {
-  padding-top: 80px;
+  padding-top: 90px;
 }
 
 .group:after {
   content: "";
   display: table;
   clear: both;
+}
+
+input[type="submit"] {
+  background-color: #ABE1E5;
+  border-radius: 4px;
+  color: #333;
+  padding: 2px 4px 3px;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  cursor: hand; cursor: pointer;
+  background: #fff;
 }
 
 /* Nav */
@@ -67,22 +96,31 @@ header > nav > h2#logo {
   padding: 0 10px 5px 0;
 }
 
+header > nav > ul {
+  list-style: none;
+}
+
 header > nav > ul#nav-left {
   list-style: none;
   float: left;
 }
 
-header > nav > ul#nav-left > li {
+header > nav > ul#nav-right {
+  list-style: none;
+  float: right;
+}
+
+header > nav > ul > li {
   float: left;
   padding: 24px 0 24px 24px;
   text-transform: uppercase;
 }
 
-header > nav > ul#nav-left > li.nest {
+header > nav > ul > li.nest {
   position: relative;
 }
 
-header > nav > ul#nav-left > li.nest > ul {
+header > nav > ul > li.nest > ul {
   list-style: none;
   visibility: hidden;
   opacity: 0;
@@ -95,47 +133,42 @@ header > nav > ul#nav-left > li.nest > ul {
   width: 200px;
 }
 
-header > nav > ul#nav-left > li.nest:hover > ul {
+header > nav > ul > li.nest:hover > ul {
   visibility: visible;
   opacity: 1;
   transition-delay:0s;
 }
 
-header > nav > ul#nav-left > li > a, header > nav > ul#nav-left > li.nest > ul > li > a {
+header > nav > ul > li > a, header > nav > ul > li.nest > ul > li > a {
   text-decoration: none;
   -webkit-transition: color .2s;
 }
 
-header > nav > ul#nav-left > li.nest > ul > li {
+header > nav > ul > li.nest > ul > li {
   padding: 0 0 7px;
 }
 
-header > nav > ul#nav-left > li.nest > ul > li:last-child {
+header > nav > ul > li.nest > ul > li:last-child {
   padding: 0;
 }
 
-header > nav > ul#nav-left > li.nest > ul > li > a {
+header > nav > ul > li.nest > ul > li > a {
   color: #fff;
 }
 
-header > nav > ul#nav-left > li.nest > ul > li > a > i {
+header > nav > ul > li.nest > ul > li > a > i {
   color: #fff;
   margin-left: 2px;
   position: relative;
   bottom: 1px;;
 }
 
-header > nav > ul#nav-left > li.nest > ul > li > a:hover {
+header > nav > ul > li.nest > ul > li > a:hover {
   color: #ABE1E5
 }
 
-header > nav > ul#nav-left > li > a:hover {
+header > nav > ul > li > a:hover {
   color: #fff;
-}
-
-header > nav > ul#nav-right {
-  list-style: none;
-  float: right;
 }
 
 /* Profile Nav */
@@ -191,4 +224,26 @@ ul#profile-nav > li > a {
 
 #edit-profile-body > div > h4 {
   /* tagline styling */
+}
+
+/* Pods */
+
+.pod {
+  float: left;
+  margin-left: 30px;
+  background: #eee;
+  text-align: center;
+}
+
+.half {
+  width: 445px;
+  padding: 10px;
+}
+
+.first {
+  margin-left: 0;
+}
+
+.pod > form {
+  text-align: left;
 }

@@ -11,19 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009152938) do
+ActiveRecord::Schema.define(:version => 20131009195000) do
 
   create_table "companies", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "industry",   :null => false
+    t.string   "name",             :null => false
+    t.string   "industry",         :null => false
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
     t.text     "summary"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "educations", :force => true do |t|
@@ -123,19 +127,23 @@ ActiveRecord::Schema.define(:version => 20131009152938) do
   add_index "statuses", ["user_id"], :name => "index_statuses_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "first_name",                     :null => false
-    t.string   "last_name",                      :null => false
-    t.string   "email",                          :null => false
-    t.string   "password_digest",                :null => false
-    t.string   "session_token",                  :null => false
+    t.string   "first_name",                      :null => false
+    t.string   "last_name",                       :null => false
+    t.string   "email",                           :null => false
+    t.string   "password_digest",                 :null => false
+    t.string   "session_token",                   :null => false
     t.string   "tagline"
     t.text     "summary"
     t.string   "city"
     t.string   "state"
     t.string   "industry"
-    t.integer  "status",          :default => 0
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "status",           :default => 0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

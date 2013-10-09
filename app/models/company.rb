@@ -25,6 +25,11 @@ class Company < ActiveRecord::Base
 
   has_many :statuses
 
+  has_attached_file :pic, styles: {
+    big: "300x300>",
+    thumb: "100x100>"
+  }, default_url: "/assets/blue-myself.png"
+
   def null=(field)
     self.send("#{field}=", nil)
   end

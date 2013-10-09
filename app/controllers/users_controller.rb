@@ -32,6 +32,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def settings
+    render :settings
+  end
+
   def show
     @user = user_from_params
 

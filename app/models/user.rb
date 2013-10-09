@@ -1,7 +1,7 @@
 require 'company'
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :tagline, :city,
-    :state, :industry, :summary, :null
+    :state, :industry, :summary, :null, :pic
   attr_reader :password
 
   validates :password_digest, presence: { message: "Password can't be blank." }
@@ -46,6 +46,11 @@ class User < ActiveRecord::Base
 
   has_many :statuses
 
+  has_attached_file :pic, styles: {
+    big: "300x300>",
+    thumb: "100x100>"
+  }, default_url: "/assets/blue-myself.png"
+
   def self.gen_random_token
     SecureRandom::urlsafe_base64
   end
@@ -58,10 +63,6 @@ class User < ActiveRecord::Base
       nil
     end
   end
-
-  # def personal_statuses
-  #   self.statuses.reject { |status| status.company_id }
-  # end
 
   def get_feed_data
     updates = {}
@@ -101,14 +102,17 @@ class User < ActiveRecord::Base
   end
 
   def friendship_status_with(user)
-    return :connected if self.connections.include?(user)
-
-    friendship = Friendship.find_by_friender_id_and_friendee_id(
-      self.id, user.id)
-
-    return :not_connected unless friendship
-
-    return (friendship.status == 0) ? :pending : :denied
+    # return :connected if self.connections.include?(user)
+    #
+    # friendship = Friendship.find_by_friender_id_and_friendee_id(
+    #   self.id, user.id)
+    #
+    # if friendship
+    #   return (friendship.status == 0) ? :pending : :denied
+    # else
+    #   if user.
+      return :not_connected
+    # end
   end
 
   def null=(field)

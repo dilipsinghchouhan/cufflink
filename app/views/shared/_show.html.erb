@@ -26,7 +26,7 @@
 <% end %>
 
 <div id="profile-info" class="profile-box">
-  <h2>Information</h2>
+  <h3>Information</h3>
 
   <% if type == "company" %>
 
@@ -64,14 +64,14 @@
   <% end %>
 
   <% if object.summary %>
-    <h3>Summary</h3>
+    <h4>Summary</h4>
       <p>
         <%= object.summary %>
       </p>
   <% end %>
 
   <% if type == "user" %>
-    <h3>Contact Information</h3>
+    <h4>Contact Information</h4>
       <ul id="contact_information">
         <li>
           <%= object.email %>
