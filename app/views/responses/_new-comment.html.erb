@@ -1,0 +1,8 @@
+<%= form_tag(status_responses_url(status), method: "post",
+  class: "comment-form", remote: true) do %>
+
+  <div>
+    <textarea name="response[body]"></textarea>
+  </div>
+  <input type="submit" value="Comment">
+<% end %>

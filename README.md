@@ -11,6 +11,7 @@ Oh man, this is going to be intense.
 * Feed
 * Settings
 * Navbar add message/connection buttons
+* ooh feed can have 1/4 and 1/3 pods
 
 ##To Do: ASAP
 

@@ -1,22 +1,27 @@
 class ResponsesController < ApplicationController
   def create
     @response = Response.new
+    @status = Status.find_by_id(params[:status_id])
 
-    @response.user = current_user
-    @response.status_id = params[:status_id]
+    @response.user, @response.status = current_user, @status
 
     @response.body = params[:response][:body] if params[:response]
 
-    if @response.save
-      if @response.body
-        flash[:notice] = "Comment succesfully saved!"
-      else
-        flash[:notice] = "Like successfully saved!"
-      end
+    if @response.save && request.xhr?
+        if @response.body
+          render partial: "comment", locals: {comment: @response}
+        else
+          render partial: "responses/like-count", locals: {
+            like_count: @status.like_count }
+        end
+    elsif @response.errors.full_messages.empty?
+      flash[:notice] = "Saved successfully!"
+      redirect_to :back
     else
       flash[:errors] = @response.errors.full_messages
+      redirect_to :back
     end
 
-    redirect_to :back
   end
+
 end

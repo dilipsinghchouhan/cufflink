@@ -34,10 +34,10 @@ class Status < ActiveRecord::Base
   end
 
   def like_count
-
+    self.responses.where("body IS NULL").count
   end
 
   def comments
-
+    self.responses.where("body IS NOT NULL")
   end
 end

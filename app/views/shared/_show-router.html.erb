@@ -76,12 +76,10 @@
   { "status_list": <%= object.statuses.to_json.html_safe %> }
 </script>
 
-<%= render partial: "shared/profile-js/templates/education" %>
+<%= render partial: "shared/js/templates/education" %>
 
-<%= render partial: "shared/profile-js/edit" %>
+<%= render partial: "shared/js/nav" %>
 
-<%= render partial: "shared/profile-js/nav" %>
+<%= render partial: "shared/js/templates/status" %>
 
-<%= render partial: "shared/profile-js/templates/status" %>
-
-<%= render partial: "shared/profile-js/data" %>
+<%= render partial: "shared/js/data" %>

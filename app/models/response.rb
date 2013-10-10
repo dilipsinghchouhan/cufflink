@@ -21,4 +21,5 @@ class Response < ActiveRecord::Base
   def self.comments
     Response.where("responses.body IS NOT NULL")
   end
+
 end

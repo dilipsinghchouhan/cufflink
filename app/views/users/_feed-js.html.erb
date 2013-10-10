@@ -1,0 +1,19 @@
+<script>
+  $(document).ready( function() {
+    $(".status").on("ajax:success", ".button_to", function(event, data) {
+      var $form = $(event.target)
+      var $likes = $form.siblings(".likes")
+
+      $form.hide();
+      $likes.html(data)
+    });
+
+    $(".status").on("ajax:success", ".comment-form", function(event, data) {
+      var $form = $(event.target)
+      var $commentList = $form.siblings(".comment-list")
+
+      $form[0].reset();
+      $commentList.append(data)
+    });
+  })
+</script>
