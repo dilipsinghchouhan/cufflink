@@ -3,13 +3,36 @@
 </h1>
 
 <ul id="profile-nav">
-  <li data-tab="info" class="active"><a href="#">Information</a></li>
+  <li data-target="main" class="active"><a href="#">Information</a></li>
 
   <% if type == "user" %>
-    <li data-tab="education"><a href="#">Education</a></li>
+    <li data-target="education"><a href="#">Education</a></li>
   <% end %>
 
-  <li data-tab="updates"><a href="#">Updates</a></li>
+  <li data-target="updates"><a href="#">Updates</a></li>
+
+  <% if type == "company" %>
+    <% if edit %>
+      <li data-target="settings" class="button">
+        <a href="<%= settings_url %>?company=<%= object.id %>">
+          Company Settings
+        </a>
+      </li>
+    <% elsif object.members.include?(current_user) %>
+      <li data-target="leave" class="button">
+        <%= button_to "Leave Company",
+          company_membership_url(object,
+            Membership.find_by_member_id_and_company_id(
+            current_user.id, object.id)
+          ), method: :delete %>
+      </li>
+    <% else %>
+      <li class="form">
+        <%= button_to "Join Company",
+          company_memberships_url(object), method: :post %>
+      </li>
+    <% end %>
+  <% end %>
 </ul>
 
 <% if edit %>

@@ -1,20 +1,19 @@
 <script>
 
 $(document).ready( function() {
-  $("#profile-nav > li > a").on("click", function(event) {
-    var $clicked_li = $(event.target).parent();
-    var $other_lis = $clicked_li.siblings();
+  $("#profile-nav li a").on("click", function(event) {
+    var $clickedLi = $(event.target).parent();
+    var target = $clickedLi.attr("data-target");
 
-    if ($clicked_li.hasClass("active")) return;
+    var $allLis = $("#profile-nav li")
 
-    var target_tab = $clicked_li.attr("data-tab");
-    var $profile_body = $("#profile-body");
+    if ($clickedLi.hasClass("active")) return;
 
     $(".profile-box").hide();
-    $("#profile-" + target_tab).show();
+    $("#profile-" + target).show();
 
-    $clicked_li.addClass("active");
-    $other_lis.removeClass("active");
+    $allLis.removeClass("active");
+    $clickedLi.addClass("active");
   });
 });
 

@@ -2,48 +2,82 @@
 
 Oh man, this is going to be intense.
 
-##HELP!
+## Questions
 
-* global variables??
-* inherit null thing...?
-* consistent ordering
 
+##CSS Breaks!
+* Better buttons
+* Profile
+* Feed
+* Settings
+* Navbar add message/connection buttons
 
 ##To Do: ASAP
 
-* confirm accounts
-* approve connections
+####Paperclip
+* FIXXX paperclip
 
+####News feed
+* Add yourself to companies
+  * Join button on page
+  * Via profile
+    * "Also create company" field
+* Build basic feed
+* -- company updates
+* -- when someone updates their profile
+* Recommendable
 
-* clean up profile js. also, maybe (enter awards) should be better
-* get rid of save button for checkboxes... dont load any buttons and copy the button click handler to its own method so it can work when you click remove or a checkbox...
+####Likes and comments FUCK
 
-* do rest of main app before this other stuff?
+* maybe switch statuses and educations to UJS
 
-* fix educaiton delete button...
+####Models
+* School and company dropdowns
+* Add links, numbers, positions, emails, links
+* Dependant destroy
 
-* Models for education, link, phone number, position...
-* Find a way to edit educations...?
-* Allow removal of things...
-* Make schools etc part of system.
-* consolidate similaries between users & educations
-* Add email address model...?
-* COMPANIES?
-* Ajax way to delete educations from edit page, and in general
-* start date < end date
-* end date grayed out if current student
-* state dropdown...
-* relate states and cities?
-* get rid of app helper?
+* Javascript Time interval for time ago
+
+####Notifications
+
+####ADS DOUBLE FUCK
+
+####Messages triple fuck
 
 ##To Do: Soon
 
-* Paperclip for pictures
-* Flush out industry dropdown and turn into a helper
+####Statuses
+* Company status on behalf of users
+* Color color code diff status yupes
+
+####All users/company page
+* Build in BACKBONEEEE
+
+####Settings
+* Delete company
+* Delete profile
+* Rename company
+* Rename user
+* Add new email
+* Change primary email
+* whatever else
+
+####Profile Editing
+* consistent order of stuff
+* clean up profile js. also, maybe (enter awards) should be better
+* get rid of save button for checkboxes... dont load any buttons and copy the button click handler to its own method so it can work when you click remove or a checkbox...
+* fix education delete button...
+* end date grayed out if current student
+* state dropdown...
+* relate states and cities?
 
 ##To Do: Long Term
 
-* Update email address in settings
-* Recommendable for news feed
-* jQuery draggable to edit profile
+####Sign Up Process
+* confirm accounts
+
+* jQuery draggable...something
+* Style emails
+
+* Undo denies...?
 

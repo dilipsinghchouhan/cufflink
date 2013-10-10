@@ -1,3 +1,5 @@
+include ActionView::Helpers::DateHelper
+
 class Status < ActiveRecord::Base
   attr_accessible :body, :link, :image_url
 
@@ -15,7 +17,27 @@ class Status < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
 
+  has_many :responses
+
+  def time_ago
+    time_ago_in_words(self.created_at) + " ago"
+  end
+
   def is_company_status?
     self.company_id
+  end
+
+  def self.statuses_liked_by(current_user)
+    Status.joins(:responses).where(
+      "responses.body IS NULL AND responses.user_id = ?", current_user.id
+      )
+  end
+
+  def like_count
+
+  end
+
+  def comments
+
   end
 end

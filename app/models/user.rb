@@ -29,22 +29,17 @@ class User < ActiveRecord::Base
 
   has_many :educations, foreign_key: :owner_id
 
-  has_many :requested_friendships, class_name: "Friendship",
-    foreign_key: :friender_id
-
-  has_many :received_friendships, class_name: "Friendship",
+  has_many :friendships, class_name: "Friendship",
     foreign_key: :friendee_id
 
-  has_many :requested_connections, through: :requested_friendships,
-    source: :friendee
-
-  has_many :received_connections, through: :received_friendships,
+  has_many :possible_connections, through: :friendships,
     source: :friender
 
   has_many :memberships, foreign_key: :member_id
   has_many :companies, through: :memberships, source: :company
 
   has_many :statuses
+  has_many :responses
 
   has_attached_file :pic, styles: {
     big: "300x300>",
@@ -64,10 +59,36 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_feed_data
-    updates = {}
+  def likes
+    Response.likes.where("user_id = ?", self.id)
+  end
 
-    self.connections
+  def comments
+    Response.comments.where("user_id = ?", self.id)
+  end
+
+  def connections
+    self.possible_connections.where("friendships.status = 1")
+  end
+
+  def connections_with_statuses
+    self.connections.includes(:statuses)
+  end
+
+  def get_feed_data
+    data = {}
+
+    self.connections_with_statuses.each do |connection|
+      connection.statuses.each do |status|
+        data[status] = connection
+      end
+    end
+
+    statuses_by_time = data.keys.sort do |s1, s2|
+      s2.created_at <=> s1.created_at
+    end
+
+    [data, statuses_by_time]
 
     #friends updates
     #friends profile changes
@@ -82,37 +103,44 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
-  def connections
-    connections = self.requested_connections + self.received_connections
-    connections.select do |user|
-      friendship = Friendship.find_by_friender_id_and_friendee_id(
-        self.id, user.id)
-      friendship && friendship.status == 1
-    end
+  def owned_companies
+    owned_or_managed_companies(2)
   end
 
-  def owned_companies
-    [].tap do |owned_companies|
+  def managed_companies
+    owned_or_managed_companies(1)
+  end
+
+  def owned_or_managed_companies(status)
+    [].tap do |companies|
       self.memberships.each do |membership|
-        if membership.status == 2
-          owned_companies << membership.company
+        if membership.status >= status
+          companies << membership.company
         end
       end
     end
   end
 
   def friendship_status_with(user)
-    # return :connected if self.connections.include?(user)
-    #
-    # friendship = Friendship.find_by_friender_id_and_friendee_id(
-    #   self.id, user.id)
-    #
-    # if friendship
-    #   return (friendship.status == 0) ? :pending : :denied
-    # else
-    #   if user.
-      return :not_connected
-    # end
+    return :connected if self.connections.include?(user)
+
+    requested_friendship =
+      Friendship.find_by_friender_id_and_friendee_id(self.id, user.id)
+
+    if requested_friendship
+      return (requested_friendship.status == 0) ? :request_pending : :denied
+    else
+
+      received_friendship =
+        Friendship.find_by_friendee_id_and_friender_id(self.id, user.id)
+
+      if received_friendship
+        return (received_friendship.status == 0) ? :receipt_pending : :denied
+
+      else
+        return :not_connected
+      end
+    end
   end
 
   def null=(field)

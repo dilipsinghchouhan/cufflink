@@ -1,26 +1,56 @@
-<h1>User Settings</h1>
+<h1>Settings</h1>
 
-<h3>My Profile Picture</h3>
+<ul id="profile-nav">
 
-<div class="pod half first">
-  <h4>Update Photo</h4>
+  <li data-target="main" <%= ' class=active' unless @company %> >
+    <a href="#">My Settings</a>
+  </li>
 
-  <form action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="put">
-    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
-  <input name="user[pic]" type="file">
-  <input type="submit" value="goooo">
-  </form>
+  <li class="nest">Company Settings
+    <ul>
+      <% current_user.managed_companies.each do |company| %>
+        <li data-target="company" data-company-id="<%= company.id %>">
+          <a href="#"><%= company.name %></a>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
+
+<div id="profile-main" class="profile-box">
+  <h3>User Settings</h3>
+
+  <h4>My Profile Picture</h4>
+
+  <div class="pod half first">
+    <h5>Update Photo</h5>
+
+    <form action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="put">
+      <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
+    <input name="user[pic]" type="file">
+    <input type="submit" value="goooo">
+    </form>
 
 
-  <%= form_for current_user do |f| %>
-    <%= f.file_field :pic %>
-    <%= f.submit "Update Photo" %>
-  <% end %>
+    <%= form_for current_user do |f| %>
+      <%= f.file_field :pic %>
+      <%= f.submit "Update Photo" %>
+    <% end %>
+  </div>
+
+  <div class="pod half">
+    <h5>Current Photo</h5>
+
+    <%= image_tag current_user.pic.url(:big) %>
+  </div>
+
 </div>
 
-<div class="pod half">
-  <h4>Current Photo</h4>
 
-  <%= image_tag current_user.pic.url(:big) %>
+
+<div id="profile-company" class="profile-box">
+  Companies!
 </div>
+
+<%= render partial: "shared/profile-js/nav" %>

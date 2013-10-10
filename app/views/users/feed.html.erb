@@ -1,1 +1,8 @@
 <h1>Feed!</h1>
+
+<ul>
+  <% @statuses.each do |status| %>
+    <%= render partial: "statuses/show", locals: {
+      status: status, author: @data[status].name } %>
+  <% end %>
+</ul>

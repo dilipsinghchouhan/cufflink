@@ -33,6 +33,8 @@ class UsersController < ApplicationController
   end
 
   def settings
+    @company = params[:company]
+
     render :settings
   end
 
@@ -59,6 +61,8 @@ class UsersController < ApplicationController
   end
 
   def feed
+    @data, @statuses = current_user.get_feed_data
+
     render :feed
   end
 

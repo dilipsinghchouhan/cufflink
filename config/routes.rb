@@ -23,10 +23,13 @@ Cufflink::Application.routes.draw do
   resources :positions, only: [:update, :destroy]
 
   resources :companies, only: [:index, :show, :new, :create, :update] do
+    resources :memberships, only: [:create, :destroy]
     resources :statuses, only: [:create]
   end
 
-  resources :statuses, only: [:new]
+  resources :statuses, only: [:new] do
+    resources :responses, only: [:create]
+  end
 
   resource :session, only: [:new, :create, :destroy]
 

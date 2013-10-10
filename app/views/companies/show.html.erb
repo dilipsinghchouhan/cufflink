@@ -1,4 +1,4 @@
-<% if @company.admins.include?(current_user) %>
+<% if current_user.managed_companies.include?(@company) %>
   <%= render partial: "shared/show-router", locals: { type: "company",
     object: @company, edit: true } %>
 <% else %>

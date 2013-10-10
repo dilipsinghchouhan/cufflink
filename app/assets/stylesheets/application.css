@@ -41,6 +41,12 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  text-align: left;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+
 * {
   font-family: 'Lato', arial, sans-serif;
   color: #333;
@@ -70,16 +76,17 @@ section#main {
 }
 
 input[type="submit"] {
-  background-color: #ABE1E5;
+  background-color: #BA15A5;
   border-radius: 4px;
-  color: #333;
+  color: #eee;
   padding: 2px 4px 3px;
   font-size: 16px;
+  -webkit-transition: background .2s;
 }
 
 input[type="submit"]:hover {
   cursor: hand; cursor: pointer;
-  background: #fff;
+  background: #333;
 }
 
 /* Nav */
@@ -115,6 +122,21 @@ header > nav > ul > li {
   padding: 24px 0 24px 24px;
   text-transform: uppercase;
 }
+
+/*
+
+/* General Lists */
+
+ul > li.form, ul#profile-nav > li.form {
+  padding: 0;
+}
+
+ul > li > form {
+  float: left;
+  margin-left: 10px;
+}
+
+Original nested stuff
 
 header > nav > ul > li.nest {
   position: relative;
@@ -165,7 +187,7 @@ header > nav > ul > li.nest > ul > li > a > i {
 
 header > nav > ul > li.nest > ul > li > a:hover {
   color: #ABE1E5
-}
+}*/
 
 header > nav > ul > li > a:hover {
   color: #fff;
@@ -200,7 +222,7 @@ ul#profile-nav > li > a {
   display: none;
 }
 
-#profile-info {
+#profile-main {
   display: block;
 }
 
@@ -226,6 +248,80 @@ ul#profile-nav > li > a {
   /* tagline styling */
 }
 
+/* Nested Lists */
+
+ul > li.nest {
+  position: relative;
+}
+
+ul > li.nest > ul {
+  list-style: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s linear .2s, opacity 0.2s linear;
+  position: absolute;
+  top: 52px;
+  background: #333;
+  padding: 10px;
+  font-size: 14px;
+  width: 200px;
+}
+
+ul > li.nest:hover > ul {
+  visibility: visible;
+  opacity: 1;
+  transition-delay:0s;
+}
+
+ul > li > a, header > nav > ul > li.nest > ul > li > a {
+  text-decoration: none;
+  -webkit-transition: color .2s;
+}
+
+ul > li.nest > ul > li {
+  padding: 0 0 7px;
+}
+
+ul > li.nest > ul > li:last-child {
+  padding: 0;
+}
+
+ul > li.nest > ul > li > a {
+  color: #fff;
+}
+
+ul > li.nest > ul > li > a > i {
+  color: #fff;
+  margin-left: 2px;
+  position: relative;
+  bottom: 1px;;
+}
+
+ul > li.nest > ul > li > a:hover {
+  color: #ABE1E5
+}
+
+/* Specific to Each Location */
+
+header > nav > ul > li.nest > ul {
+  top: 52px;
+}
+
+ul#profile-nav > li {
+  padding: 2px 4px 3px;
+}
+
+ul#profile-nav > li.nest:hover {
+  background-color: #ABE1E5;
+  padding: 2px 4px 3px;
+  border-radius: 4px;
+}
+
+ul#profile-nav > li.nest > ul {
+  top: 36px;
+  left: 1px;
+}
+
 /* Pods */
 
 .pod {
@@ -246,4 +342,14 @@ ul#profile-nav > li > a {
 
 .pod > form {
   text-align: left;
+}
+
+/* Status */
+
+li.status {
+  margin-bottom: 40px;
+}
+
+li.status > form {
+  float: none;
 }
