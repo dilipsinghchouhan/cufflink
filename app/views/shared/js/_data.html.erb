@@ -29,7 +29,7 @@ $(document).ready( function(root){
     $("#" + dataType + "-list").append(renderedContent);
   }
 
-  var dataTypes = ["education", "status"];
+  var dataTypes = ["education"];
 
   dataTypes.forEach(function(dataType) {
     ProfileLib.populate(dataType);

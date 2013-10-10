@@ -1,0 +1,39 @@
+<%= form_tag(educations_url, method: "post",
+  class: "education-form", remote: true) do %>
+
+  <label>School name <i>(Required)</i>:<br>
+    <input type="text" name="education[school]"><br>
+  </label>
+
+  <label>City:<br>
+    <input type="text" name="education[city]"><br>
+  </label>
+
+  <label>State:<br>
+    <input type="text" name="education[state]"><br>
+  </label>
+
+  <label>Start Date:<br>
+    <input type="date" name="education[start_date]"><br>
+  </label>
+
+  <label>Current Student <input type="checkbox" name="education[current_student]"><br>
+  </label>
+
+  <label>End Date:<br>
+    <input type="date" name="education[end_date]"><br>
+  </label>
+
+  <label>Area of Study:<br>
+    <input type="text" name="education[area]"><br>
+  </label>
+
+  <label>Degree:<br>
+    <input type="text" name="education[degree]"><br>
+  </label>
+
+  <label>Awards &amp; Activites<br>
+    <textarea name="education[awards]"></textarea><br></label>
+
+    <input type="submit" value="Add Education"></form>
+<% end %>

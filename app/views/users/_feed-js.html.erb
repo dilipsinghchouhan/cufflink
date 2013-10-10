@@ -3,17 +3,19 @@
     $(".status").on("ajax:success", ".button_to", function(event, data) {
       var $form = $(event.target)
       var $likes = $form.siblings(".likes")
+      var $html = data
 
       $form.hide();
-      $likes.html(data)
+      $likes.html($html)
     });
 
     $(".status").on("ajax:success", ".comment-form", function(event, data) {
       var $form = $(event.target)
       var $commentList = $form.siblings(".comment-list")
+      var $html = data
 
       $form[0].reset();
-      $commentList.append(data)
+      $commentList.append($html)
     });
   })
 </script>

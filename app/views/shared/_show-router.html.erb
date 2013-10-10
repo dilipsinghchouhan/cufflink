@@ -2,38 +2,7 @@
   <%= object.name %>
 </h1>
 
-<ul id="profile-nav">
-  <li data-target="main" class="active"><a href="#">Information</a></li>
-
-  <% if type == "user" %>
-    <li data-target="education"><a href="#">Education</a></li>
-  <% end %>
-
-  <li data-target="updates"><a href="#">Updates</a></li>
-
-  <% if type == "company" %>
-    <% if edit %>
-      <li data-target="settings" class="button">
-        <a href="<%= settings_url %>?company=<%= object.id %>">
-          Company Settings
-        </a>
-      </li>
-    <% elsif object.members.include?(current_user) %>
-      <li data-target="leave" class="button">
-        <%= button_to "Leave Company",
-          company_membership_url(object,
-            Membership.find_by_member_id_and_company_id(
-            current_user.id, object.id)
-          ), method: :delete %>
-      </li>
-    <% else %>
-      <li class="form">
-        <%= button_to "Join Company",
-          company_memberships_url(object), method: :post %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+<%= render partial: "shared/nav", locals: { type: type, object: object } %>
 
 <% if edit %>
   <%= render partial: "shared/show-and-edit", locals: { type: type,
@@ -45,26 +14,14 @@
 
 <% if type == "user" %>
 
-  <div id="profile-education" class="profile-box">
-
-    <h3>Education History</h3>
-
-    <% if edit %>
-      <a href="#" id="education-link" data-<%= type %>-id="<%= object.id %>">
-        Add Education
-      </a>
-    <% end %>
-
-    <div id="education-list"></div>
-
-    <script type="application/json" id="bootstrapped_education_data_json">
-      { "education_list": <%= object.educations.to_json.html_safe %> }
-    </script>
-
-  </div>
+  <%= render partial: "shared/collections/index", locals: { type: "education",
+    new_url: new_education_url, plural: "educations", object: object, edit: edit
+    } %>
 
 <% end %>
 
+<%= render partial: "shared/collections/index", locals: { type: "status",
+  new_url: new_status_url, plural: "statuses", object: object, edit: false } %>
 
 <div id="profile-updates" class="profile-box">
   <h3>Status Updates</h3>
@@ -76,10 +33,4 @@
   { "status_list": <%= object.statuses.to_json.html_safe %> }
 </script>
 
-<%= render partial: "shared/js/templates/education" %>
-
 <%= render partial: "shared/js/nav" %>
-
-<%= render partial: "shared/js/templates/status" %>
-
-<%= render partial: "shared/js/data" %>

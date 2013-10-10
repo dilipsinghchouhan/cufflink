@@ -11,23 +11,19 @@ Cufflink::Application.routes.draw do
   resources :users, only: [:new, :create, :show, :update, :feed, :index] do
     resources :statuses, only: [:create]
     resources :friendships, only: [:create, :destroy]
-    resources :educations, only: [:create, :index]
-    resources :links, only: [:create, :index]
-    resources :phone_numbers, only: [:create, :index]
-    resources :positions, only: [:create, :index]
   end
 
-  resources :educations, only: [:update, :destroy]
-  resources :links, only: [:update, :destroy]
-  resources :phone_numbers, only: [:update, :destroy]
-  resources :positions, only: [:update, :destroy]
+  resources :educations, only: [:update, :destroy, :create, :index, :new]
+  resources :links, only: [:update, :destroy, :create, :index, :new]
+  resources :phone_numbers, only: [:update, :destroy, :create, :index, :new]
+  resources :positions, only: [:update, :destroy, :create, :index, :new]
 
   resources :companies, only: [:index, :show, :new, :create, :update] do
     resources :memberships, only: [:create, :destroy]
     resources :statuses, only: [:create]
   end
 
-  resources :statuses, only: [:new] do
+  resources :statuses, only: [:new, :create] do
     resources :responses, only: [:create]
   end
 

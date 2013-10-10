@@ -1,0 +1,23 @@
+<div id="profile-<%= type %>" class="profile-box">
+
+  <h3><%= plural.capitalize %></h3>
+
+  <% if edit %>
+    <%= link_to "Add", new_url, remote: true, id: "add-#{type}" %>
+  <% end %>
+
+  <ul>
+    <% object.send(plural).each do |object| %>
+        <% if edit %>
+          <%= render partial: "#{plural}/show-and-edit",
+            locals: { object: object } %>
+        <% else %>
+          <%= render partial: "#{plural}/show", locals: { object: object } %>
+        <% end %>
+    <% end %>
+  </ul>
+
+</div>
+
+
+

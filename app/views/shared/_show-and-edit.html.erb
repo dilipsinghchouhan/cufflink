@@ -1,4 +1,5 @@
-<h4>Update Status</h4>
+
+  <h4>Update Status</h4>
 
 <% action_url = (type == "user") ? user_statuses_url(object) :
   company_statuses_url(object) %>
@@ -106,3 +107,7 @@
 </div>
 
 <%= render partial: "shared/js/show_and_edit" %>
+
+<%= render partial: "shared/js/ujs" %>
+
+<%= render partial: "shared/js/utilities" %>

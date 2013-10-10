@@ -2,12 +2,6 @@
 $(document).ready( function(root){
   var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
 
-  var delayedRemove = ProfileLib.delayedRemove = function(jQueryObj) {
-    timeoutID = window.setTimeout(function() {
-      jQueryObj.remove();
-    }, 1000);
-  }
-
   var cleanUp = ProfileLib.cleanUp = function($field, $clicked_button,
     $other_button, $activeCurrentVal, $target, $notifications) {
     $field.remove();
@@ -16,7 +10,7 @@ $(document).ready( function(root){
     $activeCurrentVal.removeClass("active");
     $target.closest('.property').removeClass("editing");
     $notifications.addClass("green");
-    delayedRemove($notifications);
+    ProfileLib.delayedRemove($notifications);
   }
 
   var genUrl = ProfileLib.genUrl = function(modelType, urlId) {
@@ -30,7 +24,8 @@ $(document).ready( function(root){
 
   var urlId = $('h1').attr('data-id');
 
-  $("#profile-info").on("click", ".current-value", function(event) {
+  $(".profile-box").on("click", ".current-value", function(event) {
+
     var $target = $(event.target);
     var $activeCurrentVal = $target.closest('.current-value')
     $activeCurrentVal.addClass("active");
@@ -76,7 +71,7 @@ $(document).ready( function(root){
     $property.addClass("editing");
   });
 
-  $("#profile-info").on("click", "button", function(event) {
+  $(".profile-box").on("click", "button", function(event) {
     var $target = $(event.target);
 
     var $activeCurrentVal = $target
@@ -230,40 +225,7 @@ $(document).ready( function(root){
   $('#education-link').on("click", function(event) {
   	event.preventDefault();
 
-    console.log("link clicked")
-
     $(this).hide();
-
-  	var html = '<form id="education-form">'
-
-    html += "<label>School name <i>(Required)</i>:<br>"
-  	html += '<input type="text" name="education[school]"><br>'
-
-  	html += '</label><label>City:<br>'
-  	html += '<input type="text" name="education[city]"><br>'
-
-  	html += '</label><label>State:<br>'
-  	html += '<input type="text" name="education[state]"><br>'
-
-    html += '</label><label>Start Date:<br>'
-    html += '<input type="date" name="education[start_date]"><br>'
-
-    html += '</label><label>Current Student '
-    html += '<input type="checkbox" name="education[current_student]"><br>'
-
-    html += '</label><label>End Date:<br>'
-    html += '<input type="date" name="education[end_date]"><br>'
-
-    html += '</label><label>Area of Study:<br>'
-    html += '<input type="text" name="education[area]"><br>'
-
-    html += '</label><label>Degree:<br>'
-    html += '<input type="text" name="education[degree]"><br>'
-
-    html += '</label><label>Awards & Activites<br>'
-    html += '<textarea name="education[awards]"></textarea><br>'
-
-    html += '</label><input type="submit" value="Add Education"></form>'
 
     var $target = $(event.target);
     $target.after(html);

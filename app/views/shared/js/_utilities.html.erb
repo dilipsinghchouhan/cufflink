@@ -1,0 +1,38 @@
+<script>
+$(document).ready( function(root){
+  var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
+
+  var notify = ProfileLib.notify = function(
+    message, color, destination, method, hide) {
+
+      var $notifications = $('<div class="notifications ' + color + '">');
+      $notifications.text(message);
+
+      switch(method) {
+        case "before":
+          destination.before($notifications);
+          break;
+        case "after":
+          destination.after($notifications);
+          break;
+        case "prepend":
+          destination.prepend($notifications);
+          break;
+        default:
+          destination.append($notifications);
+          break;
+      }
+
+      if (hide) {
+        ProfileLib.delayedRemove($notifications)
+      }
+  }
+
+  var delayedRemove = ProfileLib.delayedRemove = function(jQueryObj) {
+    timeoutID = window.setTimeout(function() {
+      jQueryObj.remove();
+    }, 1000);
+  }
+
+});
+</script>

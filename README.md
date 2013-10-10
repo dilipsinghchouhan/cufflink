@@ -4,6 +4,14 @@ Oh man, this is going to be intense.
 
 ## Questions
 
+* type (index, show-and-edit)
+* new url (index)
+* plural (index)
+
+JUST INDEX
+
+* Fix like partial
+* Add partial to top of show
 
 ##CSS Breaks!
 * Better buttons

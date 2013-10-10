@@ -1,0 +1,24 @@
+<div id="profile-education" class="profile-box">
+
+  <h3>Education History</h3>
+
+  <% if edit %>
+    <%= link_to "Add Education", new_education_url, remote: true,
+      id: "add-education" %>
+  <% end %>
+
+  <ul>
+    <% user.educations.each do |education| %>
+        <% if edit %>
+          <%= render partial: "educations/show-and-edit",
+            locals: { education: education } %>
+        <% else %>
+          <%= render partial: "educations/show", locals: { education: education } %>
+        <% end %>
+    <% end %>
+  </ul>
+
+</div>
+
+
+

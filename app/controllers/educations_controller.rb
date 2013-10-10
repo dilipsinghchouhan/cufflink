@@ -1,12 +1,21 @@
 class EducationsController < ApplicationController
   def create
     @education = Education.new(clean_params_hash(params[:education]))
-    @education.owner_id = params[:user_id]
+    @education.owner = current_user
 
-    if @education.save
-      render json: @education
-    else
+    if @education.save & request.xhr?
+      render partial: "show-and-edit", locals: { object: @education }
+
+    elsif @education.errors.full_messages.empty?
+      flash[:notice] = "Education created successfully."
+      redirect_to user_url(current_user)
+
+    elsif request.xhr?
       render json: @education.errors.full_messages, status: 422
+
+    else
+      flash[:errors] = @education.errors.full_messages
+      redirect_to user_url(current_user)
     end
   end
 
@@ -26,6 +35,17 @@ class EducationsController < ApplicationController
     @education.destroy
 
     render json: ""
+  end
+
+  def new
+    @education = Education.new
+
+    if request.xhr?
+      render partial: "educations/new", locals: { user: current_user,
+         education: @education }
+    else
+      render :new
+    end
   end
 
   private

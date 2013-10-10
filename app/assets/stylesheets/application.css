@@ -236,16 +236,18 @@ ul#profile-nav > li > a {
   display: none;
 }
 
-.property > .notifications.red {
+#edit-profile-body > div > h4 {
+  /* tagline styling */
+}
+
+/* Notifications */
+
+.notifications.red {
   color: red;
 }
 
-.property > .notifications.green {
+.notifications.green {
   color: green;
-}
-
-#edit-profile-body > div > h4 {
-  /* tagline styling */
 }
 
 /* Nested Lists */

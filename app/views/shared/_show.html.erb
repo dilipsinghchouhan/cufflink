@@ -24,7 +24,7 @@
       friendships_deny_url %>?code=<%= friendship_token %>">Deny</a>
 
     <% else %>
-      <%= render partial: "friendship-form", locals: { user: object } %>
+      <%= render partial: "friendships/new", locals: { user: object } %>
     <% end %>
 
   </div>
