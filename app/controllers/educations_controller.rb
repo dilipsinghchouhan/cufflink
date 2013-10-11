@@ -44,8 +44,19 @@ class EducationsController < ApplicationController
 
   def index
     if params[:term]
-      @educations = Education
+      schools = []
+      @educations = []
+
+      Education
         .find(:all, conditions: ['school LIKE ?', "#{params[:term]}%"])
+        .each do |education|
+          unless schools.include?(education.school)
+            schools << education.school
+            @educations << education
+          end
+        end
+
+        @educations << Education.new(school: params[:term])
     else
       @educations = Education.all
     end

@@ -1,10 +1,12 @@
 class Education < ActiveRecord::Base
-  attr_accessible :school, :school_id, :city, :state, :start_date, :end_date,
+  attr_accessible :school, :city, :state, :start_date, :end_date,
     :current_student, :string_1, :string_2, :body, :owner_id, :null
 
   validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
   validates :school, :city, :string_1, :string_2, :body, length:
     { minimum: 1, allow_nil: true }
+  validates :school, uniqueness: { scope: :owner_id }
+
   validate :no_time_travel
 
   validates :owner_id, presence: true

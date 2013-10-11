@@ -391,4 +391,5 @@ li.status > form {
 /* Autocomplete */
 span.ui-helper-hidden-accessible {
   background: yellow;
+  display: block;
 }

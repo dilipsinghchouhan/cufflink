@@ -4,6 +4,7 @@
 // Below is the name of the textfield that will be autocomplete
    $('#school').autocomplete({
 // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
+
            minLength: 1,
 // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
            source: '<%= educations_path(:json) %>',
@@ -15,9 +16,12 @@
            },
 // Once a value in the drop down list is selected, do the following:
           select: function(event, ui) {
+
+
  // place the person.given_name value into the textfield called 'select_origin'...
                 $('#school').val(ui.item.school);
  // and place the person.id into the hidden textfield called 'link_origin_id'.
+
         $('#education_school').val(ui.item.school);
                 return false;
             }
@@ -41,7 +45,7 @@
 
       <label>School name <i>(Required)</i>:<br>
         <input id="school">
-        <input type="text" id="education_school" name="education[school]"><br>
+        <input type="hidden" id="education_school" name="education[school]"><br>
       </label>
 
       <label>City:<br>

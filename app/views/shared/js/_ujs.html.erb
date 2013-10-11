@@ -20,6 +20,9 @@ $(document).ready( function(root){
       var error = data.responseText;
       var type = $(this).attr("id");
 
+      console.log(data)
+      console.log(ProfileLib.getDest(type))
+
       ProfileLib.notify(error, "red", ProfileLib.getDest(type), "before");
     })
 

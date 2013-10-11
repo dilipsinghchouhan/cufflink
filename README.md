@@ -2,6 +2,9 @@
 
 Oh man, this is going to be intense.
 
+## Make a special Lucille mode
+With tips on what to do and stuff
+
 ## Questions
 
 ##Organization
@@ -28,6 +31,9 @@ Oh man, this is going to be intense.
 
 -- Make new a shared file?
 
+- Sengrid and heroku not working
+- AWS not working in heroku
+
 - speed up friendship process with remote: true
 
 - css break <3<3
@@ -40,10 +46,9 @@ Oh man, this is going to be intense.
 
 - BACKBONE INDEX!!!!!
 - move settings nav into partial
-##To Do: ASAP
 
-####Paperclip
-* FIXXX paperclip
+- Uh oh, buster and michael belong to two diff schools.
+##To Do: ASAP
 
 ####News feed
 * Add yourself to companies
