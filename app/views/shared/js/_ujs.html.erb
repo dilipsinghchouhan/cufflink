@@ -4,42 +4,47 @@ $(document).ready( function(root){
 
   ProfileLib.$destination = $("#profile-education > ul");
 
-  $("#profile-education").on(
-    "ajax:success", "a#add-education", function(event, data) {
+  $("#profile-education")
+
+    .on("ajax:success", "a#add-education", function(event, data) {
       var $html = data;
       var $link = $(event.target);
 
       $link.hide();
       $("#profile-education > h3").after($html);
-  });
-
-  $("#profile-education")
-
-    .on("ajax:success",
-      ".education-form", function(event, data) {
-        var $form = $(event.target);
-        var $html = data;
-
-        $("#profile-education > .notifications").hide();
-        $form.hide();
-
-        $("#add-education").show();
-
-        ProfileLib.$destination.prepend($html);
-
-        ProfileLib.notify("Education created successfully!", "green",
-          ProfileLib.$destination, "before", true);
     })
 
-  $("#profile-education")
+    .on("ajax:success", ".education-form", function(event, data) {
+      var $form = $(event.target);
+      var $html = data;
 
-    .on("ajax:error",
-        ".education-form", function(event, data, error) {
+      $("#profile-education > .notifications").hide();
+      $form.hide();
 
-          var error = data.responseText;
+      $("#add-education").show();
 
-          ProfileLib.notify(error, "red", ProfileLib.$destination, "before");
-      });
+      ProfileLib.$destination.prepend($html);
+
+      ProfileLib.notify("Education created successfully!", "green",
+        ProfileLib.$destination, "before", true);
+    })
+
+    .on("ajax:error", ".education-form", function(event, data, error) {
+      var error = data.responseText;
+
+      ProfileLib.notify(error, "red", ProfileLib.$destination, "before");
+    })
+
+    .on("ajax:success", ".delete-education > form", function(event, data) {
+      var $form = $(event.target);
+      var $li = $form.closest("li");
+
+      var message = data.school + " deleted successfully"
+
+      $li.remove();
+      ProfileLib.notify(message, "green", ProfileLib.$destination, "before",
+        true);
+    })
 
 });
 </script>

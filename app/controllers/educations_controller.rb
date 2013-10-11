@@ -34,7 +34,12 @@ class EducationsController < ApplicationController
 
     @education.destroy
 
-    render json: ""
+    if request.xhr?
+      render json: @education
+    else
+      flash[:notice] = "Education destroyed successfully"
+      redirect_to
+    end
   end
 
   def new

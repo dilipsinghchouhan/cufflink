@@ -56,7 +56,10 @@
       <%= education.awards ? education.awards : "(enter awards)" %></span>
   </div>
 
-  <div class="delete-button"><%= button_to %></div>
+  <div class="delete-education">
+    <%= button_to "Delete", education_url(education), method: :delete,
+      remote: true %>
+  </div>
 
 </li>
 
