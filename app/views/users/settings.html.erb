@@ -1,21 +1,25 @@
-<h1>Settings</h1>
+<div id="profile-top" class="group">
 
-<ul id="profile-nav">
+  <h1>Settings</h1>
 
-  <li data-target="main" <%= ' class=active' unless @company %> >
-    <a href="#">My Settings</a>
-  </li>
+  <ul id="profile-nav">
 
-  <li class="nest">Company Settings
-    <ul>
-      <% current_user.managed_companies.each do |company| %>
-        <li data-target="company" data-company-id="<%= company.id %>">
-          <a href="#"><%= company.name %></a>
-        </li>
-      <% end %>
-    </ul>
-  </li>
-</ul>
+    <li data-target="main" <%= ' class=active' unless @company %> >
+      <a href="#">My Settings</a>
+    </li>
+
+    <li class="nest">Company Settings
+      <ul>
+        <% current_user.managed_companies.each do |company| %>
+          <li data-target="company" data-company-id="<%= company.id %>">
+            <a href="#"><%= company.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+
+</div>
 
 <div id="profile-main" class="profile-box">
   <h3>User Settings</h3>

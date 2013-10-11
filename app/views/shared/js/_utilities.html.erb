@@ -45,7 +45,7 @@ $(document).ready( function(root){
 
   var createField = ProfileLib.createField = function(fieldType, fieldValue) {
     if (["state", "industry", "summary",
-      "current_student", "awards"].indexOf(fieldType) === -1) {
+      "current_student", "body"].indexOf(fieldType) === -1) {
         if (["start_date", "end_date", "current_student"]
           .indexOf(fieldType) === -1) {
 
@@ -68,7 +68,7 @@ $(document).ready( function(root){
         html += ">"
     }
 
-    else if (["summary", "awards"].indexOf(fieldType) !== -1) {
+    else if (["summary", "body"].indexOf(fieldType) !== -1) {
     	  var html = '<textarea class="field">';
 	      html += fieldValue + '</textarea>';
     }

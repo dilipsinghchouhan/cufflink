@@ -1,7 +1,7 @@
 include ActionView::Helpers::DateHelper
 
 class Status < ActiveRecord::Base
-  attr_accessible :body, :link, :image_url
+  attr_accessible :body, :link, :pic
 
   validate :user_id_or_company_id
   validate :one_field_filled_out
@@ -18,6 +18,11 @@ class Status < ActiveRecord::Base
   belongs_to :company
 
   has_many :responses
+
+  has_attached_file :pic, :styles => {
+          :big => "610x610>",
+          :small => "300x300>"
+        }
 
   def time_ago
     time_ago_in_words(self.created_at) + " ago"

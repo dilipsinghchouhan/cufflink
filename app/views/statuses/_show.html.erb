@@ -7,6 +7,12 @@
     <div class="author"><%= author %> wrote:</div>
   <% end %>
 
+  <% if status.pic %>
+    <div class="status-img">
+      <%= image_tag status.pic.url(:big) %>
+    </div>
+  <% end %>
+
   <div class="status-body"><%= status.body %></div>
   <div class="posted-at"><%= status.time_ago %></div>
 

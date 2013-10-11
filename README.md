@@ -28,7 +28,7 @@ Oh man, this is going to be intense.
 
 -- Make new a shared file?
 
-- speed up friendship process
+- speed up friendship process with remote: true
 
 - css break <3<3
 - Profilees
@@ -39,7 +39,7 @@ Oh man, this is going to be intense.
 - HEROKU
 
 - BACKBONE INDEX!!!!!
-
+- move settings nav into partial
 ##To Do: ASAP
 
 ####Paperclip

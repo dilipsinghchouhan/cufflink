@@ -35,22 +35,22 @@
 
   <% end %>
 
-  <% if education.area %>
-    <b>Area of Study:</b> <%= education.area %>
+  <% if education.string_1 %>
+    <b>Area of Study:</b> <%= education.string_1 %>
 
     <br>
   <% end %>
 
-  <% if education.degree %>
-    <b>Degree:</b> <%= education.degree %>
+  <% if education.string_2 %>
+    <b>Degree:</b> <%= education.string_2 %>
 
     <br>
   <% end %>
 
-  <% if education.awards %>
-    <b>Awards:</b><br>
+  <% if education.body %>
+    <b>Awards & Activites:</b><br>
     <p>
-      <%= education.awards %>
+      <%= education.body %>
     </p>
 
     <br>

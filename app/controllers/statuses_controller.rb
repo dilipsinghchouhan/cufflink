@@ -5,6 +5,8 @@ class StatusesController < ApplicationController
     @status.user_id = params[:user_id] if params[:user_id]
     @status.company_id = params[:company_id] if params[:company_id]
 
+    @status.pic = params[:pic] if params[:pic]
+
     if @status.save & request.xhr?
       render partial: "show", locals: { object: @status }
     elsif @status.errors.full_messages.empty?
