@@ -16,7 +16,7 @@ $(document).ready( function(root){
       ProfileLib.afterCreation(event, data);
     })
 
-    .on("ajax:error", ".education-form", function(event, data, error) {
+    .on("ajax:error", ".profile-form", function(event, data, error) {
       var error = data.responseText;
       var type = $(this).attr("id");
 
@@ -38,7 +38,6 @@ $(document).ready( function(root){
   $("form#status")
 
     .on("ajax:success", function(event, data) {
-
       ProfileLib.afterCreation(event, data);
     })
 

@@ -7,7 +7,7 @@
     <div class="author"><%= author %> wrote:</div>
   <% end %>
 
-  <% if status.pic %>
+  <% if status.pic_file_size %>
     <div class="status-img">
       <%= image_tag status.pic.url(:big) %>
     </div>

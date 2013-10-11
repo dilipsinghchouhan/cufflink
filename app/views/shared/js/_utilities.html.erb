@@ -109,7 +109,7 @@ $(document).ready( function(root){
   }
 
   var getDest = ProfileLib.getDest = function(type) {
-    return $("#profile-" + type + " > ul");
+    return $("#profile-" + type + " ul");
   }
 
   var afterCreation = ProfileLib.afterCreation = function(event, data) {
@@ -120,13 +120,11 @@ $(document).ready( function(root){
 
     $("#profile-" + type + " > .notifications").hide();
 
-    if (type !== "status") {
-      $form.hide();
-    } else {
-      $form[0].reset();
-    }
+    $form.parent().hide();
 
     $("#add-" + type).show();
+
+    console.log($html)
 
     ProfileLib.getDest(type).prepend($html);
 
