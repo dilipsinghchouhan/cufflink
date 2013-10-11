@@ -34,5 +34,80 @@ $(document).ready( function(root){
     }, 1000);
   }
 
+  var cleanUp = ProfileLib.cleanUp = function($field, $clicked_button,
+    $other_button, $activeCurrentVal, $property) {
+    $field.remove();
+    $clicked_button.remove();
+    $other_button.remove();
+    $activeCurrentVal.removeClass("active");
+    $property.removeClass("editing");
+  }
+
+  var createField = ProfileLib.createField = function(fieldType, fieldValue) {
+    if (["state", "industry", "summary",
+      "current_student", "awards"].indexOf(fieldType) === -1) {
+        if (["start_date", "end_date", "current_student"]
+          .indexOf(fieldType) === -1) {
+
+            var inputType = "text";
+          } else {
+            var inputType = "date";
+          }
+
+        var html = '<input class="field" type="' + inputType + '" value="';
+        html += fieldValue + '">';
+    }
+
+    else if (fieldType == "current_student") {
+        var html = '<input class="field" type="checkbox"';
+
+        if (fieldValue == "checked") {
+          html += " checked"
+        };
+
+        html += ">"
+    }
+
+    else if (["summary", "awards"].indexOf(fieldType) !== -1) {
+    	  var html = '<textarea class="field">';
+	      html += fieldValue + '</textarea>';
+    }
+
+    else {
+	      var html = '<select class="field">';
+
+	      if (fieldType === "state") {
+	        var options = ["NY", "CA"];
+
+		      html += '<option>Select a State</option>';
+	      } else {
+    		  var options = [
+    		        "Real Estate",
+    		        "Technology",
+    		        "Advertising",
+    		        "Hospitality",
+    		        "Health/Medicine",
+    		        "Banana Stand",
+    		        "Other"
+    		      ];
+
+		      html += '<option>Select an Industry</option>';
+	      }
+
+        options.forEach( function(option) {
+          html += '<option value="' + option + '"';
+
+    		  if (fieldValue == option) {
+    			  html += " selected";
+    		  }
+
+          html += '>' + option + '</option>';
+        });
+      }
+
+    return html;
+  }
+
+
 });
 </script>

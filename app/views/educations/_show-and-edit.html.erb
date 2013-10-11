@@ -1,3 +1,6 @@
+<!-- because we might be generating this
+     the same way we gen status show -->
+
 <% education = object %>
 
 <li class="profile-data" id="<%= education.id %>">
@@ -52,6 +55,8 @@
     	education.awards ? false : true %>">
       <%= education.awards ? education.awards : "(enter awards)" %></span>
   </div>
+
+  <div class="delete-button"><%= button_to %></div>
 
 </li>
 

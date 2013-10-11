@@ -2,17 +2,6 @@
 $(document).ready( function(root){
   var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
 
-  var cleanUp = ProfileLib.cleanUp = function($field, $clicked_button,
-    $other_button, $activeCurrentVal, $target, $notifications) {
-    $field.remove();
-    $clicked_button.remove();
-    $other_button.remove();
-    $activeCurrentVal.removeClass("active");
-    $target.closest('.property').removeClass("editing");
-    $notifications.addClass("green");
-    ProfileLib.delayedRemove($notifications);
-  }
-
   var genUrl = ProfileLib.genUrl = function(modelType, urlId) {
     if (modelType == "company") {
       var plural = "companies"
@@ -24,20 +13,23 @@ $(document).ready( function(root){
 
   var urlId = $('h1').attr('data-id');
 
+  var fieldArray
+  var modelType
+  var fieldType
+  var $activeCurrentVal
+  var $property
+
   $(".profile-box").on("click", ".current-value", function(event) {
 
     var $target = $(event.target);
-    var $activeCurrentVal = $target.closest('.current-value')
+    $activeCurrentVal = $target.closest('.current-value')
     $activeCurrentVal.addClass("active");
 
-    var $property = $target.closest('.property')
+    $property = $target.closest('.property')
 
-    var notifications = '<div class="notifications"></div>'
-    $property.prepend(notifications);
-
-    var fieldArray = $activeCurrentVal.attr('data-field').split("-");
-    var modelType = fieldArray[0]
-    var fieldType = fieldArray[1];
+    fieldArray = $activeCurrentVal.attr('data-field').split("-");
+    modelType = fieldArray[0]
+    fieldType = fieldArray[1];
 
     var buttons = '<button class="save">Save</button>';
 
@@ -48,49 +40,33 @@ $(document).ready( function(root){
 
     $property.append(buttons);
 
-    // var fieldValue = ""
-    //
-    // if (!($target.attr("data-nil"))
-    // can this area be cleaned up?
+    var fieldValue = ""
 
-    if ($target.attr("data-nil") === "true") {
-    	var fieldValue = "";
-    } else if (fieldType == "current_student") {
-      if ($target[0].checked) {
-        var fieldValue = "checked";
+    if (!($target.attr("data-nil"))) {
+      if (fieldType == "current_student") {
+        if ($target[0].checked) fieldValue = "checked"
       } else {
-        var fieldValue = "";
+        fieldValue = $target.text().trim();
       }
-    } else {
-    	var fieldValue = $target.text().trim();
     }
 
-    var fieldHTML = createField(fieldType, fieldValue);
+    var fieldHTML = ProfileLib.createField(fieldType, fieldValue);
 
     $activeCurrentVal.after(fieldHTML);
     $property.addClass("editing");
-  });
+
+    });
 
   $(".profile-box").on("click", "button", function(event) {
-    var $target = $(event.target);
+    var $clicked_button = $(event.target);
 
-    var $activeCurrentVal = $target
-      .siblings().filter('.current-value.active');
+    var $field = $clicked_button.siblings().filter('.field');
 
-    var fieldArray = $activeCurrentVal.attr('data-field').split("-");
-
-    var modelType = fieldArray[0];
-    var fieldType = fieldArray[1];
-
-    var $field = $target.siblings().filter('.field');
-    var $notifications = $target.siblings().filter('.notifications');
-
-    var $other_button = $target.siblings().filter('button');
-    var $clicked_button = $(this);
+    var $other_button = $clicked_button.siblings().filter('button');
 
     var obj = {};
 
-    var $containingDiv = $target.closest(".profile-data")
+    var $containingDiv = $clicked_button.closest(".profile-data")
 
     if (["user", "company"].indexOf(modelType) == -1) {
       urlId = $containingDiv.attr("id");
@@ -98,7 +74,8 @@ $(document).ready( function(root){
 
     var url = genUrl(modelType, urlId);
 
-    if ($target.hasClass('save')) {
+    // if we're saving
+    if ($clicked_button.hasClass('save')) {
 
       var fieldNameAsHash = modelType + "[" + fieldType + "]";
 
@@ -120,26 +97,32 @@ $(document).ready( function(root){
           }
 
 		      $activeCurrentVal.attr("data-nil", "false");
-          $notifications.text(fieldType + " updated successfully!");
-          cleanUp($field, $clicked_button, $other_button, $activeCurrentVal,
-            $target, $notifications);
+
+          var message = fieldType + " updated successfully!"
+          ProfileLib.notify(message, "green", $property, "prepend", true)
+
+          ProfileLib.cleanUp($field, $clicked_button, $other_button,
+            $activeCurrentVal, $property);
         },
         error: function(jqXHR) {
+
   	  	  if ($activeCurrentVal.attr("data-nil") === "true") {
   	  	  	var fieldValue = "";
   	  	  } else {
-  	  	  	var fieldValue = $target.text().trim();
+  	  	  	var fieldValue = $activeCurrentVal.text().trim();
   	  	  }
 
 		      $field.val(fieldValue);
 
-		      $notifications.text(jqXHR.responseText);
-          $notifications.addClass("red");
-          delayedRemove($notifications);
+          ProfileLib.notify(jqXHR.responseText, "red", $property, "prepend",
+            true)
         }
       });
 
-  } else if ($target.hasClass('remove')) {
+  }
+
+  // if we're removing
+  else if ($clicked_button.hasClass('remove')) {
 	  obj[modelType + "[null]"] = fieldType;
 
       $.ajax({
@@ -149,115 +132,16 @@ $(document).ready( function(root){
         success: function() {
 		      $activeCurrentVal.attr("data-nil", "true");
 		      $activeCurrentVal.text("(enter " + fieldType + ")");
-          $notifications.text(fieldType + " removed successfully!");
-          cleanUp($field, $clicked_button, $other_button, $activeCurrentVal,
-            $target, $notifications);
+
+          var message = fieldType + " removed successfully!";
+          ProfileLib.notify(message, "green", $property, "prepend", true)
+
+          ProfileLib.cleanUp($field, $clicked_button, $other_button,
+            $activeCurrentVal, $property);
         }
       });
   }
   });
-
-  var createField = ProfileLib.createField = function(fieldType, fieldValue) {
-    if (["state", "industry", "summary",
-      "current_student", "awards"].indexOf(fieldType) === -1) {
-        if (["start_date", "end_date", "current_student"]
-          .indexOf(fieldType) === -1) {
-
-            var inputType = "text";
-          } else {
-            var inputType = "date";
-          }
-
-        var html = '<input class="field" type="' + inputType + '" value="';
-        html += fieldValue + '">';
-    }
-
-    else if (fieldType == "current_student") {
-        var html = '<input class="field" type="checkbox"';
-
-        if (fieldValue == "checked") {
-          html += " checked"
-        };
-
-        html += ">"
-    }
-
-    else if (["summary", "awards"].indexOf(fieldType) !== -1) {
-    	  var html = '<textarea class="field">';
-	      html += fieldValue + '</textarea>';
-    }
-
-    else {
-	      var html = '<select class="field">';
-
-	      if (fieldType === "state") {
-	        var options = ["NY", "CA"];
-
-		      html += '<option>Select a State</option>';
-	      } else {
-    		  var options = [
-    		        "Real Estate",
-    		        "Technology",
-    		        "Advertising",
-    		        "Hospitality",
-    		        "Health/Medicine",
-    		        "Banana Stand",
-    		        "Other"
-    		      ];
-
-		      html += '<option>Select an Industry</option>';
-	      }
-
-        options.forEach( function(option) {
-          html += '<option value="' + option + '"';
-
-    		  if (fieldValue == option) {
-    			  html += " selected";
-    		  }
-
-          html += '>' + option + '</option>';
-        });
-      }
-
-    return html;
-  }
-
-  $('#education-link').on("click", function(event) {
-  	event.preventDefault();
-
-    $(this).hide();
-
-    var $target = $(event.target);
-    $target.after(html);
-
-    $('#education-form').on("submit", function(event) {
-      event.preventDefault();
-
-      var $form = $(event.currentTarget);
-      var formData = $form.serializeJSON();
-
-      $.ajax({
-        url: '/users/' + urlId + '/educations',
-        type: 'POST',
-        data: formData,
-        success: function(obj) {
-          $('#education-link').show();
-          ProfileLib.append("education", obj);
-        },
-        error: function() {
-          console.log("error")
-        }
-
-      });
-
-      $form.remove();
-    });
-
-  });
-
-  $(".delete-education-link").on("click", function(event) {
-    console.log("delete button clicked")
-  })
 
 });
 </script>

@@ -4,14 +4,8 @@ Oh man, this is going to be intense.
 
 ## Questions
 
-* type (index, show-and-edit)
-* new url (index)
-* plural (index)
-
-JUST INDEX
-
-* Fix like partial
-* Add partial to top of show
+##Organization
+* Add notes to top of communal pages
 
 ##CSS Breaks!
 * Better buttons
@@ -20,6 +14,26 @@ JUST INDEX
 * Settings
 * Navbar add message/connection buttons
 * ooh feed can have 1/4 and 1/3 pods
+
+
+##FRIDAY THINGS
+- Perfect educations
+- Add positions
+- Links
+- Numbers
+- EMAIL CONFIRMATION FOR ACCOUNTS
+- Emails
+- Dependant destroy
+
+- css break <3<3
+- Profilees
+- Feed??
+- Style notifications/flash?
+
+- PAPERCLIP
+- HEROKU
+
+- BACKBONE INDEX!!!!!
 
 ##To Do: ASAP
 
@@ -37,8 +51,6 @@ JUST INDEX
 * Recommendable
 
 ####Likes and comments FUCK
-
-* maybe switch statuses and educations to UJS
 
 ####Models
 * School and company dropdowns
@@ -72,6 +84,7 @@ JUST INDEX
 * whatever else
 
 ####Profile Editing
+* Can you also press enter to save?
 * consistent order of stuff
 * clean up profile js. also, maybe (enter awards) should be better
 * get rid of save button for checkboxes... dont load any buttons and copy the button click handler to its own method so it can work when you click remove or a checkbox...
@@ -79,6 +92,7 @@ JUST INDEX
 * end date grayed out if current student
 * state dropdown...
 * relate states and cities?
+####Profile Editing & Nav for non jQuery...
 
 ##To Do: Long Term
 
@@ -89,4 +103,6 @@ JUST INDEX
 * Style emails
 
 * Undo denies...?
+
+
 
