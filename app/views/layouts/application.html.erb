@@ -20,15 +20,22 @@
 
 <script>
 
-$(document).ready( function() {
+$(document).ready( function(root) {
 
-  $("header")
+  var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
 
-    .on("ajax:success", "a.gen-form", function(event, data) {
+  $("body")
+
+    .on("ajax:success", "header a.gen-form", function(event, data) {
       var $html = data;
       var $link = $(event.target);
 
-      $("body").prepend($html);
+      $("header").prepend($html);
+    })
+
+    .on("ajax:success", "header .profile-form", function(event, data) {
+
+      ProfileLib.afterCreation(event, data, true);
     })
 })
 
