@@ -38,6 +38,14 @@
       </ul>
 
       <ul id="nav-right">
+        <li>
+          <%= link_to raw('<i class="icon-pencil"></i>'), new_status_url,
+            id: "add-status", class: "gen-form", remote: true %>
+          <!-- <a href="<%= new_status_url %>" id="add-status" class="gen-form">
+
+          </a> -->
+        </li>
+
         <li><a href="<%= settings_url %>"><i class="icon-cog"></i></a></li>
 
         <li><%= button_to "Sign Out", session_url, method: :delete %></li>

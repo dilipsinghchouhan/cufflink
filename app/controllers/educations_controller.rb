@@ -42,6 +42,19 @@ class EducationsController < ApplicationController
     end
   end
 
+  def index
+    if params[:term]
+      @educations = Education
+        .find(:all, conditions: ['school LIKE ?', "#{params[:term]}%"])
+    else
+      @educations = Education.all
+    end
+
+    respond_to do |format|
+      format.json { render json: @educations.to_json }
+    end
+  end
+
   def new
     @education = Education.new
 

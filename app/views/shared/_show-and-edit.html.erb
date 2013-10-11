@@ -1,108 +1,78 @@
-
-  <h4>Update Status</h4>
-
-<% action_url = (type == "user") ? user_statuses_url(object) :
-  company_statuses_url(object) %>
-
-<form action="<%= action_url %>" method="post">
-  <input type="hidden" value="<%= form_authenticity_token %>"
-    name="authenticity_token">
-
-  <label>
-    Body:<br>
-    <textarea name="status[body]"></textarea>
-  </label>
-
-  <br><br>
-
-  <label>
-    Link:<br>
-    <input type="text" name="status[link]">
-  </label>
-
-  <br><br>
-
-  (Image upload field! OMG!)
-
-  <br><br>
-
-  <input type="submit" value="Update Status">
-</form>
-
 <div id="profile-main" class="profile-box">
+
   <h3>Information</h3>
 
-  <form action="<%= user_url(object) %>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="put">
-    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
-  <input name="user[pic]" type="file">
-  <input type="submit" value="goooo">
-  </form>
+  <div class="pod two-thirds first">
 
+    <% if type == "user" %>
+      <div class="property">
+        <h4 class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
+        	object.tagline ? false : true %>"><%=
+          object.tagline ? object.tagline : "(enter tagline)"
+          %></h4>
+      </div>
+    <% end %>
 
-  <% if type == "user" %>
     <div class="property">
-      <h4 class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
-      	object.tagline ? false : true %>"><%=
-        object.tagline ? object.tagline : "(enter tagline)"
-        %></h4>
-    </div>
-  <% end %>
-
-  <div class="property">
-    <b>Location:</b>
-    <% if type == "company" %>
-      <span class="current-value" data-field="<%=
-        type %>-address1" data-nil="<%= object.address1 ? false : true %>">
-        <%= object.address1 ? object.address1 : "(enter address1)" %></span>
+      <b>Location:</b>
+      <% if type == "company" %>
+        <span class="current-value" data-field="<%=
+          type %>-address1" data-nil="<%= object.address1 ? false : true %>">
+          <%= object.address1 ? object.address1 : "(enter address1)" %></span>
+          <br>
+        <span class="current-value" data-field="<%=
+          type %>-address2" data-nil="<%= object.address2 ? false : true %>">
+          <%= object.address2 ? object.address2 : "(enter address2)" %></span>
         <br>
-      <span class="current-value" data-field="<%=
-        type %>-address2" data-nil="<%= object.address2 ? false : true %>">
-        <%= object.address2 ? object.address2 : "(enter address2)" %></span>
-      <br>
+      <% end %>
+
+      <span class="current-value" data-field="<%= type %>-city" data-nil="<%=
+      	object.city ? false : true %>">
+        <%= object.city ? object.city : "(enter city)" %></span>,
+      <span class="current-value" data-field="<%= type %>-state">
+        <%= object.state ? object.state : "(enter state)" %>
+      </span>
+
+      <% if type == "company" %>
+        <br>
+        <span class="current-value" data-field="<%= type %>-zip"
+          data-nil="<%= object.zip ? false : true %>">
+          <%= object.zip ? object.zip : "(enter zip)" %></span>
+      <% end %>
+    </div>
+
+    <div class="property">
+      <b>Industry:</b>
+      <span class="current-value" data-field="<%= type %>-industry">
+        <%= object.industry ? object.industry : "(enter industry)" %>
+      </span>
+    </div>
+
+    <div class="property">
+      <h4>Summary:</h4>
+      <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
+      	object.summary ? false : true %>">
+        <%= object.summary ? object.summary : "(enter summary)" %>
+      </span>
+    </div>
+
+    <% if type == "user" %>
+
+      <h4>Contact Information</h4>
+
+      <ul id="contact_information">
+        <li>
+          <%= object.email %>
+        </li>
+      </ul>
+
     <% end %>
 
-    <span class="current-value" data-field="<%= type %>-city" data-nil="<%=
-    	object.city ? false : true %>">
-      <%= object.city ? object.city : "(enter city)" %></span>,
-    <span class="current-value" data-field="<%= type %>-state">
-      <%= object.state ? object.state : "(enter state)" %>
-    </span>
-
-    <% if type == "company" %>
-      <br>
-      <span class="current-value" data-field="<%= type %>-zip"
-        data-nil="<%= object.zip ? false : true %>">
-        <%= object.zip ? object.zip : "(enter zip)" %></span>
-    <% end %>
   </div>
 
-  <div class="property">
-    <b>Industry:</b>
-    <span class="current-value" data-field="<%= type %>-industry">
-      <%= object.industry ? object.industry : "(enter industry)" %>
-    </span>
+  <div class="pod third centered">
+    <%= image_tag current_user.pic.url(:big) %>
   </div>
-
-  <div class="property">
-    <h4>Summary:</h4>
-    <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
-    	object.summary ? false : true %>">
-      <%= object.summary ? object.summary : "(enter summary)" %>
-    </span>
-  </div>
-
-  <% if type == "user" %>
-
-    <h4>Contact Information</h4>
-
-    <ul id="contact_information">
-      <li>
-        <%= object.email %>
-      </li>
-    </ul>
-
-  <% end %>
 
 </div>
 

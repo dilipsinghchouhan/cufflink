@@ -14,19 +14,24 @@
   <h3><%= plural.capitalize %></h3>
 
   <% if edit %>
-    <%= link_to "Add", new_url, remote: true, id: "add-#{type}" %>
+    <%= link_to "Add", new_url, remote: true, id: "add-#{type}",
+      class: "gen-form pod third first" %>
   <% end %>
 
-  <ul>
-    <% object.send(plural).each do |object| %>
-        <% if edit %>
-          <%= render partial: "#{plural}/show-and-edit",
-            locals: { object: object } %>
-        <% else %>
-          <%= render partial: "#{plural}/show", locals: { object: object } %>
-        <% end %>
-    <% end %>
-  </ul>
+  <div class="pod two-thirds">
+
+    <ul>
+      <% object.send(plural).each do |object| %>
+          <% if edit %>
+            <%= render partial: "#{plural}/show-and-edit",
+              locals: { object: object } %>
+          <% else %>
+            <%= render partial: "#{plural}/show", locals: { object: object } %>
+          <% end %>
+      <% end %>
+    </ul>
+
+  </div>
 
 </div>
 

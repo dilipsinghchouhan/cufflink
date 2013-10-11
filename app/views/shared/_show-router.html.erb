@@ -1,8 +1,13 @@
-<h1 data-id="<%= object.id %>">
-  <%= object.name %>
-</h1>
+<div id="profile-top" class="group">
 
-<%= render partial: "shared/nav", locals: { type: type, object: object } %>
+  <h1 data-id="<%= object.id %>">
+    <%= object.name %>
+  </h1>
+
+  <%= render partial: "shared/nav", locals: { type: type, object: object,
+    edit: edit } %>
+
+</div>
 
 <% if edit %>
   <%= render partial: "shared/show-and-edit", locals: { type: type,
@@ -23,6 +28,7 @@
 <%= render partial: "shared/collections/index", locals: { type: "status",
   new_url: new_status_url, plural: "statuses", object: object, edit: false } %>
 
+<!-- made this its own index -->
 <div id="profile-updates" class="profile-box">
   <h3>Status Updates</h3>
 

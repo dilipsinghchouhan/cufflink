@@ -108,6 +108,30 @@ $(document).ready( function(root){
     return html;
   }
 
+  var getDest = ProfileLib.getDest = function(type) {
+    return $("#profile-" + type + " > ul");
+  }
 
+  var afterCreation = ProfileLib.afterCreation = function(event, data) {
+
+    var $form = $(event.target);
+    var type = $form.attr("id");
+    var $html = data;
+
+    $("#profile-" + type + " > .notifications").hide();
+
+    if (type !== "status") {
+      $form.hide();
+    } else {
+      $form[0].reset();
+    }
+
+    $("#add-" + type).show();
+
+    ProfileLib.getDest(type).prepend($html);
+
+    ProfileLib.notify(type + " created successfully!", "green",
+      ProfileLib.getDest(type), "before", true);
+  }
 });
 </script>

@@ -22,16 +22,8 @@
 
   <h4>My Profile Picture</h4>
 
-  <div class="pod half first">
+  <div class="pod half gray first">
     <h5>Update Photo</h5>
-
-    <form action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="_method" value="put">
-      <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
-    <input name="user[pic]" type="file">
-    <input type="submit" value="goooo">
-    </form>
-
 
     <%= form_for current_user do |f| %>
       <%= f.file_field :pic %>
@@ -39,7 +31,7 @@
     <% end %>
   </div>
 
-  <div class="pod half">
+  <div class="pod half gray centered">
     <h5>Current Photo</h5>
 
     <%= image_tag current_user.pic.url(:big) %>
@@ -53,4 +45,4 @@
   Companies!
 </div>
 
-<%= render partial: "shared/profile-js/nav" %>
+<%= render partial: "shared/js/nav" %>

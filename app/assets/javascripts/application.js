@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery.serializeJSON
 //= require underscore
+//= require jquery-ui-1.10.3.custom
 //= require_tree .

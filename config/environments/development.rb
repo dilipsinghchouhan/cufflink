@@ -42,9 +42,9 @@ Cufflink::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => "cufflinkdev",
-      :access_key_id => ENV["AWS_KEY"],
-      :secret_access_key => ENV["AWS_SECRET"],
-      :s3_host_name => 's3-us-west-2.amazonaws.com' # or whatever your region host name is
+      :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+      :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]
+      # :s3_host_name => 's3-us-west-2.amazonaws.com' # or whatever your region host name is
     }
   }
 end

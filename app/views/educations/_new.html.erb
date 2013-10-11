@@ -1,39 +1,80 @@
-<%= form_tag(educations_url, method: "post",
-  class: "education-form", remote: true) do %>
+<script type="text/javascript">
+   $(function() {
 
-  <label>School name <i>(Required)</i>:<br>
-    <input type="text" name="education[school]"><br>
-  </label>
+// Below is the name of the textfield that will be autocomplete
+   $('#school').autocomplete({
+// This shows the min length of charcters that must be typed before the autocomplete looks for a match.
+           minLength: 1,
+// This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
+           source: '<%= educations_path(:json) %>',
+ // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the person.given_name.
+           focus: function(event, ui) {
 
-  <label>City:<br>
-    <input type="text" name="education[city]"><br>
-  </label>
+               $('#school').val(ui.item.school);
+               return false;
+           },
+// Once a value in the drop down list is selected, do the following:
+          select: function(event, ui) {
+ // place the person.given_name value into the textfield called 'select_origin'...
+                $('#school').val(ui.item.school);
+ // and place the person.id into the hidden textfield called 'link_origin_id'.
+        $('#education_school').val(ui.item.school);
+                return false;
+            }
+       })
+// The below code is straight from the jQuery example. It formats what data is displayed in the dropdown box, and can be customized.
+       .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 
-  <label>State:<br>
-    <input type="text" name="education[state]"><br>
-  </label>
+           return $( "<li></li>" )
+               .data( "item.autocomplete", item )
+// For now which just want to show the person.given_name in the list.
+               .append( "<a>" + item.school + "</a>" )
+               .appendTo( ul );
+       };
+   });
+   </script>
 
-  <label>Start Date:<br>
-    <input type="date" name="education[start_date]"><br>
-  </label>
+<div class="pod third first">
 
-  <label>Current Student <input type="checkbox" name="education[current_student]"><br>
-  </label>
+  <%= form_tag(educations_url, method: "post",
+    class: "profile-form", id: "education", remote: true) do %>
 
-  <label>End Date:<br>
-    <input type="date" name="education[end_date]"><br>
-  </label>
+      <label>School name <i>(Required)</i>:<br>
+        <input id="school">
+        <input type="text" id="education_school" name="education[school]"><br>
+      </label>
 
-  <label>Area of Study:<br>
-    <input type="text" name="education[area]"><br>
-  </label>
+      <label>City:<br>
+        <input type="text" name="education[city]"><br>
+      </label>
 
-  <label>Degree:<br>
-    <input type="text" name="education[degree]"><br>
-  </label>
+      <label>State:<br>
+        <input type="text" name="education[state]"><br>
+      </label>
 
-  <label>Awards &amp; Activites<br>
-    <textarea name="education[awards]"></textarea><br></label>
+      <label>Start Date:<br>
+        <input type="date" name="education[start_date]"><br>
+      </label>
 
-    <input type="submit" value="Add Education"></form>
-<% end %>
+      <label>Current Student <input type="checkbox" name="education[current_student]"><br>
+      </label>
+
+      <label>End Date:<br>
+        <input type="date" name="education[end_date]"><br>
+      </label>
+
+      <label>Area of Study:<br>
+        <input type="text" name="education[area]"><br>
+      </label>
+
+      <label>Degree:<br>
+        <input type="text" name="education[degree]"><br>
+      </label>
+
+      <label>Awards &amp; Activites<br>
+        <textarea name="education[awards]"></textarea><br></label>
+
+      <input type="submit" value="Add Education"></form>
+  <% end %>
+
+</div>

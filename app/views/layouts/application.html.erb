@@ -18,5 +18,23 @@
   <%= yield %>
 </section>
 
+<script>
+
+$(document).ready( function() {
+
+  $("header")
+
+    .on("ajax:success", "a.gen-form", function(event, data) {
+      console.log("add status")
+      var $html = data;
+      var $link = $(event.target);
+
+      $link.hide();
+      $("body").after($html);
+    })
+})
+
+
+</script>
 </body>
 </html>

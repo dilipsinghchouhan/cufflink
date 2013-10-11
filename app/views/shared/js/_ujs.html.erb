@@ -2,11 +2,9 @@
 $(document).ready( function(root){
   var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
 
-  ProfileLib.$destination = $("#profile-education > ul");
+  $(".profile-box")
 
-  $("#profile-education")
-
-    .on("ajax:success", "a#add-education", function(event, data) {
+    .on("ajax:success", "a.gen-form", function(event, data) {
       var $html = data;
       var $link = $(event.target);
 
@@ -14,36 +12,34 @@ $(document).ready( function(root){
       $("#profile-education > h3").after($html);
     })
 
-    .on("ajax:success", ".education-form", function(event, data) {
-      var $form = $(event.target);
-      var $html = data;
-
-      $("#profile-education > .notifications").hide();
-      $form.hide();
-
-      $("#add-education").show();
-
-      ProfileLib.$destination.prepend($html);
-
-      ProfileLib.notify("Education created successfully!", "green",
-        ProfileLib.$destination, "before", true);
+    .on("ajax:success", ".profile-form", function(event, data) {
+      ProfileLib.afterCreation(event, data);
     })
 
     .on("ajax:error", ".education-form", function(event, data, error) {
       var error = data.responseText;
+      var type = $(this).attr("id");
 
-      ProfileLib.notify(error, "red", ProfileLib.$destination, "before");
+      ProfileLib.notify(error, "red", ProfileLib.getDest(type), "before");
     })
 
     .on("ajax:success", ".delete-education > form", function(event, data) {
       var $form = $(event.target);
       var $li = $form.closest("li");
+      var type = $(this).attr("id");
 
       var message = data.school + " deleted successfully"
 
       $li.remove();
-      ProfileLib.notify(message, "green", ProfileLib.$destination, "before",
+      ProfileLib.notify(message, "green", ProfileLib.getDest(type), "before",
         true);
+    })
+
+  $("form#status")
+
+    .on("ajax:success", function(event, data) {
+
+      ProfileLib.afterCreation(event, data);
     })
 
 });

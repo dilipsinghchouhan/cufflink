@@ -1,0 +1,25 @@
+<% action_url = (type == "user") ? user_statuses_url(object) :
+  company_statuses_url(object) %>
+
+<%= form_tag(
+      action_url, remote: true, class: "profile-form", id: "status") do %>
+
+  <label>
+    <textarea name="status[body]" placeholder="Body"></textarea>
+  </label>
+
+  <br><br>
+
+  <label>
+    <input type="text" name="status[link]" placeholder="Link">
+  </label>
+
+  <br><br>
+
+  (Image upload field! OMG!)
+
+  <br><br>
+
+  <input type="submit" value="Update Status">
+
+<% end %>

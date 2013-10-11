@@ -18,12 +18,17 @@ Oh man, this is going to be intense.
 
 ##FRIDAY THINGS
 - Perfect educations
+--- Use cant go to same schools
 - Add positions
 - Links
 - Numbers
 - EMAIL CONFIRMATION FOR ACCOUNTS
 - Emails
 - Dependant destroy
+
+-- Make new a shared file?
+
+- speed up friendship process
 
 - css break <3<3
 - Profilees
