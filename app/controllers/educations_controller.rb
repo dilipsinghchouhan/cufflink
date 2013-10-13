@@ -3,6 +3,8 @@ class EducationsController < ApplicationController
     @education = Education.new(clean_params_hash(params[:education]))
     @education.owner = current_user
 
+    @education.position = true if params[:position]
+
     if @education.save & request.xhr?
       render partial: "show-and-edit", locals: { object: @education }
 
@@ -43,11 +45,16 @@ class EducationsController < ApplicationController
   end
 
   def index
+    condition = "position IS " +params[:position]
+      p "we have a position"
+    end
+
     if params[:term]
       schools = []
       @educations = []
 
-      Education
+      start = params[:position] ? Education.
+
         .find(:all, conditions: ['school LIKE ?', "#{params[:term]}%"])
         .each do |education|
           unless schools.include?(education.school)
@@ -71,9 +78,10 @@ class EducationsController < ApplicationController
 
     if request.xhr?
       render partial: "educations/new", locals: { user: current_user,
-         education: @education }
+         education: @education, position: params[:position] }
     else
       render :new
+      #how do i make this change? if theres a pos?
     end
   end
 

@@ -8,7 +8,7 @@ class Response < ActiveRecord::Base
   def like_is_unique
     return if body
 
-    if Response.find_by_user_id_and_status_id(user_id, status_id)
+    if Response.likes.find_by_user_id_and_status_id(user_id, status_id)
       errors.add(:user_id,
         "Cannot like the same status twice.")
     end

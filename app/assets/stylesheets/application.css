@@ -44,11 +44,15 @@ h5 {
   font-size: 14px;
 }
 
-right {
+.hidden {
+  display: none;
+}
+
+.right {
   float: right;
 }
 
-left {
+.left {
   float: left;
 }
 
@@ -392,4 +396,22 @@ li.status > form {
 span.ui-helper-hidden-accessible {
   background: yellow;
   display: block;
+}
+
+ul.ui-autocomplete {
+  margin-left: -500px;
+  z-index: 1;
+  max-width: 280px;
+}
+
+ul.ui-autocomplete > li.ui-menu-item {
+  max-height: 20px;
+  position: relative;
+  background: yellow;
+}
+
+ul.ui-autocomplete > li.ui-menu-item > a {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

@@ -9,24 +9,39 @@
 
  -->
 
-<div id="profile-<%= type %>" class="profile-box">
+<% position = false unless position %>
 
-  <h3><%= plural.capitalize %></h3>
+<div id="profile-<%= (type == "education" && position) ? "company" : type %>" class="profile-box">
+
+  <h3><%= title %></h3>
+
+  <% url = position ? new_url + "?position=true" : new_url %>
+  <% link_add = position ? "company" : type %>
 
   <% if edit %>
-    <%= link_to "Add", new_url, remote: true, id: "add-#{type}",
+    <%= link_to "Add", url, remote: true, id: "add-#{link_add}",
       class: "gen-form pod third first" %>
   <% end %>
 
   <div class="pod two-thirds">
 
     <ul>
-      <% object.send(plural).each do |object| %>
+
+      <% if position %>
+        <% to_send = "positions" %>
+      <% elsif type == "education" %>
+        <% to_send = "schools" %>
+      <% else %>
+        <% to_send = plural %>
+      <% end %>
+
+      <% object.send(to_send).each do |object| %>
           <% if edit %>
             <%= render partial: "#{plural}/show-and-edit",
-              locals: { object: object } %>
+              locals: { object: object, position: position } %>
           <% else %>
-            <%= render partial: "#{plural}/show", locals: { object: object } %>
+            <%= render partial: "#{plural}/show",
+              locals: { object: object, position: position }%>
           <% end %>
       <% end %>
     </ul>

@@ -2,6 +2,19 @@
 
 Oh man, this is going to be intense.
 
+##Saturday list
+
+* Add positions
+* Link positions with companies
+
+* Add links, numbers, emails
+
+* Add notifications
+
+* Messages
+
+* Ads
+
 ## Make a special Lucille mode
 With tips on what to do and stuff
 

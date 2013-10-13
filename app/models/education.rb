@@ -3,9 +3,8 @@ class Education < ActiveRecord::Base
     :current_student, :string_1, :string_2, :body, :owner_id, :null
 
   validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
-  validates :school, :city, :string_1, :string_2, :body, length:
-    { minimum: 1, allow_nil: true }
-  validates :school, uniqueness: { scope: :owner_id }
+  validates :city, :string_1, :string_2, :body, length: { minimum: 1, allow_nil: true }
+  validates :school, length: { minimum: 1 }, uniqueness: { scope: :owner_id }
 
   validate :no_time_travel
 
@@ -14,6 +13,17 @@ class Education < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
 
   def no_time_travel
+    [start_date, end_date].each do |date|
+      next unless date
+
+      if date > DateTime.now
+        errors.add(
+          date == start_date ? :start_date : :end_date,
+          "Dates cannot be in the future"
+          )
+      end
+    end
+
     return unless start_date && end_date
     if start_date > end_date
       errors.add(:start_date,
@@ -23,5 +33,15 @@ class Education < ActiveRecord::Base
 
   def null=(field)
     self.send("#{field}=", nil)
+  end
+
+  #make these class methods
+
+  def positions
+    self.educations.where("position IS TRUE")
+  end
+
+  def schools
+    self.educations.where("position IS FALSE")
   end
 end

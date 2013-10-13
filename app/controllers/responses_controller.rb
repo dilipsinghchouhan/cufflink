@@ -14,6 +14,8 @@ class ResponsesController < ApplicationController
           render partial: "responses/like-count", locals: {
             like_count: @status.like_count }
         end
+    elsif request.xhr?
+      render json: @response.errors.full_messages, status: 422
     elsif @response.errors.full_messages.empty?
       flash[:notice] = "Saved successfully!"
       redirect_to :back

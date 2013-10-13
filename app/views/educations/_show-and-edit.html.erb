@@ -10,9 +10,9 @@
     <b>Location:</b>
     <span class="current-value" data-field="education-city" data-nil="<%=
     	education.city ? false : true %>">
-      <%= education.city ? education.city : "(enter city)" %></span>,
+      <%= education.city ? education.city : "city" %></span>,
     <span class="current-value" data-field="education-state">
-      <%= education.state ? education.state : "(enter state)" %>
+      <%= education.state ? education.state : "state" %>
     </span>
   </div>
 
@@ -21,13 +21,15 @@
     <span class="current-value" data-field="education-start_date"
       data-nil="<%= education.start_date ? false : true %>">
       <%= education.start_date ?
-        education.start_date : "(enter start date)" %></span> to
-    <span class="current-value" data-field="education-end_date">
-      <%= education.end_date ? education.end_date : "(enter end_date)" %>
+        education.start_date : "start date" %></span> to
+    <span id="end-date" class="current-value<%= " hidden" if
+      education.current_student %>" data-field="education-end_date">
+      <%= education.end_date ? education.end_date : "end date" %>
     </span>
   </div>
 
-  <div class="property">
+  <div class="property<%= " hidden" if
+      education.end_date %>" id="current-student">
     <span class="current-student">Current Student</span>
     <span class="current-value" data-field="education-current_student">
        <input type="checkbox"
@@ -39,14 +41,14 @@
     <b>Area of Study:</b>
     <span class="current-value" data-field="education-string_1" data-nil="<%=
     	education.string_1 ? false : true %>">
-      <%= education.string_1 ? education.string_1 : "(enter area)" %></span>
+      <%= education.string_1 ? education.string_1 : "area of study" %></span>
   </div>
 
   <div class="property">
     <b>Degree:</b>
     <span class="current-value" data-field="education-string_2" data-nil="<%=
     	education.string_2 ? false : true %>">
-      <%= education.string_2 ? education.string_2 : "(enter degree)" %></span>
+      <%= education.string_2 ? education.string_2 : "degree" %></span>
   </div>
 
   <div class="property">
@@ -54,7 +56,7 @@
     <span class="current-value" data-field="education-body" data-nil="<%=
     	education.body ? false : true %>">
       <%= education.body ? education.body :
-        "(enter awards & activities)" %></span>
+        "awards & activities" %></span>
   </div>
 
   <div class="delete-education">

@@ -1,3 +1,6 @@
+<% url = position ?
+   educations_url + "?position=true" : educations_url %>
+
 <script type="text/javascript">
    $(function() {
 
@@ -7,7 +10,7 @@
 
            minLength: 1,
 // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
-           source: '<%= educations_path(:json) %>',
+           source: '<%= educations_url(:json) %>?position=true',
  // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the person.given_name.
            focus: function(event, ui) {
 
@@ -16,8 +19,6 @@
            },
 // Once a value in the drop down list is selected, do the following:
           select: function(event, ui) {
-
-
  // place the person.given_name value into the textfield called 'select_origin'...
                 $('#school').val(ui.item.school);
  // and place the person.id into the hidden textfield called 'link_origin_id'.
@@ -40,10 +41,10 @@
 
 <div class="pod third first">
 
-  <%= form_tag(educations_url, method: "post",
-    class: "profile-form", id: "education", remote: true) do %>
+  <%= form_tag(url, method: "post", class: "profile-form",
+    id: position ? "company" : "education", remote: true) do %>
 
-      <label>School name <i>(Required)</i>:<br>
+      <label><%= position ? "Company" : "School" %> <i>(Required)</i>:<br>
         <input id="school">
         <input type="hidden" id="education_school" name="education[school]"><br>
       </label>
@@ -53,32 +54,45 @@
       </label>
 
       <label>State:<br>
-        <input type="text" name="education[state]"><br>
+        <select name="education[state]">
+          <option value="">Select a State:</option>
+
+          <% states.each do |state| %>
+            <option value="<%= state %>"><%= state %></option>
+          <% end %>
+            <!-- can current state be selected? -->
+        </select><br>
       </label>
 
       <label>Start Date:<br>
         <input type="date" name="education[start_date]"><br>
       </label>
 
-      <label>Current Student <input type="checkbox" name="education[current_student]"><br>
+      <label>Current <%= position ? "Position" : "Student" %> <input type="checkbox" name="education[current_student]"><br>
       </label>
 
       <label>End Date:<br>
         <input type="date" name="education[end_date]"><br>
       </label>
 
-      <label>string_1 of Study:<br>
+      <label><%= position ? "Title" : "Area of Study" %>:<br>
         <input type="text" name="education[string_1]"><br>
       </label>
 
-      <label>string_2:<br>
-        <input type="text" name="education[string_2]"><br>
+      <label><%= position ? "Industry" : "Degree" %>:<br>
+        <% if position %>
+          <%= industry_select("education", "none", "string_2") %>
+        <% else %>
+          <input type="text" name="education[string_2]">
+        <% end %>
+        <br>
       </label>
 
-      <label>body &amp; Activites<br>
-        <textstring_1 name="education[body]"></textstring_1><br></label>
+      <label><%= position ? "Description" : "Awards & Activites" %><br>
+        <textarea name="education[body]"></textarea><br></label>
 
-      <input type="submit" value="Add Education"></form>
+      <input type="submit"
+        value="Add <%= position ? "Position" : "Education" %>"></form>
   <% end %>
 
 </div>

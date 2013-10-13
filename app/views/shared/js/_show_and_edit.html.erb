@@ -1,8 +1,8 @@
 <script>
 $(document).ready( function(root){
-  var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
+  var Lib = root.Lib = (root.Lib || {});
 
-  var genUrl = ProfileLib.genUrl = function(modelType, urlId) {
+  var genUrl = Lib.genUrl = function(modelType, urlId) {
     if (modelType == "company") {
       var plural = "companies"
     } else {
@@ -50,7 +50,7 @@ $(document).ready( function(root){
       }
     }
 
-    var fieldHTML = ProfileLib.createField(fieldType, fieldValue);
+    var fieldHTML = Lib.createField(fieldType, fieldValue);
 
     $activeCurrentVal.after(fieldHTML);
     $property.addClass("editing");
@@ -81,6 +81,12 @@ $(document).ready( function(root){
 
       var fieldVal = $field.val();
 
+      if (!fieldVal && ["start_date", "end_date"].indexOf(fieldType) !== -1) {
+        Lib.notify("Date cannot be blank", "red", $property, "prepend",
+          true);
+          return;
+      }
+
       if ($field.attr("type") == "checkbox") {
         fieldVal = $field[0].checked
       }
@@ -91,17 +97,28 @@ $(document).ready( function(root){
         url: url,
         type: "PUT",
         data: obj,
-        success: function() {
+        success: function(data) {
           if ($field.attr("type") !== "checkbox") {
             $activeCurrentVal.text(fieldVal);
           }
 
+          if (fieldType == "current_student") {
+            var $endDate = $property.closest("li").find("#end-date")
+            $endDate.toggleClass("hidden")
+          }
+
+          if (fieldType == "end_date") {
+            var $currentStud = $property.closest("li").find("#current-student");
+            $currentStud.addClass("hidden");
+          }
+
 		      $activeCurrentVal.attr("data-nil", "false");
 
-          var message = fieldType + " updated successfully!"
-          ProfileLib.notify(message, "green", $property, "prepend", true)
+          var message = Lib.cleanUpFieldType(fieldType, modelType)
+          message += " updated successfully!"
+          Lib.notify(message, "green", $property, "prepend", true)
 
-          ProfileLib.cleanUp($field, $clicked_button, $other_button,
+          Lib.cleanUp($field, $clicked_button, $other_button,
             $activeCurrentVal, $property);
         },
         error: function(jqXHR) {
@@ -114,7 +131,7 @@ $(document).ready( function(root){
 
 		      $field.val(fieldValue);
 
-          ProfileLib.notify(jqXHR.responseText, "red", $property, "prepend",
+          Lib.notify(jqXHR.responseText, "red", $property, "prepend",
             true)
         }
       });
@@ -131,12 +148,19 @@ $(document).ready( function(root){
         data: obj,
         success: function() {
 		      $activeCurrentVal.attr("data-nil", "true");
-		      $activeCurrentVal.text("(enter " + fieldType + ")");
+		      $activeCurrentVal.text(Lib.cleanUpFieldType(fieldType, modelType));
 
-          var message = fieldType + " removed successfully!";
-          ProfileLib.notify(message, "green", $property, "prepend", true)
+          if (fieldType == "end_date") {
+            var $currentStud = $property.closest("li").find("#current-student");
+            $currentStud.removeClass("hidden");
+          }
 
-          ProfileLib.cleanUp($field, $clicked_button, $other_button,
+          var message = Lib.cleanUpFieldType(fieldType, modelType)
+          message += " removed successfully!"
+
+          Lib.notify(message, "green", $property, "prepend", true)
+
+          Lib.cleanUp($field, $clicked_button, $other_button,
             $activeCurrentVal, $property);
         }
       });

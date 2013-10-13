@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011184133) do
+ActiveRecord::Schema.define(:version => 20131012224349) do
 
   create_table "companies", :force => true do |t|
     t.string   "name",             :null => false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20131011184133) do
     t.text     "body"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.boolean  "position",        :default => false
   end
 
   add_index "educations", ["owner_id"], :name => "index_educations_on_owner_id"

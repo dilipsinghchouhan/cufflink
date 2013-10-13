@@ -1,23 +1,41 @@
 <script>
-  $(document).ready( function() {
+  $(document).ready( function(root) {
+
+    var Lib = root.Lib = (root.Lib || {});
+
     $("section#main")
 
-      .on("ajax:success", ".button_to", function(event, data) {
-        var $form = $(event.target)
-        var $likes = $form.siblings(".likes")
-        var $html = data
+      .on("ajax:success", "li.status > form.button_to", function(event, data) {
+        var $form = $(event.target);
+        var $likes = $form.siblings(".likes");
+        var $html = data;
 
         $form.hide();
-        $likes.html($html)
+        $likes.html($html);
+      })
+
+      .on("ajax:error", "li.status > form.button_to", function(data, error) {
+        console.log(data)
+        console.log(error)
       })
 
       .on("ajax:success", ".comment-form", function(event, data) {
-        var $form = $(event.target)
-        var $commentList = $form.siblings(".comment-list")
-        var $html = data
+        var $form = $(event.target);
+        var $commentList = $form.siblings(".comment-list");
+        var $html = data;
 
         $form[0].reset();
-        $commentList.append($html)
+        $commentList.append($html);
+
+        var message = "Comment added successfully!"
+
+        Lib.notify(message, "green", $(this), "prepend", true);
+      })
+
+      .on("ajax:error", ".comment-form", function(data, error) {
+        var message = error.responseText;
+
+        Lib.notify(message, "red", $(this), "prepend", true);
       });
   })
 </script>

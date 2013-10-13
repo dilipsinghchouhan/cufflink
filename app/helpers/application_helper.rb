@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def industry_select(model_name, selected_industry)
+  def industry_select(model_name, selected_industry, field_name = "industry")
     industries = [
       "Real Estate",
       "Technology",
@@ -10,7 +10,7 @@ module ApplicationHelper
       "Other"
     ]
 
-    html = '<select name="' + model_name + '[industry]">'
+    html = '<select name="' + model_name + '[' + field_name + ']">'
     html += "<option value="">Select an Industry</option>"
 
     industries.each do |industry|
@@ -32,6 +32,10 @@ module ApplicationHelper
     object.city
     ", " unless object.state.nil? || object.city.nil?
     object.state
+  end
+
+  def states
+    ["NY", "CA"]
   end
 
   def clean_params_hash(params)

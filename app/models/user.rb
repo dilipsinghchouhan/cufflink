@@ -59,6 +59,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def positions
+    self.educations.where("position IS TRUE")
+  end
+
+  def schools
+    self.educations.where("position IS FALSE")
+  end
+
   def likes
     Response.likes.where("user_id = ?", self.id)
   end

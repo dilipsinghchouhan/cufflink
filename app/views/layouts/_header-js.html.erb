@@ -1,0 +1,23 @@
+<script>
+
+$(document).ready( function(root) {
+
+  var Lib = root.Lib = (root.Lib || {});
+
+  $("body")
+
+    .on("ajax:success", "header a.gen-form", function(event, data) {
+      var $html = data;
+      var $link = $(event.target);
+
+      $("header").prepend($html);
+    })
+
+    .on("ajax:success", "header .profile-form", function(event, data) {
+
+      Lib.afterCreation(event, data, true);
+    })
+})
+
+
+</script>

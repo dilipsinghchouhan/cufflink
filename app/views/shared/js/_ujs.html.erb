@@ -1,6 +1,6 @@
 <script>
 $(document).ready( function(root){
-  var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
+  var Lib = root.Lib = (root.Lib || {});
 
   $(".profile-box")
 
@@ -9,21 +9,18 @@ $(document).ready( function(root){
       var $link = $(event.target);
 
       $link.hide();
-      $("#profile-education > h3").after($html);
+      $link.siblings("h3").after($html);
     })
 
     .on("ajax:success", ".profile-form", function(event, data) {
-      ProfileLib.afterCreation(event, data);
+      Lib.afterCreation(event, data);
     })
 
     .on("ajax:error", ".profile-form", function(event, data, error) {
       var error = data.responseText;
       var type = $(this).attr("id");
 
-      console.log(data)
-      console.log(ProfileLib.getDest(type))
-
-      ProfileLib.notify(error, "red", ProfileLib.getDest(type), "before");
+      Lib.notify(error, "red", $(this), "before");
     })
 
     .on("ajax:success", ".delete-education > form", function(event, data) {
@@ -34,14 +31,14 @@ $(document).ready( function(root){
       var message = data.school + " deleted successfully"
 
       $li.remove();
-      ProfileLib.notify(message, "green", ProfileLib.getDest(type), "before",
+      Lib.notify(message, "green", Lib.getDest(type), "before",
         true);
     })
 
   $("form#status")
 
     .on("ajax:success", function(event, data) {
-      ProfileLib.afterCreation(event, data);
+      Lib.afterCreation(event, data);
     })
 
 });

@@ -1,8 +1,38 @@
 <script>
 $(document).ready( function(root){
-  var ProfileLib = root.ProfileLib = (root.ProfileLib || {});
+  var Lib = root.Lib = (root.Lib || {});
 
-  var notify = ProfileLib.notify = function(
+  var cleanUpFieldType = Lib.cleanUpFieldType = function(fieldType, modelType) {
+    var newFieldType = "";
+
+    if (["string_1", "string_2", "body"].indexOf(fieldType) !== -1) {
+      if (modelType == "education") {
+        switch(fieldType) {
+          case "string_1":
+            return "area of study";
+            break;
+          case "string_2":
+            return "degree";
+            break;
+          case "body":
+            return "awards & activites";
+            break;
+        }
+      }
+    }
+
+    for (i = 0; i < fieldType.length; i++) {
+      if (fieldType[i] == "_") {
+        newFieldType += " ";
+      } else {
+        newFieldType += fieldType[i];
+      }
+    }
+
+    return newFieldType;
+  }
+
+  var notify = Lib.notify = function(
     message, color, destination, method, hide) {
 
       var $notifications = $('<div class="notifications ' + color + '">');
@@ -24,17 +54,17 @@ $(document).ready( function(root){
       }
 
       if (hide) {
-        ProfileLib.delayedRemove($notifications)
+        Lib.delayedRemove($notifications)
       }
   }
 
-  var delayedRemove = ProfileLib.delayedRemove = function(jQueryObj) {
+  var delayedRemove = Lib.delayedRemove = function(jQueryObj) {
     timeoutID = window.setTimeout(function() {
       jQueryObj.remove();
     }, 1000);
   }
 
-  var cleanUp = ProfileLib.cleanUp = function($field, $clicked_button,
+  var cleanUp = Lib.cleanUp = function($field, $clicked_button,
     $other_button, $activeCurrentVal, $property) {
     $field.remove();
     $clicked_button.remove();
@@ -43,7 +73,7 @@ $(document).ready( function(root){
     $property.removeClass("editing");
   }
 
-  var createField = ProfileLib.createField = function(fieldType, fieldValue) {
+  var createField = Lib.createField = function(fieldType, fieldValue) {
     if (["state", "industry", "summary",
       "current_student", "body"].indexOf(fieldType) === -1) {
         if (["start_date", "end_date", "current_student"]
@@ -108,11 +138,11 @@ $(document).ready( function(root){
     return html;
   }
 
-  var getDest = ProfileLib.getDest = function(type) {
+  var getDest = Lib.getDest = function(type) {
     return $("#profile-" + type + " ul");
   }
 
-  var afterCreation = ProfileLib.afterCreation = function(event, data, noParent) {
+  var afterCreation = Lib.afterCreation = function(event, data, noParent) {
 
     var $form = $(event.target);
     var type = $form.attr("id");
@@ -128,10 +158,10 @@ $(document).ready( function(root){
 
     $("#add-" + type).show();
 
-    ProfileLib.getDest(type).prepend($html);
+    Lib.getDest(type).prepend($html);
 
-    ProfileLib.notify(type + " created successfully!", "green",
-      ProfileLib.getDest(type), "before", true);
+    Lib.notify(type + " created successfully!", "green",
+      Lib.getDest(type), "before", true);
   }
 });
 </script>
