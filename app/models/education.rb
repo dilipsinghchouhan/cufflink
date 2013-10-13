@@ -1,6 +1,7 @@
 class Education < ActiveRecord::Base
   attr_accessible :school, :city, :state, :start_date, :end_date,
-    :current_student, :string_1, :string_2, :body, :owner_id, :null
+    :current_student, :string_1, :string_2, :body, :owner_id, :null,
+    :position
 
   validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
   validates :city, :string_1, :string_2, :body, length: { minimum: 1, allow_nil: true }
@@ -35,13 +36,13 @@ class Education < ActiveRecord::Base
     self.send("#{field}=", nil)
   end
 
-  #make these class methods
+  #am i doing this?
 
-  def positions
-    self.educations.where("position IS TRUE")
+  def self.positions
+    Education.where("position IS TRUE")
   end
 
-  def schools
-    self.educations.where("position IS FALSE")
+  def self.schools
+    Education.where("position IS FALSE")
   end
 end

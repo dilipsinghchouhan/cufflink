@@ -8,7 +8,10 @@ $(document).ready( function(root){
       var $html = data;
       var $link = $(event.target);
 
-      $link.hide();
+	  $(".profile-form").parent().remove();
+	  $('a.gen-form').show();
+	  $link.hide();
+	  
       $link.siblings("h3").after($html);
     })
 
@@ -31,8 +34,7 @@ $(document).ready( function(root){
       var message = data.school + " deleted successfully"
 
       $li.remove();
-      Lib.notify(message, "green", Lib.getDest(type), "before",
-        true);
+      Lib.notify(message, "green", Lib.getDest(type), "before", true);
     })
 
   $("form#status")

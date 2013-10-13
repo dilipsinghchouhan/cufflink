@@ -2,6 +2,12 @@
 
 Oh man, this is going to be intense.
 
+##SUNDAY?MONDAY
+* Why arent comments live updating on profiles
+* zomg whats up with joining and leacing companies
+* Clean up from that migration i just did
+* Make existing compaies and positions show up when creating psotions
+
 ##Saturday list
 
 * Add positions
@@ -14,6 +20,9 @@ Oh man, this is going to be intense.
 * Messages
 
 * Ads
+
+
+* Special dependant desttroy method??
 
 ## Make a special Lucille mode
 With tips on what to do and stuff
@@ -33,6 +42,9 @@ With tips on what to do and stuff
 
 
 ##FRIDAY THINGS
+
+
+
 - Perfect educations
 --- Use cant go to same schools
 - Add positions

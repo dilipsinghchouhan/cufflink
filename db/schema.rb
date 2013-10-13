@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012224349) do
+ActiveRecord::Schema.define(:version => 20131013222040) do
 
   create_table "companies", :force => true do |t|
     t.string   "name",             :null => false
@@ -30,24 +30,23 @@ ActiveRecord::Schema.define(:version => 20131012224349) do
     t.datetime "pic_updated_at"
   end
 
-  create_table "educations", :force => true do |t|
-    t.integer  "owner_id",                           :null => false
-    t.string   "school",          :default => ""
-    t.integer  "school_id"
+  create_table "experiences", :force => true do |t|
+    t.integer  "owner_id",                      :null => false
+    t.string   "name",       :default => ""
     t.string   "city"
     t.string   "state"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "current_student", :default => false
+    t.boolean  "current",    :default => false
     t.string   "string_1"
     t.string   "string_2"
     t.text     "body"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "position",        :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "position",   :default => false
   end
 
-  add_index "educations", ["owner_id"], :name => "index_educations_on_owner_id"
+  add_index "experiences", ["owner_id"], :name => "index_educations_on_owner_id"
 
   create_table "friendships", :force => true do |t|
     t.integer  "friender_id",                    :null => false
