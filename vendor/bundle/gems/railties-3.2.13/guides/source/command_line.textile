@@ -429,7 +429,7 @@ app/controllers/admin/users_controller.rb:
   * [ 20] [TODO] any other way to do this?
   * [132] [FIXME] high priority for next deploy
 
-app/model/school.rb:
+app/model/name.rb:
   * [ 13] [OPTIMIZE] refactor this code to make it faster
   * [ 17] [FIXME]
 </shell>
@@ -442,7 +442,7 @@ $ rake notes:fixme
 app/controllers/admin/users_controller.rb:
   * [132] high priority for next deploy
 
-app/model/school.rb:
+app/model/name.rb:
   * [ 17]
 </shell>
 

@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
-  has_many :educations, foreign_key: :owner_id
+  has_many :experiences, foreign_key: :owner_id
 
   has_many :friendships, class_name: "Friendship",
     foreign_key: :friendee_id
@@ -60,11 +60,11 @@ class User < ActiveRecord::Base
   end
 
   def positions
-    self.educations.where("position IS TRUE")
+    self.experiences.where("position IS TRUE")
   end
 
-  def schools
-    self.educations.where("position IS FALSE")
+  def names
+    self.experiences.where("position IS FALSE")
   end
 
   def likes

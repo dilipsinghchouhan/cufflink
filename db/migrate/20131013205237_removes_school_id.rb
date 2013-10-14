@@ -1,5 +1,5 @@
 class RemovesSchoolId < ActiveRecord::Migration
   def change
-    remove_column :educations, :school_id
+    remove_column :experiences, :name_id
   end
 end

@@ -10,9 +10,33 @@ User.create(first_name: 'Michael', last_name: 'Bluth', email: 'michael@bluthcomp
 summary: "The one son who had no choice but to keep them all together.\n\nMichael Bluth is a fictional character and the protagonist of the television sitcom Arrested Development, created by Mitchell Hurwitz. He is portrayed by Jason Bateman. His role in the story is to lead his family through their many crises, and he serves as the straight man on the show.",
 city: "Orange County", state: "CA", industry: "Real Estate")
 
+f = Friendship.new(friender_id: 4, friendee_id: 1, message: "Hi", connection_type: "Friend", status: 1)
+f.sneaky_save
+f = Friendship.new(friender_id: 1, friendee_id: 5, message: "Hi", connection_type: "Friend", status: 2)
+f.sneaky_save
+f = Friendship.new(friender_id: 1, friendee_id: 3, message: "Hi", connection_type: "Friend", status: 0)
+f.sneaky_save
+f = Friendship.new(friender_id: 7, friendee_id: 1, message: "Hi", connection_type: "Friend", status: 1)
+f.sneaky_save
+f = Friendship.new(friender_id: 1, friendee_id: 2, message: "Hi", connection_type: "Friend", status: 2)
+f.sneaky_save
+f = Friendship.new(friender_id: 1, friendee_id: 6, message: "Hi", connection_type: "Friend", status: 0)
+f.sneaky_save
+
 User.create(first_name: 'Stan', last_name: 'Sitwell', email: 'stan@sitwellenterprises.com', password: 'password', tagline: "Alopecia Can't Keep Me Down",
 summary: "Stan Sitwell (Ed Begley, Jr.) is a real estate tycoon who runs the company Sitwell Enterprises, which competes with the Bluth Company.\n\nHe has a disease that prevents him from growing hair on his body, alopecia universalis. Lucille incorrectly refers to him as an alpaca. Stan Sitwell begins dating Lucille Austero. His outlandish wigs and fake facial hair are a bit of an inside joke, since in real life Ed Begley Jr. is known for his mane of thick blonde hair. Because of his condition he can't actually drive the Corvette that Michael Bluth gave him in return of making a bid on his daughter Sally Sitwell at the Country Club auction because it is a convertible, which causes him to lose his wig and fake eyebrows. When Stan Sitwell fires Gob Bluth from his company, Gob gets revenge on Sitwell by stealing his fake dressy eyebrows. He runs his business in a very straight forward, professional manner in contrast to the lying and manipulation of the Bluths. He is also a generous philanthropist and contributes to numerous charities, contrary to the Bluths as well.",
 city: "Orange County", state: "CA", industry: "Real Estate")
+
+f = Friendship.new(friender_id: 4, friendee_id: 2, message: "Hi", connection_type: "Friend", status: 0)
+f.sneaky_save
+f = Friendship.new(friender_id: 2, friendee_id: 5, message: "Hi", connection_type: "Friend", status: 1)
+f.sneaky_save
+f = Friendship.new(friender_id: 2, friendee_id: 3, message: "Hi", connection_type: "Friend", status: 2)
+f.sneaky_save
+f = Friendship.new(friender_id: 7, friendee_id: 2, message: "Hi", connection_type: "Friend", status: 0)
+f.sneaky_save
+f = Friendship.new(friender_id: 2, friendee_id: 6, message: "Hi", connection_type: "Friend", status: 1)
+f.sneaky_save
 
 Company.create(name: "The Bluth Company", industry: "Real Estate", address1: "101 S Oxford Street", address2: "Suite 2B", city: "Orange County", state: "CA",
 zip: "90210", summary: "The Bluth Company is a real estate development firm founded by George Bluth. Sometime during the late '80s or early '90s, the company was involved with Saddam Hussein in creating homes in Iraq; these homes went undiscovered by American authorities until about a decade later. In the series' first episode, George's wife Lucille Bluth was named CEO of the company shortly before he was arrested for fraud. The company is based in the Bluth Company offices.\n\nThe company was eventually purchased by Lucille Austero who renamed the company the Austero Bluth Company.")
@@ -30,7 +54,14 @@ User.create(first_name: 'George', last_name: 'Bluth (Senior)', email: 'george@bl
 
 Membership.create(company_id: 1, member_id: 3, status: 1)
 
+#lucille is user 4
 User.create(first_name: 'Lucille', last_name: 'Bluth', email: 'lucille@bluthcompany.com', password: 'password')
+
+# f = Friendship.new(friender_id: 9, friendee_id: 4, message: "Hi", connection_type: "Friend", status: 2)
+# f = Friendship.new(friender_id: 4, friendee_id: 5, message: "Hi", connection_type: "Friend", status: 1)
+# f = Friendship.new(friender_id: 4, friendee_id: 3, message: "Hi", connection_type: "Friend", status: 0)
+# f = Friendship.new(friender_id: 7, friendee_id: 4, message: "Hi", connection_type: "Friend", status: 0)
+# f = Friendship.new(friender_id: 4, friendee_id: 6, message: "Hi", connection_type: "Friend", status: 3)
 
 Membership.create(company_id: 1, member_id: 4, status: 1)
 
@@ -62,9 +93,9 @@ User.create(first_name: 'Sally', last_name: 'Sitwell', email: 'sally@sitwellente
 
 Membership.create(company_id: 2, member_id: 12, status: 1)
 
-Education.create(owner_id: 1, school: "University of Phoenix", city: "Phoenix", state: "CA", start_date: "01 Jan 2012", current_student: true, string_1: "Real Estate", string_2: "B.A. in Property Management", body: "Editor in Chief of The Phoenix (student newspaper)")
+Experience.create(owner_id: 1, name: "University of Phoenix", city: "Phoenix", state: "CA", start_date: "01 Jan 2012", current: true, string_1: "Real Estate", string_2: "B.A. in Property Management", body: "Editor in Chief of The Phoenix (student newspaper)")
 
-Education.create(owner_id: 2, school: "The GAP", city: "Orange County", state: "CA", start_date: "01 Jan 2012", current_student: true, string_1: "Cashier", string_2: "Other", body: "Employee of the Month for June 2012", position: true)
+Experience.create(owner_id: 2, name: "The GAP", city: "Orange County", state: "CA", start_date: "01 Jan 2012", current: true, string_1: "Cashier", string_2: "Other", body: "Employee of the Month for June 2012", position: true)
 # Link.create(owner_id: 1, title: "Bluth Company Website", url: "http://thebluthcompany.tumblr.com/",
 #   type: "Company Website")
 # PhoneNumber.create(owner_id: 1, number: "800-867-5309", type: "Office")

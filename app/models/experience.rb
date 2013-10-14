@@ -1,11 +1,10 @@
-class Education < ActiveRecord::Base
-  attr_accessible :school, :city, :state, :start_date, :end_date,
-    :current_student, :string_1, :string_2, :body, :owner_id, :null,
-    :position
+class Experience < ActiveRecord::Base
+  attr_accessible :name, :city, :state, :start_date, :end_date,
+    :current, :string_1, :string_2, :body, :owner_id, :null, :position
 
   validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
   validates :city, :string_1, :string_2, :body, length: { minimum: 1, allow_nil: true }
-  validates :school, length: { minimum: 1 }, uniqueness: { scope: :owner_id }
+  validates :name, length: { minimum: 1 }, uniqueness: { scope: :owner_id }
 
   validate :no_time_travel
 
@@ -39,10 +38,10 @@ class Education < ActiveRecord::Base
   #am i doing this?
 
   def self.positions
-    Education.where("position IS TRUE")
+    Experience.where("position IS TRUE")
   end
 
-  def self.schools
-    Education.where("position IS FALSE")
+  def self.names
+    Experience.where("position IS FALSE")
   end
 end

@@ -1,20 +1,20 @@
-<% education = object %>
+<% experience = object %>
 
-<li class="profile-data" id="<%= education.id %>">
-  <h4><%= education.school %></h4>
+<li class="profile-data" id="<%= experience.id %>">
+  <h4><%= experience.name %></h4>
 
-  <% if education.city || education.state %>
-    <%= education.city %>
-    <%= ", " unless education.state.nil? || education.city.nil? %>
-    <%= education.state %>
+  <% if experience.city || experience.state %>
+    <%= experience.city %>
+    <%= ", " unless experience.state.nil? || experience.city.nil? %>
+    <%= experience.state %>
 
     <br><br>
   <% end %>
 
-  <% if education.current_student %>
+  <% if experience.current %>
 
-    <% if education.start_date %>
-      <%= education.start_date %> to Present
+    <% if experience.start_date %>
+      <%= experience.start_date %> to Present
 
       <br><br>
     <% else %>
@@ -25,32 +25,32 @@
 
   <% else %>
 
-    <% if education.start_date || education.end_date %>
-      <%= education.start_date %>
-      <%= " to " unless education.start_date.nil? || education.end_date.nil? %>
-      <%= education.end_date %>
+    <% if experience.start_date || experience.end_date %>
+      <%= experience.start_date %>
+      <%= " to " unless experience.start_date.nil? || experience.end_date.nil? %>
+      <%= experience.end_date %>
 
       <br><br>
     <% end %>
 
   <% end %>
 
-  <% if education.string_1 %>
-    <b>Area of Study:</b> <%= education.string_1 %>
+  <% if experience.string_1 %>
+    <b>Area of Study:</b> <%= experience.string_1 %>
 
     <br>
   <% end %>
 
-  <% if education.string_2 %>
-    <b>Degree:</b> <%= education.string_2 %>
+  <% if experience.string_2 %>
+    <b>Degree:</b> <%= experience.string_2 %>
 
     <br>
   <% end %>
 
-  <% if education.body %>
+  <% if experience.body %>
     <b>Awards & Activites:</b><br>
     <p>
-      <%= education.body %>
+      <%= experience.body %>
     </p>
 
     <br>

@@ -26,12 +26,12 @@ $(document).ready( function(root){
       Lib.notify(error, "red", $(this), "before");
     })
 
-    .on("ajax:success", ".delete-education > form", function(event, data) {
+    .on("ajax:success", ".delete-experience > form", function(event, data) {
       var $form = $(event.target);
       var $li = $form.closest("li");
       var type = $(this).attr("id");
 
-      var message = data.school + " deleted successfully"
+      var message = data.name + " deleted successfully"
 
       $li.remove();
       Lib.notify(message, "green", Lib.getDest(type), "before", true);

@@ -6,7 +6,7 @@ $(document).ready( function(root){
     var newFieldType = "";
 
     if (["string_1", "string_2", "body"].indexOf(fieldType) !== -1) {
-      if (modelType == "education") {
+      if (modelType == "experience") {
         switch(fieldType) {
           case "string_1":
             return "area of study";
@@ -75,8 +75,8 @@ $(document).ready( function(root){
 
   var createField = Lib.createField = function(fieldType, fieldValue) {
     if (["state", "industry", "summary",
-      "current_student", "body"].indexOf(fieldType) === -1) {
-        if (["start_date", "end_date", "current_student"]
+      "current", "body"].indexOf(fieldType) === -1) {
+        if (["start_date", "end_date", "current"]
           .indexOf(fieldType) === -1) {
 
             var inputType = "text";
@@ -88,7 +88,7 @@ $(document).ready( function(root){
         html += fieldValue + '">';
     }
 
-    else if (fieldType == "current_student") {
+    else if (fieldType == "current") {
         var html = '<input class="field" type="checkbox"';
 
         if (fieldValue == "checked") {

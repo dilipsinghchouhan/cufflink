@@ -13,7 +13,7 @@ Cufflink::Application.routes.draw do
     resources :friendships, only: [:create, :destroy]
   end
 
-  resources :educations, only: [:update, :destroy, :create, :index, :new]
+  resources :experiences, only: [:update, :destroy, :create, :index, :new]
   resources :links, only: [:update, :destroy, :create, :index, :new]
   resources :phone_numbers, only: [:update, :destroy, :create, :index, :new]
   resources :positions, only: [:update, :destroy, :create, :index, :new]

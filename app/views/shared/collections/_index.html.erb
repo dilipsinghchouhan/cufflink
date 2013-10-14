@@ -3,15 +3,15 @@
   VARIABLES:
 
   object: company, user
-  type: status, education
-  plural: statuses, educations
+  type: status, experience
+  plural: statuses, experiences
   new_url: new_status_url, etc.
 
  -->
 
 <% position = false unless position %>
 
-<div id="profile-<%= (type == "education" && position) ? "company" : type %>" class="profile-box">
+<div id="profile-<%= (type == "experience" && position) ? "company" : type %>" class="profile-box">
 
   <h3><%= title %></h3>
 
@@ -29,8 +29,8 @@
 
       <% if position %>
         <% to_send = "positions" %>
-      <% elsif type == "education" %>
-        <% to_send = "schools" %>
+      <% elsif type == "experience" %>
+        <% to_send = "names" %>
       <% else %>
         <% to_send = plural %>
       <% end %>

@@ -31,6 +31,7 @@ end
 # gem 'bcrypt-ruby', require: 'bcrypt'
 
 gem 'jquery-rails'
+gem 'sneaky-save', git: 'git://github.com/partyearth/sneaky-save.git'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'

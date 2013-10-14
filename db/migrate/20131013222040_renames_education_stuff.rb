@@ -1,7 +1,7 @@
-class RenamesEducationStuff < ActiveRecord::Migration
+class RenamesExperienceStuff < ActiveRecord::Migration
   def change
-    rename_table :educations, :experiences
-    rename_column :experiences, :school, :name
-    rename_column :experiences, :current_student, :current
+    rename_table :experiences, :experiences
+    rename_column :experiences, :name, :name
+    rename_column :experiences, :current, :current
   end
 end

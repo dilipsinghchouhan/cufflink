@@ -32,8 +32,8 @@
 
   <br><br>
 
-  <% @user.educations.each do |education| %>
-    <%= render partial: "educations/edit", locals: { user: @user, education: education } %>
+  <% @user.experiences.each do |experience| %>
+    <%= render partial: "experiences/edit", locals: { user: @user, experience: experience } %>
   <% end %>
 
   <input type="submit" value="Edit Profile">

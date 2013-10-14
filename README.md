@@ -45,8 +45,8 @@ With tips on what to do and stuff
 
 
 
-- Perfect educations
---- Use cant go to same schools
+- Perfect experiences
+--- Use cant go to same names
 - Add positions
 - Links
 - Numbers
@@ -72,7 +72,7 @@ With tips on what to do and stuff
 - BACKBONE INDEX!!!!!
 - move settings nav into partial
 
-- Uh oh, buster and michael belong to two diff schools.
+- Uh oh, buster and michael belong to two diff names.
 ##To Do: ASAP
 
 ####News feed
@@ -123,7 +123,7 @@ With tips on what to do and stuff
 * consistent order of stuff
 * clean up profile js. also, maybe (enter awards) should be better
 * get rid of save button for checkboxes... dont load any buttons and copy the button click handler to its own method so it can work when you click remove or a checkbox...
-* fix education delete button...
+* fix experience delete button...
 * end date grayed out if current student
 * state dropdown...
 * relate states and cities?

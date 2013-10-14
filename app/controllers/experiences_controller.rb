@@ -1,0 +1,116 @@
+class ExperiencesController < ApplicationController
+  def create
+    @experience = Experience.new(clean_params_hash(params[:experience]))
+    @experience.owner = current_user
+
+    @experience.position = true if params[:position]
+
+    if @experience.save 
+      if request.xhr?
+        render partial: "show-and-edit", locals: { object: @experience }
+      else
+        flash[:notice] = "Experience created successfully."
+        redirect_to user_url(current_user)
+      end
+      
+      company_followup(@experience) if params[:position]
+      
+    elsif request.xhr?
+      render json: @experience.errors.full_messages, status: 422
+
+    else
+      flash[:errors] = @experience.errors.full_messages
+      redirect_to user_url(current_user)
+    end
+  end
+
+  def update
+    @experience = current_experience
+
+    if @experience.update_attributes(params[:experience])
+      render json: @experience
+    else
+      render json: @experience.errors.full_messages, status: 422
+    end
+  end
+
+  def destroy
+    @experience = current_experience
+
+    @experience.destroy
+
+    if request.xhr?
+      render json: @experience
+    else
+      flash[:notice] = "Experience destroyed successfully"
+      redirect_to
+    end
+  end
+
+  def index
+    if params[:position]
+      p "we have a psotion"
+    else
+      p "we dont have a position"
+    end
+    
+    true_or_false = params[:position] ? "TRUE" : "FALSE"
+    condition = "position IS " + true_or_false + " AND "
+
+    if params[:term]
+      names = []
+      @experiences = []
+
+      Experience.find(:all, conditions: [
+          condition + 'name LIKE ?', "#{params[:term]}%"])
+        .each do |experience|
+          unless names.include?(experience.name)
+            names << experience.name
+            @experiences << experience
+          end
+        end
+
+        @experiences << Experience.new(name: params[:term])
+    else
+      @experiences = Experience.all
+    end
+
+    respond_to do |format|
+      format.json { render json: @experiences.to_json }
+    end
+  end
+
+  def new
+    @experience = Experience.new
+
+    if request.xhr?
+      render partial: "experiences/new", locals: { user: current_user,
+         experience: @experience, position: params[:position] }
+    else
+      render :new
+      #how do i make this change? if theres a pos?
+    end
+  end
+
+  private
+
+  def current_experience
+    Experience.find_by_id(params[:id])
+  end
+  
+  def company_followup(company)
+    existing_company = Company.find_by_name(company.name)
+    
+    company_id = existing_company.id if existing_company
+      
+    unless existing_company
+      new_company = Company.create(name: company.name, industry: "Other")
+      company_id = new_company.id 
+    end
+    
+    Membership.create(
+      company_id: company_id,
+      member_id: current_user.id
+    )
+  end
+end

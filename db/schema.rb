@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20131013222040) do
     t.boolean  "position",   :default => false
   end
 
-  add_index "experiences", ["owner_id"], :name => "index_educations_on_owner_id"
+  add_index "experiences", ["owner_id"], :name => "index_experiences_on_owner_id"
 
   create_table "friendships", :force => true do |t|
     t.integer  "friender_id",                    :null => false

@@ -1,2 +1,2 @@
-module EducationsHelper
+module ExperiencesHelper
 end

@@ -19,12 +19,12 @@
 
 <% if type == "user" %>
 
-  <%= render partial: "shared/collections/index", locals: { type: "education",
-    new_url: new_education_url, plural: "educations", object: object,
-    edit: edit, position: false, title: "Education" } %>
+  <%= render partial: "shared/collections/index", locals: { type: "experience",
+    new_url: new_experience_url, plural: "experiences", object: object,
+    edit: edit, position: false, title: "Experience" } %>
 
-  <%= render partial: "shared/collections/index", locals: { type: "education",
-    new_url: new_education_url, plural: "educations", object: object,
+  <%= render partial: "shared/collections/index", locals: { type: "experience",
+    new_url: new_experience_url, plural: "experiences", object: object,
     edit: edit, position: true, title: "Work Experience" } %>
 
 <% end %>

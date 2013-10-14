@@ -33,7 +33,7 @@ $(document).ready( function(root){
 
     var buttons = '<button class="save">Save</button>';
 
-    if ((fieldType !== "current_student") &&
+    if ((fieldType !== "current") &&
       (!(fieldType == "industry" && modelType == "company"))) {
         buttons += '<button class="remove">Remove</button>';
     }
@@ -43,7 +43,7 @@ $(document).ready( function(root){
     var fieldValue = ""
 
     if (!($target.attr("data-nil"))) {
-      if (fieldType == "current_student") {
+      if (fieldType == "current") {
         if ($target[0].checked) fieldValue = "checked"
       } else {
         fieldValue = $target.text().trim();
@@ -102,7 +102,7 @@ $(document).ready( function(root){
             $activeCurrentVal.text(fieldVal);
           }
 
-          if (fieldType == "current_student") {
+          if (fieldType == "current") {
             var $endDate = $property.closest("li").find("#end-date")
             $endDate.toggleClass("hidden")
           }

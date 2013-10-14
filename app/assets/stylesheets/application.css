@@ -65,7 +65,7 @@ body {
   overflow-y: scroll;
 }
 
-input[type="text"], input[type="password"], input[type="checkbox"], input[type="date"], input#school, textarea {
+input[type="text"], input[type="password"], input[type="checkbox"], input[type="date"], input#name, textarea {
   border: 1px solid black;
   font-size: 13px;
 }
