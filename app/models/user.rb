@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :contacts
 
+  has_many :deliveries
+  has_many :sent_messages, class_name: "Message"
+  has_many :received_messages, through: :deliveries, source: :message
+
   has_attached_file :pic, styles: {
     big: "300x300>",
     thumb: "100x100>"
@@ -59,6 +63,12 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def self.find_by_name(name)
+    names = name.split(" ")
+
+    User.find_by_first_name_and_last_name(names[0], names[1])
   end
 
   def positions

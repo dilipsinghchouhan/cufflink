@@ -13,9 +13,11 @@ Cufflink::Application.routes.draw do
     resources :statuses, only: [:create]
     resources :friendships, only: [:create, :destroy]
     resources :messages, only: [:index]
+    get 'messages/sent' => 'messages#sent'
   end
 
   resources :contacts, only: [:destroy]
+  get 'messages/autocomplete' => 'messages#autocomplete'
   resources :messages, only: [:new, :create, :show]
 
   resources :experiences, only: [:update, :destroy, :create, :index, :new]

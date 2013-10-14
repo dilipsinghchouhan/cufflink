@@ -25,6 +25,7 @@ class Company < ActiveRecord::Base
 
   has_many :statuses
   has_many :contacts
+  has_many :sent_messages, class_name: "Message"
 
   has_attached_file :pic, styles: {
     big: "300x300>",

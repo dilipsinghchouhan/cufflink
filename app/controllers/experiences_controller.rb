@@ -98,18 +98,17 @@ class ExperiencesController < ApplicationController
   end
 
   def company_followup(company)
-    existing_company = Company.find_by_name(company.name)
+    company = Company.find_by_name(company.name)
 
-    company_id = existing_company.id if existing_company
-
-    unless existing_company
-      new_company = Company.create(name: company.name, industry: "Other")
-      company_id = new_company.id
+    unless company
+      company = Company.create(name: company.name, industry: "Other")
     end
 
-    Membership.create(
-      company_id: company_id,
-      member_id: current_user.id
-    )
+    unless company.members.include?(current_user)
+      Membership.create(
+        company_id: company.id,
+        member_id: current_user.id
+      )
+    end
   end
 end

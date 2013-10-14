@@ -4,9 +4,33 @@ class UsersController < ApplicationController
   before_filter :require_profile_owner, only: [:edit, :update]
 
   def index
-    @users = User.all
+    if params[:term]
+      names = []
+      @experiences = []
+      matched_users = []
+
+      array = User.find(:all, conditions:
+        ['first_name LIKE ? OR last_name LIKE ?',
+         "%#{params[:term]}%", "%#{params[:term]}%"])
+
+      array.each do |user|
+        unless names.include?(user.name)
+          names << user.name
+          matched_users << user
+        end
+      end
+
+      @users = matched_users + [User.new(first_name: params[:term])]
+    else
+      @users = User.all
+    end
+
     @users -= [current_user]
-    render :index
+
+    respond_to do |format|
+      format.json { render json: @users.to_json }
+      format.html { render :index }
+    end
   end
 
   def connections

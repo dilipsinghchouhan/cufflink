@@ -44,6 +44,14 @@ h5 {
   font-size: 14px;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.regular {
+  font-weight: none;
+}
+
 .hidden {
   display: none;
 }
@@ -368,6 +376,10 @@ ul#profile-nav > li.nest > ul {
 
 .third {
   width: 280px;
+}
+
+.fourth {
+  width: 197.5px;
 }
 
 .two-thirds {

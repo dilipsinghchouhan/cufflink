@@ -1,4 +1,10 @@
+include ActionView::Helpers::DateHelper
+
 module ApplicationHelper
+  def time_ago(obj)
+    time_ago_in_words(obj.created_at) + " ago"
+  end
+
   def industry_select(model_name, selected_industry, field_name = "industry")
     industries = [
       "Real Estate",

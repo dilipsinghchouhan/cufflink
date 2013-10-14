@@ -1,5 +1,3 @@
-include ActionView::Helpers::DateHelper
-
 class Status < ActiveRecord::Base
   attr_accessible :body, :link, :pic, :user_id, :company_id
 
@@ -17,9 +15,9 @@ class Status < ActiveRecord::Base
           :small => "300x300>"
         }
 
-  def time_ago
-    time_ago_in_words(self.created_at) + " ago"
-  end
+        def time_ago
+          time_ago_in_words(self.created_at) + " ago"
+        end
 
   def is_company_status?
     self.company_id

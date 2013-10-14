@@ -14,7 +14,7 @@
   <% end %>
 
   <div class="status-body"><%= status.body %></div>
-  <div class="posted-at"><%= status.time_ago %></div>
+  <div class="posted-at"><%= time_ago(status) %></div>
 
     <div class="likes">
       <%= render partial: "responses/like-count", locals: {

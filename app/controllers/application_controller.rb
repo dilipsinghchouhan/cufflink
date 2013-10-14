@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ApplicationHelper
   include ContactsHelper
+  include MessagesHelper
 end

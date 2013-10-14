@@ -4,5 +4,6 @@ class Delivery < ActiveRecord::Base
   validates :message_id, :user_id, presence: true
   validates :message_id, uniqueness: { scope: :user_id }
 
-
+  belongs_to :message
+  belongs_to :user
 end

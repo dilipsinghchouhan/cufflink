@@ -1,7 +1,5 @@
-<% if status.comments.length > 0 %>
-  <ul class="comment-list">
-    <% status.comments.each do |comment| %>
-      <%= render partial: "responses/comment", locals: { comment: comment } %>
-    <% end %>
-  </ul>
-<% end %>
+<ul class="comment-list">
+  <% status.comments.each do |comment| %>
+    <%= render partial: "responses/comment", locals: { comment: comment } %>
+  <% end %>
+</ul>

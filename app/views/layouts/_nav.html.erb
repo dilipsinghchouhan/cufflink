@@ -53,10 +53,19 @@
             </ul>
         </li>
 
-        <li>
-          <%= link_to raw('<i class="icon-envelope"></i>'),
-            user_messages_url(current_user) %>
+        <li class="nest">
+          <i class="icon-envelope"></i>
+
+            <ul>
+              <li>
+                <%= link_to "Incoming", user_messages_url(current_user) %>
+              </li>
+              <li>
+                <%= link_to "Sent", user_messages_sent_url(current_user) %>
+              </li>
+            </ul>
         </li>
+
 
         <li><a href="<%= settings_url %>"><i class="icon-cog"></i></a></li>
 
