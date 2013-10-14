@@ -2,16 +2,12 @@
 
 Oh man, this is going to be intense.
 
-##SUNDAY?MONDAY
-* Why arent comments live updating on profiles
-* zomg whats up with joining and leacing companies
-* Clean up from that migration i just did
-* Make existing compaies and positions show up when creating psotions
+
+
+#Sunday
+education show and edit
 
 ##Saturday list
-
-* Add positions
-* Link positions with companies
 
 * Add links, numbers, emails
 

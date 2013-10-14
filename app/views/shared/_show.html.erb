@@ -79,13 +79,6 @@
       </p>
   <% end %>
 
-  <% if type == "user" %>
-    <h4>Contact Information</h4>
-      <ul id="contact_information">
-        <li>
-          <%= object.email %>
-        </li>
-      </ul>
-  <% end %>
+  <%= render partial: "shared/contact-info", locals: { object: object } %>
 
 </div>

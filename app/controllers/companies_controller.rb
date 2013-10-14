@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_filter :require_logged_in_user, except: [:index, :show]
+
   def index
     @companies = Company.all
     render :index

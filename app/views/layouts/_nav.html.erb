@@ -38,12 +38,24 @@
       </ul>
 
       <ul id="nav-right">
-        <li>
-          <%= link_to raw('<i class="icon-pencil"></i>'), new_status_url,
-            id: "add-status", class: "gen-form", remote: true %>
-          <!-- <a href="<%= new_status_url %>" id="add-status" class="gen-form">
+        <li class="nest">
+          <i class="icon-pencil"></i>
 
-          </a> -->
+            <ul>
+              <li>
+                <%= link_to "New Status", new_status_url,
+                  id: "add-status", class: "gen-form", remote: true %>
+              </li>
+              <li>
+                <%= link_to "New Message", new_message_url,
+                  id: "add-email", class: "gen-form", remote: true %>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <%= link_to raw('<i class="icon-envelope"></i>'),
+            user_messages_url(current_user) %>
         </li>
 
         <li><a href="<%= settings_url %>"><i class="icon-cog"></i></a></li>

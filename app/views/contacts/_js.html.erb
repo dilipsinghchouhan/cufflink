@@ -1,0 +1,33 @@
+<script>
+$(document).ready( function() {
+
+  //probably have to make this part of profile-box
+  $("form").on("change", "#contact-select", function() {
+    var $selectBox = $(this)
+    var selectedOption = $('#contact-select option:selected')
+
+    var $existingLabel = $selectBox.parent().siblings("label.other");
+
+    if ($(selectedOption).val() == "Other" && $existingLabel.length == 0) {
+      var $newLabel = $('<label>')
+        .addClass('other')
+        .html("Please specify:<br>")
+
+      var $newInput = $('<input>')
+        .attr('name', 'contact[name]')
+        .attr('type', 'text')
+
+      $newLabel.append($newInput)
+
+      $selectBox.closest("label").after($newLabel)
+
+    }
+
+    if ($(selectedOption).val() !== "Other") {
+      $existingLabel.remove();
+    }
+  });
+
+
+});
+</script>

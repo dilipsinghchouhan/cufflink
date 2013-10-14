@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   #require a complex password?
 
   after_initialize :ensure_session_token
+  after_create :create_contact_object
 
   has_many :experiences, foreign_key: :owner_id
 
@@ -40,6 +41,7 @@ class User < ActiveRecord::Base
 
   has_many :statuses
   has_many :responses
+  has_many :contacts
 
   has_attached_file :pic, styles: {
     big: "300x300>",
@@ -173,6 +175,15 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= self.class.gen_random_token
+  end
+
+  def create_contact_object
+    Contact.create(
+      user_id: self.id,
+      value: self.email,
+      name: "Primary",
+      contact_type: 0
+      )
   end
 
 end

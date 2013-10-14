@@ -1,4 +1,6 @@
 class MembershipsController < ApplicationController
+  before_filter :require_logged_in_user
+
   def create
     @membership = Membership.new
 

@@ -20,17 +20,17 @@
 <% if type == "user" %>
 
   <%= render partial: "shared/collections/index", locals: { type: "experience",
-    new_url: new_experience_url, plural: "experiences", object: object,
-    edit: edit, position: false, title: "Experience" } %>
+    new_url: new_experience_url, object: object,
+    edit: edit, position: false, title: "Education" } %>
 
   <%= render partial: "shared/collections/index", locals: { type: "experience",
-    new_url: new_experience_url, plural: "experiences", object: object,
+    new_url: new_experience_url, object: object,
     edit: edit, position: true, title: "Work Experience" } %>
 
 <% end %>
 
 <%= render partial: "shared/collections/index", locals: { type: "status",
-  new_url: new_status_url, plural: "statuses", object: object, edit: false, title: "Status Updates" } %>
+  new_url: new_status_url, object: object, edit: edit, title: "Status Updates" } %>
 
 <script type="application/json" id="bootstrapped_status_data_json">
   { "status_list": <%= object.statuses.to_json.html_safe %> }

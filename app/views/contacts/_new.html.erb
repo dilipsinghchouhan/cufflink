@@ -1,0 +1,24 @@
+<% url = is_company ? company_contacts_url(creator_id) :
+  user_contacts_url(creator_id) %>
+
+<% url += "?type=" + type.to_s %>
+
+<div class="pod third first">
+
+  <%= form_tag(url, method: "post", class: "profile-form",
+    id: "contact") do %> <!-- #, remote: true -->
+
+      <label><%= display_text.titleize %>:<br>
+        <input type="text" name="contact[value]"><br>
+      </label>
+
+      <label>Title <i>(Optional)</i>:<br>
+        <%= gen_contact_select(type, is_company) %><br>
+      </label>
+
+      <input type="submit" value="Add <%= display_text.titleize %>"></form>
+  <% end %>
+
+</div>
+
+<%= render partial: "js" %>

@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+  before_filter :require_logged_in_user
+
   def create
     @response = Response.new
     @status = Status.find_by_id(params[:status_id])

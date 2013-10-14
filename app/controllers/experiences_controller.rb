@@ -1,20 +1,22 @@
 class ExperiencesController < ApplicationController
+  before_filter :require_logged_in_user
+
   def create
     @experience = Experience.new(clean_params_hash(params[:experience]))
     @experience.owner = current_user
 
     @experience.position = true if params[:position]
 
-    if @experience.save 
+    if @experience.save
       if request.xhr?
         render partial: "show-and-edit", locals: { object: @experience }
       else
         flash[:notice] = "Experience created successfully."
         redirect_to user_url(current_user)
       end
-      
+
       company_followup(@experience) if params[:position]
-      
+
     elsif request.xhr?
       render json: @experience.errors.full_messages, status: 422
 
@@ -48,12 +50,6 @@ class ExperiencesController < ApplicationController
   end
 
   def index
-    if params[:position]
-      p "we have a psotion"
-    else
-      p "we dont have a position"
-    end
-    
     true_or_false = params[:position] ? "TRUE" : "FALSE"
     condition = "position IS " + true_or_false + " AND "
 
@@ -61,16 +57,19 @@ class ExperiencesController < ApplicationController
       names = []
       @experiences = []
 
-      Experience.find(:all, conditions: [
-          condition + 'name LIKE ?', "#{params[:term]}%"])
-        .each do |experience|
-          unless names.include?(experience.name)
-            names << experience.name
-            @experiences << experience
-          end
-        end
+      array = Experience.find(:all, conditions:
+        [condition + 'name LIKE ?', "%#{params[:term]}%"])
+      array += Company.find(:all, conditions:
+        ['name LIKE ?', "%#{params[:term]}%"])
 
-        @experiences << Experience.new(name: params[:term])
+      array.each do |experience|
+        unless names.include?(experience.name)
+          names << experience.name
+          @experiences << experience
+        end
+      end
+
+      @experiences << Experience.new(name: params[:term])
     else
       @experiences = Experience.all
     end
@@ -97,17 +96,17 @@ class ExperiencesController < ApplicationController
   def current_experience
     Experience.find_by_id(params[:id])
   end
-  
+
   def company_followup(company)
     existing_company = Company.find_by_name(company.name)
-    
+
     company_id = existing_company.id if existing_company
-      
+
     unless existing_company
       new_company = Company.create(name: company.name, industry: "Other")
-      company_id = new_company.id 
+      company_id = new_company.id
     end
-    
+
     Membership.create(
       company_id: company_id,
       member_id: current_user.id

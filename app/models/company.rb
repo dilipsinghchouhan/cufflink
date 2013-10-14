@@ -24,6 +24,7 @@ class Company < ActiveRecord::Base
   has_many :members, through: :memberships, source: :member
 
   has_many :statuses
+  has_many :contacts
 
   has_attached_file :pic, styles: {
     big: "300x300>",

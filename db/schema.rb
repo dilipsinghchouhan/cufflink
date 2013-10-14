@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131013222040) do
+ActiveRecord::Schema.define(:version => 20131014175415) do
 
   create_table "companies", :force => true do |t|
     t.string   "name",             :null => false
@@ -29,6 +29,26 @@ ActiveRecord::Schema.define(:version => 20131013222040) do
     t.integer  "pic_file_size"
     t.datetime "pic_updated_at"
   end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "name"
+    t.string   "value",        :null => false
+    t.integer  "contact_type", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "deliveries", :force => true do |t|
+    t.integer  "message_id", :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "deliveries", ["message_id"], :name => "index_deliveries_on_message_id"
+  add_index "deliveries", ["user_id"], :name => "index_deliveries_on_user_id"
 
   create_table "experiences", :force => true do |t|
     t.integer  "owner_id",                      :null => false
@@ -84,6 +104,18 @@ ActiveRecord::Schema.define(:version => 20131013222040) do
 
   add_index "memberships", ["company_id"], :name => "index_memberships_on_company_id"
   add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "subject",    :default => "(no subject)"
+    t.text     "body",                                   :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "messages", ["company_id"], :name => "index_messages_on_company_id"
+  add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "phone_numbers", :force => true do |t|
     t.integer  "owner_id",   :null => false

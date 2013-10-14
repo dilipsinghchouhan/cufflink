@@ -1,18 +1,11 @@
 include ActionView::Helpers::DateHelper
 
 class Status < ActiveRecord::Base
-  attr_accessible :body, :link, :pic
+  attr_accessible :body, :link, :pic, :user_id, :company_id
 
   validate :user_id_or_company_id
   validate :one_field_filled_out
 
-  def user_id_or_company_id
-    user_id || company_id
-  end
-
-  def one_field_filled_out
-    body || link || image_url
-  end
 
   belongs_to :user
   belongs_to :company
@@ -45,4 +38,15 @@ class Status < ActiveRecord::Base
   def comments
     self.responses.where("body IS NOT NULL")
   end
+
+  private
+
+  def user_id_or_company_id
+    user_id || company_id
+  end
+
+  def one_field_filled_out
+    body || link || image_url
+  end
+
 end

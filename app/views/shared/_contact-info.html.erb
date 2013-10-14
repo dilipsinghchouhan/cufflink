@@ -1,0 +1,22 @@
+<% types =
+  ["Email Addresses", "Phone Numbers", "Websites & Online Profiles"] %>
+
+<% types.each do |type| %>
+
+  <% contacts = contacts(object, type) %>
+
+  <% unless contacts.empty? %>
+
+    <h4><%= type %></h4>
+
+    <ul>
+    <% contacts.each do |contact| %>
+      <li>
+        <b><%= contact.name %>:</b> <%= raw(display_contact(contact)) %>
+      </li>
+    <% end %>
+    </ul>
+
+  <% end %>
+
+<% end %>

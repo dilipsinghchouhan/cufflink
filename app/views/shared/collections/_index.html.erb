@@ -4,7 +4,6 @@
 
   object: company, user
   type: status, experience
-  plural: statuses, experiences
   new_url: new_status_url, etc.
 
  -->
@@ -32,15 +31,15 @@
       <% elsif type == "experience" %>
         <% to_send = "names" %>
       <% else %>
-        <% to_send = plural %>
+        <% to_send = type.pluralize %>
       <% end %>
 
       <% object.send(to_send).each do |object| %>
           <% if edit %>
-            <%= render partial: "#{plural}/show-and-edit",
+            <%= render partial: "#{type.pluralize}/show-and-edit",
               locals: { object: object, position: position } %>
           <% else %>
-            <%= render partial: "#{plural}/show",
+            <%= render partial: "#{type.pluralize}/show",
               locals: { object: object, position: position }%>
           <% end %>
       <% end %>
