@@ -1,0 +1,25 @@
+<li class="nest">
+  <% message_count = current_user.unread_message_count %>
+
+  <% if message_count == ""
+    inbox_text = "Inbox"
+    mail_icon = "icon-envelope-alt"
+  else
+    inbox_text = "Inbox (#{message_count})"
+    mail_icon = "icon-envelope"
+  end %>
+
+  <i class="<%= mail_icon %>"></i>
+
+  <span class="num"><%= message_count %></span>
+
+    <ul>
+      <li>
+        <%= link_to inbox_text,
+          user_messages_url(current_user) %>
+      </li>
+      <li>
+        <%= link_to "Sent", user_messages_sent_url(current_user) %>
+      </li>
+    </ul>
+</li>

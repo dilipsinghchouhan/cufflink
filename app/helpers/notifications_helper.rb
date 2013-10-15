@@ -10,11 +10,13 @@ module NotificationsHelper
       link_text = "<b>#{link_text}</b>"
     end
 
-    html = "<a href=\"#{link_dest}\">#{link_text}</a>"
-    html += "<span class=\"action\">#{action}</span>"
+    link_dest += "?notification=#{notification.id}"
 
+    html = "<a href=\"#{link_dest}\"><div class=\"link-text\">"
+    html += "#{link_text}</div></a>"
+    html += "<div class=\"action\">#{action}</div>"
 
-    html += "<a href=\"\" class=\"mark-read\">Mark Read</a>"
+    html += get_delete_link(notification)
 
     html.html_safe
   end
@@ -28,6 +30,14 @@ module NotificationsHelper
     friendship.notifications.create(user_id: friendship.friender_id)
   end
 
+  def check_for_notification
+    if params[:notification]
+      notification = Notification.find_by_id(params[:notification].to_i)
+      notification.unread = false
+      notification.save!
+    end
+  end
+
   private
 
   def parse_friendship(friendship)
@@ -39,8 +49,9 @@ module NotificationsHelper
 
       link_dest = user_url(friender)
 
-      link_text = "You have a pending connection request from
-        #{friender.name}"
+      link_text = "You have a pending connection request from #{friender.name}"
+      link_text += "<div class=\"message\">Message: "
+      link_text += "<i>#{friendship.message}</i></div>"
 
       action = approve_deny_links(friender)
     else
@@ -50,10 +61,16 @@ module NotificationsHelper
 
       verb = (friendship.status == 1) ? "approved" : "denied"
 
-      link_text = "#{friendee.name} has #{verb} your connection request."
+      link_text = "#{friendee.name} #{verb} your connection request."
     end
 
     [link_dest, link_text, action]
   end
 
+  def get_delete_link(notification)
+    link_to raw("<i class=\"icon-remove-sign\"></i>"),
+      notification_url(notification), method: :delete, remote: true,
+      class: "delete-link"
+
+  end
 end

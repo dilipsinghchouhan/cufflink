@@ -1,0 +1,13 @@
+<li class="nest">
+  <i class="icon-pencil"></i>
+    <ul>
+      <li>
+        <%= link_to "New Status", new_status_url,
+          id: "add-status", class: "gen-modal", remote: true %>
+      </li>
+      <li>
+        <%= link_to "New Message", new_message_url,
+          id: "add-email", class: "gen-modal", remote: true %>
+      </li>
+    </ul>
+</li>

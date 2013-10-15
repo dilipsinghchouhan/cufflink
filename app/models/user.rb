@@ -84,6 +84,14 @@ class User < ActiveRecord::Base
     Notification.unread_notifications(self)
   end
 
+  def active_notification_count
+    Notification.active_notification_count(self)
+  end
+
+  def active_notifications
+    Notification.active_notifications(self)
+  end
+
   def positions
     self.experiences.where("position IS TRUE")
   end
@@ -137,21 +145,15 @@ class User < ActiveRecord::Base
   end
 
   def owned_companies
-    owned_or_managed_companies(2)
+    owned_or_managed_companies(2, 2)
   end
 
   def managed_companies
-    owned_or_managed_companies(1)
+    owned_or_managed_companies(1, 2)
   end
 
-  def owned_or_managed_companies(status)
-    [].tap do |companies|
-      self.memberships.each do |membership|
-        if membership.status >= status
-          companies << membership.company
-        end
-      end
-    end
+  def admined_companies
+    owned_or_managed_companies(1, 1)
   end
 
   def friendship_status_with(user)
@@ -195,6 +197,16 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def owned_or_managed_companies(min, max)
+    [].tap do |companies|
+      self.memberships.each do |membership|
+        if membership.status >= min && membership.status <= max
+          companies << membership.company
+        end
+      end
+    end
+  end
 
   def ensure_session_token
     self.session_token ||= self.class.gen_random_token

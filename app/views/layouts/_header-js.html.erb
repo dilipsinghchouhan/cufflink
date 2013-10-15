@@ -16,6 +16,19 @@ $(document).ready( function(root) {
     .on("ajax:success", "form.modal-form", function(event, data) {
       Lib.afterCreation(event, data, false, true);
     })
+
+    .on("ajax:success", "a.delete-link", function(event, data) {
+      var $link = $(event.target);
+      var $li = $link.parent();
+
+      var message = "Notification deleted successfully!"
+
+      Lib.notify(message, "green", $li.parent(), "append", true)
+
+      $li.remove();
+
+
+    })
 })
 
 

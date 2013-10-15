@@ -5,123 +5,13 @@
 
     <% if current_user %>
 
-      <ul id="nav-left">
-        <li><%= link_to "Feed", root_url %></li>
+      <%= render partial: "layouts/nav/logged-in/left-nav" %>
 
-        <li class="nest"><%= link_to "Users", users_url %>
-          <ul>
-            <li><%= link_to "Connections", connections_url %></li>
-          </ul>
-        </li>
-
-        <li class="nest"><%= link_to "Companies", companies_url %>
-            <ul>
-              <% current_user.companies.each do |company| %>
-                <li>
-                  <a href="<%= company_url(company) %>"><%= company.name %>
-                    <% if company.owner == current_user %>
-                      <i class="icon-suitcase owner"></i>
-                    <% end %>
-                  </a>
-                </li>
-              <% end %>
-                <li><%= link_to "Create a Company", new_company_url %></li>
-            </ul>
-
-            <!-- different icon color for admin -->
-            <!--
-              ask how to make this the right width
-            -->
-        </li>
-
-
-
-      </ul>
-
-      <ul id="nav-right">
-        <li class="nest">
-          <i class="icon-pencil"></i>
-
-            <ul>
-              <li>
-                <%= link_to "New Status", new_status_url,
-                  id: "add-status", class: "gen-modal", remote: true %>
-              </li>
-              <li>
-                <%= link_to "New Message", new_message_url,
-                  id: "add-email", class: "gen-modal", remote: true %>
-              </li>
-            </ul>
-        </li>
-
-        <li class="nest">
-          <% message_count = current_user.unread_message_count %>
-          <% if message_count == ""
-            inbox_text = "Inbox"
-            mail_icon = "icon-envelope-alt"
-          else
-            inbox_text = "Inbox (#{message_count})"
-            mail_icon = "icon-envelope"
-          end %>
-
-          <i class="<%= mail_icon %>"></i>
-          <span class="num"><%= message_count %></span>
-
-            <ul>
-              <li>
-                <%= link_to inbox_text,
-                  user_messages_url(current_user) %>
-              </li>
-              <li>
-                <%= link_to "Sent", user_messages_sent_url(current_user) %>
-              </li>
-            </ul>
-        </li>
-
-        <li class="nest">
-          <% notification_count = current_user.unread_notification_count %>
-          <% notification_icon = (notification_count == "") ?
-            "icon-star-empty" : "icon-star" %>
-
-          <i class="<%= notification_icon %>"></i>
-          <span class="num"><%= notification_count %></span>
-
-          <% if notification_count == "" %>
-            <ul>
-              <li>No new notifications</li>
-            </ul>
-
-          <% else %>
-            <ul>
-              <% current_user.unread_notifications.each do |notification| %>
-                <li>
-                  <%= parse_notification(notification) %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
-        </li>
-
-        <li class="nest no-caps">
-          <%= link_to current_user.name, user_url(current_user) %>
-          <ul>
-            <li><a href="<%= settings_url %>">Settings</a></li>
-            <li><%= link_to "Sign Out", session_url, method: :delete %></li>
-          </ul>
-        </li>
-
-        <!-- <li><a href="<%= settings_url %>"><i class="icon-cog"></i></a></li> -->
-
-        <!-- <li><%#= button_to "Sign Out", session_url, method: :delete %></li> -->
-      </ul>
+      <%= render partial: "layouts/nav/logged-in/right-nav" %>
 
     <% else %>
 
-      <ul id="nav-left">
-        <li><%= link_to "Sign Up", new_user_url %></li>
-
-        <li><%= link_to "Sign In", new_session_url %></li>
-      </ul>
+      <%= render partial: "layouts/nav/logged-out/left-nav" %>
 
     <% end %>
   </nav>
