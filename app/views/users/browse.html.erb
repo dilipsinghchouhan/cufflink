@@ -1,0 +1,17 @@
+<h1>Browse Users</h1>
+
+<div id="left" class="pod third first"></div>
+
+<div id="center" class="pod third"></div>
+
+<div id="right" class="pod third"></div>
+
+<script>
+	$(document).ready(function(){
+	  Cufflink.initialize();
+	});
+</script>
+
+<script type="application/json" id="bootstrapped_users_json">
+  { "users": <%= (User.all - [current_user]).to_json.html_safe %> }
+</script>

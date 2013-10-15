@@ -89,6 +89,10 @@ class UsersController < ApplicationController
 
     render :feed
   end
+  
+  def browse    
+    render :browse
+  end
 
   private
 

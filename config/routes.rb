@@ -8,6 +8,7 @@ Cufflink::Application.routes.draw do
   get "friendships/approve" => "friendships#approve"
   get "friendships/deny" => "friendships#deny"
 
+  get "users/browse" => "users#browse"
   resources :users, only: [:new, :create, :show, :update, :feed, :index] do
     resources :contacts, only: [:create, :new]
     resources :statuses, only: [:create]
