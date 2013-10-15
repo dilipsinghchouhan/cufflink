@@ -11,11 +11,13 @@ class Notification < ActiveRecord::Base
   before_create :make_room_for_notification
 
   def self.unread_notification_count(user)
-    Notification.unread_notifications(user).count > 0 ? count.to_s : ""
+    count = Notification.unread_notifications(user).count
+    count > 0 ? count.to_s : ""
   end
 
   def self.active_notification_count(user)
-    Notification.active_notifications(user).count > 0 ? count.to_s : ""
+    count = Notification.active_notifications(user).count
+    count > 0 ? count.to_s : ""
   end
 
   def self.active_notifications(user)

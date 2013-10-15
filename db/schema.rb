@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015134831) do
+ActiveRecord::Schema.define(:version => 20131015215853) do
 
   create_table "companies", :force => true do |t|
     t.string   "name",             :null => false
@@ -151,11 +151,13 @@ ActiveRecord::Schema.define(:version => 20131015134831) do
   add_index "positions", ["owner_id"], :name => "index_positions_on_owner_id"
 
   create_table "responses", :force => true do |t|
-    t.integer  "status_id",  :null => false
-    t.integer  "user_id",    :null => false
+    t.integer  "status_id",       :null => false
+    t.integer  "user_id",         :null => false
     t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
   end
 
   add_index "responses", ["status_id"], :name => "index_responses_on_status_id"

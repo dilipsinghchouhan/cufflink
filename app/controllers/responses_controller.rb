@@ -10,15 +10,19 @@ class ResponsesController < ApplicationController
     @response.body = params[:response][:body] if params[:response]
 
     if @response.save && request.xhr?
-        if @response.body
-          render partial: "comment", locals: {comment: @response}
-        else
-          render partial: "responses/like-count", locals: {
-            like_count: @status.like_count }
-        end
+      create_response_notification!(@response)
+
+      if @response.body
+        render partial: "comment", locals: {comment: @response}
+      else
+        render partial: "responses/like-count", locals: {
+          like_count: @status.like_count }
+      end
     elsif request.xhr?
       render json: @response.errors.full_messages, status: 422
     elsif @response.errors.full_messages.empty?
+      create_response_notification!(@response)
+
       flash[:notice] = "Saved successfully!"
       redirect_to :back
     else

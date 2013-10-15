@@ -5,6 +5,8 @@ class Response < ActiveRecord::Base
   belongs_to :user
   belongs_to :status
 
+  has_many :notifications, as: :notifiable
+
   def like_is_unique
     return if body
 
@@ -12,6 +14,10 @@ class Response < ActiveRecord::Base
       errors.add(:user_id,
         "Cannot like the same status twice.")
     end
+  end
+
+  def is_like?
+    !body
   end
 
   def self.likes

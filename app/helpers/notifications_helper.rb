@@ -2,8 +2,11 @@ module NotificationsHelper
   def parse_notification(notification)
     case notification.notifiable_type
 
+      #clean these up with send...
     when "Friendship"
       link_dest, link_text, action = parse_friendship(notification.notifiable)
+    when "Response"
+      link_dest, link_text, action = parse_response(notification.notifiable)
     end
 
     if notification.unread?
@@ -25,6 +28,10 @@ module NotificationsHelper
     friendship.notifications.create(user_id: friendship.friendee_id)
   end
 
+  def create_response_notification!(response)
+    response.notifications.create(user_id: response.status.user_id)
+  end
+
   def update_friendship_notications!(friendship)
     friendship.notifications.first.destroy
     friendship.notifications.create(user_id: friendship.friender_id)
@@ -39,6 +46,24 @@ module NotificationsHelper
   end
 
   private
+
+  def parse_response(response)
+    action = nil
+
+    link_dest = user_url(current_user) #find a way to go to specific status
+
+    if response.is_like?
+      user = response.user
+      status_excerpt = response.status.excerpt
+
+      link_text = "#{user.name} liked your <span class=\"excerpt\">"
+      link_text += "#{status_excerpt}</span>"
+    else
+
+    end
+
+    [link_dest, link_text, action]
+  end
 
   def parse_friendship(friendship)
     action = nil

@@ -1,7 +1,7 @@
 class AddsColumntoResponses < ActiveRecord::Migration
-  def up
-  end
-
-  def down
+  def change
+    change_table :responses do |t|
+      t.references :notifiable, polymorphic: true
+    end
   end
 end

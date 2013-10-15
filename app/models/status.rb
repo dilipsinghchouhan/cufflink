@@ -37,6 +37,16 @@ class Status < ActiveRecord::Base
     self.responses.where("body IS NOT NULL")
   end
 
+  def excerpt
+    if body
+      "status: <i>" + body[0...100] + "</i>"
+    elsif link
+      "status: <i>" + link + "</i>"
+    else
+      "photo status"
+    end
+  end
+
   private
 
   def user_id_or_company_id
