@@ -8,10 +8,12 @@ Cufflink::Application.routes.draw do
   get "friendships/approve" => "friendships#approve"
   get "friendships/deny" => "friendships#deny"
 
+  resources :notifications, only: [:update, :destroy]
+
   resources :users, only: [:new, :create, :show, :update, :feed, :index] do
     resources :contacts, only: [:create, :new]
     resources :statuses, only: [:create]
-    resources :friendships, only: [:create, :destroy]
+    resources :friendships, only: [:new, :create, :destroy]
     resources :messages, only: [:index]
     get 'messages/sent' => 'messages#sent'
   end

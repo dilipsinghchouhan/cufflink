@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014223734) do
+ActiveRecord::Schema.define(:version => 20131015134831) do
 
   create_table "companies", :force => true do |t|
     t.string   "name",             :null => false
@@ -40,11 +40,15 @@ ActiveRecord::Schema.define(:version => 20131014223734) do
     t.datetime "updated_at",   :null => false
   end
 
+  add_index "contacts", ["company_id"], :name => "index_contacts_on_company_id"
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
+
   create_table "deliveries", :force => true do |t|
-    t.integer  "message_id", :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "message_id",                   :null => false
+    t.integer  "user_id",                      :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "unread",     :default => true
   end
 
   add_index "deliveries", ["message_id"], :name => "index_deliveries_on_message_id"
@@ -67,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20131014223734) do
   end
 
   add_index "experiences", ["owner_id"], :name => "index_experiences_on_owner_id"
+  add_index "experiences", ["position"], :name => "index_experiences_on_position"
 
   create_table "friendships", :force => true do |t|
     t.integer  "friender_id",                    :null => false
@@ -74,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20131014223734) do
     t.text     "message",                        :null => false
     t.string   "connection_type",                :null => false
     t.integer  "status",          :default => 0
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "token"
@@ -82,17 +89,6 @@ ActiveRecord::Schema.define(:version => 20131014223734) do
   add_index "friendships", ["friendee_id"], :name => "index_friendships_on_friendee_id"
   add_index "friendships", ["friender_id"], :name => "index_friendships_on_friender_id"
   add_index "friendships", ["token"], :name => "index_friendships_on_token"
-
-  create_table "links", :force => true do |t|
-    t.integer  "owner_id",   :null => false
-    t.string   "title"
-    t.string   "url",        :null => false
-    t.string   "type",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "links", ["owner_id"], :name => "index_links_on_owner_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "company_id",                :null => false
@@ -112,21 +108,29 @@ ActiveRecord::Schema.define(:version => 20131014223734) do
     t.text     "body",                                   :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.boolean  "unread",     :default => true
   end
 
   add_index "messages", ["company_id"], :name => "index_messages_on_company_id"
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
-  create_table "phone_numbers", :force => true do |t|
-    t.integer  "owner_id",   :null => false
-    t.string   "number",     :null => false
-    t.string   "type",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "notifications", :force => true do |t|
+    t.string   "notifiable_type",                   :null => false
+    t.integer  "notifiable_id",                     :null => false
+    t.integer  "user_id",                           :null => false
+    t.integer  "string_1"
+    t.integer  "string_2"
+    t.boolean  "unread",          :default => true
+    t.boolean  "email",           :default => true
+    t.boolean  "notify",          :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
-  add_index "phone_numbers", ["owner_id"], :name => "index_phone_numbers_on_owner_id"
+  add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
+  add_index "notifications", ["notifiable_type"], :name => "index_notifications_on_notifiable_type"
+  add_index "notifications", ["notify"], :name => "index_notifications_on_notify"
+  add_index "notifications", ["unread"], :name => "index_notifications_on_unread"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "positions", :force => true do |t|
     t.integer  "owner_id",                            :null => false

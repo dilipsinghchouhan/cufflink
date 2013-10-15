@@ -1,0 +1,98 @@
+<h1>New Message</h1>
+
+<%= form_tag(messages_url, class: "modal-form", id: "messsage",
+  multipart: true) do %>
+          <!-- , remote: true -->
+
+<% if reply_recipients.empty? %>
+  <%= render partial: "shared/autocomplete", locals: { url: users_url, id: "1",
+    field: '#name_1', hidden_field: '#recipient_1', type: "user" } %>
+<% end %>
+
+  <div id="to-field">
+    To: <br>
+
+    <ul>
+      <% reply_recipients.each do |recipient| %>
+        <li>
+          <input type="hidden" name="recipients[<%= recipient.id  %>]"
+            value="<%= recipient.name %>">
+          <%= recipient.name %>
+        </li>
+      <% end %>
+
+      <% if reply_recipients.empty? %>
+      <li>
+        <label>
+          <input id="name_1" type="text"><br>
+          <input id="recipient_1" type="hidden" name="recipients[1]">
+        </label>
+      </li>
+      <% end %>
+    </ul>
+
+    <a href="#" id="add-recipient"><i class="icon-plus-sign-alt"></i></a>
+  </div>
+
+  <br><br>
+
+  <label>
+    From: <%= get_from_select %>
+  </label>
+
+  <br><br>
+
+  <label>
+    <input type="text" name="message[subject]" placeholder="Subject">
+  </label>
+
+  <br><br>
+
+  <label>
+    <textarea name="message[body]" placeholder="Body"><%= message.body %></textarea>
+  </label>
+
+  <br><br>
+
+  <%= file_field_tag :pic %>
+
+  <br><br>
+
+  <input type="submit" value="Send">
+
+<% end %>
+
+<script>
+  $(document).ready( function(ac_root) {
+    var AC = ac_root.AC = (ac_root.AC || {});
+
+    AC.count = 2;
+
+    $('form').on("click", "a#add-recipient", function() {
+      var $link = $(this);
+      var $ul = $link.siblings("ul");
+
+      var $newLi = $('<li>');
+      var $newLabel = $('<label>');
+
+      var $newField = $('<input id="name_' + AC.count + '" type="text">');
+      var $newHiddenField = $('<input id="recipient_' + AC.count + '">')
+        .attr("type", "hidden")
+        .attr("name", "recipients[" + AC.count + "]");
+
+      $newLabel.append($newField).append($newHiddenField);
+      $newLi.append($newLabel);
+
+      $ul.append($newLi);
+
+      $.ajax({
+        url: '<%= messages_autocomplete_url %>?recipient_number=' + AC.count,
+        success: function(data) {
+          $('body').append(data)
+        }
+      });
+
+      AC.count++;
+    })
+  });
+</script>

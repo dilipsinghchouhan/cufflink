@@ -1,0 +1,49 @@
+<h1><%= @type %> Messages</h1>
+
+<!-- sort by ascending/descending??? -->
+
+<%= link_to "Oldest First", "?order=created_at-ASC" %>
+<%= link_to "Newest First", "?order=created_at-DESC" %>
+
+<ul id="messages-list">
+  <% @messages.each do |message| %>
+    <li class="group">
+      <div class="subject pod half first">
+
+        <% delivery = message.get_delivery(current_user) %>
+
+        <% if delivery && delivery.unread? %>
+          <% klass = "bold" %>
+        <% else %>
+          <% klass = "regular" %>
+        <% end %>
+
+        <%= link_to message.subject, message_url(message), class: klass  %>
+
+        <% if message.company_id && message.sent_by?(current_user) %>
+          <div class="company-attribution">
+            (Sent as <%= author_link(message) %>)
+          </div>
+        <% end %>
+      </div>
+
+      <div class="author pod fourth">
+        <% if @type == "Incoming" %>
+          <%= author_link(message) %>
+        <% else %>
+          <%= message.recipients.map do |user|
+            link_to user.name, user_url(user)
+          end.join(", ").html_safe %>
+        <% end %>
+      </div>
+      <div class="author pod fourth">
+        <%= time_ago(message) %>
+      </div>
+
+    </li>
+  <% end %>
+</ul>
+
+<!--
+  cute icons next to their naaaames!!
+-->

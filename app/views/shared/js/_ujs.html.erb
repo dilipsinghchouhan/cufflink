@@ -16,6 +16,7 @@ $(document).ready( function(root){
     })
 
     .on("ajax:success", ".profile-form", function(event, data) {
+
       Lib.afterCreation(event, data);
     })
 
@@ -37,11 +38,11 @@ $(document).ready( function(root){
       Lib.notify(message, "green", Lib.getDest(type), "before", true);
     })
 
-  $("form#status")
-
-    .on("ajax:success", function(event, data) {
-      Lib.afterCreation(event, data);
-    })
+  // $("form#status")
+  //
+  //   .on("ajax:success", function(event, data) {
+  //     Lib.afterCreation(event, data);
+  //   })
 
 });
 </script>

@@ -34,7 +34,6 @@ $(document).ready( function(root){
 
   var notify = Lib.notify = function(
     message, color, destination, method, hide) {
-
       var $notifications = $('<div class="notifications ' + color + '">');
       $notifications.text(message);
 
@@ -139,12 +138,16 @@ $(document).ready( function(root){
   }
 
   var getDest = Lib.getDest = function(type) {
-    return $("#profile-" + type + " ul");
+    return $("#profile-" + type + " > .pod > ul");
   }
 
-  var afterCreation = Lib.afterCreation = function(event, data, noParent) {
+  var afterCreation = Lib.afterCreation = function(
+    event, data, noParent, modal) {
+
+
 
     var $form = $(event.target);
+
     var type = $form.attr("id");
     var $html = data;
 
@@ -156,9 +159,13 @@ $(document).ready( function(root){
       $form.parent().hide();
     }
 
+    if (modal) $(".backdrop").hide();
+
     $("#add-" + type).show();
 
+
     Lib.getDest(type).prepend($html);
+
 
     Lib.notify(type + " created successfully!", "green",
       Lib.getDest(type), "before", true);

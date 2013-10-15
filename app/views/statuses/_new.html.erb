@@ -1,8 +1,10 @@
+<h1>Add Status</h1>
+
 <% action_url = (type == "user") ? user_statuses_url(object) :
   company_statuses_url(object) %>
 
 <%= form_tag(
-        action_url, remote: true, class: "profile-form", id: "status", multipart: true) do %>
+        action_url, remote: true, class: "modal-form", id: "status", multipart: true) do %>
 
   <label>
     <textarea name="status[body]" placeholder="Body"></textarea>

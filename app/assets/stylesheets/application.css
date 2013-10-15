@@ -66,11 +66,16 @@ h5 {
 
 * {
   font-family: 'Lato', arial, sans-serif;
-  color: #333;
 }
 
 body {
   overflow-y: scroll;
+  color: #333;
+  background: #eee;
+}
+
+a {
+  color: #BA15A5;
 }
 
 input[type="text"], input[type="password"], input[type="checkbox"], input[type="date"], input#name, textarea, input[type="email"] {
@@ -98,9 +103,9 @@ section#main {
 }
 
 input[type="submit"] {
-  background-color: #BA15A5;
+  background-color: #FEEB1E;
   border-radius: 4px;
-  color: #eee;
+  color: #333;
   padding: 2px 4px 3px;
   font-size: 16px;
   -webkit-transition: background .2s;
@@ -109,21 +114,26 @@ input[type="submit"] {
 input[type="submit"]:hover {
   cursor: hand; cursor: pointer;
   background: #333;
+  color: #eee;
 }
 
 /* Nav */
 
 header {
-  background-color: #ABE1E5;
+  background-color: #333;
   position: fixed;
   width: 100%;
   z-index: 1;
 }
 
 header > nav > h2#logo {
-  font-size: 36px;
-  float: left;
+  font-size: 38px;
+  height: 0;
+  text-align: center;
   padding: 0 10px 5px 0;
+  color: #eee;
+  font-weight: normal;
+  letter-spacing: 2px;
 }
 
 header > nav > ul {
@@ -143,7 +153,28 @@ header > nav > ul#nav-right {
 header > nav > ul > li {
   float: left;
   padding: 24px 0 24px 24px;
-  text-transform: uppercase;
+  text-transform: none;
+  color: #eee;
+}
+
+header > nav > ul > li > i {
+  color: #FEEB1E;
+}
+
+header > nav > ul > li > a {
+  color: #eee;
+}
+
+header > nav > ul#nav-left > li:first-child {
+  padding-left: 0;
+}
+
+header > nav > ul > li.no-caps {
+  text-transform: none;
+}
+
+header > nav > ul > li.no-caps > ul {
+  text-transform: none;
 }
 
 /* Profile */
@@ -167,63 +198,6 @@ ul > li > form {
   margin-left: 10px;
 }
 
-Original nested stuff
-
-header > nav > ul > li.nest {
-  position: relative;
-}
-
-header > nav > ul > li.nest > ul {
-  list-style: none;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: visibility 0s linear .2s, opacity 0.2s linear;
-  position: absolute;
-  top: 52px;
-  background: #333;
-  padding: 10px;
-  font-size: 14px;
-  width: 200px;
-}
-
-header > nav > ul > li.nest:hover > ul {
-  visibility: visible;
-  opacity: 1;
-  transition-delay:0s;
-}
-
-header > nav > ul > li > a, header > nav > ul > li.nest > ul > li > a {
-  text-decoration: none;
-  -webkit-transition: color .2s;
-}
-
-header > nav > ul > li.nest > ul > li {
-  padding: 0 0 7px;
-}
-
-header > nav > ul > li.nest > ul > li:last-child {
-  padding: 0;
-}
-
-header > nav > ul > li.nest > ul > li > a {
-  color: #fff;
-}
-
-header > nav > ul > li.nest > ul > li > a > i {
-  color: #fff;
-  margin-left: 2px;
-  position: relative;
-  bottom: 1px;;
-}
-
-header > nav > ul > li.nest > ul > li > a:hover {
-  color: #ABE1E5
-}*/
-
-header > nav > ul > li > a:hover {
-  color: #fff;
-}
-
 /* Profile Nav */
 
 ul#profile-nav {
@@ -239,7 +213,7 @@ ul#profile-nav > li {
 }
 
 ul#profile-nav > li.active > a {
-  background-color: #ABE1E5;
+  background-color: #FEEB1E;
   border-radius: 4px;
   color: #333;
 }
@@ -247,6 +221,7 @@ ul#profile-nav > li.active > a {
 ul#profile-nav > li > a {
   text-decoration: none;
   padding: 2px 4px 3px;
+  color: #333;
 }
 
 .profile-box {
@@ -331,7 +306,7 @@ ul > li.nest > ul > li > a > i {
 }
 
 ul > li.nest > ul > li > a:hover {
-  color: #ABE1E5
+  color: #FEEB1E
 }
 
 /* Specific to Each Location */
@@ -345,7 +320,7 @@ ul#profile-nav > li {
 }
 
 ul#profile-nav > li.nest:hover {
-  background-color: #ABE1E5;
+  background-color: #FEEB1E;
   padding: 2px 4px 3px;
   border-radius: 4px;
 }
@@ -361,13 +336,13 @@ ul#profile-nav > li.nest > ul {
   float: left;
   margin-left: 30px;
   padding: 9px;
-  border: 1px solid #eee;
+  border: 1px solid #fff;
 }
 
 .gray {
-  background: #eee;
+  background: #fff;
   padding: 9px;
-  border: 1px solid #eee;
+  border: 1px solid #fff;
 }
 
 .half {
@@ -412,7 +387,7 @@ span.ui-helper-hidden-accessible {
 
 ul.ui-autocomplete {
   margin-left: -500px;
-  z-index: 1;
+  z-index: 20;
   max-width: 280px;
 }
 
@@ -426,4 +401,32 @@ ul.ui-autocomplete > li.ui-menu-item > a {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* Modal */
+
+div.modal {
+  position: absolute;
+  width: 400px;
+  z-index: 10;
+  background-color: #fff;
+  padding: 20px;
+  left: 50%;
+  top: 30%;
+  border-radius: 8px;
+  margin-left: -220px;
+  border: 5px solid #FEEB1E;
+  box-shadow: 2px 2px 9px #999;
+}
+
+div.backdrop {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: black;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  z-index: 5;
+  top: 0;
+  display: none;
 }

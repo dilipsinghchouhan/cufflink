@@ -6,6 +6,7 @@ class CreateFriendships < ActiveRecord::Migration
       t.text :message, null: false
       t.string :connection_type, null: false
       t.integer :status, default: 0
+      t.references :notifiable, polymorphic: true
 
       t.timestamps
     end

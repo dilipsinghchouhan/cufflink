@@ -1,34 +1,4 @@
 <% if type == "user" %>
-
-  <% status = current_user.friendship_status_with(object) %>
-
-  <div id="friendship-status" class="<%= status %>">
-
-    <% if status == :connected  %>
-      Current Connection
-
-    <% elsif status == :denied %>
-      Connection Request Denied
-
-    <% elsif status == :request_pending %>
-      Connection Request Pending
-
-    <% elsif status == :receipt_pending %>
-      <% friendship_token = Friendship.find_by_friender_id_and_friendee_id(
-        object.id, current_user.id
-        ).token %>
-      Connection Request Pending -
-      <a href="<%=
-      friendships_approve_url %>?code=<%= friendship_token %>">Approve</a> or
-      <a href="<%=
-      friendships_deny_url %>?code=<%= friendship_token %>">Deny</a>
-
-    <% else %>
-      <%= render partial: "friendships/new", locals: { user: object } %>
-    <% end %>
-
-  </div>
-
   <% if object.tagline %>
       <h4><%= object.tagline %></h4>
   <% end %>

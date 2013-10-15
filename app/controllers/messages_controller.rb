@@ -3,14 +3,25 @@ class MessagesController < ApplicationController
 
   # nested routes
   def index
-    @messages = current_user.received_messages.includes(:user)
+    order = get_order(params[:order])
+
+    @messages = current_user
+      .received_messages
+      .order(order)
+      .includes(:user)
     @type = "Incoming"
 
     render :index
   end
 
   def sent
-    @messages = current_user.sent_messages.includes(:recipients)
+    order = get_order(params[:order])
+
+    @messages = current_user
+      .sent_messages
+      .order(order)
+      .includes(:recipients)
+
     @type = "Sent"
 
     render :index
@@ -19,8 +30,24 @@ class MessagesController < ApplicationController
   # un-nested routes
   def new
     @message = Message.new
+    @message.body = params[:body] ? params[:body] : ""
 
-    render :new
+    @reply_recipients = []
+
+    if params[:reply]
+      # they come in looking like "reply" => { "1" > "7" }
+      # where 7 is the user id
+      params[:reply].each do |_, user_id_string|
+        @reply_recipients << User.find_by_id(user_id_string.to_i)
+      end
+    end
+
+    if request.xhr?
+      render partial: "new", locals: { reply_recipients: @reply_recipients,
+        message: @message }
+    else
+      render :new
+    end
   end
 
   def create
@@ -32,31 +59,40 @@ class MessagesController < ApplicationController
 
         sender = params[:sender]
 
-        if sender == "user"
-          @message.user = current_user
-        else
-          @message.company_id = sender.to_i
-        end
+        # every message has a user. some also have a company id.
+        @message.user = current_user
+        @message.company_id = sender.to_i unless sender == "user"
 
         @message.save
 
         # recipients show up in a hash like {"1" => "Bob Smith", "2" => etc...}
-        @deliveries = params[:recipients].map do |_, name|
-          raise "name must be at least 2 words" unless name.include?(" ")
+        @deliveries = []
+
+        params[:recipients].each do |_, name|
+          unless name.include?(" ")
+            raise ArgumentError.new "name must be at least 2 words"
+          end
 
           user = User.find_by_name(name)
 
-          raise "user not found" unless user
+          raise ArgumentError.new "user not found" unless user
 
-          @message.deliveries.create(user_id: user.id)
+          if @message.deliveries.any? { |d| d.user == user }
+            raise ArgumentError.new "cannot send message to the same user twice"
+          end
+
+          @deliveries << @message.deliveries.create(user_id: user.id)
         end
 
         raise "invalid" unless @message.valid? &&
           @deliveries.all? { |d| d.valid? }
       end
-    rescue
+    rescue ArgumentError => e
       flash[:errors] = @message.errors.full_messages
-      flash[:errors] += @deliveries.map { |d| d.errors.full_messages }
+      flash[:errors] += ["#{e.message}"]
+
+      @message.body = ""
+      @reply_recipients = []
 
       render :new
     else
@@ -77,17 +113,20 @@ class MessagesController < ApplicationController
   def show
     @message = Message.find_by_id(params[:id])
 
-    @message.unread = false
+    if @message.received_by?(current_user)
+      @message.get_delivery(current_user).mark_as_read!
+    end
+
     @message.save
 
-    @author = @message.user
     @recipients = @message.recipients
 
-    @sender = @message.company_id ?
-      Company.find(@message.company_id) : current_user
-
-    @received = @message.recipients.include?(current_user)
-
     render :show
+  end
+
+  private
+
+  def get_order(order_params)
+    order_params ? order_params.gsub("-", " ") : "created_at DESC"
   end
 end

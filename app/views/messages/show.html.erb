@@ -1,0 +1,56 @@
+<h1><%= @message.received_by?(current_user) ? "Incoming" : "Sent" %> Messages</h1>
+
+<h2><%= @message.subject %></h2>
+
+
+
+<div class="pod two-thirds first">
+  <%= simple_format(@message.body) %>
+</div>
+
+<div class="pod third">
+  <ul id="message-info">
+    <li id="message-from">
+      <b>From:</b>
+      <%= author_link(@message) %>
+      <%= "(Me)" if @message.sent_by?(current_user) %>
+    </li>
+
+    <li id="message-to">
+      <b>To:</b>
+      <%= @message.recipients.map do |user|
+        link_to user.name, user_url(user)
+      end.join(", ").html_safe %>
+    </li>
+    <li id="message-date">
+      <b>Sent:</b>
+      <%= time_ago(@message) %>
+    </li>
+  </ul>
+
+  <ul id="message-options">
+    <li><a href="<%= get_reply_link(@message) %>">
+      <i class="icon-reply"></i>
+    </a></li>
+    <li><a href="<%= get_reply_link(@message, true) %>">
+      <i class="icon-reply-all"></i>
+    </a></li>
+    <li><a href="<%= get_forward_link(@message) %>">
+      <i class="icon-share-alt"></i>
+    </a></li>
+  </ul>
+</div>
+
+<div class="pod two-thirds first">
+  <ul id="message-options">
+    <li><a href="<%= get_reply_link(@message) %>">
+      <i class="icon-reply"></i> Reply
+    </a></li>
+    <li><a href="<%= get_reply_link(@message, true) %>">
+      <i class="icon-reply-all"></i> Reply All
+    </a></li>
+    <li><a href="<%= get_forward_link(@message) %>">
+      <i class="icon-share-alt"></i> Forward
+    </a></li>
+  </ul>
+</div>

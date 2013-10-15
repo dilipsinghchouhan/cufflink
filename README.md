@@ -3,7 +3,13 @@
 Oh man, this is going to be intense.
 
 
+...orange ##f6811b
+gray like dribble
 
+pink #BA15A5
+
+hot pink - FE55ED
+hot yellow FEEB1E
 #Sunday
 education show and edit
 

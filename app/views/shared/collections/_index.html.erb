@@ -18,8 +18,14 @@
   <% link_add = position ? "company" : type %>
 
   <% if edit %>
+
+  <!--
+    do we want to generate a regular form or a fancy modal?
+  -->
+  <% klass = type == "status" ? "gen-modal" : "gen-form" %>
+
     <%= link_to "Add", url, remote: true, id: "add-#{link_add}",
-      class: "gen-form pod third first" %>
+      class: "#{klass} pod third first" %>
   <% end %>
 
   <div class="pod two-thirds">
@@ -34,8 +40,8 @@
         <% to_send = type.pluralize %>
       <% end %>
 
-      <% object.send(to_send).each do |object| %>
-          <% if edit %>
+      <% object.send(to_send).order("created_at DESC").each do |object| %>
+          <% if edit && type != "status" %>
             <%= render partial: "#{type.pluralize}/show-and-edit",
               locals: { object: object, position: position } %>
           <% else %>

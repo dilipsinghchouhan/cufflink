@@ -24,7 +24,6 @@ class StatusesController < ApplicationController
     @status = Status.new
 
     if request.xhr?
-      p "request"
       render partial: "statuses/new", locals: { type: "user",
         object: current_user }
     else

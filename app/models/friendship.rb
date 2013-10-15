@@ -10,7 +10,11 @@ class Friendship < ActiveRecord::Base
   belongs_to :friender, class_name: "User"
   belongs_to :friendee, class_name: "User"
 
+  has_many :notifications, as: :notifiable
+
   after_create :send_connection_request_email
+
+  private
 
   def send_connection_request_email
     begin

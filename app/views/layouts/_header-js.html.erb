@@ -6,16 +6,15 @@ $(document).ready( function(root) {
 
   $("body")
 
-    .on("ajax:success", "header a.gen-form", function(event, data) {
-      var $html = data;
-      var $link = $(event.target);
+    .on("ajax:success", "a.gen-modal", function(event, data) {
+      var $modal = $("<div>").addClass("modal").append(data)
 
-      $("header").prepend($html);
+      $(".backdrop").show();
+      $("header").before($modal);
     })
 
-    .on("ajax:success", "header .profile-form", function(event, data) {
-
-      Lib.afterCreation(event, data, true);
+    .on("ajax:success", "form.modal-form", function(event, data) {
+      Lib.afterCreation(event, data, false, true);
     })
 })
 

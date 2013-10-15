@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :deliveries
   has_many :sent_messages, class_name: "Message"
   has_many :received_messages, through: :deliveries, source: :message
+  has_many :notifications
 
   has_attached_file :pic, styles: {
     big: "300x300>",
@@ -69,6 +70,18 @@ class User < ActiveRecord::Base
     names = name.split(" ")
 
     User.find_by_first_name_and_last_name(names[0], names[1])
+  end
+
+  def unread_message_count
+    Delivery.unread_message_count(self)
+  end
+
+  def unread_notification_count
+    Notification.unread_notification_count(self)
+  end
+
+  def unread_notifications
+    Notification.unread_notifications(self)
   end
 
   def positions

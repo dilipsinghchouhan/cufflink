@@ -4,6 +4,8 @@
     <%= object.name %>
   </h1>
 
+  <%= friendship_status(object) unless edit %>
+
   <%= render partial: "shared/nav", locals: { type: type, object: object,
     edit: edit } %>
 

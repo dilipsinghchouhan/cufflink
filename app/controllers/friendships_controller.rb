@@ -7,10 +7,22 @@ class FriendshipsController < ApplicationController
 
     if @friendship.save
       flash[:notice] = "All good!"
+      create_friendship_notification!(@friendship)
       redirect_to user_url(@friendship.friendee_id)
     else
       flash[:errors] = @friendship.errors.full_messages
       redirect_to user_url(@friendship.friendee_id)
+    end
+  end
+
+  def new
+    @friendship = Friendship.new
+    @user = User.find_by_id(params[:user_id])
+
+    if request.xhr?
+      render partial: "friendships/new", locals: { user: @user }
+    else
+      render :new
     end
   end
 
@@ -19,6 +31,9 @@ class FriendshipsController < ApplicationController
 
     if status_is_zero?(@friendship)
       @friendship.update_attributes(status: 1)
+
+      update_friendship_notications!(@friendship)
+
       create_new_friendship!(@friendship)
       send_approval_message!(@friendship)
     end
@@ -31,6 +46,9 @@ class FriendshipsController < ApplicationController
 
     if status_is_zero?(@friendship)
       @friendship.update_attributes(status: 2)
+
+      update_friendship_notications!(@friendship)
+
       send_denial_message!(@friendship)
     end
 
