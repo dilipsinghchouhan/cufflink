@@ -29,7 +29,9 @@ $(document).ready( function(root){
       }
     }
 
-    return newFieldType;
+    var html = "<i class=\"icon-plus editing\"></i> " + newFieldType
+
+    return [newFieldType, html];
   }
 
   var notify = Lib.notify = function(
@@ -106,7 +108,12 @@ $(document).ready( function(root){
 	      var html = '<select class="field">';
 
 	      if (fieldType === "state") {
-	        var options = ["NY", "CA"];
+	        var options =
+            ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+              "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+              "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+              "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+              "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 		      html += '<option>Select a State</option>';
 	      } else {
@@ -138,13 +145,11 @@ $(document).ready( function(root){
   }
 
   var getDest = Lib.getDest = function(type) {
-    return $("#profile-" + type + " > .pod > ul");
+    return $("#profile-" + type + " ul");
   }
 
   var afterCreation = Lib.afterCreation = function(
     event, data, noParent, modal) {
-
-
 
     var $form = $(event.target);
 
@@ -161,8 +166,9 @@ $(document).ready( function(root){
 
     if (modal) $(".backdrop").hide();
 
-    $("#add-" + type).show();
+    $("#add-" + type).parent().show();
 
+    console.log(Lib.getDest(type))
 
     Lib.getDest(type).prepend($html);
 

@@ -238,7 +238,7 @@ This generator call will generate just the necessary model files it needs, names
 To show the comments on a post, edit +app/views/posts/show.html.erb+ and add this line before the "Edit" link:
 
 <erb>
-<h3>Comments</h3>
+<h3><span>Comments</span></h3>
 <%= render @post.comments %>
 </erb>
 
@@ -269,7 +269,7 @@ Next, there needs to be a form so that comments can be created on a post. To add
 Next, the partial that this line will render needs to exist. Create a new directory at +app/views/blorgh/comments+ and in it a new file called +_form.html.erb+ which has this content to create the required partial:
 
 <erb>
-<h3>New comment</h3>
+<h3><span>New comment</span></h3>
 <%= form_for [@post, @post.comments.build] do |f| %>
   <p>
     <%= f.label :text %><br />

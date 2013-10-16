@@ -1,74 +1,62 @@
-<div id="profile-main" class="profile-box">
-
-  <h3>Information</h3>
-
-  <div class="pod two-thirds first">
-	
-	  <div class="group">
-
-	    <% if type == "user" %>
-	      <div class="property">
-	        <h4 class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
-	        	object.tagline ? false : true %>"><%=
-	          object.tagline ? object.tagline : "tagline"
-	          %></h4>
-	      </div>
-	    <% end %>
-
-	    <div class="property property-half">
-	      <b>Location:</b>
-	      <% if type == "company" %>
-	        <span class="current-value" data-field="<%=
-	          type %>-address1" data-nil="<%= object.address1 ? false : true %>">
-	          <%= object.address1 ? object.address1 : "address1" %></span>
-	          <br>
-	        <span class="current-value" data-field="<%=
-	          type %>-address2" data-nil="<%= object.address2 ? false : true %>">
-	          <%= object.address2 ? object.address2 : "address2" %></span>
-	        <br>
-	      <% end %>
-
-	      <span class="current-value" data-field="<%= type %>-city" data-nil="<%=
-	      	object.city ? false : true %>">
-	        <%= object.city ? object.city : "city" %></span>,
-	      <span class="current-value" data-field="<%= type %>-state">
-	        <%= object.state ? object.state : "state" %>
-	      </span>
-
-	      <% if type == "company" %>
-	        <br>
-	        <span class="current-value" data-field="<%= type %>-zip"
-	          data-nil="<%= object.zip ? false : true %>">
-	          <%= object.zip ? object.zip : "zip" %></span>
-	      <% end %>
-	    </div>
-
-	    <div class="property property-half"">
-	      <b>Industry:</b>
-	      <span class="current-value" data-field="<%= type %>-industry">
-	        <%= object.industry ? object.industry : "industry" %>
-	      </span>
-	    </div>
-
-	    <div class="property">
-	      <h4>Summary:</h4>
-	      <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
-	      	object.summary ? false : true %>">
-	        <%= object.summary ? object.summary : "summary" %>
-	      </span>
-	    </div>
-	
-	</div>
-
-    <%= render partial: "shared/contact-info", locals: { object: object } %>
+<% if type == "user" %>
+  <div class="property">
+    <span class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
+    	object.tagline ? false : true %>"><%=
+      object.tagline ?
+        raw("<h4>#{object.tagline}</h4>") : plus + " tagline" %></span>
+  </div>
 
   </div>
 
-  <div class="pod third centered">
-    <%= image_tag current_user.pic.url(:big) %>
+  <div class="group">
+<% end %>
+
+  <div class="property property-half">
+    <b>Location:</b>
+    <% if type == "company" %>
+      <span class="current-value" data-field="<%=
+        type %>-address1" data-nil="<%= object.address1 ? false : true %>">
+        <%= object.address1 ? object.address1 : plus + " address1" %></span>
+        <br>
+      <span class="current-value" data-field="<%=
+        type %>-address2" data-nil="<%= object.address2 ? false : true %>">
+        <%= object.address2 ? object.address2 : plus + " address2" %></span>
+      <br>
+    <% end %>
+
+    <span class="current-value" data-field="<%= type %>-city" data-nil="<%=
+    	object.city ? false : true %>">
+      <%= object.city ? object.city : plus + " city" %></span>,
+    <span class="current-value" data-field="<%= type %>-state">
+      <%= object.state ? object.state : plus + " state" %>
+    </span>
+
+    <% if type == "company" %>
+      <br>
+      <span class="current-value" data-field="<%= type %>-zip"
+        data-nil="<%= object.zip ? false : true %>">
+        <%= object.zip ? object.zip : plus + " zip" %></span>
+    <% end %>
+  </div>
+
+  <div class="property property-half">
+    <b>Industry:</b>
+    <span class="current-value" data-field="<%= type %>-industry">
+      <%= object.industry ? object.industry : plus + " industry" %>
+    </span>
   </div>
 
 </div>
+
+<div class="group">
+
+  <div class="property">
+    <h4>Summary</h4>
+    <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
+    	object.summary ? false : true %>">
+      <%= object.summary ? object.summary : plus + " summary" %>
+    </span>
+  </div>
 
 <%= render partial: "shared/js/show_and_edit" %>
 

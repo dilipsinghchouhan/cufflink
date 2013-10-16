@@ -1,22 +1,43 @@
 <% types =
   ["Email Addresses", "Phone Numbers", "Websites & Online Profiles"] %>
 
-<% types.each do |type| %>
+<% types.each_with_index do |type, i| %>
 
   <% contacts = contacts(object, type) %>
 
-  <% unless contacts.empty? %>
+  <% if !contacts.empty? && !edit %>
 
-    <h4 class="contact"><%= type %></h4>
+    <h4><%= type %></h4>
 
-    <ul>
-    <% contacts.each do |contact| %>
-      <li>
-        <b><%= contact.name %>:</b> <%= raw(display_contact(contact)) %>
-      </li>
-    <% end %>
-    </ul>
+  <% elsif edit %>
+
+    <% link_dest = object.is_a?(User) ? new_user_contact_url(object.id) :
+      new_company_contact_url(object.id) %>
+
+    <% link_addon = "?type=#{i}"%>
+
+    <h4><%= type %> <%= link_to plus + " new", link_dest + link_addon,
+      class: "gen-modal buttony-link add-contact", remote: true %></h4>
 
   <% end %>
+
+  <ul class="regular property">
+  <% contacts.each do |contact| %>
+    <li>
+      <%= raw(display_contact(contact)) %>
+      <%= "(#{contact.name})" if contact.name %>
+
+      <% if edit %>
+      <!-- <div class="delete" id="contact">
+        <%= link_to [raw(x)], contact_url(contact), method: :delete,
+          remote: true, class: "contact-link delete-contact" %>
+      </div> -->
+
+        <%= link_to x + " delete", contact_url(contact), method: :delete,
+          class: "buttony-link delete", id: "contact", remote: true %>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
 
 <% end %>

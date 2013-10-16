@@ -1,0 +1,32 @@
+<div id="profile-main" class="profile-box">
+
+  <h3><span>Information</span></h3>
+
+  <div class="pod two-thirds first">
+
+	  <div class="group">
+
+      <% if edit %>
+        <%= render partial: "shared/show-and-edit", locals: { type: type,
+          object: object } %>
+      <% else %>
+        <%= render partial: "shared/show", locals: { type: type, object:
+          object } %>
+      <% end %>
+
+    </div>
+
+    <%= render partial: "shared/contact-info",
+      locals: { object: object, edit: edit } %>
+
+  </div>
+
+  <div class="pod third">
+    <div class="bg gray">
+      <h4>Profile Picture</h4>
+
+      <%= image_tag current_user.pic.url(:big) %>
+    </div>
+  </div>
+
+</div>

@@ -6,7 +6,13 @@ class ContactsController < ApplicationController
 
     @contact = Contact.new
 
-    render :new
+    if request.xhr?
+      render partial: "new", locals: { contact: @contact, type: @type,
+        display_text: @display_text, is_company: @is_company,
+        creator_id: @creator_id }
+    else
+      render :new
+    end
   end
 
   def create
@@ -15,7 +21,7 @@ class ContactsController < ApplicationController
     @redirect_url = @is_company ? company_url(@creator_id) :
       user_url(current_user)
 
-    @contact = Contact.new(params[:contact])
+    @contact = Contact.new(clean_params_hash(params[:contact]))
 
     @contact.contact_type = @type
 
@@ -35,7 +41,16 @@ class ContactsController < ApplicationController
   end
 
   def destroy
+    @contact = Contact.find_by_id(params[:id])
 
+    @contact.destroy
+
+    if request.xhr?
+      render json: @contact
+    else
+      flash[:notice] = @contact.value + " deleted successfully!"
+      redirect_to :back
+    end
   end
 
   private

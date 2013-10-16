@@ -230,7 +230,7 @@ TEMPLATE = <<'HTML'
     <td><code><%=h req.request_method %> <%=h(req.host + path)%></code></td>
   </tr></table>
 
-  <h3>Jump to:</h3>
+  <h3><span>Jump to:</span></h3>
   <ul id="quicklinks">
     <li><a href="#get-info">GET</a></li>
     <li><a href="#post-info">POST</a></li>
@@ -276,7 +276,7 @@ TEMPLATE = <<'HTML'
 <div id="requestinfo">
   <h2>Request information</h2>
 
-  <h3 id="get-info">GET</h3>
+  <h3 id="get-info">GET</span></h3>
   <% if req.GET and not req.GET.empty? %>
     <table class="req">
       <thead>
@@ -298,7 +298,7 @@ TEMPLATE = <<'HTML'
     <p>No GET data.</p>
   <% end %>
 
-  <h3 id="post-info">POST</h3>
+  <h3 id="post-info">POST</span></h3>
   <% if req.POST and not req.POST.empty? %>
     <table class="req">
       <thead>
@@ -321,7 +321,7 @@ TEMPLATE = <<'HTML'
   <% end %>
 
 
-  <h3 id="cookie-info">COOKIES</h3>
+  <h3 id="cookie-info">COOKIES</span></h3>
   <% unless req.cookies.empty? %>
     <table class="req">
       <thead>
@@ -343,7 +343,7 @@ TEMPLATE = <<'HTML'
     <p>No cookie data.</p>
   <% end %>
 
-  <h3 id="env-info">Rack ENV</h3>
+  <h3 id="env-info">Rack ENV</span></h3>
     <table class="req">
       <thead>
         <tr>

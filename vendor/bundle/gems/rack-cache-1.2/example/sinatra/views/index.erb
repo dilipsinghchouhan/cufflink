@@ -29,13 +29,13 @@
     </p>
 
     <div id="headers">
-      <h3>Headers:</h3>
+      <h3><span>Headers:</span></h3>
 
       <% response.headers.each do |key, value| %>
         <p><%= key %>: <%= value %></p>
       <% end %>
 
-      <h3>Params:</h3>
+      <h3><span>Params:</span></h3>
       <% params.each do |key, value| %>
         <p><%= key %>: <%= value || '(blank)' %></p>
       <% end %>

@@ -1,7 +1,9 @@
-<%= flash[:notice] %>
-
-<%= flash[:errors] %>
-
 <% if flash[:notice] || flash[:errors] %>
-  <hr>
+  <div id="alerts">
+    <section>
+      <%= raw("<b>Success: </b> #{flash[:notice]}") if flash[:notice] %>
+
+      <%= flash[:errors] %>
+    </section>
+  </div>
 <% end %>

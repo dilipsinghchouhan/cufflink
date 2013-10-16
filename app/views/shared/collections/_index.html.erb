@@ -12,7 +12,7 @@
 
 <div id="profile-<%= (type == "experience" && position) ? "company" : type %>" class="profile-box">
 
-  <h3><%= title %></h3>
+  <h3><span><%= title %></span></h3>
 
   <% url = position ? new_url + "?position=true" : new_url %>
   <% link_add = position ? "company" : type %>
@@ -22,36 +22,43 @@
   <!--
     do we want to generate a regular form or a fancy modal?
   -->
-  <% klass = type == "status" ? "gen-modal" : "gen-form" %>
+    <% klass = type == "status" ? "gen-modal" : "gen-form" %>
 
-    <%= link_to "Add", url, remote: true, id: "add-#{link_add}",
-      class: "#{klass} pod third first" %>
-  <% end %>
+    <div class="pod third first">
 
-  <div class="pod two-thirds">
+      <%= link_to plus + " new", url, remote: true, id: "add-#{link_add}",
+        class: "buttony-link experience-link #{klass}" %>
 
-    <ul>
+    </div>
 
-      <% if position %>
-        <% to_send = "positions" %>
-      <% elsif type == "experience" %>
-        <% to_send = "names" %>
-      <% else %>
-        <% to_send = type.pluralize %>
-      <% end %>
+    <% end %>
 
-      <% object.send(to_send).order("created_at DESC").each do |object| %>
-          <% if edit && type != "status" %>
-            <%= render partial: "#{type.pluralize}/show-and-edit",
-              locals: { object: object, position: position } %>
-          <% else %>
-            <%= render partial: "#{type.pluralize}/show",
-              locals: { object: object, position: position }%>
-          <% end %>
-      <% end %>
-    </ul>
+  <ul <%= raw('class="edit"') if edit %>>
 
-  </div>
+    <% if position %>
+      <% to_send = "positions" %>
+    <% elsif type == "experience" %>
+      <% to_send = "educations" %>
+    <% else %>
+      <% to_send = type.pluralize %>
+    <% end %>
+
+    <% object.send(to_send)
+      .order("created_at DESC")
+      .each_with_index do |object, i| %>
+
+        <% klass = edit ? "two-thirds" : "half" %>
+        <% klass += " first" if i == 0 && !edit %>
+
+        <% if edit && type != "status" %>
+          <%= render partial: "#{type.pluralize}/show-and-edit", locals: {
+            object: object, position: position, klass: klass } %>
+        <% else %>
+          <%= render partial: "#{type.pluralize}/show", locals: {
+            object: object, position: position, klass: klass }%>
+        <% end %>
+    <% end %>
+  </ul>
 
 </div>
 

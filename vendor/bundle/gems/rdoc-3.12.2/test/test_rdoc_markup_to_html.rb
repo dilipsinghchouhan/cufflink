@@ -44,7 +44,7 @@ class TestRDocMarkupToHtml < RDoc::Markup::FormatterTestCase
   end
 
   def accept_heading_3
-    assert_equal "\n<h3 id=\"label-Hello\">Hello</h3>\n", @to.res.join
+    assert_equal "\n<h3 id=\"label-Hello\">Hello</span></h3>\n", @to.res.join
   end
 
   def accept_heading_4

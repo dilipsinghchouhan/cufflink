@@ -10,11 +10,10 @@
 </head>
 <body>
 
-<%= render partial: "layouts/alerts" %>
-
 <%= render partial: "layouts/nav" %>
 
-<section id="main">
+<section id="main" class="group
+  <%= " alert" if flash[:notice] || flash[:errors] %>">
   <%= yield %>
 </section>
 

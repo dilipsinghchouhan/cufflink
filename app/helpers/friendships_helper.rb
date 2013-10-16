@@ -23,13 +23,18 @@ module FriendshipsHelper
 
     status = current_user.friendship_status_with(user)
 
+    html = "<li>"
+
     if status == :not_connected
       title = "Not Connected"
       klass = "icon-user"
 
-      extra = "<a href=\"#{new_user_friendship_url(user)}\""
-      extra += "data-remote=\"true\" class=\"gen-modal\">"
-      extra += "Request Connection</a>"
+      html = "<li class=\"button\">"
+
+      link_start = "<a href=\"#{new_user_friendship_url(user)}\""
+      link_start += "data-remote=\"true\" class=\"gen-modal\">"
+
+      link_end = "Request Connection</a>"
 
       #render partial: "friendships/new", locals: { user: user }
 
@@ -39,15 +44,20 @@ module FriendshipsHelper
     elsif status == :denied
       title = "Connection Request Denied"
       klass = "icon-remove-sign"
-    elsif status == :receipt_pending
+    elsif status == :request_pending || status == :receipt_pending
       title = "Connection Request Pending"
       klass = "icon-time"
-      extra = approve_deny_links(user)
+      extra = approve_deny_links(user) if status == :receipt_pending
     end
 
-    html = "<abbr class=\"friendship-status\" title=\"#{title}\">"
+    html += link_start if link_start
+
+    html += "<abbr class=\"friendship-status\" title=\"#{title}\">"
     html += "<i class=\"#{klass}\"></i></abbr>"
-    html += extra if extra
+
+    html += link_end if link_end
+
+    html += "</li>"
 
     html.html_safe
   end

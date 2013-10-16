@@ -15,11 +15,12 @@ module NotificationsHelper
 
     link_dest += "?notification=#{notification.id}"
 
-    html = "<a href=\"#{link_dest}\"><div class=\"link-text\">"
-    html += "#{link_text}</div></a>"
+    html = "<a href=\"#{link_dest}\">"
+    html += "<div class=\"link-text\">#{link_text}</div></a>"
+    html += get_delete_link(notification)
     html += "<div class=\"action\">#{action}</div>"
 
-    html += get_delete_link(notification)
+
 
     html.html_safe
   end
@@ -40,8 +41,10 @@ module NotificationsHelper
   def check_for_notification
     if params[:notification]
       notification = Notification.find_by_id(params[:notification].to_i)
-      notification.unread = false
-      notification.save!
+      if notification
+        notification.unread = false
+        notification.save!
+      end
     end
   end
 
@@ -52,14 +55,17 @@ module NotificationsHelper
 
     link_dest = user_url(current_user) #find a way to go to specific status
 
-    if response.is_like?
-      user = response.user
-      status_excerpt = response.status.excerpt
+    user = response.user
+    status_excerpt = response.status.excerpt
 
+    if response.is_like?
       link_text = "#{user.name} liked your <span class=\"excerpt\">"
       link_text += "#{status_excerpt}</span>"
     else
-
+      link_text = "#{user.name} commented on your <span class=\"excerpt\">"
+      link_text += "#{status_excerpt}</span>"
+      link_text += "<div class=\"message\">Comment:"
+      link_text += "<div>#{response.body}</div></div>"
     end
 
     [link_dest, link_text, action]
@@ -76,7 +82,7 @@ module NotificationsHelper
 
       link_text = "You have a pending connection request from #{friender.name}"
       link_text += "<div class=\"message\">Message: "
-      link_text += "<i>#{friendship.message}</i></div>"
+      link_text += "<div>#{friendship.message}</div></div>"
 
       action = approve_deny_links(friender)
     else
@@ -93,7 +99,8 @@ module NotificationsHelper
   end
 
   def get_delete_link(notification)
-    link_to raw("<i class=\"icon-remove-sign\"></i>"),
+
+    link_to raw("<i class=\"icon-remove\"></i>"),
       notification_url(notification), method: :delete, remote: true,
       class: "delete-link"
 

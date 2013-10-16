@@ -237,7 +237,7 @@ module RailsGuides
     def set_index(body, view)
       index = <<-INDEX
       <div id="subCol">
-        <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+        <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</span></h3>
         <ol class="chapters">
       INDEX
 

@@ -108,13 +108,13 @@ $(document).ready( function(root){
           }
 
           if (fieldType == "end_date") {
-            var $currentStud = $property.closest("li").find("#current-student");
+            var $currentStud = $property.closest("li").find("#current");
             $currentStud.addClass("hidden");
           }
 
 		      $activeCurrentVal.attr("data-nil", "false");
 
-          var message = Lib.cleanUpFieldType(fieldType, modelType)
+          var message = Lib.cleanUpFieldType(fieldType, modelType)[0]
           message += " updated successfully!"
           Lib.notify(message, "green", $property, "prepend", true)
 
@@ -148,15 +148,19 @@ $(document).ready( function(root){
         data: obj,
         success: function() {
 		      $activeCurrentVal.attr("data-nil", "true");
-		      $activeCurrentVal.text(Lib.cleanUpFieldType(fieldType, modelType));
+
+          var cleanedUpValues = Lib.cleanUpFieldType(fieldType, modelType);
+          var cleanedUpHtml = cleanedUpValues[1];
+          var cleanedUpFieldType = cleanedUpValues[0];
+
+		      $activeCurrentVal.html(cleanedUpHtml);
 
           if (fieldType == "end_date") {
-            var $currentStud = $property.closest("li").find("#current-student");
+            var $currentStud = $property.closest("li").find("#current");
             $currentStud.removeClass("hidden");
           }
 
-          var message = Lib.cleanUpFieldType(fieldType, modelType)
-          message += " removed successfully!"
+          var message = cleanedUpFieldType + " removed successfully!"
 
           Lib.notify(message, "green", $property, "prepend", true)
 

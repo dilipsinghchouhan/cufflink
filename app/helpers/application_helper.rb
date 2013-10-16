@@ -40,8 +40,29 @@ module ApplicationHelper
     object.state
   end
 
+  def clean_errors(object)
+    errors = object.errors.full_messages
+
+    html = (errors.length == 1) ? "<b>Error: </b> " : "<b>Errors: </b> "
+    html += object.errors.full_messages.join(", ")
+
+    html.html_safe
+  end
+
   def states
-    ["NY", "CA"]
+    ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+      "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+      "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+      "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+      "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+  end
+
+  def plus
+    '<i class="icon-plus editing"></i>'.html_safe
+  end
+
+  def x
+    '<i class="icon-remove editing"></i>'.html_safe
   end
 
   def clean_params_hash(params)
@@ -54,5 +75,22 @@ module ApplicationHelper
         end
       end
     end
+  end
+
+  def has_address_info?(object)
+    if object.is_a?(Company)
+      object.address1 || object.address1 || object.city || object.state ||
+        object.zip
+    else
+      object.city || object.state
+    end
+  end
+
+  def has_info?(object)
+    has_address_info?(object) || object.industry
+  end
+
+  def has_date_info?(experience)
+    experience.current || experience.start_date || experience.end_date
   end
 end

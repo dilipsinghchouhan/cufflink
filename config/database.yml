@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: cufflink_development
   pool: 5
-  username: Sarah
+  username: appacademy
   password:
   host: localhost
 

@@ -12,6 +12,25 @@ class Experience < ActiveRecord::Base
 
   belongs_to :owner, class_name: "User"
 
+  after_create :company_followup
+
+  def company_followup
+    return unless self.position
+
+    company = Company.find_by_name(self.name)
+
+    unless company
+      company = Company.create(name: self.name, industry: "Other")
+    end
+
+    unless company.members.include?(self.owner)
+      Membership.create(
+        company_id: company.id,
+        member_id: self.owner_id
+      )
+    end
+  end
+
   def no_time_travel
     [start_date, end_date].each do |date|
       next unless date

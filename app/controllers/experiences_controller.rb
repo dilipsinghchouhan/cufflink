@@ -9,13 +9,14 @@ class ExperiencesController < ApplicationController
 
     if @experience.save
       if request.xhr?
-        render partial: "show-and-edit", locals: { object: @experience }
+        render partial: "show-and-edit", locals:
+          { object: @experience, klass: "two-thirds" }
       else
         flash[:notice] = "Experience created successfully."
         redirect_to user_url(current_user)
       end
 
-      company_followup(@experience) if params[:position]
+      # company_followup(@experience) if params[:position]
 
     elsif request.xhr?
       render json: @experience.errors.full_messages, status: 422
@@ -95,20 +96,5 @@ class ExperiencesController < ApplicationController
 
   def current_experience
     Experience.find_by_id(params[:id])
-  end
-
-  def company_followup(company)
-    company = Company.find_by_name(company.name)
-
-    unless company
-      company = Company.create(name: company.name, industry: "Other")
-    end
-
-    unless company.members.include?(current_user)
-      Membership.create(
-        company_id: company.id,
-        member_id: current_user.id
-      )
-    end
   end
 end

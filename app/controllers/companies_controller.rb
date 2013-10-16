@@ -15,11 +15,11 @@ class CompaniesController < ApplicationController
     @company = Company.new(clean_params_hash(params[:company]))
 
     if @company.save
-      flash[:notice] = "Company created successfully!"
+      flash[:notice] = "#{@company.name} has been created."
       @company.owner = current_user
       redirect_to company_url(@company)
     else
-      flash[:errors] = @company.errors.full_messages
+      flash[:errors] = clean_errors(@company)
       render :new
     end
   end

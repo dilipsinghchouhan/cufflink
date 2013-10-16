@@ -4,20 +4,13 @@
     <%= object.name %>
   </h1>
 
-  <%= friendship_status(object) unless edit %>
-
   <%= render partial: "shared/nav", locals: { type: type, object: object,
     edit: edit } %>
 
 </div>
 
-<% if edit %>
-  <%= render partial: "shared/show-and-edit", locals: { type: type,
-    object: object } %>
-<% else %>
-  <%= render partial: "shared/show", locals: { type: type, object:
-    object } %>
-<% end %>
+<%= render partial: "shared/profile-info", locals:
+  { object: object, edit: edit, type: type} %>
 
 <% if type == "user" %>
 

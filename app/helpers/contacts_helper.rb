@@ -1,7 +1,7 @@
 module ContactsHelper
   def gen_contact_select(type, is_company)
     html = '<select id="contact-select" name="contact[name]">'
-    html += '<option>Select an Option</option>'
+    html += '<option value="">Select an Option</option>'
 
     get_options(type, is_company).each do |option|
       html += '<option value="' + option + '">' + option + '</option>'

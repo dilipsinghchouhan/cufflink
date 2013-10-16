@@ -2,11 +2,18 @@
   <li data-target="main" class="active"><a href="#">Information</a></li>
 
   <% if type == "user" %>
-    <li data-target="experience"><a href="#">Education</a></li>
-    <li data-target="company"><a href="#">Work Experience</a></li>
+    <% unless object.educations.empty? && !edit %>
+      <li data-target="experience"><a href="#">Education</a></li>
+    <% end %>
+
+    <% unless object.positions.empty? && !edit %>
+      <li data-target="company"><a href="#">Work Experience</a></li>
+    <% end %>
   <% end %>
 
-  <li data-target="status"><a href="#">Updates</a></li>
+  <% unless object.statuses.empty? && !edit %>
+    <li data-target="status"><a href="#">Updates</a></li>
+  <% end %>
 
   <% if type == "company" %>
     <% if edit %>
@@ -30,4 +37,6 @@
       </li>
     <% end %>
   <% end %>
+
+  <%= friendship_status(object) unless edit || type == "company" %>
 </ul>

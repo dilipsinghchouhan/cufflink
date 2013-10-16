@@ -22,11 +22,11 @@
 </div>
 
 <div id="profile-main" class="profile-box">
-  <h3>User Settings</h3>
+  <h3><span>User Settings</span></h3>
 
   <h4>My Profile Picture</h4>
 
-  <div class="pod half gray first">
+  <div class="pod half first">
     <h5>Update Photo</h5>
 
     <%= form_for current_user do |f| %>
@@ -35,10 +35,12 @@
     <% end %>
   </div>
 
-  <div class="pod half gray centered">
-    <h5>Current Photo</h5>
+  <div class="pod half">
+    <div class="bg gray">
+      <h5>Current Photo</h5>
 
-    <%= image_tag current_user.pic.url(:big) %>
+      <%= image_tag current_user.pic.url(:big) %>
+    </div>
   </div>
 
 </div>

@@ -3,66 +3,95 @@
 
 <% experience = object %>
 
-<li class="profile-data" id="<%= experience.id %>">
+<li class="profile-data pod <%= klass %>" id="<%= experience.id %>">
   <h4><%= experience.name %></h4>
 
-  <div class="property propery-half">
+  <div class="property property-half">
     <b>Location:</b>
     <span class="current-value" data-field="experience-city" data-nil="<%=
     	experience.city ? false : true %>">
-      <%= experience.city ? experience.city : "city" %></span>,
+      <%= experience.city ? experience.city : plus + " city" %></span>,
     <span class="current-value" data-field="experience-state">
-      <%= experience.state ? experience.state : "state" %>
+      <%= experience.state ? experience.state : plus + " state" %>
     </span>
   </div>
 
-  <div class="property">
-    <b>Dates of Attendance:</b>
+  <div class="property property-half">
+    <b>Dates of Attendance:</b><br>
     <span class="current-value" data-field="experience-start_date"
       data-nil="<%= experience.start_date ? false : true %>">
       <%= experience.start_date ?
-        experience.start_date : "start date" %></span> to
+        experience.start_date : plus + " start date" %></span> to
     <span id="end-date" class="current-value<%= " hidden" if
       experience.current %>" data-field="experience-end_date">
-      <%= experience.end_date ? experience.end_date : "end date" %>
+      <%= experience.end_date ? experience.end_date : plus + " end date" %>
     </span>
+
+    <div class="property no-margin<%= " hidden" if
+        experience.end_date %>" id="current">
+
+      <span class="current">
+        Current <%= position ? "Position" : "Student" %>
+      </span>
+
+      <span class="current-value" data-field="experience-current">
+         <input type="checkbox"
+        <%= experience.current ? "checked" : "" %>>
+      </span>
+    </div>
   </div>
 
-  <div class="property<%= " hidden" if
-      experience.end_date %>" id="current-student">
-    <span class="current-student">Current Student</span>
-    <span class="current-value" data-field="experience-current">
-       <input type="checkbox"
-      <%= experience.current ? "checked" : "" %>>
-    </span>
-  </div>
 
-  <div class="property">
-    <b>Area of Study:</b>
+  <div class="property property-half">
+    <b><%= position ? "Title" : "Area of Study" %>:</b>
     <span class="current-value" data-field="experience-string_1" data-nil="<%=
     	experience.string_1 ? false : true %>">
-      <%= experience.string_1 ? experience.string_1 : "area of study" %></span>
+
+      <% if experience.string_1 %>
+        experience.string_1
+      <% elsif position %>
+        <%= plus %> title
+      <% else %>
+        <%= plus %> area of study
+      <% end %>
+    </span>
   </div>
 
-  <div class="property">
-    <b>Degree:</b>
+  <div class="property property-half">
+    <b><%= position ? "Industry" : "Degree" %>:</b>
     <span class="current-value" data-field="experience-string_2" data-nil="<%=
     	experience.string_2 ? false : true %>">
-      <%= experience.string_2 ? experience.string_2 : "degree" %></span>
+
+      <% if experience.string_2 %>
+        experience.string_2
+      <% elsif position %>
+        <%= plus %> industry
+      <% else %>
+        <%= plus %> degree
+      <% end %>
+    </span>
   </div>
 
   <div class="property">
-    <b>Awards & Activities:</b><br>
+    <b><%= position ? "Summary" : "Awards & Activities" %>:</b><br><br>
+
     <span class="current-value" data-field="experience-body" data-nil="<%=
     	experience.body ? false : true %>">
-      <%= experience.body ? experience.body :
-        "awards & activities" %></span>
+
+      <% if experience.body %>
+        experience.body
+      <% elsif position %>
+        <%= plus %> summary
+      <% else %>
+        <%= plus %> activites & awards
+      <% end %>
+
+    </span>
   </div>
 
-  <div class="delete-experience">
-    <%= button_to "Delete", experience_url(experience), method: :delete,
-      remote: true, id: "experience" %>
-  </div>
+  <%= link_to x + " delete", experience_url(experience), method: :delete,
+    class: "buttony-link delete", id: "experience",
+    remote: true %>
 
 </li>
 

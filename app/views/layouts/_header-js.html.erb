@@ -21,12 +21,19 @@ $(document).ready( function(root) {
       var $link = $(event.target);
       var $li = $link.parent();
 
-      var message = "Notification deleted successfully!"
+      var message = "<h3><span><span> successfully!"
 
-      Lib.notify(message, "green", $li.parent(), "append", true)
+      Lib.notify(message, "green", $li.parent(), "append", true);
+
+      var $ul = $li.parent();
 
       $li.remove();
 
+      if ($ul.children('li').length == 0) {
+        var $noNewNotifications = $('<li><a href="/">No new notifications</a></li>');
+
+        $ul.append($noNewNotifications);
+      }
 
     })
 })

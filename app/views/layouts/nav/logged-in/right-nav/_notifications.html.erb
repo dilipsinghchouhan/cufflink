@@ -10,13 +10,13 @@
     current_user.active_notification_count == "" %>
 
       <ul>
-        <li>No new notifications</li>
+        <li><%= link_to "No new notifications", root_url %></li>
       </ul>
 
   <% else %>
     <ul>
       <% current_user.active_notifications.each do |notification| %>
-        <li>
+        <li class="group">
           <%= parse_notification(notification) %>
         </li>
       <% end %>

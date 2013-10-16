@@ -39,9 +39,9 @@ class Status < ActiveRecord::Base
 
   def excerpt
     if body
-      "status: <i>" + body[0...100] + "</i>"
+      "status: <div>" + body[0...100] + "</div>"
     elsif link
-      "status: <i>" + link + "</i>"
+      "status: <div>" + link + "</div>"
     else
       "photo status"
     end

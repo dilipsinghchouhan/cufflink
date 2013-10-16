@@ -7,7 +7,12 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: { message: "Password can't be blank." }
 
   validates :tagline, :city, :summary, length: { minimum: 1, allow_nil: true }
-  validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
+  validates :state, inclusion: { in:
+    ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+      "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+      "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+      "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+      "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"], allow_nil: true }
   validates :industry, inclusion: { in: [
       "Real Estate",
       "Technology",
@@ -96,7 +101,7 @@ class User < ActiveRecord::Base
     self.experiences.where("position IS TRUE")
   end
 
-  def names
+  def educations
     self.experiences.where("position IS FALSE")
   end
 

@@ -28,6 +28,10 @@ group :development do
   gem "letter_opener"
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 # gem 'bcrypt-ruby', require: 'bcrypt'
 
 gem 'jquery-rails'

@@ -1,59 +1,67 @@
 <% experience = object %>
 
-<li class="profile-data" id="<%= experience.id %>">
+<!-- <div class="pod <%= edit ? "two-thirds" : "half first" %>"> -->
+
+<li class="profile-data pod <%= klass %>" id="<%= experience.id %>">
   <h4><%= experience.name %></h4>
 
   <% if experience.city || experience.state %>
-    <%= experience.city %>
-    <%= ", " unless experience.state.nil? || experience.city.nil? %>
-    <%= experience.state %>
+    <div class="property property-half">
+      <b>Location:</b>
+      <%= experience.city %>
+      <%= ", " unless experience.state.nil? || experience.city.nil? %>
+      <%= experience.state %>
 
-    <br><br>
+    </div>
   <% end %>
 
-  <% if experience.current %>
+  <% if has_date_info?(experience) %>
+    <div class="property property-half">
+      <b>Date:</b>
 
-    <% if experience.start_date %>
-      <%= experience.start_date %> to Present
+      <% if experience.current %>
 
-      <br><br>
-    <% else %>
-      Currently Enrolled
+        <% if experience.start_date %>
+          <%= experience.start_date %> to Present
+        <% else %>
+          Current <%= position ? "Position" : "Student" %>
 
-      <br><br>
-    <% end %>
+        <% end %>
 
-  <% else %>
+      <% else %>
 
-    <% if experience.start_date || experience.end_date %>
-      <%= experience.start_date %>
-      <%= " to " unless experience.start_date.nil? || experience.end_date.nil? %>
-      <%= experience.end_date %>
+        <% if experience.start_date || experience.end_date %>
+          <%= experience.start_date %>
+          <%= " to " unless experience.start_date.nil? || experience.end_date.nil? %>
+          <%= experience.end_date %>
 
-      <br><br>
-    <% end %>
+        <% end %>
 
+      <% end %>
+    </div>
   <% end %>
 
   <% if experience.string_1 %>
-    <b>Area of Study:</b> <%= experience.string_1 %>
-
-    <br>
+    <div class="property property-half">
+      <b><%= position ? "Title" : "Area of Study" %>:</b>
+      <%= experience.string_1 %>
+    </div>
   <% end %>
 
   <% if experience.string_2 %>
-    <b>Degree:</b> <%= experience.string_2 %>
-
-    <br>
+    <div class="property property-half">
+      <b><%= position ? "Industry" : "Degree" %>:</b>
+      <%= experience.string_2 %>
+    </div>
   <% end %>
 
   <% if experience.body %>
-    <b>Awards & Activites:</b><br>
-    <p>
-      <%= experience.body %>
-    </p>
-
-    <br>
+    <div class="property">
+      <b><%= position ? "Summary" : "Awards & Activities" %>:</b>
+      <p>
+        <%= experience.body %>
+      </p>
+    </div>
   <% end %>
 </li>
 
