@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   has_many :notifications
 
   has_attached_file :pic, styles: {
-    big: "300x300>",
+    big: "280x280>",
     thumb: "100x100>"
   }, default_url: "/assets/blue-myself.png"
 

@@ -706,7 +706,7 @@ checked program was:
 "gcc-4.2 -o conftest -I/Users/Sarah/.rbenv/versions/2.0.0-p0/include/ruby-2.0.0/x86_64-darwin12.3.0 -I/Users/Sarah/.rbenv/versions/2.0.0-p0/include/ruby-2.0.0/ruby/backward -I/Users/Sarah/.rbenv/versions/2.0.0-p0/include/ruby-2.0.0 -I. -I/Applications/Postgres.app/Contents/MacOS/include -I'/Users/Sarah/.rbenv/versions/2.0.0-p0/include'  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT     -Wno-error=shorten-64-to-32 -pipe conftest.c  -L. -L/Users/Sarah/.rbenv/versions/2.0.0-p0/lib -L/Applications/Postgres.app/Contents/MacOS/lib -L. -L'/Users/Sarah/.rbenv/versions/2.0.0-p0/lib'  -Wl,-rpath,/Applications/Postgres.app/Contents/MacOS/lib    -lpq  -lruby-static -lpq  -lpthread -ldl -lobjc "
 Undefined symbols for architecture x86_64:
   "_rb_w32_wrap_io_handle", referenced from:
-      _t in cc1s9CR8.o
+      _t in cc8tMS66.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 checked program was:

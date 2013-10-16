@@ -14,9 +14,9 @@
             <a href="<%= company_url(company) %>"><%= company.name %>
 
               <% if current_user.owned_companies.include?(company) %>
-                <i class="icon-suitcase owner"></i>
+				  <span class="badge">Owner</span>
               <% elsif current_user.admined_companies.include?(company) %>
-                <i class="icon-suitcase"></i>
+                <span class="badge">Admin</span>
               <% end %>
             </a>
           </li>

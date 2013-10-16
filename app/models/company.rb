@@ -28,7 +28,7 @@ class Company < ActiveRecord::Base
   has_many :sent_messages, class_name: "Message"
 
   has_attached_file :pic, styles: {
-    big: "300x300>",
+    big: "280x280>",
     thumb: "100x100>"
   }, default_url: "/assets/blue-myself.png"
 
