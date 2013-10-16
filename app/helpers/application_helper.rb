@@ -43,8 +43,22 @@ module ApplicationHelper
   def clean_errors(object)
     errors = object.errors.full_messages
 
+    p errors
+
+    errors.delete_if { |e| e == "Deliveries is invalid" }
+
+    return [] if errors.empty?
+
+    errors.map! do |error|
+      if error[0...8] == "Message "
+        error[8..-1]
+      else
+        error
+      end
+    end
+
     html = (errors.length == 1) ? "<b>Error: </b> " : "<b>Errors: </b> "
-    html += object.errors.full_messages.join(", ")
+    html += errors.join(", ")
 
     html.html_safe
   end

@@ -1,5 +1,34 @@
 #Welcome to Cufflink
 
+* subject, let vs not?
+* with has_many through relationship
+* can i skip companies?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Oh man, this is going to be intense.
 
 

@@ -19,7 +19,7 @@
           user_messages_url(current_user) %>
       </li>
       <li>
-        <%= link_to "Sent", user_messages_sent_url(current_user) %>
+        <%= link_to "Sent", user_messages_url(current_user) + "?sent=true" %>
       </li>
     </ul>
 </li>

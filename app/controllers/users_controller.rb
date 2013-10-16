@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   before_filter :require_profile_owner, only: [:edit, :update]
 
   def index
+
+    # params[:term] comes from the jQuery autocomplete script
+    # when we're writing a message
     if params[:term]
       names = []
       @experiences = []
@@ -22,7 +25,13 @@ class UsersController < ApplicationController
 
       @users = matched_users + [User.new(first_name: params[:term])]
     else
-      @users = User.all
+      if params[:connections]
+        @users = current_user.connections
+        @title = "My Connections"
+      else
+        @users = User.all
+        @title = "All Users"
+      end
     end
 
     @users -= [current_user]
@@ -31,11 +40,6 @@ class UsersController < ApplicationController
       format.json { render json: @users.to_json }
       format.html { render :index }
     end
-  end
-
-  def connections
-    @users = current_user.connections
-    render :connections
   end
 
   def new
@@ -48,7 +52,6 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Sign Up Successful!"
-      #add some confirmation email stuff
       redirect_to root_url
     else
       flash[:errors] = @user.errors.full_messages

@@ -28,6 +28,8 @@ class Message < ActiveRecord::Base
   private
 
   def user_id_or_company_id
-    user_id || company_id
+    unless user_id || company_id
+      errors.add(:user_id, "Must belong to user or company")
+    end
   end
 end

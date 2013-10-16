@@ -3,7 +3,7 @@ class Contact < ActiveRecord::Base
 
   validates :value, :contact_type, presence: true
 
-  validate :user_id_or_company_id
+  validate :user_id_or_company_id, :contact_values
 
   belongs_to :user
   belongs_to :company
@@ -17,6 +17,37 @@ class Contact < ActiveRecord::Base
   private
 
   def user_id_or_company_id
-    user_id || company_id
+    unless user_id || company_id
+      errors.add(:user_id, "Must belong to user or company")
+    end
   end
+
+  def contact_values
+
+    case contact_type
+
+    #email
+    when 0
+      unless /\A[a-zA-Z][\w\.]*@\w+\.\w+\z/.match(value)
+        errors.add(:value, "Please enter a valid email")
+      end
+
+    #phone number
+    when 1
+      unless /\A\d?[\-\.]?\d{3}[\-\.]?\d{3}[\-\.]?\d{4}\z/.match(value)
+        errors.add(:value, "Please enter a valid phone number")
+      end
+
+    #website
+    when 2
+      unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})\z/
+        .match(value)
+          errors.add(:value, "Please enter a valid URL")
+      end
+    end
+  end
+
+
+
+
 end

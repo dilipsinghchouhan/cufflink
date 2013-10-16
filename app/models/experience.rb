@@ -46,21 +46,11 @@ class Experience < ActiveRecord::Base
     return unless start_date && end_date
     if start_date > end_date
       errors.add(:start_date,
-        "No time travel! Start date must be after end date.")
+        "No time travel! Start date must be after end date")
     end
   end
 
   def null=(field)
     self.send("#{field}=", nil)
-  end
-
-  #am i doing this?
-
-  def self.positions
-    Experience.where("position IS TRUE")
-  end
-
-  def self.names
-    Experience.where("position IS FALSE")
   end
 end

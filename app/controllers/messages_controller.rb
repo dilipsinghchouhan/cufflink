@@ -5,24 +5,15 @@ class MessagesController < ApplicationController
   def index
     order = get_order(params[:order])
 
-    @messages = current_user
-      .received_messages
-      .order(order)
-      .includes(:user)
-    @type = "Incoming"
+    if params[:sent]
+      @messages = current_user.sent_messages
+      @type = "Sent"
+    else
+      @messages = current_user.received_messages
+      @type = "Incoming"
+    end
 
-    render :index
-  end
-
-  def sent
-    order = get_order(params[:order])
-
-    @messages = current_user
-      .sent_messages
-      .order(order)
-      .includes(:recipients)
-
-    @type = "Sent"
+    @messages = @messages.order(order).includes(:user)
 
     render :index
   end
@@ -69,17 +60,9 @@ class MessagesController < ApplicationController
         @deliveries = []
 
         params[:recipients].each do |_, name|
-          unless name.include?(" ")
-            raise ArgumentError.new "name must be at least 2 words"
-          end
-
           user = User.find_by_name(name)
 
           raise ArgumentError.new "user not found" unless user
-
-          if @message.deliveries.any? { |d| d.user == user }
-            raise ArgumentError.new "cannot send message to the same user twice"
-          end
 
           @deliveries << @message.deliveries.create(user_id: user.id)
         end
@@ -87,9 +70,14 @@ class MessagesController < ApplicationController
         raise "invalid" unless @message.valid? &&
           @deliveries.all? { |d| d.valid? }
       end
-    rescue ArgumentError => e
-      flash[:errors] = @message.errors.full_messages
-      flash[:errors] += ["#{e.message}"]
+    rescue
+      flash[:errors] = clean_errors(@message)
+
+      delivery_errors = @deliveries
+        .map { |d| clean_errors(d) }
+        .delete_if { |d| d.empty? }
+
+      flash[:errors] += delivery_errors
 
       @message.body = ""
       @reply_recipients = []
@@ -107,8 +95,6 @@ class MessagesController < ApplicationController
     render partial: "shared/autocomplete", locals: { url: users_url, id: n,
       field: '#name_' + n, hidden_field: '#recipient_' + n, type: "user" }
   end
-
-  #make a .author method that will return the company or the user!!!
 
   def show
     @message = Message.find_by_id(params[:id])

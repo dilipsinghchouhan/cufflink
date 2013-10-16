@@ -3,7 +3,7 @@
     <section>
       <%= raw("<b>Success: </b> #{flash[:notice]}") if flash[:notice] %>
 
-      <%= flash[:errors] %>
+      <%= raw(flash[:errors].join(", ")) if flash[:errors] %>
     </section>
   </div>
 <% end %>

@@ -2,7 +2,6 @@ Cufflink::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  get 'connections' => 'users#connections'
   get 'settings' => 'users#settings'
 
   get "friendships/approve" => "friendships#approve"
@@ -15,7 +14,6 @@ Cufflink::Application.routes.draw do
     resources :statuses, only: [:create]
     resources :friendships, only: [:new, :create, :destroy]
     resources :messages, only: [:index]
-    get 'messages/sent' => 'messages#sent'
   end
 
   resources :contacts, only: [:destroy]

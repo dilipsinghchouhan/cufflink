@@ -25,10 +25,11 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :email, :status, :session_token,
     presence: true
-  validates :email, uniqueness: true #make it an email? regex?
+  validates :email, uniqueness: true
 
   validates :password, length: { minimum: 6, allow_nil: true }
-  #require a complex password?
+
+  validate :complex_password, :valid_email
 
   after_initialize :ensure_session_token
   after_create :create_contact_object
@@ -224,6 +225,16 @@ class User < ActiveRecord::Base
       name: "Primary",
       contact_type: 0
       )
+  end
+
+  def complex_password
+
+  end
+
+  def valid_email
+    unless /\A[a-zA-Z][\w\.]*@\w+\.\w+\z/.match(email)
+      errors.add(:email, "Please enter a valid email")
+    end
   end
 
 end
