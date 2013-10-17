@@ -1,44 +1,27 @@
 <script type="text/javascript">
-  var $ul = $("#outer");
-  var $updates = $("#outer > li");
+  $(document).ready( function(root) {
 
-  var $col1 = $("#col-1")
-  var $col2 = $("#col-2")
+    var OuterLib = root.OuterLib = (root.OuterLib || {});
 
+    var fancyBoxes = OuterLib.fancyBoxes = function() {
 
-  // var addUpdate = function(update) {
-  //   var col1Height = $col1[0].clientHeight;
-  //   var col2Height = $col2[0].clientHeight;
-  //
-  //   console.log(col1Height);
-  //
-  //   var $col = ((col1Height <= col2Height) ? $col1 : $col2 );
-  //
-  //   $col.append(update);
-  //
-  //   var $nextUpdate = $(update).next()
-  //
-  //   if ($nextUpdate) addUpdate($nextUpdate);
-  // }
-  //
-  // addUpdate($updates.first());
+      var $ul = $("#outer");
+      var $updates = $("#outer > li");
 
-  $updates.each( function(i, update) {
+      var $col1 = $("#col-1")
+      var $col2 = $("#col-2")
 
-    var $col1 = $("#col-1")
-    var $col2 = $("#col-2")
+      $updates.each( function(i, update) {
+        var col1Height = $col1[0].clientHeight
+        var col2Height = $col2[0].clientHeight
 
-    var col1Height = $col1[0].clientHeight
-    var col2Height = $col2[0].clientHeight
+        var $col = ((col1Height <= col2Height) ? $col1 : $col2 );
 
-    console.log(col1Height)
+        $col.append(update);
+      });
 
-    var $col = ((col1Height <= col2Height) ? $col1 : $col2 );
+      $ul.remove();
 
-    $col.append(update);
-
-  });
-
-  $ul.remove();
-
+    };
+  })
 </script>

@@ -1,7 +1,10 @@
 <script>
 
-$(document).ready( function() {
+$(document).ready( function(root) {
+  var OuterLib = root.OuterLib = (root.OuterLib || {});
+
   $(".nav li a").on("click", function(event) {
+
     var $clickedLi = $(event.target).parent();
     var target = $clickedLi.attr("data-target");
 
@@ -14,6 +17,8 @@ $(document).ready( function() {
 
     $allLis.removeClass("active");
     $clickedLi.addClass("active");
+
+    if (target == "status") OuterLib.fancyBoxes();
   });
 });
 

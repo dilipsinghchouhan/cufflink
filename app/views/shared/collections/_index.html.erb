@@ -68,12 +68,15 @@
   <% if type == "status" && !edit %>
     <ul id="col-1" class="pod half first group"></ul>
     <ul id="col-2" class="pod half group"></ul>
-    <%= render partial: "statuses/organize-js" %>
   <% end %>
 
 
 </div>
 
+<% if type == "status" && !edit %>
 
+  <%= render partial: "statuses/organize-js" %>
+
+<% end %>
 
 
