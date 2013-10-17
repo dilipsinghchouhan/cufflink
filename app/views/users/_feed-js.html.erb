@@ -1,11 +1,15 @@
 <script>
+console.log("hiii")
   $(document).ready( function() {
-    $(".status").on("ajax:success", ".button_to", function(event, data) {
-      var $form = $(event.target)
-      var $likes = $form.siblings(".likes")
+    $(".status").on("ajax:success", ".like-button", function(event, data) {
+      var $button = $(event.target)
+      var $likes = $button.parent(".likes")
       var $html = data
 
-      $form.hide();
+      console.log(data)
+      console.log($likes)
+
+      $button.hide();
       $likes.html($html)
     });
 

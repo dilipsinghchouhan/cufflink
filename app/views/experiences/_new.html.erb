@@ -1,17 +1,15 @@
-<% url = position ?
-   experiences_url + "?position=true" : experiences_url %>
-
-<%= render partial: "shared/autocomplete", locals: { url: url, field: '#name',
-  hidden_field: '#experience_name', type: "experience", id: "1" } %>
+<%= render partial: "shared/autocomplete", locals: { url: @url, field: "#" + @field,
+  hidden_field: "#" + @hidden_field, type: "experience", id: @id } %>
 
 <div class="pod third first">
 
-  <%= form_tag(url, method: "post", class: "profile-form",
+  <%= form_tag(@url, method: "post", class: "profile-form",
     id: position ? "company" : "experience", remote: true) do %>
 
       <label><%= position ? "Company" : "School" %> <i>(Required)</i>:<br>
-        <input id="name">
-        <input type="hidden" id="experience_name" name="experience[name]"><br>
+        <input type="text" id="<%= @field %>">
+        <input type="hidden" id="<%= @hidden_field %>"
+          name="experience[name]"><br>
       </label>
 
       <label>City:<br>

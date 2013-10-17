@@ -14,16 +14,19 @@ $(document).ready( function(root) {
     })
 
     .on("ajax:success", "form.modal-form", function(event, data) {
+      console.log("successsss")
       Lib.afterCreation(event, data, false, true);
+    })
+
+    .on("ajax:error", "form.modal-form", function(event, data) {
+      console.log("errrorrr")
+      console.log(event)
+      console.log(data)
     })
 
     .on("ajax:success", "a.delete-link", function(event, data) {
       var $link = $(event.target);
       var $li = $link.parent();
-
-      var message = "<h3><span><span> successfully!"
-
-      Lib.notify(message, "green", $li.parent(), "append", true);
 
       var $ul = $li.parent();
 

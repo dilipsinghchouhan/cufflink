@@ -10,10 +10,13 @@ class StatusesController < ApplicationController
     @status.pic = params[:pic] if params[:pic]
 
     if @status.save & request.xhr?
-      render partial: "show", locals: { object: @status }
+      p "I SAVED TH STATUS"
+      render partial: "show", locals: { object: @status, klass: "two-thirds" }
     elsif @status.errors.full_messages.empty?
       flash[:notice] = "Status saved!"
       redirect_to :back
+    elsif request.xhr?
+      render json: clean_errors(@status), status: 422
     else
       flash[:errors] = @status.errors.full_messages
       redirect_to :back

@@ -1,0 +1,9 @@
+<% unless status.comments.empty? %>
+  <li class="comments">
+    <ul class="comment-list">
+      <% status.comments.order("created_at ASC").each do |comment| %>
+        <%= render partial: "responses/comment", locals: { comment: comment } %>
+      <% end %>
+    </ul>
+  </li>
+<% end %>

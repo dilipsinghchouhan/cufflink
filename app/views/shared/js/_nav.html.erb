@@ -1,11 +1,11 @@
 <script>
 
 $(document).ready( function() {
-  $("#profile-nav li a").on("click", function(event) {
+  $(".nav li a").on("click", function(event) {
     var $clickedLi = $(event.target).parent();
     var target = $clickedLi.attr("data-target");
 
-    var $allLis = $("#profile-nav li")
+    var $allLis = $(".nav li")
 
     if ($clickedLi.hasClass("active")) return;
 

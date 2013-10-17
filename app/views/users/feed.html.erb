@@ -1,13 +1,13 @@
-<div class="pod half first">
-	<h1 class="bg white left">
-		Activity Feed
-	</h1>
+<div id="feed-head" class="group">
+  <h1 id="feed">Activity Feed</h1>
 </div>
 
 <ul>
   <% @statuses.each_with_index do |status, i| %>
+    <% klass = (i % 2 == 0) ? "half first bottom-border" : "half bottom-border" %>
+
     <%= render partial: "statuses/show", locals: {
-      status: status, author: @data[status].name, index: i } %>
+      status: status, author: @data[status].name, klass: klass } %>
   <% end %>
 </ul>
 

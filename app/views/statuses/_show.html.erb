@@ -2,19 +2,18 @@
 
 <% on_my_profile = (status.user == current_user) %>
 
-<li class="status pod half bottom-border
-	<%= " first" if index%2 == 1 %>">
-	
+<li class="status pod <%= klass %>">
+
 	<div class="status-top group">
-	
+
 	  <% if local_assigns.keys.include?(:author) %>
-	    <span class="author">
+	    <span class="status-author">
 			<%= link_to author, user_url(status.user) %>
-		</span>
+		  </span>
 	  <% end %>
-  
+
 	  <span class="posted-at"><%= time_ago(status) %></span>
-  
+
 	</div>
 
   <% if status.pic_file_size %>
@@ -24,22 +23,20 @@
   <% end %>
 
   <div class="status-body"><%= status.body %></div>
-  
 
-    <div class="likes">
-      <%= render partial: "responses/like-count", locals: {
-        like_count: status.like_count } %>
-    </div>
+  <ul class="responses">
 
-  <% unless Status.statuses_liked_by(current_user).include?(status) ||
-     on_my_profile %>
-    <%= button_to "Like", status_responses_url(status),
-      method: :post, remote: true, class: "like-button" %>
-  <% end %>
+    <%= render partial: "responses/likes-li",
+      locals: { status: status, on_my_profile: on_my_profile } %>
 
-  <%= render partial: "responses/comments", locals: { status: status } %>
+    <%= render partial: "responses/comments-li", locals: { status: status } %>
 
-  <% unless on_my_profile %>
-    <%= render partial: "responses/new-comment", locals: { status: status } %>
-  <% end %>
+
+    <li class="new-comment">
+      <% unless on_my_profile %>
+        <%= render partial: "responses/new-comment",
+          locals: { status: status } %>
+      <% end %>
+    </li>
+  </ul>
 </li>

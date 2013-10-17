@@ -37,7 +37,7 @@ $(document).ready( function(root){
   var notify = Lib.notify = function(
     message, color, destination, method, hide) {
       var $notifications = $('<div class="notifications ' + color + '">');
-      $notifications.text(message);
+      $notifications.html(message);
 
       switch(method) {
         case "before":
@@ -168,13 +168,20 @@ $(document).ready( function(root){
 
     $("#add-" + type).parent().show();
 
+    Lib.getDest(type).prepend($html);
+
     console.log(Lib.getDest(type))
 
-    Lib.getDest(type).prepend($html);
+    console.log($html)
 
 
     Lib.notify(type + " created successfully!", "green",
-      Lib.getDest(type), "before", true);
+      Lib.getDest(type), "prepend", true);
   }
+
+  // var cleanError = Lib.cleanError = function(error) {
+  //   return error
+  // }
+
 });
 </script>

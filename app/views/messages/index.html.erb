@@ -1,14 +1,16 @@
 <h1><%= @type %> Messages</h1>
 
-<!-- sort by ascending/descending??? -->
+<ul id="message-nav" class="nav">
 
-<%= link_to "Oldest First", "?order=created_at-ASC" %>
-<%= link_to "Newest First", "?order=created_at-DESC" %>
+  <li><%= link_to "Oldest First", "?order=created_at-ASC" %></li>
+  <li><%= link_to "Newest First", "?order=created_at-DESC" %></li>
+
+</ul>
 
 <ul id="messages-list">
   <% @messages.each do |message| %>
     <li class="group">
-      <div class="subject pod half first">
+      <div class="message-subject pod half first">
 
         <% delivery = message.get_delivery(current_user) %>
 
@@ -27,7 +29,7 @@
         <% end %>
       </div>
 
-      <div class="author pod fourth">
+      <div class="message-author pod fourth">
         <% if @type == "Incoming" %>
           <%= author_link(message) %>
         <% else %>
@@ -36,7 +38,7 @@
           end.join(", ").html_safe %>
         <% end %>
       </div>
-      <div class="author pod fourth">
+      <div class="message-posted-at pod fourth">
         <%= time_ago(message) %>
       </div>
 

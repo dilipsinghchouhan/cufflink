@@ -5,18 +5,13 @@
 
     $("section#main")
 
-      .on("ajax:success", "li.status > form.button_to", function(event, data) {
+      .on("ajax:success", ".like-button", function(event, data) {
         var $form = $(event.target);
-        var $likes = $form.siblings(".likes");
+        var $likes = $form.parent(".likes");
         var $html = data;
 
         $form.hide();
         $likes.html($html);
-      })
-
-      .on("ajax:error", "li.status > form.button_to", function(data, error) {
-        console.log(data)
-        console.log(error)
       })
 
       .on("ajax:success", ".comment-form", function(event, data) {

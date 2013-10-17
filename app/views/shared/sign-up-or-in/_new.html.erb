@@ -1,0 +1,13 @@
+<div class="pod third first" id="sign-up-or-in">
+  <div class="modal-style">
+  <% if signing_in %>
+    <%= render partial: "sessions/new", locals: { user: user } %>
+  <% else %>
+    <%= render partial: "users/new", locals: { user: user } %>
+  <% end %>
+  </div>
+</div>
+
+<div class="pod two-thirds">
+  <%= render partial: "shared/sign-up-or-in/perks" %>
+</div>

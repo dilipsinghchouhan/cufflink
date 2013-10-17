@@ -1,14 +1,17 @@
-<li> 
-  <div class="comment-body">
-	  <%= comment.body %>
-  </div>
-  
-  <div class="comment-footer">
+<li>
+
+  <div class="comment-header">
 	  <%= link_to comment.user.name, user_url(comment.user),
 	  	class: "comment-author" %>
-			
+
 	  <time>
 		  <%= time_ago_in_words(comment.created_at) %> ago
 	  </time>
   </div>
+
+  <div class="comment-body">
+	  <%= comment.body %>
+  </div>
+
+
 </li>

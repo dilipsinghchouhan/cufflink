@@ -16,13 +16,11 @@ class ExperiencesController < ApplicationController
         redirect_to user_url(current_user)
       end
 
-      # company_followup(@experience) if params[:position]
-
     elsif request.xhr?
-      render json: @experience.errors.full_messages, status: 422
+      render json: clean_errors(@experience), status: 422
 
     else
-      flash[:errors] = @experience.errors.full_messages
+      flash[:errors] = clean_errors(@experience)
       redirect_to user_url(current_user)
     end
   end
@@ -33,7 +31,7 @@ class ExperiencesController < ApplicationController
     if @experience.update_attributes(params[:experience])
       render json: @experience
     else
-      render json: @experience.errors.full_messages, status: 422
+      render json: clean_errors(@experience), status: 422
     end
   end
 
@@ -51,6 +49,8 @@ class ExperiencesController < ApplicationController
   end
 
   def index
+    p "INDEX IS GETTING CALLLED"
+
     true_or_false = params[:position] ? "TRUE" : "FALSE"
     condition = "position IS " + true_or_false + " AND "
 
@@ -84,6 +84,18 @@ class ExperiencesController < ApplicationController
     @experience = Experience.new
 
     if request.xhr?
+      if params[:position]
+        @id = 0
+        @url = experiences_url + "?position=true"
+        @field = "school_name"
+        @hidden_field = "hidden_school_name"
+      else
+        @id = 1
+        @url = experiences_url
+        @field = "company_name"
+        @hidden_field = "hidden_company_name"
+      end
+
       render partial: "experiences/new", locals: { user: current_user,
          experience: @experience, position: params[:position] }
     else

@@ -19,14 +19,18 @@ class Experience < ActiveRecord::Base
 
     company = Company.find_by_name(self.name)
 
+    membership_status = 0
+
     unless company
       company = Company.create(name: self.name, industry: "Other")
+      membership_status = 2
     end
 
     unless company.members.include?(self.owner)
       Membership.create(
         company_id: company.id,
-        member_id: self.owner_id
+        member_id: self.owner_id,
+        status: membership_status
       )
     end
   end

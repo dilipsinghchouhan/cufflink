@@ -31,7 +31,7 @@
         experience.end_date %>" id="current">
 
       <span class="current">
-        Current <%= position ? "Position" : "Student" %>
+        Current <%= experience.position ? "Position" : "Student" %>
       </span>
 
       <span class="current-value" data-field="experience-current">
@@ -43,13 +43,13 @@
 
 
   <div class="property property-half">
-    <b><%= position ? "Title" : "Area of Study" %>:</b>
+    <b><%= experience.position ? "Title" : "Area of Study" %>:</b>
     <span class="current-value" data-field="experience-string_1" data-nil="<%=
     	experience.string_1 ? false : true %>">
 
       <% if experience.string_1 %>
         experience.string_1
-      <% elsif position %>
+      <% elsif experience.position %>
         <%= plus %> title
       <% else %>
         <%= plus %> area of study
@@ -58,13 +58,13 @@
   </div>
 
   <div class="property property-half">
-    <b><%= position ? "Industry" : "Degree" %>:</b>
+    <b><%= experience.position ? "Industry" : "Degree" %>:</b>
     <span class="current-value" data-field="experience-string_2" data-nil="<%=
     	experience.string_2 ? false : true %>">
 
       <% if experience.string_2 %>
         experience.string_2
-      <% elsif position %>
+      <% elsif experience.position %>
         <%= plus %> industry
       <% else %>
         <%= plus %> degree
@@ -73,14 +73,14 @@
   </div>
 
   <div class="property">
-    <b><%= position ? "Summary" : "Awards & Activities" %>:</b><br><br>
+    <b><%= experience.position ? "Summary" : "Awards & Activities" %>:</b><br><br>
 
     <span class="current-value" data-field="experience-body" data-nil="<%=
     	experience.body ? false : true %>">
 
       <% if experience.body %>
         experience.body
-      <% elsif position %>
+      <% elsif experience.position %>
         <%= plus %> summary
       <% else %>
         <%= plus %> activites & awards

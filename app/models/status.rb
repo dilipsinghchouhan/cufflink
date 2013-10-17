@@ -25,7 +25,7 @@ class Status < ActiveRecord::Base
 
   def self.statuses_liked_by(current_user)
     Status.joins(:responses).where(
-      "responses.body IS NULL AND responses.user_id = ?", 
+      "responses.body IS NULL AND responses.user_id = ?",
       current_user.id
       )
   end
@@ -61,10 +61,14 @@ class Status < ActiveRecord::Base
       errors.add(:body, "Must have body, link, or image")
     end
   end
-  
+
+  def null=(field)
+    self.send("#{field}=", nil)
+  end
+
   def link_is_ok
-    return unless link
-    
+    return unless link && link != ""
+
     unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})\z/
       .match(link)
         errors.add(:link, "Please enter a valid URL")

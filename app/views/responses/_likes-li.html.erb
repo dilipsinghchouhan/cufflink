@@ -1,0 +1,9 @@
+<li class="likes group">
+  <% unless Status.statuses_liked_by(current_user).include?(status) ||
+     on_my_profile %>
+    <%= link_to plus + " like", status_responses_url(status),
+      method: :post, remote: true, class: "like-button buttony-link" %>
+  <% end %>
+   <%= render partial: "responses/like-count", locals: {
+    like_count: status.like_count } %>
+</li>

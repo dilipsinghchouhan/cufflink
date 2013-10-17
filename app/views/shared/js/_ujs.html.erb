@@ -8,11 +8,6 @@ $(document).ready( function(root){
       var $html = data;
       var $link = $(event.target);
 
-      //dont think this is needed
-      // $(".profile-form").parent().remove();
-
-  	  // $('a.gen-form').show();
-
   	  $link.parent().hide();
 
       $link.parent().siblings("h3").after($html);
@@ -26,7 +21,7 @@ $(document).ready( function(root){
       var error = data.responseText;
       var type = $(this).attr("id");
 
-      Lib.notify(error, "red", $(this), "before");
+      Lib.notify(Lib.cleanError(error), "red", $(this), "before");
     })
 
     .on("ajax:success", ".delete", function(event, data) {
@@ -48,14 +43,8 @@ $(document).ready( function(root){
 
       $li.remove();
 
-      Lib.notify(message, "green", $ul, "before", true);
+      Lib.notify(message, "green", $ul, "prepend", true);
     })
-
-  // $("form#status")
-  //
-  //   .on("ajax:success", function(event, data) {
-  //     Lib.afterCreation(event, data);
-  //   })
 
 });
 </script>
