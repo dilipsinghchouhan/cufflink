@@ -35,7 +35,7 @@ h3 {
 }
 
 h3 > span {
-  background: #eee;
+  background: #eee url('cbeee.png');
   margin-left: 20px;
   padding: 10px;
 }
@@ -89,7 +89,7 @@ ul {
 body {
   overflow-y: scroll;
   color: #333;
-  background: #666;
+  background: #666 url('cb666.png');
   font-size: 16px;
 }
 
@@ -117,7 +117,7 @@ nav {
   box-shadow: 6px 6px 4px -4px black, -6px 0px 4px -4px black;
   position: relative;
   bottom: 6px;
-  background: #333;
+  background: #333 url('cb333.png');
   margin-bottom: -10px;
 }
 
@@ -127,7 +127,7 @@ nav {
 
 section#main {
   padding: 90px 20px 20px;
-  background: #eee;
+  background: #eee url('cbeee.png');
 }
 
 section#main.alert {
@@ -152,8 +152,8 @@ section#main a:hover {
 }
 
 input[type="submit"] {
-  background-color: #FEEB1E;
-  border-radius: 4px;
+  background: #FEEB1E;
+/*  border-radius: 4px;*/
   color: #333;
   padding: 2px 4px 3px;
   font-size: 16px;
@@ -162,14 +162,14 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   cursor: hand; cursor: pointer;
-  background: #333;
+  background: #333 url('cb333.png');
   color: #eee;
 }
 
 /* Nav */
 
 header {
-  background-color: #333;
+  background: #333 url('cb333.png');
   position: fixed;
   width: 100%;
   z-index: 1;
@@ -244,8 +244,8 @@ ul > li.form, ul#profile-nav > li.form {
 }
 
 ul > li > form {
-  float: left;
-  margin-left: 10px;
+/*  float: left;
+  margin-left: 10px;*/
 }
 
 /* Profile Nav */
@@ -262,7 +262,7 @@ ul#profile-nav > li {
 }
 
 ul#profile-nav > li.active > a {
-  background-color: #FEEB1E;
+  background: #FEEB1E;
   border-radius: 4px;
   color: #333;
 }
@@ -275,7 +275,7 @@ ul#profile-nav > li > a {
 }
 
 ul#profile-nav > li > a:hover {
-	background-color: #FEEB1E;
+	background: #FEEB1E;
 	border-radius: 4px;
 }
 
@@ -401,7 +401,7 @@ ul > li.nest > ul {
   -webkit-transition: visibility 0s linear .3s, opacity 0.3s linear;
   position: absolute;
   top: 52px;
-  background: #333;
+  background: #333 url('cb333.png');
   padding: 0 10px;
   font-size: 16px;
   width: 250px;
@@ -494,7 +494,7 @@ ul#profile-nav > li {
 }
 
 ul#profile-nav > li.nest:hover {
-  background-color: #FEEB1E;
+  background: #FEEB1E;
   padding: 2px 4px 3px;
   border-radius: 4px;
 }
@@ -510,7 +510,20 @@ ul#profile-nav > li.nest > ul {
   float: left;
   margin-left: 30px;
   padding: 10px 0;
-/*  border: 1px solid #fff;*/
+  position: relative;
+}
+
+.bottom-border:after {
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	bottom: -23px;
+	left: 50%;
+	margin-left: -11px;
+	border-radius: 10px;
+	background: #333;
 }
 
 .bg {
@@ -616,12 +629,13 @@ div.backdrop {
 span.badge {
 	font-size: 12px;
 	text-transform: uppercase;
-	background: #333;
+	background: #333 url('cb333.png');
 	color: #eee;
 	padding: 1px 5px;
 	border-radius: 2px;
 	display: block;
 	float: right;
+	margin-top: 1px;
 }
 
 /* Regular Lists */
@@ -637,4 +651,71 @@ ul.regular > li {
 
 ul.regular > li:last-child {
   margin: 0;
+}
+
+/* Feed */
+
+.status-top {
+	background: #feeb1e;
+}
+
+.author, .posted-at {
+	padding: 0 10px;
+}
+
+.author {
+	float: left;
+	margin-left: 20px;
+	background: #333 url('cb333.png');
+	padding: 1px 10px 3px;
+}
+
+section#main .author > a {
+	padding: 0;
+	background: transparent;
+	color: #eee;
+}
+
+.posted-at {
+	float: right;
+	font-size: 14px;
+	padding: 2px 20px 2px;
+}
+
+.status-body {
+	background: #fff;
+	padding: 20px;
+}
+
+.likes {
+/*	background: #666 url('cb666.png');
+	color: #fff;*/
+	padding: 0 20px;
+	background: #fff;
+	font-size: 14px;
+}
+
+.comment-form {
+	background: #666 url('cb666.png');
+	color: #fff;
+	padding: 10px 20px;
+}
+
+ul.comment-list {
+/*	background: #666 url('cb666.png');
+	color: #fff;
+	padding: 5px 20px;*/
+	padding: 0 20px;
+	background: #fff;
+	font-size: 14px;
+}
+
+section#main ul.comment-list > li a {
+	background: transparent;
+	color: #feeb1e;
+	padding: 0;
+}
+
+.comment-author {
+	margin-right: 7px;
 }

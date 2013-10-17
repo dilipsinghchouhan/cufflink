@@ -3,7 +3,7 @@ class Status < ActiveRecord::Base
 
   validate :user_id_or_company_id
   validate :one_field_filled_out
-
+  validate :link_is_ok
 
   belongs_to :user
   belongs_to :company
@@ -25,7 +25,8 @@ class Status < ActiveRecord::Base
 
   def self.statuses_liked_by(current_user)
     Status.joins(:responses).where(
-      "responses.body IS NULL AND responses.user_id = ?", current_user.id
+      "responses.body IS NULL AND responses.user_id = ?", 
+      current_user.id
       )
   end
 
@@ -50,11 +51,24 @@ class Status < ActiveRecord::Base
   private
 
   def user_id_or_company_id
-    user_id || company_id
+    unless user_id || company_id
+      errors.add(:user_id, "Must belong to user or company")
+    end
   end
 
   def one_field_filled_out
-    body || link || image_url
+    unless body || link || pic_file_name
+      errors.add(:body, "Must have body, link, or image")
+    end
+  end
+  
+  def link_is_ok
+    return unless link
+    
+    unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})\z/
+      .match(link)
+        errors.add(:link, "Please enter a valid URL")
+    end
   end
 
 end

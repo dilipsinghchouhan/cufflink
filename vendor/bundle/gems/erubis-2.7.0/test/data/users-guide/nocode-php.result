@@ -1,7 +1,7 @@
 $ erubis -l php --pi=php -N -E NoCode --trim=false notext-example.php
     1:  <html>
     2:    <body>
-    3:      <h3><span>List</span></h3>
+    3:      <h3>List</h3>
     4:      
     5:      <p>not found.</p>
     6:      

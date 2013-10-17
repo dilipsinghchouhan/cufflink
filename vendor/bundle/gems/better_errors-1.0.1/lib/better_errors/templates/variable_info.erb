@@ -32,7 +32,7 @@
 <% end %>
 
 <div class="sub">
-    <h3><span>Request info</span></h3>
+    <h3>Request info</h3>
     <div class='inset variables'>
         <table class="var_table">
             <% if rails_params %>
@@ -46,7 +46,7 @@
 </div>
 
 <div class="sub">
-    <h3><span>Local Variables</span></h3>
+    <h3>Local Variables</h3>
     <div class='inset variables'>
         <table class="var_table">
             <% @frame.local_variables.each do |name, value| %>
@@ -57,7 +57,7 @@
 </div>
 
 <div class="sub">
-    <h3><span>Instance Variables</span></h3>
+    <h3>Instance Variables</h3>
     <div class="inset variables">
         <table class="var_table">
             <% @frame.instance_variables.each do |name, value| %>

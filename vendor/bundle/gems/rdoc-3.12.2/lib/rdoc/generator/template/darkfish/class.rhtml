@@ -53,7 +53,7 @@
     <% unless constants.empty? then %>
     <!-- Constants -->
     <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</span></h3>
+      <h3 class="section-header">Constants</h3>
       <dl>
       <% constants.each do |const| %>
         <dt id="<%= const.name %>"><%= const.name %>
@@ -70,7 +70,7 @@
     <% unless attributes.empty? then %>
     <!-- Attributes -->
     <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</span></h3>
+      <h3 class="section-header">Attributes</h3>
 
       <% attributes.each do |attrib| %>
       <div id="<%= attrib.aref %>" class="method-detail">
@@ -97,7 +97,7 @@
        visibilities.each do |visibility, methods|
          next if methods.empty? %>
      <section id="<%= visibility %>-<%= type %>-<%= section.aref %>-method-details" class="method-section section">
-      <h3 class="section-header"><%= visibility.to_s.capitalize %> <%= type.capitalize %> Methods</span></h3>
+      <h3 class="section-header"><%= visibility.to_s.capitalize %> <%= type.capitalize %> Methods</h3>
 
     <% methods.each do |method| %>
       <div id="<%= method.aref %>" class="method-detail <%= method.is_alias_for ? "method-alias" : '' %>">

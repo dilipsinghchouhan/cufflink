@@ -1,6 +1,6 @@
 <html>
   <body>
-    <h3><span>List</span></h3>
+    <h3>List</h3>
     <?php if (!$list || count($list) == 0) { ?>
     <p>not found.</p>
     <?php } else { ?>

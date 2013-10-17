@@ -6,7 +6,7 @@ Ruby on Rails Guides
 <div id="toc">
   <ul><li><a href="welcome.html">Welcome</a></li></ul>
 <% documents_by_section.each_with_index do |section, i| %>
-  <h3><span><%= "#{i + 1}." %> <%= section['name'] %></span></h3>
+  <h3><%= "#{i + 1}." %> <%= section['name'] %></h3>
   <ul>
     <% section['documents'].each do |document| %>
       <li>

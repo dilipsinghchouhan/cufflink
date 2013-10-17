@@ -1,5 +1,5 @@
 $ erubis -xE NoCode notext-example.eruby
-<h3><span>List</span></h3>
+<h3>List</h3>
 
 <p>not found.</p>
 

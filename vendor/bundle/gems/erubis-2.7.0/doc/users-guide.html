@@ -50,7 +50,7 @@ It has the following features.
 Erubis now supports Ruby 1.9.
 </p>
 <a name="toc"></a>
-<h3 class="section2">Table of Contents</span></h3>
+<h3 class="section2">Table of Contents</h3>
 <ul>
   <li><a href="#preface">Preface</a>
   <ul>
@@ -237,7 +237,7 @@ $ contrib/inline-require -I lib bin/erubis &gt; contrib/erubis
 <a name="tutorial"></a>
 <h2 class="section1">Tutorial</h2>
 <a name="tut-basic"></a>
-<h3 class="section2">Basic Example</span></h3>
+<h3 class="section2">Basic Example</h3>
 <p>Here is a basic example of Erubis.
 </p>
 <a name="example1.eruby"></a>
@@ -310,7 +310,7 @@ _buf.to_s
 
 
 <a name="tut-trim"></a>
-<h3 class="section2">Trimming Spaces</span></h3>
+<h3 class="section2">Trimming Spaces</h3>
 <p>Erubis deletes spaces around '&lt;% %&gt;' automatically, while it leaves spaces around '&lt;%= %&gt;'.
 </p>
 <a name="example2.eruby.comment_filter"></a>
@@ -405,7 +405,7 @@ _buf.to_s
 
 
 <a name="tut-escape"></a>
-<h3 class="section2">Escape</span></h3>
+<h3 class="section2">Escape</h3>
 <p>Erubis has ability to escape (sanitize) expression.
 Erubis::Eruby class act as the following:
 </p>
@@ -517,7 +517,7 @@ end
 
 
 <a name="tut-pattern"></a>
-<h3 class="section2">Embedded Pattern</span></h3>
+<h3 class="section2">Embedded Pattern</h3>
 <p>You can change embedded pattern '<code>&lt;% %&gt;</code>' to another by command-line option '-p' or option '<code>:pattern=&gt;...</code>' of Erubis::Eruby.new().
 </p>
 <a name="example4.eruby"></a>
@@ -573,7 +573,7 @@ For example, '<code>&lt;(!--)?% %(--)?&gt;</code>' will not work while '<code>&l
 
 
 <a name="tut-context"></a>
-<h3 class="section2">Context Object</span></h3>
+<h3 class="section2">Context Object</h3>
 <p>Context object is a set of data which are used in eRuby script.
 Using context object makes clear which data to be used.
 In Erubis, Hash object and Erubis::Context object are available as context object.
@@ -684,7 +684,7 @@ See <a href="#topics-context-vs-binding">evaluate(context) v.s. result(binding)<
 
 
 <a name="tut-datafile"></a>
-<h3 class="section2">Context Data File</span></h3>
+<h3 class="section2">Context Data File</h3>
 <p>Command-line option '-f' specifies context data file.
 Erubis load context data file and use it as context data.
 Context data file can be YAML file ('*.yaml' or '*.yml') or Ruby script ('*.rb').
@@ -760,7 +760,7 @@ Command-line option '-B' invokes 'Erubis::Eruby#result(binding())' instead of 'E
 
 
 <a name="tut-datastr"></a>
-<h3 class="section2">Context Data String</span></h3>
+<h3 class="section2">Context Data String</h3>
 <p>Command-line option '-c <em>str</em>' enables you to specify context data in command-line.
 <em>str</em> can be YAML flow-style or Ruby code.
 </p>
@@ -800,7 +800,7 @@ example of Ruby code</div>
 
 
 <a name="tut-preamble"></a>
-<h3 class="section2">Preamble and Postamble</span></h3>
+<h3 class="section2">Preamble and Postamble</h3>
 <p>The first line ('_buf = '';') in the compiled source code is called preamble
 and the last line ('_buf.to_s') is called postamble.
 </p>
@@ -857,7 +857,7 @@ _buf.to_s
 
 
 <a name="tut-pi"></a>
-<h3 class="section2">Processing Instruction (PI) Converter</span></h3>
+<h3 class="section2">Processing Instruction (PI) Converter</h3>
 <p>Erubis can parse Processing Instructions (PI) as embedded pattern.
 </p>
 <ul type="disc">
@@ -1003,7 +1003,7 @@ example of Rails view template</div>
 
 
 <a name="tut-notext"></a>
-<h3 class="section2">Retrieve Ruby Code</span></h3>
+<h3 class="section2">Retrieve Ruby Code</h3>
 <p>Similar to '-x', ommand-line option '-X' shows converted Ruby source code.
 The difference between '-x' and 'X' is that the former converts text part but the latter ignores it.
 It means that you can retrieve Ruby code from eRuby script by '-X' option.
@@ -1284,7 +1284,7 @@ The following is an example to use some enhancers in command-line.
 For example, class BiPatternEruby includes BiPatternEnhancer.
 </p>
 <a name="escape-enhancer"></a>
-<h3 class="section2">EscapeEnhancer</span></h3>
+<h3 class="section2">EscapeEnhancer</h3>
 <p>EscapeEnhancer switches '&lt;%= ... %&gt;' to escaped and '&lt;%== ... %&gt;' to unescaped.
 </p>
 <a name="example.eruby"></a>
@@ -1316,7 +1316,7 @@ _buf.to_s
 
 
 <a name="stdout-enhancer"></a>
-<h3 class="section2">StdoutEnhancer</span></h3>
+<h3 class="section2">StdoutEnhancer</h3>
 <p>StdoutEnhancer use $sdtdout instead of array buffer.
 Therefore, you can use 'print' statement in embedded ruby code.
 </p>
@@ -1339,7 +1339,7 @@ compiled source code</div>
 
 
 <a name="printout-enhancer"></a>
-<h3 class="section2">PrintOutEnhancer</span></h3>
+<h3 class="section2">PrintOutEnhancer</h3>
 <p>PrintOutEnhancer makes compiled source code to use 'print(...)' instead of '_buf &lt;&lt; ...'.
 </p>
 <a name="printstatement_example.result"></a>
@@ -1360,7 +1360,7 @@ compiled source code</div>
 
 
 <a name="printenabled-enhancer"></a>
-<h3 class="section2">PrintEnabledEnhancer</span></h3>
+<h3 class="section2">PrintEnabledEnhancer</h3>
 <p>PrintEnabledEnhancer enables you to use print() method in '&lt;% ... %&gt;'.
 </p>
 <a name="printenabled-example.eruby"></a>
@@ -1399,7 +1399,7 @@ because print() method in '&lt;% ... %&gt;' invokes not Kernel#print() but Print
 
 
 <a name="array-enhancer"></a>
-<h3 class="section2">ArrayEnhancer</span></h3>
+<h3 class="section2">ArrayEnhancer</h3>
 <p>ArrayEnhancer makes Eruby to return an array of strings.
 </p>
 <a name="array_example.result"></a>
@@ -1421,7 +1421,7 @@ compiled source code</div>
 
 
 <a name="arraybuffer-enhancer"></a>
-<h3 class="section2">ArrayBufferEnhancer</span></h3>
+<h3 class="section2">ArrayBufferEnhancer</h3>
 <p>ArrayBufferEnhancer makes Eruby to use array buffer.
 Array buffer is a litte slower than String buffer.
 </p>
@@ -1444,7 +1444,7 @@ compiled source code</div>
 
 
 <a name="stringbuffer-enhancer"></a>
-<h3 class="section2">StringBufferEnhancer</span></h3>
+<h3 class="section2">StringBufferEnhancer</h3>
 <p>StringBufferEnhancer makes Eruby to use string buffer.
 String buffer is a little faster than array buffer.
 Erubis::Eruby includes this enhancer by default.
@@ -1468,7 +1468,7 @@ compiled source code</div>
 
 
 <a name="erbout-enhancer"></a>
-<h3 class="section2">ErboutEnhancer</span></h3>
+<h3 class="section2">ErboutEnhancer</h3>
 <p>ErboutEnhancer makes Eruby to be compatible with ERB.
 This is useful especially for Ruby on Rails.
 </p>
@@ -1490,7 +1490,7 @@ _buf.to_s
 
 
 <a name="notext-enhancer"></a>
-<h3 class="section2">NoTextEnhancer</span></h3>
+<h3 class="section2">NoTextEnhancer</h3>
 <p>NoTextEnhancer suppress output of text and prints only embedded code.
 This is useful especially when debugging a complex eRuby script.
 </p>
@@ -1538,7 +1538,7 @@ _buf.to_s
 
 
 <a name="nocode-enhancer"></a>
-<h3 class="section2">NoCodeEnhancer</span></h3>
+<h3 class="section2">NoCodeEnhancer</h3>
 <p>NoCodeEnhancer suppress output of embedded code and prints only normal text.
 This is useful especially when validating HTML tags.
 </p>
@@ -1585,7 +1585,7 @@ output example of NoCodeEnhancer</div>
 
 
 <a name="simplify-enhancer"></a>
-<h3 class="section2">SimplifyEnhancer</span></h3>
+<h3 class="section2">SimplifyEnhancer</h3>
 <p>SimplifyEnhancer makes compiling a little faster but don't trim spaces around '&lt;% %&gt;'.
 </p>
 <a name="simplify_example.result"></a>
@@ -1607,7 +1607,7 @@ _buf.to_s
 
 
 <a name="bipattern-enhancer"></a>
-<h3 class="section2">BiPatternEnhancer</span></h3>
+<h3 class="section2">BiPatternEnhancer</h3>
 <p>BiPatternEnhancer enables to use another embedded pattern with '&lt;% %&gt;'.
 By Default, '[= ... =]' is available for expression.
 You can specify pattern by :bipattern property.
@@ -1636,7 +1636,7 @@ _buf.to_s
 
 
 <a name="percentline-enhancer"></a>
-<h3 class="section2">PercentLineEnhancer</span></h3>
+<h3 class="section2">PercentLineEnhancer</h3>
 <p>PercentLineEnhancer regards lines starting with '%' as Ruby code.
 This is for compatibility with eruby and ERB.
 </p>
@@ -1669,7 +1669,7 @@ _buf.to_s
 
 
 <a name="prefixedline-enhancer"></a>
-<h3 class="section2">PrefixedLineEnhancer</span></h3>
+<h3 class="section2">PrefixedLineEnhancer</h3>
 <p>PrefixedlineEnhancer regards lines starting with '%' as Ruby code.
 It is similar to <a href="#percentline-enhancer">PercentLineEnhancer</a>, but there are some differences.
 </p>
@@ -1721,7 +1721,7 @@ _buf.to_s
 
 
 <a name="headerfooter-enhancer"></a>
-<h3 class="section2">HeaderFooterEnhancer</span></h3>
+<h3 class="section2">HeaderFooterEnhancer</h3>
 <p>[experimental]
 </p>
 <p>HeaderFooterEnhancer enables you to add header and footer in eRuby script.
@@ -1824,7 +1824,7 @@ _buf.to_s
 
 
 <a name="interpolation-enhancer"></a>
-<h3 class="section2">InterpolationEnhancer</span></h3>
+<h3 class="section2">InterpolationEnhancer</h3>
 <p>[experimental]
 </p>
 <p>InterpolationEnhancer converts "&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;" into
@@ -1862,7 +1862,7 @@ You can use Erubis::FastEruby class instead of Erubis::Eruby class.
 
 
 <a name="deleteindent-enhancer"></a>
-<h3 class="section2">DeleteIndentEnhancer</span></h3>
+<h3 class="section2">DeleteIndentEnhancer</h3>
 <p>[experimental]
 DeleteIndentEnhancer deletes indentation of HTML file.
 </p>
@@ -1917,7 +1917,7 @@ It deletes indentations even if they are in &lt;PRE&gt;&lt;/PRE&gt;.
  </dl>
 </div>
 <a name="lang-php"></a>
-<h3 class="section2">PHP</span></h3>
+<h3 class="section2">PHP</h3>
 <a name="example.ephp"></a>
 <div class="program_caption">
 example.ephp</div>
@@ -1967,7 +1967,7 @@ compiled source code</div>
 
 
 <a name="lang-c"></a>
-<h3 class="section2">C</span></h3>
+<h3 class="section2">C</h3>
 <a name="example.ec"></a>
 <div class="program_caption">
 example.ec</div>
@@ -2036,7 +2036,7 @@ fputs("   &lt;/tbody&gt;\n"
 
 
 <a name="lang-cpp"></a>
-<h3 class="section2">C++</span></h3>
+<h3 class="section2">C++</h3>
 <a name="example.ecpp"></a>
 <div class="program_caption">
 example.ecpp</div>
@@ -2111,7 +2111,7 @@ _buf &lt;&lt; "   &lt;/tbody&gt;\n"
 
 
 <a name="lang-java"></a>
-<h3 class="section2">Java</span></h3>
+<h3 class="section2">Java</h3>
 <a name="Example.ejava"></a>
 <div class="program_caption">
 Example.ejava</div>
@@ -2235,7 +2235,7 @@ _buf.append("   &lt;/tbody&gt;\n"
 
 
 <a name="lang-scheme"></a>
-<h3 class="section2">Scheme</span></h3>
+<h3 class="section2">Scheme</h3>
 <a name="example.escheme"></a>
 <div class="program_caption">
 example.escheme</div>
@@ -2339,7 +2339,7 @@ compiled source code (with <code>--func=display</code> property)</div>
 
 
 <a name="lang-perl"></a>
-<h3 class="section2">Perl</span></h3>
+<h3 class="section2">Perl</h3>
 <a name="example.eperl"></a>
 <div class="program_caption">
 example.eperl</div>
@@ -2390,7 +2390,7 @@ print('  &lt;/table&gt;
 
 
 <a name="lang-javascript"></a>
-<h3 class="section2">JavaScript</span></h3>
+<h3 class="section2">JavaScript</h3>
 <a name="example.ejs"></a>
 <div class="program_caption">
 example.ejs</div>
@@ -2468,7 +2468,7 @@ engine = Erubis::Ejavascript.new(s, <code>:docwrite=&gt;false</code>)
 This section describes how to use Erubis with Ruby on Rails.
 </p>
 <a name="rails-settings"></a>
-<h3 class="section2">Settings</span></h3>
+<h3 class="section2">Settings</h3>
 <p>Add the following code to your 'config/environment.rb' and restart web server.
 This replaces ERB in Rails by Erubis entirely.
 </p>
@@ -2516,7 +2516,7 @@ Erubis::Helpers::RailsHelper.preprocessing (=false)</dt>
 
 
 <a name="rails-preprocessing"></a>
-<h3 class="section2">Preprosessing</span></h3>
+<h3 class="section2">Preprosessing</h3>
 <p>Erubis supports preprocessing of template files.
 Preprocessing make your Ruby on Rails application about 20-40 percent faster.
 To enable preprocessing, set Erubis::Helpers::RailsHelper.preprocessing to true in your 'environment.rb' file.
@@ -2613,7 +2613,7 @@ because the latter contains period ('.') character.
 
 
 <a name="rails-formhelpers"></a>
-<h3 class="section2">Form Helpers for Preprocessing</span></h3>
+<h3 class="section2">Form Helpers for Preprocessing</h3>
 <p><strong>(Experimental)</strong>
 </p>
 <p>Erubis provides form helper methods for preprocessing.
@@ -2710,7 +2710,7 @@ This means that pp_text_field() with preprocessing makes view layer very fast.
 
 
 <a name="rails-others"></a>
-<h3 class="section2">Others</span></h3>
+<h3 class="section2">Others</h3>
 <ul type="disc">
 <li>ActionView::Helpers::CaptureHelper#capture() and ActionView::Helpers::Texthelper#concat() are available.
 </li>
@@ -2752,7 +2752,7 @@ This means that pp_text_field() with preprocessing makes view layer very fast.
 <a name="topics"></a>
 <h2 class="section1">Other Topics</h2>
 <a name="topics-fasteruby"></a>
-<h3 class="section2"><code>Erubis::FastEruby</code> Class</span></h3>
+<h3 class="section2"><code>Erubis::FastEruby</code> Class</h3>
 <p><code>Erubis::FastEruby</code> class generates more effective code than <code>Erubis::Eruby</code>.
 </p>
 <a name="fasteruby-example.rb"></a>
@@ -2795,7 +2795,7 @@ _buf.to_s
 
 
 <a name="topics-bufvar"></a>
-<h3 class="section2"><code>:bufvar</code> Option</span></h3>
+<h3 class="section2"><code>:bufvar</code> Option</h3>
 <p>Since 2.7.0, Erubis supports <code>:bufvar</code> option which allows you to change buffer variable name (default '<code>_buf</code>').
 </p>
 <a name="bufvar-example.rb"></a>
@@ -2837,7 +2837,7 @@ _buf.to_s
 
 
 <a name="topics-trimspaces"></a>
-<h3 class="section2">'&lt;%= =%&gt;' and '&lt;%= -%&gt;'</span></h3>
+<h3 class="section2">'&lt;%= =%&gt;' and '&lt;%= -%&gt;'</h3>
 <p>Since 2.6.0, '&lt;%= -%&gt;' remove tail spaces and newline.
 This is for compatibiliy with ERB when trim mode is '-'.
 '&lt;%= =%&gt;' also removes tail spaces and newlines, and this is
@@ -2870,7 +2870,7 @@ AAA
 
 
 <a name="topics-doublepercent"></a>
-<h3 class="section2">'&lt;%% %&gt;' and '&lt;%%= %&gt;'</span></h3>
+<h3 class="section2">'&lt;%% %&gt;' and '&lt;%%= %&gt;'</h3>
 <p>Since 2.6.0, '&lt;%% %&gt;' and '&lt;%%= %&gt;' are converted into '&lt;% %&gt;' and '&lt;%= %&gt;' respectively.
 This is for compatibility with ERB.
 </p>
@@ -2895,7 +2895,7 @@ result:</div>
 
 
 <a name="topics-context-vs-binding"></a>
-<h3 class="section2">evaluate(context) v.s. result(binding)</span></h3>
+<h3 class="section2">evaluate(context) v.s. result(binding)</h3>
 <p>It is recommended to use 'Erubis::Eruby#evaluate(context)' instead of 'Erubis::Eruby#result(binding)' because Ruby's Binding object has some problems.
 </p>
 <ul type="disc">
@@ -2983,7 +2983,7 @@ item = baz
 
 
 <a name="topics-fasteruby"></a>
-<h3 class="section2">Class Erubis::FastEruby</span></h3>
+<h3 class="section2">Class Erubis::FastEruby</h3>
 <p>[experimental]
 </p>
 <p>Erubis provides Erubis::FastEruby class which includes <a href="#interpolation-enhancer">InterpolationEnhancer</a> and <a href="#topics-benchmark">works faster than Erubis::Eruby class</a>.
@@ -3069,7 +3069,7 @@ _buf.to_s
 
 
 <a name="topics-syntax"></a>
-<h3 class="section2">Syntax Checking</span></h3>
+<h3 class="section2">Syntax Checking</h3>
 <p>Command-line option '-z' checks syntax. It is similar to 'erubis -x file.rhtml | ruby -wc', but it can take several file names.
 </p>
 <div class="terminal_caption">
@@ -3081,7 +3081,7 @@ Syntax OK
 
 
 <a name="topics-caching"></a>
-<h3 class="section2">File Caching</span></h3>
+<h3 class="section2">File Caching</h3>
 <p>Erubis::Eruby.load_file(filename) convert file into Ruby script and return Eruby object.
 In addition, it caches converted Ruby script into cache file (filename + '.cache') if cache file is old or not exist.
 If cache file exists and is newer than eruby file, Erubis::Eruby.load_file() loads cache file.
@@ -3110,7 +3110,7 @@ See <a href="#topics-benchmark">benchmark</a> for details.
 
 
 <a name="topics-tinyeruby"></a>
-<h3 class="section2">Erubis::TinyEruby class</span></h3>
+<h3 class="section2">Erubis::TinyEruby class</h3>
 <p>Erubis::TinyEruby class in 'erubis/tiny.rb' is the smallest implementation of eRuby.
 If you don't need any enhancements of Erubis and only require simple eRuby implementation,
 try Erubis::TinyEruby class.
@@ -3119,7 +3119,7 @@ try Erubis::TinyEruby class.
 
 
 <a name="topics-php"></a>
-<h3 class="section2">NoTextEnhancer and NoCodeEnhancer in PHP</span></h3>
+<h3 class="section2">NoTextEnhancer and NoCodeEnhancer in PHP</h3>
 <p>NoTextEnhancer and NoCodEnahncer are quite useful not only for eRuby but also for PHP.
 The former "drops" HTML text and show up embedded Ruby/PHP code
 and the latter drops embedded Ruby/PHP code and leave HTML text.
@@ -3206,7 +3206,7 @@ example of using NoCodeEnhancer with PHP file</div>
 
 
 <a name="topcs-modruby"></a>
-<h3 class="section2">Helper Class for mod_ruby</span></h3>
+<h3 class="section2">Helper Class for mod_ruby</h3>
 <p>Thanks Andrew R Jackson, he developed 'erubis-run.rb' which enables you to use Erubis with mod_ruby.
 </p>
 <ol type="1">
@@ -3263,7 +3263,7 @@ in the same directory in which '*.rhtml' file exists.
 
 
 <a name="topics-index-cgi"></a>
-<h3 class="section2">Helper CGI Script for Apache</span></h3>
+<h3 class="section2">Helper CGI Script for Apache</h3>
 <p>Erubis provides helper CGI script for Apache.
 Using this script, it is very easy to publish *.rhtml files as *.html.
 </p>
@@ -3305,7 +3305,7 @@ For example, if you access to <code>http://<em>host</em>.<em>domain</em>/~<em>us
 
 
 <a name="topics-defmethod"></a>
-<h3 class="section2">Define method</span></h3>
+<h3 class="section2">Define method</h3>
 <p>Erubis::Eruby#def_method() defines instance method or singleton method.
 </p>
 <a name="def_method.rb"></a>
@@ -3328,7 +3328,7 @@ p obj.render('world')          #=&gt; "hello world"
 
 
 <a name="topics-benchmark"></a>
-<h3 class="section2">Benchmark</span></h3>
+<h3 class="section2">Benchmark</h3>
 <p>A benchmark script is included in Erubis package at 'erubis-2.7.0/benchark/' directory.
 Here is an example result of benchmark.
 </p>
@@ -3397,14 +3397,14 @@ Erubis::StdoutEruby            15.840000   0.310000  16.150000 ( 16.235338)
 <a name="command"></a>
 <h2 class="section1">Command Reference</h2>
 <a name="command-usage"></a>
-<h3 class="section2">Usage</span></h3>
+<h3 class="section2">Usage</h3>
 <p>erubis [..options..] [<em>file</em> ...]
 </p>
 <br>
 
 
 <a name="command-options"></a>
-<h3 class="section2">Options</span></h3>
+<h3 class="section2">Options</h3>
   <dl class="dl3" compact>
   <dt class="dt3"><b>
 -h, --help    </b></dt>
@@ -3532,7 +3532,7 @@ Erubis::StdoutEruby            15.840000   0.310000  16.150000 ( 16.235338)
 
 
 <a name="command-props"></a>
-<h3 class="section2">Properties</span></h3>
+<h3 class="section2">Properties</h3>
 <p>Some Eruby classes can take optional properties to change it's compile option.
 For example, property '--indent="  "' may change indentation of compiled source code.
 Try 'erubis -h' for details.

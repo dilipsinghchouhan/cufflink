@@ -112,7 +112,7 @@
 # In HTML output headers have an id matching their name.  The above example's
 # HTML is:
 #
-#   <h3 id="label-Headers">Headers</span></h3>
+#   <h3 id="label-Headers">Headers</h3>
 #
 # If a heading is inside a method body the id will be prefixed with the
 # method's id.  If the above header where in the documentation for a method
@@ -130,7 +130,7 @@
 #
 # The header's id would be:
 #
-#   <h1 id="method-i-do_fun_things-label-Example">Example</span></h3>
+#   <h1 id="method-i-do_fun_things-label-Example">Example</h3>
 #
 # The label can be linked-to using <tt>SomeClass@Headers</tt>.  See
 # {Links}[RDoc::Markup@Links] for further details.

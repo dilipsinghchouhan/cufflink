@@ -52,6 +52,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Sign Up Successful!"
+      log_in_user!(@user)
       redirect_to root_url
     else
       flash[:errors] = @user.errors.full_messages

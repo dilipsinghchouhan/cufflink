@@ -1,4 +1,4 @@
-<h3><span>List</span></h3>
+<h3>List</h3>
 <% if !@list || @list.empty? %>
 <p>not found.</p>
 <% else %>

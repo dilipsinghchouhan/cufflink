@@ -2,10 +2,20 @@
 
 <% on_my_profile = (status.user == current_user) %>
 
-<li class="status">
-  <% if local_assigns.keys.include?(:author) %>
-    <div class="author"><%= author %> wrote:</div>
-  <% end %>
+<li class="status pod half bottom-border
+	<%= " first" if index%2 == 1 %>">
+	
+	<div class="status-top group">
+	
+	  <% if local_assigns.keys.include?(:author) %>
+	    <span class="author">
+			<%= link_to author, user_url(status.user) %>
+		</span>
+	  <% end %>
+  
+	  <span class="posted-at"><%= time_ago(status) %></span>
+  
+	</div>
 
   <% if status.pic_file_size %>
     <div class="status-img">
@@ -14,7 +24,7 @@
   <% end %>
 
   <div class="status-body"><%= status.body %></div>
-  <div class="posted-at"><%= time_ago(status) %></div>
+  
 
     <div class="likes">
       <%= render partial: "responses/like-count", locals: {

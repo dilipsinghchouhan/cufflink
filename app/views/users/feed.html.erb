@@ -1,9 +1,13 @@
-<h1>Activity Feed</h1>
+<div class="pod half first">
+	<h1 class="bg white left">
+		Activity Feed
+	</h1>
+</div>
 
 <ul>
-  <% @statuses.each do |status| %>
+  <% @statuses.each_with_index do |status, i| %>
     <%= render partial: "statuses/show", locals: {
-      status: status, author: @data[status].name } %>
+      status: status, author: @data[status].name, index: i } %>
   <% end %>
 </ul>
 

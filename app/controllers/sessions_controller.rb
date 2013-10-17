@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       log_in_user!(@user)
       redirect_to root_url
     else
-      flash[:errors] = "Invalid credentials."
+      flash[:errors] = ["Invalid credentials."]
       @user = User.new(email: params[:user][:email])
       render :new
     end

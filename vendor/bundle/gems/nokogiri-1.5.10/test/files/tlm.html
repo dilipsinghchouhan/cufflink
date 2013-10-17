@@ -643,7 +643,7 @@ a history.</p>
 	<div class="postentry">
 		<p>I thought I would share the part of my <a href="http://twitterbrite.com/" onclick="javascript:urchinTracker ('/outbound/article/twitterbrite.com');">twitterbrite</a> scripts that uploads videos to <a href="http://youtube.com/" onclick="javascript:urchinTracker ('/outbound/article/youtube.com');">Youtube</a>.  Its about 30 lines long, and took me an hour or so to write.  Most of my time was spent figuring out form fields to fill out rather than writing code though....</p>
 <p>I've broken the script down to three parts: logging in, setting the video attributes, and uploading the video file.</p>
-<h3><span>Step 1: Logging In</span></h3>
+<h3>Step 1: Logging In</h3>
 <p>The first step is pretty simple.  Just instantiate a new mechanize object, fetch youtube.com, set your login credentials, and submit!</p>
 <div class="codesnip-container" >
 <div class="codesnip" style="font-family: monospace;">agent = WWW::Mechanize.<span class="me1">new</span> <span class="br0">&#123;</span> |a|<br />
@@ -656,7 +656,7 @@ page.<span class="me1">form</span><span class="br0">&#40;</span>'loginForm'<span
 &nbsp; f.<span class="me1">password</span> = 'password'<br />
 <span class="br0">&#125;</span>.<span class="me1">submit</span></div>
 </div>
-<h3><span>Step 2: Setting video attributes</span></h3>
+<h3>Step 2: Setting video attributes</h3>
 <p>This is probably the most difficult step.  Now that the agent is logged in, we have to fetch the upload page and fill out the video attributes form.  You have to set the title, description, category, and keywords for your video.  The you have to tell the agent to click a special button.</p>
 <div class="codesnip-container" >
 <div class="codesnip" style="font-family: monospace;"><span class="co1"># Set the video attributes</span><br />
@@ -669,7 +669,7 @@ form.<span class="me1">field_myvideo_keywords</span> = 'my tag'<br />
 page = form.<span class="me1">submit</span><span class="br0">&#40;</span>form.<span class="me1">buttons</span>.<span class="me1">name</span><span class="br0">&#40;</span>'action_upload'<span class="br0">&#41;</span>.<span class="me1">first</span><span class="br0">&#41;</span></div>
 </div>
 <p>The number "28" is just the value from the category drop down list.  You can iterate over the select options using mechanize, but I leave that as an exercise to the reader.</p>
-<h3><span>Step 3: Upload the video file</span></h3>
+<h3>Step 3: Upload the video file</h3>
 <p>My script expects that the video file name will be supplied on the command line, so ARGV[0] should point to the file you want to upload.  In this step, you simply set the video file name, then submit the form.</p>
 <div class="codesnip-container" >
 <div class="codesnip" style="font-family: monospace;"><span class="co1"># Upload the video</span><br />
