@@ -2,13 +2,16 @@
   <h1 id="feed">Activity Feed</h1>
 </div>
 
-<ul>
-  <% @statuses.each_with_index do |status, i| %>
-    <% klass = (i % 2 == 0) ? "half first bottom-border" : "half bottom-border" %>
+<ul id="col-1" class="pod half first"></ul>
+<ul id="col-2" class="pod half"></ul>
 
-    <%= render partial: "statuses/show", locals: {
-      status: status, author: @data[status].name, klass: klass } %>
+<ul id="outer">
+  <% @statuses.each do |status| %>
+    <%= render partial: "statuses/show", locals: { status: status,
+      author: @data[status].name, klass: "" } %>
   <% end %>
 </ul>
 
 <%= render partial: "statuses/js" %>
+
+<%= render partial: "statuses/organize-js" %>

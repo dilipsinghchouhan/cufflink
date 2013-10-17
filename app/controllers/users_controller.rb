@@ -82,9 +82,22 @@ class UsersController < ApplicationController
     @user = user_from_params
 
     if @user.update_attributes(params[:user])
-      render json: @user
+      respond_to do |format|
+        format.json { render json: @user }
+        format.html {
+          flash[:notice] = "Profile updated successfully!"
+          redirect_to :back
+        }
+      end
     else
-      render json: @user.errors.full_messages, status: 422
+      respond_to do |format|
+        format.json { render json: @user.errors.full_messages, status: 422 }
+        format.html {
+          flash[:errors] = @user.errors.full_messages
+          redirect_to :back
+        }
+      end
+
     end
   end
 

@@ -33,7 +33,11 @@
 
     <% end %>
 
-  <ul <%= raw('class="edit"') if edit %>>
+
+
+  <ul
+  <%= raw('class="edit"') if edit %>
+  <%= raw('id="outer"') if type == "status" %>>
 
     <% if position %>
       <% to_send = "positions" %>
@@ -47,8 +51,9 @@
       .order("created_at DESC")
       .each_with_index do |object, i| %>
 
-        <% klass = edit ? "two-thirds" : "half" %>
+        <% klass = edit ? "pod two-thirds" : "pod half" %>
         <% klass += " first" if i % 2 == 0 && !edit %>
+        <% klass = "" if type == "status" && !edit %>
 
         <% if edit && type != "status" %>
           <%= render partial: "#{type.pluralize}/show-and-edit", locals: {
@@ -60,7 +65,15 @@
     <% end %>
   </ul>
 
+  <% if type == "status" && !edit %>
+    <ul id="col-1" class="pod half first group"></ul>
+    <ul id="col-2" class="pod half group"></ul>
+    <%= render partial: "statuses/organize-js" %>
+  <% end %>
+
+
 </div>
+
 
 
 

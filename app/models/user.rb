@@ -135,6 +135,8 @@ class User < ActiveRecord::Base
       s2.created_at <=> s1.created_at
     end
 
+    statuses_by_time
+
     [data, statuses_by_time]
 
     #friends updates

@@ -144,11 +144,8 @@ section#main.alert {
   padding-top: 129px;
 }
 
-section#main a {
+a {
   color: #333;
-/*  background: #fff;
-  padding: 3px;
-  border-radius: 4px;*/
 }
 
 section#main a:hover {
@@ -430,6 +427,7 @@ ul > li.nest > ul {
   padding: 0 10px;
   font-size: 16px;
   width: 250px;
+  z-index:3;
 }
 
 ul > li.nest:hover > ul {
@@ -461,15 +459,8 @@ ul > li.nest > ul > li > a {
   color: #fff;
 }
 
-/*ul > li.nest > ul > li > a > i {
-  color: #fff;
-  margin-left: 2px;
-  position: relative;
-  bottom: 1px;;
-}*/
-
 ul > li.nest > ul > li > a:hover {
-  color: #333;
+  color: #feeb1e;
 }
 
 /* Specific to Each Location */

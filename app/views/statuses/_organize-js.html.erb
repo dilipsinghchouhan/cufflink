@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  var $ul = $("#outer");
+  var $updates = $("#outer > li");
+
+  var $col1 = $("#col-1")
+  var $col2 = $("#col-2")
+
+
+  // var addUpdate = function(update) {
+  //   var col1Height = $col1[0].clientHeight;
+  //   var col2Height = $col2[0].clientHeight;
+  //
+  //   console.log(col1Height);
+  //
+  //   var $col = ((col1Height <= col2Height) ? $col1 : $col2 );
+  //
+  //   $col.append(update);
+  //
+  //   var $nextUpdate = $(update).next()
+  //
+  //   if ($nextUpdate) addUpdate($nextUpdate);
+  // }
+  //
+  // addUpdate($updates.first());
+
+  $updates.each( function(i, update) {
+
+    var $col1 = $("#col-1")
+    var $col2 = $("#col-2")
+
+    var col1Height = $col1[0].clientHeight
+    var col2Height = $col2[0].clientHeight
+
+    console.log(col1Height)
+
+    var $col = ((col1Height <= col2Height) ? $col1 : $col2 );
+
+    $col.append(update);
+
+  });
+
+  $ul.remove();
+
+</script>

@@ -26,7 +26,7 @@
 
   <h4>My Profile Picture</h4>
 
-  <div class="pod half first">
+  <div class="pod two-thirds first">
     <h5>Update Photo</h5>
 
     <%= form_for current_user do |f| %>
@@ -35,8 +35,8 @@
     <% end %>
   </div>
 
-  <div class="pod half">
-    <div class="bg gray">
+  <div class="pod third">
+    <div class="bg white centered">
       <h5>Current Photo</h5>
 
       <%= image_tag current_user.pic.url(:big) %>
