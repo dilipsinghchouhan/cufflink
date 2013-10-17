@@ -107,6 +107,18 @@ class UsersController < ApplicationController
     render :feed
   end
 
+  def destroy
+    @user = user_from_params
+
+    @user.destroy
+
+    if request.xhr?
+      render json: @user
+    else
+      redirect_to settings_url
+    end
+  end
+
   private
 
   def user_from_params

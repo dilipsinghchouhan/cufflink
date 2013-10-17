@@ -1,0 +1,25 @@
+<h4>Profile Picture</h4>
+
+<div class="pod two-thirds first">
+  <h5>Update Photo</h5>
+
+  <%= form_for object do |f| %>
+    <input name="<%= type %>[pic]" type="hidden" value="">
+    <%= fancy_button("remove", x, "right", "remove-img") %>
+  <% end %>
+
+  <%= form_for object do |f| %>
+    <%= f.file_field :pic %>
+    <%= fancy_button("update", plus, "right") %>
+  <% end %>
+
+
+</div>
+
+<div class="pod third">
+  <div class="bg white centered">
+    <h5>Current Photo</h5>
+
+    <%= image_tag object.pic.url(:big) %>
+  </div>
+</div>

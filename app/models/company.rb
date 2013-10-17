@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   attr_accessible :owner, :name, :industry, :address1, :address2, :city,
-    :state, :zip, :summary, :null
+    :state, :zip, :summary, :null, :pic
 
     #do we need :owner up there?
 
@@ -25,11 +25,13 @@ class Company < ActiveRecord::Base
       "Other"
     ] }
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
+
   has_many :members, through: :memberships, source: :member
 
-  has_many :statuses
-  has_many :contacts
+  has_many :statuses, dependent: :destroy
+  has_many :contacts, dependent: :destroy
+
   has_many :sent_messages, class_name: "Message"
 
   has_attached_file :pic, styles: {

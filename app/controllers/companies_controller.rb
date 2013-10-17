@@ -39,6 +39,18 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def destroy
+    @company = company_from_params
+
+    @company.destroy
+
+    if request.xhr?
+      render json: @company
+    else
+      redirect_to settings_url
+    end
+  end
+
   private
 
   def company_from_params

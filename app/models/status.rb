@@ -8,7 +8,7 @@ class Status < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
 
-  has_many :responses
+  has_many :responses, dependent: :destroy
 
   has_attached_file :pic, :styles => {
           :big => "610x610>",

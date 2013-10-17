@@ -45,19 +45,23 @@ class User < ActiveRecord::Base
   has_many :memberships, foreign_key: :member_id
   has_many :companies, through: :memberships, source: :company
 
-  has_many :statuses
-  has_many :responses
-  has_many :contacts
+  has_many :statuses, dependent: :destroy
+  has_many :responses, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 
-  has_many :deliveries
+  has_many :deliveries, dependent: :destroy
+
   has_many :sent_messages, class_name: "Message"
   has_many :received_messages, through: :deliveries, source: :message
-  has_many :notifications
 
-  has_attached_file :pic, styles: {
-    big: "280x280>",
-    thumb: "100x100>"
-  }, default_url: "/assets/blue-myself.png"
+  has_many :notifications, dependent: :destroy
+
+  has_attached_file :pic,
+    styles: {
+      big: "280x280>",
+      thumb: "100x100>"
+    },
+    default_url: "/assets/blue-myself.png"
 
   def self.gen_random_token
     SecureRandom::urlsafe_base64
@@ -234,7 +238,7 @@ class User < ActiveRecord::Base
   end
 
   def valid_email
-    unless /\A[a-zA-Z][\w\.]*@\w+\.\w+\z/.match(email)
+    unless /\A[a-zA-Z\+][\w\.\+]*@\w+\.\w+\z/.match(email)
       errors.add(:email, "Please enter a valid email")
     end
   end

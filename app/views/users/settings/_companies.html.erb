@@ -1,0 +1,6 @@
+<% current_user.managed_companies.each do |company| %>
+
+    <%= render partial: "users/settings/main", locals: { type: "company",
+      object: company, id: "profile-company-#{company.id}" } %>
+
+<% end %>

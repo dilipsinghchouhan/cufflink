@@ -1,0 +1,12 @@
+<div id="<%= id %>" class="profile-box">
+  <h3><span>
+    <%= type == "user" ? type.upcase : object.name %> Settings
+  </span></h3>
+
+  <%= render partial: "users/settings/picture",
+    locals: { type: type, object: object } %>
+
+  <%= render partial: "users/settings/delete",
+    locals: { type: type, object: object } %>
+
+</div>

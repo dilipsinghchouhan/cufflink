@@ -4,7 +4,8 @@ class Message < ActiveRecord::Base
   validates :subject, :body, presence: true, length: { minimum: 5 }
   validate :user_id_or_company_id
 
-  has_many :deliveries
+  has_many :deliveries, dependent: :destroy
+
   has_many :recipients, through: :deliveries, source: :user
   belongs_to :user
   belongs_to :company

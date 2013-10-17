@@ -7,9 +7,11 @@ Cufflink::Application.routes.draw do
   get "friendships/approve" => "friendships#approve"
   get "friendships/deny" => "friendships#deny"
 
+  get "users/feed" => "users#feed"
+
   resources :notifications, only: [:destroy]
 
-  resources :users, only: [:new, :create, :show, :update, :feed, :index] do
+  resources :users do
     resources :contacts, only: [:create, :new]
     resources :statuses, only: [:create]
     resources :friendships, only: [:new, :create, :destroy]
@@ -22,7 +24,7 @@ Cufflink::Application.routes.draw do
 
   resources :experiences, only: [:update, :destroy, :create, :index, :new]
 
-  resources :companies, only: [:index, :show, :new, :create, :update] do
+  resources :companies do
     resources :contacts, only: [:create, :new]
     resources :memberships, only: [:create, :destroy]
     resources :statuses, only: [:create]

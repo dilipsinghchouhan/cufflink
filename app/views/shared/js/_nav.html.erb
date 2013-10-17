@@ -15,6 +15,10 @@ $(document).ready( function(root) {
     $(".profile-box").hide();
     $("#profile-" + target).show();
 
+    if (target.slice(0,7) == "company") {
+      $clickedLi = $clickedLi.parent().parent();
+    }
+
     $allLis.removeClass("active");
     $clickedLi.addClass("active");
 

@@ -1,8 +1,51 @@
 include ActionView::Helpers::DateHelper
 
 module ApplicationHelper
+  #display
   def time_ago(obj)
     time_ago_in_words(obj.created_at) + " ago"
+  end
+
+  def states
+    ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+      "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+      "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+      "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+      "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+  end
+
+  def plus
+    '<i class="icon-plus editing"></i>'.html_safe
+  end
+
+  def x
+    '<i class="icon-remove editing"></i>'.html_safe
+  end
+
+  def fancy_button(title, symbol, klass = nil, id = nil)
+    html = '<button type="submit" class="buttony-link'
+
+    html += ' ' + klass if klass
+    html += '"'
+
+    html += ' id="' + id + '"' if id
+
+    html += '>' + symbol + " " + title + '</button>'
+
+    html.html_safe
+  end
+
+  #editing/updating
+  def clean_params_hash(params)
+    {}.tap do |new_params|
+      params.each do |key, value|
+        if value == ""
+          new_params[key] = nil
+        else
+          new_params[key] = value
+        end
+      end
+    end
   end
 
   def industry_select(model_name, selected_industry, field_name = "industry")
@@ -63,34 +106,7 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def states
-    ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
-      "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
-      "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
-      "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
-      "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
-  end
-
-  def plus
-    '<i class="icon-plus editing"></i>'.html_safe
-  end
-
-  def x
-    '<i class="icon-remove editing"></i>'.html_safe
-  end
-
-  def clean_params_hash(params)
-    {}.tap do |new_params|
-      params.each do |key, value|
-        if value == ""
-          new_params[key] = nil
-        else
-          new_params[key] = value
-        end
-      end
-    end
-  end
-
+  #displayig profiles
   def has_address_info?(object)
     if object.is_a?(Company)
       object.address1 || object.address1 || object.city || object.state ||

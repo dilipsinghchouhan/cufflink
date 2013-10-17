@@ -1,8 +1,7 @@
 <h1>New Message</h1>
 
-<%= form_tag(messages_url, class: "modal-form", id: "messsage",
+<%= form_tag(messages_url, class: "modal-form", remote: true, id: "messsage",
   multipart: true) do %>
-          <!-- , remote: true -->
 
 <% if reply_recipients.empty? %>
   <%= render partial: "shared/autocomplete", locals: { url: users_url, id: "1",

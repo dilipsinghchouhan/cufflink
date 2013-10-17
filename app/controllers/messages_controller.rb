@@ -84,8 +84,12 @@ class MessagesController < ApplicationController
 
       render :new
     else
-      flash[:notice] = "Message sent!"
-      redirect_to user_messages_url(current_user)
+      if request.xhr?
+        render json: @message
+      else
+        flash[:notice] = "Message sent!"
+        redirect_to user_messages_url(current_user)
+      end
     end
   end
 

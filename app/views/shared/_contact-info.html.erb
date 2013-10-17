@@ -28,13 +28,10 @@
       <%= "(#{contact.name})" if contact.name %>
 
       <% if edit %>
-      <!-- <div class="delete" id="contact">
-        <%= link_to [raw(x)], contact_url(contact), method: :delete,
-          remote: true, class: "contact-link delete-contact" %>
-      </div> -->
 
         <%= link_to x + " delete", contact_url(contact), method: :delete,
           class: "buttony-link delete", id: "contact", remote: true %>
+
       <% end %>
     </li>
   <% end %>

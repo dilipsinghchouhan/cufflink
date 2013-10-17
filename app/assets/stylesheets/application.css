@@ -44,7 +44,7 @@ h1#feed {
 h3 {
   background: #fff;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 h3 > span {
@@ -278,7 +278,7 @@ ul.nav > li {
   margin-left: 10px;
 }
 
-ul.nav > li.active > a {
+ul.nav > li.active {
   background: #FEEB1E;
   border-radius: 4px;
   color: #333;
@@ -291,7 +291,7 @@ ul.nav > li > a {
   color: #333;
 }
 
-ul.nav > li > a:hover {
+ul.nav > li:hover {
 	background: #FEEB1E;
 	border-radius: 4px;
 }
@@ -827,4 +827,10 @@ h1#perks {
 
 ul#message-nav {
   float: right;
+}
+
+/* Settings */
+
+button#remove-img {
+  margin-left: 10px;
 }

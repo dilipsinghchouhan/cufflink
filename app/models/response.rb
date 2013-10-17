@@ -5,7 +5,7 @@ class Response < ActiveRecord::Base
   belongs_to :user
   belongs_to :status
 
-  has_many :notifications, as: :notifiable
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   def like_is_unique
     return if body

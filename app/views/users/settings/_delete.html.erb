@@ -1,0 +1,12 @@
+<h4>Delete</h4>
+
+<div class="pod first">
+  <h5>Delete <%= object.name %></h5>
+
+  <% link = (type == "user") ? user_url(object) : company_url(object) %>
+
+  <%= link_to x + " delete", link, method: :delete,
+    class: "buttony-link delete", id: type, remote: true %>
+
+</div>
+
