@@ -10,8 +10,8 @@ class StatusesController < ApplicationController
     @status.pic = params[:pic] if params[:pic]
 
     if @status.save & request.xhr?
-      p "I SAVED TH STATUS"
-      render partial: "show", locals: { object: @status, klass: "two-thirds" }
+      render partial: "show", locals:
+      { object: @status, klass: "two-thirds pod first" }
     elsif @status.errors.full_messages.empty?
       flash[:notice] = "Status saved!"
       redirect_to :back

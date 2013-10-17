@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
 
   # nested routes
   def index
-    order = get_order(params[:order])
+    @order = params[:order] ? params[:order][-3..-1] : ""
+    sort_order = get_order(params[:order])
 
     if params[:sent]
       @messages = current_user.sent_messages
@@ -13,7 +14,7 @@ class MessagesController < ApplicationController
       @type = "Incoming"
     end
 
-    @messages = @messages.order(order).includes(:user)
+    @messages = @messages.order(sort_order).includes(:user)
 
     render :index
   end

@@ -14,7 +14,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900|Pacifico);
 
-h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, checkbox, body {
+h1, h2, h3, h4, h5, h6, div, p, ul, li, div, button, form, label, input, textarea, input[type="checkbox"], body, table {
   margin: 0;
   padding: 0;
   border: 0;
@@ -95,10 +95,6 @@ button {
   font-family: 'Lato', arial, sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
-
 ul {
   list-style: none;
 }
@@ -154,7 +150,13 @@ section#main.alert {
 }
 
 a {
+  color: #666;
+  text-decoration: underline;
+}
+
+a:hover {
   color: #333;
+  text-decoration: none;
 }
 
 section#main a:hover {
@@ -348,12 +350,17 @@ i.icon-remove.editing {
   display: none;
 }
 
-.current-value, section#main a.buttony-link, button.buttony-link {
+a.buttony-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.current-value, a.buttony-link, button.buttony-link {
   background: #feeb1e;
   padding: 2px 5px;
   -webkit-transition: background .3s;
 }
-.current-value:hover, section#main a.buttony-link:hover, button.buttony-link:hover {
+.current-value:hover, a.buttony-link:hover, button.buttony-link:hover {
   cursor: hand; cursor: pointer;
   background: #666;
 }
@@ -362,14 +369,13 @@ span.current-value {
 
 }
 
-section#main a.buttony-link {
+a.buttony-link {
   border-radius: 0;
   font-size: 16px;
   font-weight: normal;
-  float: right;
 }
 
-section#main a.buttony-link.experience-link {
+a.buttony-link.experience-link {
   float: none;
 }
 
@@ -580,7 +586,7 @@ ul.nav > li.nest > ul {
 }
 
 .fourth {
-  width: 227.5px;
+  width: 222px;
 }
 
 .two-thirds {
@@ -791,6 +797,17 @@ section#main ul.comment-list > li a {
 
 /* Sign Up/In */
 
+#sign-up-or-in-container {
+  position: absolute;
+  top: 50%;
+  margin-top: -135px;
+  text-align: center;
+}
+
+#sign-up-or-in {
+  text-align: left;
+}
+
 #sign-up-or-in > div > h2 {
   margin-bottom: 10px;
   text-align: center;
@@ -829,8 +846,49 @@ ul#message-nav {
   float: right;
 }
 
+table#messages-list tr {
+  background: #fff;
+}
+
+table#messages-list tr > .pod {
+  vertical-align: middle;
+  height: 100%;
+}
+
+table#messages-list tr > .pod > div.bg {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+table#messages-list tr:nth-child(even) {
+  background: #eee;
+}
+
+.company-attribution {
+  font-size: 14px;
+}
+
 /* Settings */
 
 button#remove-img {
   margin-left: 10px;
+}
+
+/* VIP */
+
+button#start.vip {
+  background: #feeb1e;
+  font-size: 20px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 5px solid #000;
+  box-shadow: 2px 2px 9px #999;
+}
+
+button#start.vip > h2 {
+  display: inline;
+  font-size: 24px;
+  padding-left: 5px;
+  }
 }

@@ -22,7 +22,10 @@ $(document).ready( function(root) {
     $allLis.removeClass("active");
     $clickedLi.addClass("active");
 
-    if (target == "status") OuterLib.fancyBoxes();
+    if (target == "status" &&
+      $clickedLi.attr("data-my-profile") == "false") {
+        OuterLib.fancyBoxes();
+      }
   });
 });
 

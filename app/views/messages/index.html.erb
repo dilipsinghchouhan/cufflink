@@ -1,50 +1,101 @@
-<h1><%= @type %> Messages</h1>
+<div id="profile-top" class="group">
+  <h1 class="left"><%= @type %> Messages</h1>
 
-<ul id="message-nav" class="nav">
+  <ul id="message-nav" class="nav">
 
-  <li><%= link_to "Oldest First", "?order=created_at-ASC" %></li>
-  <li><%= link_to "Newest First", "?order=created_at-DESC" %></li>
+    <% link_end = (@type == "Sent") ? "&sent=true" : "" %>
 
-</ul>
-
-<ul id="messages-list">
-  <% @messages.each do |message| %>
-    <li class="group">
-      <div class="message-subject pod half first">
-
-        <% delivery = message.get_delivery(current_user) %>
-
-        <% if delivery && delivery.unread? %>
-          <% klass = "bold" %>
-        <% else %>
-          <% klass = "regular" %>
-        <% end %>
-
-        <%= link_to message.subject, message_url(message), class: klass  %>
-
-        <% if message.company_id && message.sent_by?(current_user) %>
-          <div class="company-attribution">
-            (Sent as <%= author_link(message) %>)
-          </div>
-        <% end %>
-      </div>
-
-      <div class="message-author pod fourth">
-        <% if @type == "Incoming" %>
-          <%= author_link(message) %>
-        <% else %>
-          <%= message.recipients.map do |user|
-            link_to user.name, user_url(user)
-          end.join(", ").html_safe %>
-        <% end %>
-      </div>
-      <div class="message-posted-at pod fourth">
-        <%= time_ago(message) %>
-      </div>
-
+    <li <%= raw('class="active"') if @order == "ASC" %>>
+      <%= link_to "Oldest First", "?order=created_at-ASC#{link_end}" %>
     </li>
+
+    <li <%= raw('class="active"') unless @order == "ASC" %>>
+      <%= link_to "Newest First", "?order=created_at-DESC#{link_end}" %>
+    </li>
+
+  </ul>
+</div>
+
+<table id="messages-list" cellpadding="0" cellspacing="0" border="0">
+  <tr id="special" class="group">
+    <td class="pod half first">
+
+      <div class="bg">
+        <b>Subject</b>
+      </div>
+
+    </td>
+
+    <td class="pod fourth">
+
+      <div class="bg">
+        <b>Author</b>
+      </div>
+
+    </td>
+
+    <td class="pod fourth">
+
+      <div class="bg">
+        <b>Date</b>
+      </div>
+
+    </td>
+
+  </tr>
+  <% @messages.each do |message| %>
+
+    <tr class="group">
+
+      <td class="message-subject pod half first">
+
+        <div class="bg">
+
+          <% delivery = message.get_delivery(current_user) %>
+
+          <% if delivery && delivery.unread? %>
+            <% klass = "message-subject bold" %>
+          <% else %>
+            <% klass = "message-subject regular" %>
+          <% end %>
+
+          <%= link_to message.subject, message_url(message), class: klass  %>
+
+          <% if message.company_id && message.sent_by?(current_user) %>
+            <div class="company-attribution">
+              (Sent as <%= author_link(message) %>)
+            </div>
+          <% end %>
+
+        </div>
+
+      </td>
+
+
+      <td class="message-author pod fourth">
+
+        <div class="bg">
+
+          <% if @type == "Incoming" %>
+            <%= author_link(message) %>
+          <% else %>
+            <%= message.recipients.map do |user|
+              link_to user.name, user_url(user)
+            end.join(", ").html_safe %>
+          <% end %>
+
+        </div>
+      </td>
+
+      <td class="message-posted-at pod fourth">
+        <div class="bg">
+          <%= time_ago(message) %>
+        </div>
+      </td>
+
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <!--
   cute icons next to their naaaames!!

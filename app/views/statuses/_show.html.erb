@@ -31,12 +31,9 @@
 
     <%= render partial: "responses/comments-li", locals: { status: status } %>
 
-
-    <li class="new-comment">
-      <% unless on_my_profile %>
-        <%= render partial: "responses/new-comment",
-          locals: { status: status } %>
-      <% end %>
-    </li>
+    <% unless on_my_profile %>
+      <%= render partial: "responses/new-comment",
+        locals: { status: status } %>
+    <% end %>
   </ul>
 </li>

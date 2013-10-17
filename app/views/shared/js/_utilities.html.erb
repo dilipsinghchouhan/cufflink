@@ -145,7 +145,11 @@ $(document).ready( function(root){
   }
 
   var getDest = Lib.getDest = function(type) {
-    return $("#profile-" + type + " ul");
+    if (type == "status") {
+      return $("#profile-" + type + " ul#outer");
+    } else {
+      return $("#profile-" + type + " ul");
+    }
   }
 
   var afterCreation = Lib.afterCreation = function(
@@ -170,9 +174,7 @@ $(document).ready( function(root){
 
     Lib.getDest(type).prepend($html);
 
-    console.log(Lib.getDest(type))
-
-    console.log($html)
+    console.log(getDest(type))
 
 
     Lib.notify(type + " created successfully!", "green",

@@ -34,9 +34,7 @@ module FriendshipsHelper
       link_start = "<a href=\"#{new_user_friendship_url(user)}\""
       link_start += "data-remote=\"true\" class=\"gen-modal\">"
 
-      link_end = "Request Connection</a>"
-
-      #render partial: "friendships/new", locals: { user: user }
+      link_end = " Request Connection</a>"
 
     elsif status == :connected
       title = "Current Connection"

@@ -1,4 +1,5 @@
 <% unless status.comments.empty? %>
+
   <li class="comments">
     <ul class="comment-list">
       <% status.comments.order("created_at ASC").each do |comment| %>
@@ -6,4 +7,5 @@
       <% end %>
     </ul>
   </li>
+
 <% end %>

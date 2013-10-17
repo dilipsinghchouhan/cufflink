@@ -35,8 +35,7 @@
 
 
 
-  <ul
-  <%= raw('class="edit"') if edit %>
+  <ul class="pod<%= " edit" if edit %>"
   <%= raw('id="outer"') if type == "status" %>>
 
     <% if position %>
@@ -51,7 +50,7 @@
       .order("created_at DESC")
       .each_with_index do |object, i| %>
 
-        <% klass = edit ? "pod two-thirds" : "pod half" %>
+        <% klass = edit ? "pod two-thirds first" : "pod half" %>
         <% klass += " first" if i % 2 == 0 && !edit %>
         <% klass = "" if type == "status" && !edit %>
 

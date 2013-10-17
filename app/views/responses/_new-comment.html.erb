@@ -1,9 +1,11 @@
-<%= form_tag(status_responses_url(status), method: "post",
-  class: "comment-form group", remote: true) do %>
+<li class="new-comment">
+  <%= form_tag(status_responses_url(status), method: "post",
+    class: "comment-form group", remote: true) do %>
 
-  <div>
-    <textarea name="response[body]"></textarea>
-  </div>
+    <div>
+      <textarea name="response[body]"></textarea>
+    </div>
 
-  <%= fancy_button("comment", plus, "right") %>
-<% end %>
+    <%= fancy_button("comment", plus, "right") %>
+  <% end %>
+</li>

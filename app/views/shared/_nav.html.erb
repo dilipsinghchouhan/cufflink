@@ -12,7 +12,9 @@
   <% end %>
 
   <% unless object.statuses.empty? && !edit %>
-    <li data-target="status"><a href="#">Updates</a></li>
+    <li data-target="status" data-my-profile="<%= edit ? "true" : "false" %>">
+      <a href="#">Updates</a>
+    </li>
   <% end %>
 
   <% if type == "company" %>
