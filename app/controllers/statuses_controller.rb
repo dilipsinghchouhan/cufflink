@@ -2,7 +2,7 @@ class StatusesController < ApplicationController
   before_filter :require_logged_in_user
 
   def create
-    @status = Status.new(params[:status])
+    @status = Status.new(clean_params_hash(params[:status]))
 
     @status.user_id = params[:user_id] if params[:user_id]
     @status.company_id = params[:company_id] if params[:company_id]

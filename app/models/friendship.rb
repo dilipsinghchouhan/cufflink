@@ -1,6 +1,6 @@
 class Friendship < ActiveRecord::Base
   attr_accessible :friendee_id, :friender_id, :message,
-  :connection_type, :token, :status
+  :connection_type, :token
 
   validates :status, inclusion: { in: [0, 1, 2] }
   validates :friender_id, :friendee_id, :message, :connection_type,

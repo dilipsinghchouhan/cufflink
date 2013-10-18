@@ -12,6 +12,61 @@ michael = User.create(
   pic: File.new("public/images/seeds/michael.jpg")
 )
 
+#Stan
+stan = User.create(first_name: 'Stan',
+  last_name: 'Sitwell',
+  email: 'sarah.mogin+stan@gmail.com',
+  password: 'password',
+  tagline: "Alopecia Can't Keep Me Down",
+  summary: "Stan Sitwell (Ed Begley, Jr.) is a real estate tycoon who runs the company Sitwell Enterprises, which competes with the Bluth Company.\n\nHe has a disease that prevents him from growing hair on his body, alopecia universalis. Lucille incorrectly refers to him as an alpaca. Stan Sitwell begins dating Lucille Austero. His outlandish wigs and fake facial hair are a bit of an inside joke, since in real life Ed Begley Jr. is known for his mane of thick blonde hair. Because of his condition he can't actually drive the Corvette that Michael Bluth gave him in return of making a bid on his daughter Sally Sitwell at the Country Club auction because it is a convertible, which causes him to lose his wig and fake eyebrows. When Stan Sitwell fires Gob Bluth from his company, Gob gets revenge on Sitwell by stealing his fake dressy eyebrows. He runs his business in a very straight forward, professional manner in contrast to the lying and manipulation of the Bluths. He is also a generous philanthropist and contributes to numerous charities, contrary to the Bluths as well.",
+  city: "Orange County", state: "CA", industry: "Real Estate",
+  pic: File.new("public/images/seeds/stan.png")
+)
+
+#Lucille
+lucille = User.create(first_name: 'Lucille',
+  last_name: 'Bluth',
+  email: 'sarah.mogin+lucille@gmail.com',
+  password: 'password',
+  tagline: "*Wink*",
+  summary: "After breakfast, instead of working, I decided to walk down towards the common.  Under the railway bridge I found a group of soldiers--sappers, I think, men in small round caps, dirty red jackets unbuttoned, and showing their blue shirts, dark trousers, and boots coming to the calf.  They told me no one was allowed over the canal, and, looking along the road towards the bridge, I saw one of the Cardigan men standing sentinel there.  I talked with these soldiers for a time; I told them of my sight of the Martians on the previous evening.  None of them had seen the Martians, and they had but the vaguest ideas of them, so that they plied me with questions.  They said that they did not know who had authorised the movements of the troops; their idea was that a dispute had arisen at the Horse Guards. The ordinary sapper is a great deal better educated than the common soldier, and they discussed the peculiar conditions of the possible fight with some acuteness.  I described the Heat-Ray to them, and they began to argue among themselves.\n\n\"Crawl up under cover and rush 'em, say I,\" said one.\n\n\"Get aht!\" said another.  \"What's cover against this 'ere 'eat? Sticks to cook yer!  What we got to do is to go as near as the ground'll let us, and then drive a trench.\"\n\n\"Blow yer trenches!  You always want trenches; you ought to ha' been born a rabbit Snippy.\"",
+  city: "Orange County", state: "CA", industry: "Real Estate",
+  pic: File.new("public/images/seeds/lucille.png")
+)
+
+#Lindsay Funke
+lindsay = User.create(first_name: 'Lindsay',
+  last_name: 'Funke',
+  email: 'sarah.mogin+lindsay@gmail.com',
+  password: 'password',
+  tagline: "Shemale",
+  summary: "After breakfast, instead of working, I decided to walk down towards the common.  Under the railway bridge I found a group of soldiers--sappers, I think, men in small round caps, dirty red jackets unbuttoned, and showing their blue shirts, dark trousers, and boots coming to the calf.  They told me no one was allowed over the canal, and, looking along the road towards the bridge, I saw one of the Cardigan men standing sentinel there.  I talked with these soldiers for a time; I told them of my sight of the Martians on the previous evening.  None of them had seen the Martians, and they had but the vaguest ideas of them, so that they plied me with questions.  They said that they did not know who had authorised the movements of the troops; their idea was that a dispute had arisen at the Horse Guards. The ordinary sapper is a great deal better educated than the common soldier, and they discussed the peculiar conditions of the possible fight with some acuteness.  I described the Heat-Ray to them, and they began to argue among themselves.\n\n\"Crawl up under cover and rush 'em, say I,\" said one.\n\n\"Get aht!\" said another.  \"What's cover against this 'ere 'eat? Sticks to cook yer!  What we got to do is to go as near as the ground'll let us, and then drive a trench.\"\n\n\"Blow yer trenches!  You always want trenches; you ought to ha' been born a rabbit Snippy.\"",
+  city: "Orange County", state: "CA", industry: "Other",
+  pic: File.new("public/images/seeds/lindsay.png")
+)
+
+#Maeby Funke
+maeby = User.create(first_name: 'Maeby',
+  last_name: 'Funke',
+  email: 'sarah.mogin+maeby@gmail.com',
+  password: 'password',
+  tagline: "Marry Me!",
+  summary: "After breakfast, instead of working, I decided to walk down towards the common.  Under the railway bridge I found a group of soldiers--sappers, I think, men in small round caps, dirty red jackets unbuttoned, and showing their blue shirts, dark trousers, and boots coming to the calf.  They told me no one was allowed over the canal, and, looking along the road towards the bridge, I saw one of the Cardigan men standing sentinel there.  I talked with these soldiers for a time; I told them of my sight of the Martians on the previous evening.  None of them had seen the Martians, and they had but the vaguest ideas of them, so that they plied me with questions.  They said that they did not know who had authorised the movements of the troops; their idea was that a dispute had arisen at the Horse Guards. The ordinary sapper is a great deal better educated than the common soldier, and they discussed the peculiar conditions of the possible fight with some acuteness.  I described the Heat-Ray to them, and they began to argue among themselves.\n\n\"Crawl up under cover and rush 'em, say I,\" said one.\n\n\"Get aht!\" said another.  \"What's cover against this 'ere 'eat? Sticks to cook yer!  What we got to do is to go as near as the ground'll let us, and then drive a trench.\"\n\n\"Blow yer trenches!  You always want trenches; you ought to ha' been born a rabbit Snippy.\"",
+  city: "Orange County", state: "CA", industry: "Other",
+  pic: File.new("public/images/seeds/maeby.png")
+)
+
+#George Michael
+gm = User.create(first_name: 'George Michael',
+  last_name: 'Bluth',
+  email: 'sarah.mogin+george+michael@gmail.com',
+  password: 'password',
+  tagline: "Um....",
+  summary: "After breakfast, instead of working, I decided to walk down towards the common.  Under the railway bridge I found a group of soldiers--sappers, I think, men in small round caps, dirty red jackets unbuttoned, and showing their blue shirts, dark trousers, and boots coming to the calf.  They told me no one was allowed over the canal, and, looking along the road towards the bridge, I saw one of the Cardigan men standing sentinel there.  I talked with these soldiers for a time; I told them of my sight of the Martians on the previous evening.  None of them had seen the Martians, and they had but the vaguest ideas of them, so that they plied me with questions.  They said that they did not know who had authorised the movements of the troops; their idea was that a dispute had arisen at the Horse Guards. The ordinary sapper is a great deal better educated than the common soldier, and they discussed the peculiar conditions of the possible fight with some acuteness.  I described the Heat-Ray to them, and they began to argue among themselves.\n\n\"Crawl up under cover and rush 'em, say I,\" said one.\n\n\"Get aht!\" said another.  \"What's cover against this 'ere 'eat? Sticks to cook yer!  What we got to do is to go as near as the ground'll let us, and then drive a trench.\"\n\n\"Blow yer trenches!  You always want trenches; you ought to ha' been born a rabbit Snippy.\"",
+  city: "Orange County", state: "CA", industry: "Other",
+  pic: File.new("public/images/seeds/gm4.gif")
+)
+
 #The Bluth Company
 the_bluth_company = Company.create(
   name: "The Bluth Company",
@@ -37,10 +92,25 @@ the_banana_stand = Company.create(
   pic: File.new("public/images/seeds/banana-stand.png")
 )
 
+#The USO
+uso = Company.create(
+  name: "The USO",
+  industry: "Other",
+  state: "Vietnam",
+  summary: "\"And what became of them?\" asked Dorothy, who had been greatly interested in the story.\n\n\"Quelala being the first owner of the Golden Cap,\" replied the Monkey, \"he was the first to lay his wishes upon us.  As his bride could not bear the sight of us, he called us all to him in the forest after he had married her and ordered us always to keep where she could never again set eyes on a Winged Monkey, which we were glad to do, for we were all afraid of her.\n\n\"This was all we ever had to do until the Golden Cap fell into the hands of the Wicked Witch of the West, who made us enslave the Winkies, and afterward drive Oz himself out of the Land of the West.  Now the Golden Cap is yours, and three times you have the right to lay your wishes upon us.\"\n\nAs the Monkey King finished his story Dorothy looked down and saw the green, shining walls of the Emerald City before them.  She wondered at the rapid flight of the Monkeys, but was glad the journey was over. The strange creatures set the travelers down carefully before the gate of the City, the King bowed low to Dorothy, and then flew swiftly away, followed by all his band.",
+  pic: File.new("public/images/seeds/uso.png")
+)
+
 #Michael owns The Bluth Company
 the_bluth_company.memberships.create(
   member_id: michael.id,
   status: 2
+)
+
+#Lucille admins The Bluth Company
+the_bluth_company.memberships.create(
+  member_id: lucille.id,
+  status: 1
 )
 
 #Michael has The Bluth Company listed as his current position
@@ -71,6 +141,33 @@ michael_bs = michael.experiences.build(
 michael_bs.position = true
 michael_bs.save
 
+#Lucille has The Bluth Company listed as her current position
+lucille_bc = lucille.experiences.build(
+  name: "The Bluth Company",
+  city: "Orange County",
+  state: "CA",
+  start_date: "01 Jan 1980",
+  current: true,
+  string_1: "Board Member",
+  string_2: "Real Estate",
+  body: "The Bluth Company is a family business specializing in the development of McMansions in and around Orange County, CA. Once we were accused of light treason with Saddam Hussein, but it turned out that my father, George Bluth (Senior), was just a CIA patsy."
+)
+lucille_bc.position = true
+lucille_bc.save
+
+#Lucille has the USO listed as a prior position
+lucille_uso = lucille.experiences.build(
+  name: "The USO",
+  state: "Viewnam",
+  start_date: "01 Jan 1970",
+  start_date: "01 Jan 1971",
+  string_1: "Dancer",
+  string_2: "Other",
+  body: "Met a swell guy here named General Anderson!"
+)
+lucille_uso.position = true
+lucille_uso.save
+
 #Michael used to go to Balboa High School
 michael.experiences.create(
   name: "Balboa High School",
@@ -94,15 +191,46 @@ michael.experiences.create(
   body: "No time for musicals here!"
 )
 
-#Michael's statuses
-michael.statuses.create(
+#Lucille's statuses
+lucille.statuses.create(
   body: "Wow, this site is cool!",
   link: "http://www.cufflinkapp.com"
 )
 
+lucille.statuses.create(
+  body: "Buster and my ex, General Anderson.",
+  pic: File.new("public/images/seeds/gen-anderson.png")
+)
+
+ls1 = lucille.statuses.create(
+  body: "I don't understand the question, and I won't respond to it."
+)
+
+ls2 = lucille.statuses.create(
+  body: "You're my third least favorite child"
+)
+
+# #Michael likes this
+# rls1 = ls1.responses.build
+# rls1.user = michael
+# rls1.save
+#
+# #Michael commented on this
+# rls2 = ls2.responses.build
+# rls2.user = michael
+# rls2.body = "Would hate to be GOB right now!"
+# rls2.save
+
+#Michael's statuses
 michael.statuses.create(
-  body: "I can't believe I let GOB cut the Ribbon!",
-  pic: File.new("public/images/seeds/ribbon.jpg")
+  body: "Michael Bluth and family gather to discuss George Sr.'s upcoming trial. They've received a plea offer, but lawyer Barry Zuckerkorn hasn't read it yet. Lucille, speaking for George Sr., wants to accept the plea. Cindi Lightballoon, an undercover FBI agent, watched George Sr.'s \"Caged Wisdom\" series of self-help videos and fell in love with him. She tells George Sr. that she knows for a fact that he can beat the government's case against him. Michael takes the plea documents to a nearby bar to read.\n\n
+Meanwhile, Lindsay receives a letter from Maeby's school saying that her daughter is failing. Lindsay and Tobias hire George Michael to tutor Maeby. Later, Maeby shows George Michael a recent (failed) test and pays him to fill in the correct answers.\n\n
+Michael sits down to read the plea, but Gob suggests he have a one-night stand with a lawyer instead. As Michael reads the plea, a woman, Maggie Lizer, bumps into him. Michael introduces himself as \"Chareth Cutestory,\" maritime lawyer; he goes home with Maggie. The following morning, Maggie appears with coffee and he suddenly realizes that she is blind."
+)
+
+michael.statuses.create(
+  body: "Wow, this site is cool!",
+  link: "http://www.cufflinkapp.com"
 )
 
 michael.statuses.create(
@@ -110,19 +238,40 @@ michael.statuses.create(
   pic: File.new("public/images/seeds/shark.jpg")
 )
 
-michael.statuses.create(
+ms1 = michael.statuses.create(
   body: "This is why I sometimes pretend to be a maritime lawyer...",
   link: "https://www.youtube.com/watch?v=TdeSh3vLvYI"
 )
 
-michael.statuses.create(
-  body: "Michael Bluth and family gather to discuss George Sr.'s upcoming trial. They've received a plea offer, but lawyer Barry Zuckerkorn hasn't read it yet. Lucille, speaking for George Sr., wants to accept the plea. Cindi Lightballoon, an undercover FBI agent, watched George Sr.'s \"Caged Wisdom\" series of self-help videos and fell in love with him. She tells George Sr. that she knows for a fact that he can beat the government's case against him. Michael takes the plea documents to a nearby bar to read.\n\n
-Meanwhile, Lindsay receives a letter from Maeby's school saying that her daughter is failing. Lindsay and Tobias hire George Michael to tutor Maeby. Later, Maeby shows George Michael a recent (failed) test and pays him to fill in the correct answers.\n\n
-Michael sits down to read the plea, but Gob suggests he have a one-night stand with a lawyer instead. As Michael reads the plea, a woman, Maggie Lizer, bumps into him. Michael introduces himself as \"Chareth Cutestory,\" maritime lawyer; he goes home with Maggie. The following morning, Maggie appears with coffee and he suddenly realizes that she is blind."
+# #Stan likes this
+# rms1 = ms1.responses.build
+# rms1.user = stan
+# rms1.save
+
+# #Lucille commented on this
+# rms1 = ms1.responses.build
+# rms1.user = lucille
+# rms1.body = "You're a crook Captain Hook!"
+# rms1.save
+
+ms2 = michael.statuses.create(
+  body: "I can't believe I let GOB cut the Ribbon!",
+  pic: File.new("public/images/seeds/ribbon.jpg")
 )
 
+# #Stan commented on this
+# rms2 = ms2.responses.build
+# rms2.user = stan
+# rms2.body = "GOB can be pretty insistent..."
+# rms2.save
+
+# #Lucille likes this
+# rms2 = ms2.responses.build
+# rms2.user = lucille
+# rms2.save
+
 #The Bluth Company's statuses
-the_bluth_company.statuses.create(
+bs1 = the_bluth_company.statuses.create(
   body: "Have you been to our company website?",
   link: "http://thebluthcompany.tumblr.com"
 )
@@ -145,6 +294,12 @@ the_bluth_company.statuses.create(
 the_bluth_company.statuses.create(
   body: "Please return all of the whistles."
 )
+
+# #Lucille commented on this
+# rbs1 = bs1.responses.build
+# rbs1.user = lucille
+# rbs1.body = "What's with the whistles??"
+# rbs1.save
 
 #The Bluth Company's statuses on behalf of Michael
 s1 = Status.new(
@@ -216,17 +371,6 @@ the_bluth_company.contacts.create(
   value: "http://www.facebook.com/bluthcompanyblog"
 )
 
-#Stan
-stan = User.create(first_name: 'Stan',
-  last_name: 'Sitwell',
-  email: 'sarah.mogin+stan@gmail.com',
-  password: 'password',
-  tagline: "Alopecia Can't Keep Me Down",
-  summary: "Stan Sitwell (Ed Begley, Jr.) is a real estate tycoon who runs the company Sitwell Enterprises, which competes with the Bluth Company.\n\nHe has a disease that prevents him from growing hair on his body, alopecia universalis. Lucille incorrectly refers to him as an alpaca. Stan Sitwell begins dating Lucille Austero. His outlandish wigs and fake facial hair are a bit of an inside joke, since in real life Ed Begley Jr. is known for his mane of thick blonde hair. Because of his condition he can't actually drive the Corvette that Michael Bluth gave him in return of making a bid on his daughter Sally Sitwell at the Country Club auction because it is a convertible, which causes him to lose his wig and fake eyebrows. When Stan Sitwell fires Gob Bluth from his company, Gob gets revenge on Sitwell by stealing his fake dressy eyebrows. He runs his business in a very straight forward, professional manner in contrast to the lying and manipulation of the Bluths. He is also a generous philanthropist and contributes to numerous charities, contrary to the Bluths as well.",
-  city: "Orange County", state: "CA", industry: "Real Estate",
-  pic: File.new("public/images/seeds/stan.png")
-)
-
 #Sitwell Enterprises
 sitwell_enterprises = Company.create(
   name: "Sitwell Enterprises",
@@ -284,6 +428,20 @@ michael.experiences.create(
   string_2: "High School Diploma",
   body: "Editor in Chief of the Yearbook"
 )
+
+#GM's statuses
+gm.statuses.create(
+  pic: File.new("public/images/seeds/gm1.png")
+)
+
+gm.statuses.create(
+  pic: File.new("public/images/seeds/gm2.jpg")
+)
+
+gm.statuses.create(
+  pic: File.new("public/images/seeds/gm3.jpg")
+)
+
 
 #Stan's statuses
 stan.statuses.create(
@@ -402,3 +560,70 @@ sitwell_enterprises.contacts.create(
   contact_type: 2,
   value: "http://www.facebook.com/sitwellenterprises"
 )
+
+#Stan and Michael are friends
+f = Friendship.new(friendee_id: michael.id, friender_id: stan.id, message: "Hi Michael!", connection_type: "Other")
+f.status = 1
+f.save
+
+f = Friendship.new(friendee_id: michael.id, friender_id: lucille.id, message: "Hi Michael!", connection_type: "Other")
+f.status = 1
+f.save
+
+f = Friendship.new(friendee_id: michael.id, friender_id: lindsay.id, message: "Hi Michael!", connection_type: "Other")
+f.status = 1
+f.save
+
+f = Friendship.create(friendee_id: gm.id, friender_id: michael.id, message: "Hi Michael!", connection_type: "Other")
+
+f = Friendship.new(friendee_id: maeby.id, friender_id: michael.id, message: "Hi Michael!", connection_type: "Other")
+f.status = 2
+f.save
+
+#Messages
+
+#Michael sent Stan a message. He never read it.
+m1 = michael.sent_messages.create(
+  subject: "Hey Stan, it's Michael!",
+  body: "The conversation dropped.  Mr. Fogg had just woke up, and was looking out of the window.  Soon after Passepartout, without being heard by his master or Aouda, whispered to the detective, \"Would you really fight for him?\"\n\n\"I would do anything,\" replied Fix, in a tone which betrayed determined will, \"to get him back living to Europe!\"\n\nPassepartout felt something like a shudder shoot through his frame, but his confidence in his master remained unbroken.\n\nWas there any means of detaining Mr. Fogg in the car, to avoid a meeting between him and the colonel?  It ought not to be a difficult task, since that gentleman was naturally sedentary and little curious. The detective, at least, seemed to have found a way; for, after a few moments, he said to Mr. Fogg, \"These are long and slow hours, sir, that we are passing on the railway.\""
+)
+
+m1.deliveries.create(user_id: stan.id)
+
+#Stan sent Michael a message. He read it.
+m2 = stan.sent_messages.create(
+  subject: "Hey Michael, it's Stan!",
+  body: "The conversation dropped.  Mr. Fogg had just woke up, and was looking out of the window.  Soon after Passepartout, without being heard by his master or Aouda, whispered to the detective, \"Would you really fight for him?\"\n\n\"I would do anything,\" replied Fix, in a tone which betrayed determined will, \"to get him back living to Europe!\"\n\nPassepartout felt something like a shudder shoot through his frame, but his confidence in his master remained unbroken.\n\nWas there any means of detaining Mr. Fogg in the car, to avoid a meeting between him and the colonel?  It ought not to be a difficult task, since that gentleman was naturally sedentary and little curious. The detective, at least, seemed to have found a way; for, after a few moments, he said to Mr. Fogg, \"These are long and slow hours, sir, that we are passing on the railway.\""
+)
+
+dm2 = m2.deliveries.build(user_id: stan.id)
+dm2.unread = false
+dm2.save
+
+#More messages
+
+l1 = lucille.sent_messages.create(
+  subject: "Michael, this is a matter of L N D",
+  body: "Help! Michael!"
+)
+
+dl1 = l1.deliveries.build(user_id: michael.id)
+dl1.unread = false
+dl1.save
+
+l1.deliveries.create(user_id: lindsay.id)
+
+lind1 = lucille.sent_messages.create(
+  subject: "Michael, is there a war going on?",
+  body: "Help! Michael!"
+)
+
+lind1.deliveries.create(user_id: michael.id)
+
+
+m3 = michael.sent_messages.create(
+  subject: "Hey Maeby, it's Michael!",
+  body: "The conversation dropped.  Mr. Fogg had just woke up, and was looking out of the window.  Soon after Passepartout, without being heard by his master or Aouda, whispered to the detective, \"Would you really fight for him?\"\n\n\"I would do anything,\" replied Fix, in a tone which betrayed determined will, \"to get him back living to Europe!\"\n\nPassepartout felt something like a shudder shoot through his frame, but his confidence in his master remained unbroken.\n\nWas there any means of detaining Mr. Fogg in the car, to avoid a meeting between him and the colonel?  It ought not to be a difficult task, since that gentleman was naturally sedentary and little curious. The detective, at least, seemed to have found a way; for, after a few moments, he said to Mr. Fogg, \"These are long and slow hours, sir, that we are passing on the railway.\""
+)
+
+m3.deliveries.create(user_id: maeby.id)

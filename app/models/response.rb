@@ -7,6 +7,8 @@ class Response < ActiveRecord::Base
 
   has_many :notifications, as: :notifiable, dependent: :destroy
 
+  after_create :create_response_notification!
+
   def like_is_unique
     return if body
 
@@ -26,6 +28,10 @@ class Response < ActiveRecord::Base
 
   def self.comments
     Response.where("responses.body IS NOT NULL")
+  end
+
+  def create_response_notification!
+    self.notifications.create(user_id: self.status.user_id)
   end
 
 end

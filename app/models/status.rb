@@ -48,6 +48,10 @@ class Status < ActiveRecord::Base
     end
   end
 
+  def null=(field)
+    self.send("#{field}=", nil)
+  end
+
   private
 
   def user_id_or_company_id
@@ -60,10 +64,6 @@ class Status < ActiveRecord::Base
     unless body || link || pic_file_name
       errors.add(:body, "Must have body, link, or image")
     end
-  end
-
-  def null=(field)
-    self.send("#{field}=", nil)
   end
 
   def link_is_ok

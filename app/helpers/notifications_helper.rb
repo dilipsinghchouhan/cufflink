@@ -29,9 +29,9 @@ module NotificationsHelper
     friendship.notifications.create(user_id: friendship.friendee_id)
   end
 
-  def create_response_notification!(response)
-    response.notifications.create(user_id: response.status.user_id)
-  end
+  # def create_response_notification!(response)
+#     response.notifications.create(user_id: response.status.user_id)
+#   end
 
   def update_friendship_notications!(friendship)
     friendship.notifications.first.destroy

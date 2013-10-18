@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
     @response.body = params[:response][:body] if params[:response]
 
     if @response.save && request.xhr?
-      create_response_notification!(@response)
+      # create_response_notification!(@response)
 
       if @response.body
         render partial: "comment", locals: {comment: @response}
@@ -21,7 +21,7 @@ class ResponsesController < ApplicationController
     elsif request.xhr?
       render json: @response.errors.full_messages, status: 422
     elsif @response.errors.full_messages.empty?
-      create_response_notification!(@response)
+      # create_response_notification!(@response)
 
       flash[:notice] = "Saved successfully!"
       redirect_to :back
