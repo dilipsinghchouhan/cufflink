@@ -23,11 +23,11 @@ class Status < ActiveRecord::Base
     self.company_id
   end
 
-  def self.statuses_liked_by(current_user)
+  def self.status_ids_liked_by(current_user)
     Status.joins(:responses).where(
       "responses.body IS NULL AND responses.user_id = ?",
       current_user.id
-      )
+      ).pluck(:id)
   end
 
   def like_count

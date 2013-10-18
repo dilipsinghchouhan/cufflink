@@ -1,6 +1,6 @@
 class Experience < ActiveRecord::Base
   attr_accessible :name, :city, :state, :start_date, :end_date,
-    :current, :string_1, :string_2, :body, :owner_id, :null, :position
+    :current, :string_1, :string_2, :body, :null
 
   validates :state, inclusion: { in: %w(NY CA), allow_nil: true }
   validates :city, :string_1, :string_2, :body, length: { minimum: 1, allow_nil: true }

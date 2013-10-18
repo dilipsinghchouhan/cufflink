@@ -14,9 +14,15 @@
     <%= render partial: "shared/sign-up-or-in/perks" %>
   </div>
 
-  <button id="start" class="vip">
+  <% link = session_url + "?vip=true" %>
+
+  <div id="vip">
+    <%= button_to "Log in", link, method: :post, id: "start", class: "vip" %>
+  </div>
+
+  <!-- <button id="start" class="vip" href="<%= link %>" method="post" data-remote="true">
     <b>Employer?</b> Click here to log in as <h2>Michael Bluth</h2>
-  </button>
+  </button> -->
 
 </div>
 

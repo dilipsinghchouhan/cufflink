@@ -103,11 +103,13 @@ class User < ActiveRecord::Base
   end
 
   def positions
-    self.experiences.where("position IS TRUE")
+    self.experiences
+      .where("position IS TRUE")
   end
 
   def educations
-    self.experiences.where("position IS FALSE")
+    self.experiences
+      .where("position IS FALSE")
   end
 
   def likes

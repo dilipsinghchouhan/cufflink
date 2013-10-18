@@ -28,6 +28,14 @@ body {
   height: 100%;
 }
 
+p {
+  margin-bottom: 10px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
 h1, h2 {
   font-family: 'Pacifico', serif;
 }
@@ -146,7 +154,7 @@ section#main {
 }
 
 section#main.alert {
-  padding-top: 129px;
+  padding-top: 139px;
 }
 
 a {
@@ -259,12 +267,21 @@ header > nav > ul > li.no-caps > ul {
 /* General Lists */
 
 ul > li.form, ul.nav > li.form {
-  padding: 0;
+  margin-left: 5px;
 }
 
-ul > li > form {
-/*  float: left;
-  margin-left: 10px;*/
+ul > li > form > div > input[type="submit"] {
+background: transparent;
+/*margin-top: 1px;
+margin-left: 10px;
+border-radius: 4px;
+color: #eee;
+padding: 3px 4px 4px;*/
+}
+
+ul > li > form > div > input[type="submit"]:hover {
+  background: transparent;
+  color: #333;
 }
 
 /* Profile Nav */
@@ -302,6 +319,7 @@ ul.nav > li.button {
   background: #fff;
   border-radius: 4px;
   -webkit-transition: background .3s;
+  padding: 1px 4px 2px;
 }
 
 ul.nav > li.button:hover {
@@ -601,16 +619,6 @@ ul.nav > li.nest > ul {
   text-align: center;
 }
 
-/* Status */
-
-li.status {
-  margin-bottom: 40px;
-}
-
-li.status > form {
-  float: none;
-}
-
 /* Autocomplete */
 span.ui-helper-hidden-accessible {
   background: #feeb1e;
@@ -692,10 +700,38 @@ ul.regular > li:last-child {
   margin: 0;
 }
 
-/* Feed */
+/* Status */
 
-.status-top {
+li.status {
+  margin-bottom: 40px;
+}
+
+li.status > form {
+  float: none;
+}
+
+ul.status-info > li {
+  border-bottom: 1px solid #ccc;
+}
+
+ul.status-info > li:last-child {
+  border-bottom: 0;
+}
+
+ul.status-info > li.status-img {
+  margin-bottom: -4px;
+  text-align: center;
+  background: #eee;
+}
+
+ul.status-info > li.status-img > img {
+  max-width: 100%;
+  border-bottom: 0;
+}
+
+ul.status-info > li.status-top {
 	background: #feeb1e;
+  border-bottom: 0;
 }
 
 .status-author, .posted-at {
@@ -721,9 +757,18 @@ section#main .status-author > a {
 	padding: 2px 20px 2px;
 }
 
-.status-body {
+ul.status-info > li.status-body {
 	background: #fff;
 	padding: 20px;
+}
+
+ul.status-info > li.status-link {
+  background: #fff;
+  padding:5px 20px;
+}
+
+ul.status-info > li.status-link.border {
+  border-top: 1px solid #ccc;
 }
 
 ul.responses > li {
@@ -732,7 +777,7 @@ ul.responses > li {
 	padding: 0 20px;
 	background: #fff;
 	font-size: 14px;
-  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 ul.responses > li.likes {
@@ -748,6 +793,10 @@ ul.responses > li.comments, ul.responses > li.new-comment {
   padding: 10px 10px;
 }
 
+ul.responses > li.new-comment {
+  border-bottom: 0;
+}
+
 .comment-form textarea {
   border: 0;
   background: #eee;
@@ -760,7 +809,7 @@ ul.comment-list > li {
  padding: 5px 10px;
 }
 
-ul.comment-list > li:nth-child(odd) {
+ul.comment-list > li:nth-child(odd), ul.comment-list > li.odd {
   background: #eee;
 }
 
@@ -771,7 +820,7 @@ ul.comment-list > li > .comment-header {
   margin-bottom: 2px;
 }
 
-ul.comment-list > li:nth-child(even) > .comment-header {
+ul.comment-list > li:nth-child(even) > .comment-header, ul.comment-list > li.even > .comment-header {
   border-bottom: 1px solid #eee;
 }
 
@@ -800,7 +849,7 @@ section#main ul.comment-list > li a {
 #sign-up-or-in-container {
   position: absolute;
   top: 50%;
-  margin-top: -135px;
+  margin-top: -166px;
   text-align: center;
 }
 
@@ -868,6 +917,11 @@ table#messages-list tr:nth-child(even) {
   font-size: 14px;
 }
 
+.message-options > li {
+  float: left;
+  margin-right: 20px;
+}
+
 /* Settings */
 
 button#remove-img {
@@ -884,6 +938,7 @@ button#start.vip {
   border-radius: 8px;
   border: 5px solid #000;
   box-shadow: 2px 2px 9px #999;
+  margin-top: 20px;
 }
 
 button#start.vip > h2 {

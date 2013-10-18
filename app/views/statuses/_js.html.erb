@@ -15,13 +15,25 @@
       })
 
       .on("ajax:success", ".comment-form", function(event, data) {
+
         var $form = $(event.target);
-        var $commentList = $form.siblings(".comment-list");
-        var $html = data;
+        var $commentList = $form.parent().siblings(".comments").children("ul");
+        var html = data;
+
+        if ($commentList.length == 0) {
+          $form.parent().before("<li class=\"comments\"><ul></ul></li>");
+          $commentList = $form.parent().siblings(".comments").children("ul");
+        }
 
         $form[0].reset();
 
-        $commentList.append($html);
+        if ($commentList.length % 2 == 1) {
+          $(html).addClass("odd")
+        } else {
+          $(html).addClass("even")
+        }
+
+        $commentList.append(html);
 
         var message = "Comment added successfully!"
 

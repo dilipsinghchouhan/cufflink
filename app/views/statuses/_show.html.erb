@@ -4,36 +4,52 @@
 
 <li class="status <%= klass %>">
 
-	<div class="status-top group">
+  <ul class="status-info">
 
-	  <% if local_assigns.keys.include?(:author) %>
-	    <span class="status-author">
-			<%= link_to author, user_url(status.user) %>
-		  </span>
-	  <% end %>
+  	<li class="status-top group">
 
-	  <span class="posted-at"><%= time_ago(status) %></span>
+  	  <% if local_assigns.keys.include?(:author) %>
+  	    <span class="status-author">
+  			<%= link_to author, user_url(status.user) %>
+  		  </span>
+  	  <% end %>
 
-	</div>
+  	  <span class="posted-at"><%= time_ago(status) %></span>
 
-  <% if status.pic_file_size %>
-    <div class="status-img">
-      <%= image_tag status.pic.url(:big) %>
-    </div>
-  <% end %>
+  	</li>
 
-  <div class="status-body"><%= status.body %></div>
-
-  <ul class="responses">
-
-    <%= render partial: "responses/likes-li",
-      locals: { status: status, on_my_profile: on_my_profile } %>
-
-    <%= render partial: "responses/comments-li", locals: { status: status } %>
-
-    <% unless on_my_profile %>
-      <%= render partial: "responses/new-comment",
-        locals: { status: status } %>
+    <% if status.pic_file_size %>
+      <li class="status-img">
+        <%= image_tag status.pic.url(:big) %>
+      </li>
     <% end %>
+
+    <% if status.body %>
+      <li class="status-body">
+        <%= htmlize(status.body) %>
+      </li>
+    <% end %>
+
+    <% if status.link %>
+      <li class="status-link<%= " border" unless status.body %>">
+        <%= link_to status.link, status.link %>
+      </li>
+    <% end %>
+
+    <li>
+      <ul class="responses">
+
+        <%= render partial: "responses/likes-li",
+          locals: { status: status, on_my_profile: on_my_profile } %>
+
+        <%= render partial: "responses/comments-li",
+          locals: { status: status } %>
+
+        <%= render partial: "responses/new-comment",
+          locals: { status: status } %>
+
+      </ul>
+    </li>
+
   </ul>
 </li>

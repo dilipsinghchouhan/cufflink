@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_filter :require_logged_in_user, except: [:index, :show]
+  before_filter :require_logged_in_user
 
   def index
     @companies = Company.all
@@ -33,9 +33,21 @@ class CompaniesController < ApplicationController
     @company = company_from_params
 
     if @company.update_attributes(params[:company])
-      render json: @company
+      respond_to do |format|
+        format.json { render json: @company }
+        format.html {
+          flash[:notice] = "Profile updated successfully!"
+          redirect_to :back
+        }
+      end
     else
-      render json: @company.errors.full_messages, status: 422
+      respond_to do |format|
+        format.json { render json: @company.errors.full_messages, status: 422 }
+        format.html {
+          flash[:errors] = @company.errors.full_messages
+          redirect_to :back
+        }
+      end
     end
   end
 

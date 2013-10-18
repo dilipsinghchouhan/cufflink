@@ -1,9 +1,9 @@
 <% if type == "user" %>
   <div class="property">
-    <span class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
+    <div class="current-value" data-field="<%= type %>-tagline" data-nil="<%=
     	object.tagline ? false : true %>"><%=
       object.tagline ?
-        raw("<h4>#{object.tagline}</h4>") : plus + " tagline" %></span>
+        raw("<h4>#{object.tagline}</h4>") : plus + " tagline" %></div>
   </div>
 
   </div>
@@ -54,7 +54,7 @@
     <h4>Summary</h4>
     <span class="current-value" data-field="<%= type %>-summary" data-nil="<%=
     	object.summary ? false : true %>">
-      <%= object.summary ? object.summary : plus + " summary" %>
+      <%= object.summary ? htmlize(object.summary) : plus + " summary" %>
     </span>
   </div>
 

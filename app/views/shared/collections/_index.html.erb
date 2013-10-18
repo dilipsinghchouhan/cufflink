@@ -21,6 +21,7 @@
 
   <!--
     do we want to generate a regular form or a fancy modal?
+    if it's a status let's get fancy!
   -->
     <% klass = type == "status" ? "gen-modal" : "gen-form" %>
 
@@ -35,8 +36,10 @@
 
 
 
-  <ul class="pod<%= " edit" if edit %>"
+  <ul class="<%= " edit" if edit %>"
   <%= raw('id="outer"') if type == "status" %>>
+
+    <% order_add_on = (type == "experience") ? "current DESC, " : "" %>
 
     <% if position %>
       <% to_send = "positions" %>
@@ -47,7 +50,7 @@
     <% end %>
 
     <% object.send(to_send)
-      .order("created_at DESC")
+      .order("#{order_add_on}created_at DESC")
       .each_with_index do |object, i| %>
 
         <% klass = edit ? "pod two-thirds first" : "pod half" %>

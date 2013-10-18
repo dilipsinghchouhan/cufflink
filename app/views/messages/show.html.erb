@@ -1,11 +1,15 @@
-<h1><%= @message.received_by?(current_user) ? "Incoming" : "Sent" %> Messages</h1>
+<div id="profile-top" class="group">
+  <h1>
+    <%= @message.received_by?(current_user) ? "Incoming" : "Sent" %> Messages
+  </h1>
+</div>
 
-<h2><%= @message.subject %></h2>
-
-
+<h3><span><%= @message.subject %></span></h3>
 
 <div class="pod two-thirds first">
-  <%= simple_format(@message.body) %>
+  <div class="bg white">
+    <%= simple_format(@message.body) %>
+  </div>
 </div>
 
 <div class="pod third">
@@ -28,7 +32,7 @@
     </li>
   </ul>
 
-  <ul id="message-options">
+  <ul id="message-options-right" class="message-options">
     <li><a href="<%= get_reply_link(@message) %>">
       <i class="icon-reply"></i>
     </a></li>
@@ -42,7 +46,7 @@
 </div>
 
 <div class="pod two-thirds first">
-  <ul id="message-options">
+  <ul id="message-options-bottom" class="message-options">
     <li><a href="<%= get_reply_link(@message) %>">
       <i class="icon-reply"></i> Reply
     </a></li>

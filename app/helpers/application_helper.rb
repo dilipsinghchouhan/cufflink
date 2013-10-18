@@ -22,6 +22,10 @@ module ApplicationHelper
     '<i class="icon-remove editing"></i>'.html_safe
   end
 
+  def htmlize(body)
+    body.gsub("\n","<br>").html_safe
+  end
+
   def fancy_button(title, symbol, klass = nil, id = nil)
     html = '<button type="submit" class="buttony-link'
 

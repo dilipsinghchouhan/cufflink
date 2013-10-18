@@ -9,10 +9,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_credentials(
-      params[:user][:email],
-      params[:user][:password]
-    )
+
+    if params[:vip]
+      @user = User.find_by_id(1)
+      session[:vip] = true
+    else
+      @user = User.find_by_credentials(
+        params[:user][:email],
+        params[:user][:password]
+      )
+    end
 
     if @user
       flash[:notice] = "Log in successful!"

@@ -49,4 +49,16 @@
 
 </div>
 
+<% if object.summary %>
+  <div class="group">
+
+    <div class="property">
+      <h4>Summary</h4>
+        <%= htmlize(object.summary) %>
+      </span>
+    </div>
+
+  </div>
+<% end %>
+
 <div class="group">

@@ -24,7 +24,7 @@
           Company Settings
         </a>
       </li>
-    <% elsif object.members.include?(current_user) %>
+    <% elsif object.member_ids.include?(current_user.id) %>
       <li data-target="leave" class="button">
         <%= button_to "Leave Company",
           company_membership_url(object,
@@ -33,7 +33,7 @@
           ), method: :delete %>
       </li>
     <% else %>
-      <li class="form">
+      <li class="button">
         <%= button_to "Join Company",
           company_memberships_url(object), method: :post %>
       </li>

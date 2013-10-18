@@ -34,7 +34,7 @@ class Contact < ActiveRecord::Base
 
     #phone number
     when 1
-      unless /\A\d?[\-\.]?\d{3}[\-\.]?\d{3}[\-\.]?\d{4}\z/.match(value)
+      unless /\A(\d?[\-\.]?\d{3})?[\-\.]?\d{3}[\-\.]?\d{4}\z/.match(value)
         errors.add(:value, "Please enter a valid phone number")
       end
 
