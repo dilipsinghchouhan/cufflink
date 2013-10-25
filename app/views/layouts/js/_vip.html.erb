@@ -1,8 +1,72 @@
 <script>
   $(document).ready( function() {
-  //   $("body")
-  //     .on("ajax:success", "#vip > form", function() {
-  //       console.log("Hellooo")
-  //     })
+    
+    var tour = function(step) {
+      
+      var templateCode = $("#step_" + step + "_template").html();
+      var templateFn = _.template(templateCode);
+      var renderedContent = templateFn();
+      
+      var $modal = $("<div>").addClass("modal tour").append(renderedContent)
+
+      if (step == "1") {
+        $(".backdrop").show();
+      } else {
+        $modal.addClass("during")
+      }
+      
+      $("header").before($modal);
+    }
+    
+    tour(<%= step %>);
+    
+    // $("body")
+    //   .on("ajax:success", "#vip", function() {
+    //     console.log("Hellooo")
+    //   })
+    
+    
   });
+</script>
+
+<script type="text/template" id="step_1_template">
+  <h1 class="centered bottom-10">Welcome to Cufflink!</h1>
+  
+  <p>This VIP tour will guide you through Cufflink's features so you can learn what an awesome software engineer <a href="http://www.sarahmogin.com" target="_blank">Sarah</a> is. Remember to check out <a href="http://www.github.com/srhmgn/cufflink" target="_blank">Cufflink on GitHub</a> for even more information about the code.<p>
+  
+  <div class="modal-nav centered">
+    <a href="?vip_tour=2">Continue</a>
+  </div>
+</script>
+
+<script type="text/template" id="step_2_template">
+  <p><b>Feed</b></p>
+  
+  <p>Your Cufflink feed features updates from all of your connections in descending order by time.</p>
+  
+  <p>Try <b>liking</b> and <b>commenting</b> on some statuses. Both will update live thanks to UJS.</p>
+  
+  <div class="modal-nav centered">
+    <a href="?vip_tour=3">Continue</a>
+  </div>
+</script>
+
+<script type="text/template" id="step_3_template">
+  <p><b>Feed</b></p>
+  
+  <p>Now, click on Stan Sitwell's name (in the top left of each of his update boxes) to visit his profile.</p>
+  
+  <div class="centered">
+    <img src="/assets/ss1.png">
+  </div>
+</script>
+
+<script type="text/template" id="step_4_template">
+  <p><b>Profile</b></p>
+  
+  <p>Stan's profile features basic & contact info on its main "Information" tab.</p>
+  
+  <p>Click on <b>Work Experience</b> to browse Stan's work history, and <b>Updates</b> to see his status updates.</p>
+  
+  <p>If you hover over the <i class="icon-user"></i> icon in the top right, you'll see that Stan is a current connection.</p>
 </script>

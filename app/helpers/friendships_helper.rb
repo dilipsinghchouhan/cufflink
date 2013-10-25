@@ -23,7 +23,7 @@ module FriendshipsHelper
 
     status = current_user.friendship_status_with(user)
 
-    html = "<li>"
+    html = "<li class=\"friendship-status\">"
 
     if status == :not_connected
       title = "Not Connected"

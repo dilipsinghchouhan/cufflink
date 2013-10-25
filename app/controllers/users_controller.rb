@@ -118,6 +118,15 @@ class UsersController < ApplicationController
       redirect_to settings_url
     end
   end
+  
+  def about
+    render :about
+  end
+  
+  def careers
+    #I crack myself up
+    render :careers
+  end
 
   private
 

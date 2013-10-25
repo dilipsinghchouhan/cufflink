@@ -1,6 +1,13 @@
 include ActionView::Helpers::DateHelper
 
 module ApplicationHelper
+  
+  def check_for_vip
+    if params[:vip_tour]
+      session[:vip_tour] = params[:vip_tour]
+    end
+  end
+  
   #display
   def time_ago(obj)
     time_ago_in_words(obj.created_at) + " ago"

@@ -6,6 +6,7 @@ module SessionsHelper
   def log_out_user!
     current_user.reset_session_token!
     session[:token] = nil
+    session[:vip_tour] = nil
   end
 
   def current_user

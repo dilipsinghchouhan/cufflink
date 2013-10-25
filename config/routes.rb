@@ -3,6 +3,8 @@ Cufflink::Application.routes.draw do
   # first created -> highest priority.
 
   get 'settings' => 'users#settings'
+  get 'about' => 'users#about'
+  get 'careers' => 'users#careers'
 
   get "friendships/approve" => "friendships#approve"
   get "friendships/deny" => "friendships#deny"

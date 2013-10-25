@@ -1,5 +1,5 @@
 <div id="feed-head" class="group">
-  <h1 id="feed">Activity Feed</h1>
+  <h1 id="feed" class="centered">Activity Feed</h1>
 </div>
 
 <ul id="col-1" class="pod half first"></ul>
@@ -8,7 +8,7 @@
 <ul id="outer">
   <% @statuses.each do |status| %>
     <%= render partial: "statuses/show", locals: { status: status,
-      author: @data[status].name, klass: "" } %>
+      author: @data[status].name, klass: "", vip_tour: true } %>
   <% end %>
 </ul>
 

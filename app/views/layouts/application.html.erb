@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  
 <%= render partial: "layouts/nav" %>
 
 <section id="main" class="group
@@ -17,9 +17,14 @@
   <%= yield %>
 </section>
 
+<% if session[:vip_tour] %>
+  <%= render partial: "layouts/js/vip", locals: { step: session[:vip_tour] } %>
+<% end %>
+
 <%= render partial: "layouts/js/header" %>
-<%= render partial: "layouts/js/vip" %>
 <%= render partial: "shared/js/utilities" %>
+
+<%= render partial: "layouts/footer" %>
 
 <div class="backdrop"></div>
 </body>

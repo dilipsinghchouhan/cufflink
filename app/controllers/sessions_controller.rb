@@ -10,9 +10,8 @@ class SessionsController < ApplicationController
 
   def create
 
-    if params[:vip]
+    if params[:vip_tour]
       @user = User.find_by_id(1)
-      session[:vip] = true
     else
       @user = User.find_by_credentials(
         params[:user][:email],
@@ -38,4 +37,5 @@ class SessionsController < ApplicationController
 
     redirect_to new_session_url
   end
+
 end

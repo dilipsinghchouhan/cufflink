@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: cufflink_development
   pool: 5
-  username: appacademy
+  username: Sarah
   password:
   host: localhost
 
@@ -44,7 +44,7 @@ test:
   encoding: unicode
   database: cufflink_test
   pool: 5
-  username: appacademy
+  username: Sarah
   password:
   host: localhost
 
@@ -53,5 +53,5 @@ production:
   encoding: unicode
   database: cufflink_production
   pool: 5
-  username: appacademy
+  username: Sarah
   password:

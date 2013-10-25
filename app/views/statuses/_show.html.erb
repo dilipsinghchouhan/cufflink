@@ -10,7 +10,10 @@
 
   	  <% if local_assigns.keys.include?(:author) %>
   	    <span class="status-author">
-  			<%= link_to author, user_url(status.user) %>
+          <% author_url = user_url(status.user) %>
+          <% author_url += "?vip_tour=4" if vip_tour %>
+          
+  			  <%= link_to author, author_url%>
   		  </span>
   	  <% end %>
 
