@@ -35,9 +35,11 @@ module SessionsHelper
   def clean_up_michael!
     date = "2013-10-29 16:35:36"
     
-    michael = User.find(1)
     Status.delete_all("created_at > '#{date}' AND user_id = 1")
     Response.delete_all("created_at > '#{date}' AND user_id = 1")
     Message.delete_all("created_at > '#{date}' AND user_id = 1")
+    
+    Notification.update_all("unread = 'TRUE'", "user_id = 1")
+    Delivery.update_all("unread = 'TRUE'", "user_id = 1")
   end
 end
