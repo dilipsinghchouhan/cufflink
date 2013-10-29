@@ -33,7 +33,7 @@ module SessionsHelper
   end
   
   def clean_up_michael!
-    date = "2013-10-29 14:40:26"
+    date = "2013-10-29 16:35:36"
     
     michael = User.find(1)
     Status.delete_all("created_at > '#{date}' AND user_id = 1")
