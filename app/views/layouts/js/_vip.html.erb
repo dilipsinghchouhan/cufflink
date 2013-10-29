@@ -124,7 +124,7 @@
   <p>Clear your notifications by clicking the x's on the notifications window, then click below to check out your inbox.</p>
   
   <div class="modal-nav centered">
-    <a href="<%= user_messages_url(current_user) %>?vip_tour=10">Visit Inbox</a>
+    <a href="<%= user_messages_url(current_user) if current_user %>?vip_tour=10">Visit Inbox</a>
   </div>
 
 </script>
