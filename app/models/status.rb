@@ -69,7 +69,7 @@ class Status < ActiveRecord::Base
   def link_is_ok
     return unless link && link != ""
 
-    unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})\z/
+    unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})(\/(\w|\?|\=)*)?\z/
       .match(link)
         errors.add(:link, "Please enter a valid URL")
     end

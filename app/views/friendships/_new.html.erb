@@ -1,6 +1,9 @@
 <h2>Connect with <%= user.name %></h2>
 
-<%= form_tag(user_friendships_url(current_user), method: "post") do |f| %>
+<% url = user_friendships_url(current_user) %>
+<% url += "?vip_tour=7" if cookies[:vip_tour] %>
+
+<%= form_tag(url, method: "post") do |f| %>
   <label>Message:<br>
     <textarea name="friendship[message]"></textarea>
   </label>

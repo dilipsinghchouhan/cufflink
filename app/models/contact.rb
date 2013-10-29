@@ -40,7 +40,7 @@ class Contact < ActiveRecord::Base
 
     #website
     when 2
-      unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})\z/
+      unless /\A((http:\/\/)|(https:\/\/))?((www\.)|\w+\.)?\w*(\.\w{2,4})(\/(\w|\?|\=)*)?\z/
         .match(value)
           errors.add(:value, "Please enter a valid URL")
       end

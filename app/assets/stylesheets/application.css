@@ -679,7 +679,7 @@ div.modal.tour {
   background-color: #FEEB1E;
 }
 
-div.modal.tour > .modal-nav {
+div.modal.tour > .modal-nav.centered {
   margin-top: 20px;
 }
 

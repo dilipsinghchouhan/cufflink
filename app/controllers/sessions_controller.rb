@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
 
     if params[:vip_tour]
       @user = User.find_by_id(1)
+      clean_up_michael!
     else
       @user = User.find_by_credentials(
         params[:user][:email],

@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
     @friendship.friender_id = current_user_id
 
     if @friendship.save
-      flash[:notice] = "All good!"
+      flash[:notice] = "Friendship updated!"
       create_friendship_notification!(@friendship)
       redirect_to user_url(@friendship.friendee_id)
     else

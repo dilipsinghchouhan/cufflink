@@ -17,8 +17,8 @@
   <%= yield %>
 </section>
 
-<% if session[:vip_tour] %>
-  <%= render partial: "layouts/js/vip", locals: { step: session[:vip_tour] } %>
+<% if cookies[:vip_tour] %>
+  <%= render partial: "layouts/js/vip", locals: { step: cookies[:vip_tour] } %>
 <% end %>
 
 <%= render partial: "layouts/js/header" %>

@@ -7,25 +7,29 @@ $(document).ready( function(root) {
 
     var $clickedLi = $(event.target).parent();
     var target = $clickedLi.attr("data-target");
+    
+    if (target) {
 
-    var $allLis = $(".nav li")
+      var $allLis = $(".nav li")
 
-    if ($clickedLi.hasClass("active")) return;
+      if ($clickedLi.hasClass("active")) return;
 
-    $(".profile-box").hide();
-    $("#profile-" + target).show();
+      $(".profile-box").hide();
+      $("#profile-" + target).show();
 
-    if (target.slice(0,7) == "company") {
-      $clickedLi = $clickedLi.parent().parent();
-    }
-
-    $allLis.removeClass("active");
-    $clickedLi.addClass("active");
-
-    if (target == "status" &&
-      $clickedLi.attr("data-my-profile") == "false") {
-        OuterLib.fancyBoxes();
+      if (target.slice(0,7) == "company") {
+        $clickedLi = $clickedLi.parent().parent();
       }
+
+      $allLis.removeClass("active");
+      $clickedLi.addClass("active");
+
+      if (target == "status" &&
+        $clickedLi.attr("data-my-profile") == "false") {
+          OuterLib.fancyBoxes();
+        }
+
+    }
   });
 });
 

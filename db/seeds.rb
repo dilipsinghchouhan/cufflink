@@ -67,6 +67,20 @@ gm = User.create(first_name: 'George Michael',
   pic: File.new("public/images/seeds/gm4.gif")
 )
 
+#J Walter Weatherman
+walter = User.create(
+  first_name: 'J. Walter',
+  last_name: 'Weatherman',
+  email: 'sarah.mogin+walter@gmail.com',
+  password: 'password',
+  tagline: "Any that's why you don't teach lessons to your son.",
+  summary: "Passepartout was not the man to let an idea go begging, and directed his steps towards the docks.  But, as he approached them, his project, which at first had seemed so simple, began to grow more and more formidable to his mind.  What need would they have of a cook or servant on an American steamer, and what confidence would they put in him, dressed as he was?  What references could he give?\n\nAs he was reflecting in this wise, his eyes fell upon an immense placard which a sort of clown was carrying through the streets.  This placard, which was in English, read as follows:\n\nACROBATIC JAPANESE TROUPE,     HONOURABLE WILLIAM BATULCAR, PROPRIETOR,             LAST REPRESENTATIONS,  PRIOR TO THEIR DEPARTURE TO THE UNITED STATES,                   OF THE          LONG NOSES!   LONG NOSES!  UNDER THE DIRECT PATRONAGE OF THE GOD TINGOU!            GREAT ATTRACTION!\n\n'The United States!' said Passepartout; 'that's just what I want!'\n\nHe followed the clown, and soon found himself once more in the Japanese quarter.  A quarter of an hour later he stopped before a large cabin, adorned with several clusters of streamers, the exterior walls of which were designed to represent, in violent colours and without perspective, a company of jugglers.",
+  city: "Orange County",
+  state: "CA",
+  industry: "Other",
+  pic: File.new("public/images/seeds/walter.jpg")
+)
+
 #The Bluth Company
 the_bluth_company = Company.create(
   name: "The Bluth Company",
@@ -210,16 +224,30 @@ ls2 = lucille.statuses.create(
   body: "You're my third least favorite child"
 )
 
-# #Michael likes this
-# rls1 = ls1.responses.build
-# rls1.user = michael
-# rls1.save
-#
-# #Michael commented on this
-# rls2 = ls2.responses.build
-# rls2.user = michael
-# rls2.body = "Would hate to be GOB right now!"
-# rls2.save
+#Michael likes this
+rls1 = ls1.responses.build
+rls1.user = michael
+rls1.save
+
+#Michael commented on this
+rls2 = ls2.responses.build
+rls2.user = michael
+rls2.body = "Would hate to be GOB right now!"
+rls2.save
+
+#Walter's statuses
+walter.statuses.create(
+  pic: File.new("public/images/seeds/walter3.png")
+)
+
+walter.statuses.create(
+  body: "And that's why you always leave a note.",
+  pic: File.new("public/images/seeds/walter4.png")
+)
+
+walter.statuses.create(
+  pic: File.new("public/images/seeds/walter2.jpg")
+)
 
 #Michael's statuses
 michael.statuses.create(
@@ -238,37 +266,37 @@ michael.statuses.create(
   pic: File.new("public/images/seeds/shark.jpg")
 )
 
-ms1 = michael.statuses.create(
+ms1 = michael.statuses.create!(
   body: "This is why I sometimes pretend to be a maritime lawyer...",
   link: "https://www.youtube.com/watch?v=TdeSh3vLvYI"
 )
 
-# #Stan likes this
-# rms1 = ms1.responses.build
-# rms1.user = stan
-# rms1.save
+#Stan likes this
+rms1 = ms1.responses.build
+rms1.user = stan
+rms1.save
 
-# #Lucille commented on this
-# rms1 = ms1.responses.build
-# rms1.user = lucille
-# rms1.body = "You're a crook Captain Hook!"
-# rms1.save
+#Lucille commented on this
+rms1 = ms1.responses.build
+rms1.user = lucille
+rms1.body = "You're a crook Captain Hook!"
+rms1.save
 
 ms2 = michael.statuses.create(
   body: "I can't believe I let GOB cut the Ribbon!",
   pic: File.new("public/images/seeds/ribbon.jpg")
 )
 
-# #Stan commented on this
-# rms2 = ms2.responses.build
-# rms2.user = stan
-# rms2.body = "GOB can be pretty insistent..."
-# rms2.save
+#Stan commented on this
+rms2 = ms2.responses.build
+rms2.user = stan
+rms2.body = "GOB can be pretty insistent..."
+rms2.save
 
-# #Lucille likes this
-# rms2 = ms2.responses.build
-# rms2.user = lucille
-# rms2.save
+#Lucille likes this
+rms2 = ms2.responses.build
+rms2.user = lucille
+rms2.save
 
 #The Bluth Company's statuses
 bs1 = the_bluth_company.statuses.create(
@@ -295,11 +323,11 @@ the_bluth_company.statuses.create(
   body: "Please return all of the whistles."
 )
 
-# #Lucille commented on this
-# rbs1 = bs1.responses.build
-# rbs1.user = lucille
-# rbs1.body = "What's with the whistles??"
-# rbs1.save
+#Lucille commented on this
+rbs1 = bs1.responses.build
+rbs1.user = lucille
+rbs1.body = "What's with the whistles??"
+rbs1.save
 
 #The Bluth Company's statuses on behalf of Michael
 s1 = Status.new(

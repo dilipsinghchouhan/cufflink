@@ -4,7 +4,7 @@ module ApplicationHelper
   
   def check_for_vip
     if params[:vip_tour]
-      session[:vip_tour] = params[:vip_tour]
+      cookies[:vip_tour] = (params[:vip_tour] == "end") ? nil : params[:vip_tour]
     end
   end
   
@@ -133,5 +133,12 @@ module ApplicationHelper
 
   def has_date_info?(experience)
     experience.current || experience.start_date || experience.end_date
+  end
+  
+  def tour_options
+    html = "<div class=\"modal-nav right\">"
+    html += "<a href=\"#{root_url}?vip_tour=1\">Restart</a> "
+    html += "<a href=\"?vip_tour=end\">End</a></div>"
+    html.html_safe
   end
 end

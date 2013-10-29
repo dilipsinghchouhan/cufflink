@@ -6,7 +6,7 @@ module SessionsHelper
   def log_out_user!
     current_user.reset_session_token!
     session[:token] = nil
-    session[:vip_tour] = nil
+    cookies[:vip_tour] = nil
   end
 
   def current_user
@@ -18,7 +18,10 @@ module SessionsHelper
   end
 
   def require_logged_in_user
-    redirect_to new_session_url unless current_user
+    unless current_user
+      cookies[:vip_tour] = nil
+      redirect_to new_session_url 
+    end
   end
 
   def prohibit_logged_in_user
@@ -27,5 +30,10 @@ module SessionsHelper
 
   def require_profile_owner
     redirect_to :back unless current_user.id == params[:id].to_i
+  end
+  
+  def clean_up_michael!
+    michael = User.find(1)
+    Status.delete_all("created_at > '2013-10-28 19:04' AND user_id = 1")
   end
 end

@@ -20,11 +20,6 @@
     
     tour(<%= step %>);
     
-    // $("body")
-    //   .on("ajax:success", "#vip", function() {
-    //     console.log("Hellooo")
-    //   })
-    
     
   });
 </script>
@@ -69,4 +64,31 @@
   <p>Click on <b>Work Experience</b> to browse Stan's work history, and <b>Updates</b> to see his status updates.</p>
   
   <p>If you hover over the <i class="icon-user"></i> icon in the top right, you'll see that Stan is a current connection.</p>
+  
+  <div class="modal-nav centered">
+    <a href="?vip_tour=5">Continue</a>
+  </div>
+</script>
+
+<script type="text/template" id="step_5_template">
+  <%= tour_options %>
+
+  <p><b>Profile</b></p>  
+  
+  <p>If you were still waiting on Stan to accept your connection request, you'd see a <i class="icon-time"></i> icon instead.</p>
+  
+  <p>There's also a <i class="icon-remove-sign"></i> icon, which will show up if a person rejected your request.</p>
+  
+  <p>What if you're not yet connected? Head on over to J Walter Weatherman's profile to find out.</p>
+  
+  <div class="modal-nav centered">
+    <a href="/users/7?vip_tour=6">Visit J Walter Weather's Profile</a>
+  </div>
+</script>
+
+<script type="text/template" id="step_6_template">
+  <p><b>Request a Connection</b></p>
+  
+  <p>Click "<i class="icon-user"></i> Request Connection" on the top right and fill out the form.</p>
+
 </script>
