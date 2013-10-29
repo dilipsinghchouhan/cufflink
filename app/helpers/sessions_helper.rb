@@ -38,6 +38,7 @@ module SessionsHelper
     Status.delete_all("created_at > '#{date}' AND user_id = 1")
     Response.delete_all("created_at > '#{date}' AND user_id = 1")
     Message.delete_all("created_at > '#{date}' AND user_id = 1")
+    Friendship.delete_all("created_at > '#{date}' AND friender_id = 1")
     
     Notification.update_all("unread = 'TRUE'", "user_id = 1")
     Delivery.update_all("unread = 'TRUE'", "user_id = 1")
