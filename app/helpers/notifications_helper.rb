@@ -12,15 +12,21 @@ module NotificationsHelper
     if notification.unread?
       link_text = "<b>#{link_text}</b>"
     end
+    
+    if link_dest.include?("?")
+      link_dest += "&"
+    else
+      likn_dest += "?"
+    end
 
-    link_dest += "?notification=#{notification.id}"
+    link_dest += "notification=#{notification.id}"
+    
+    link_dest += "&vip_tour=9" if cookies[:vip_tour]
 
     html = "<a href=\"#{link_dest}\">"
     html += "<div class=\"link-text\">#{link_text}</div></a>"
     html += get_delete_link(notification)
     html += "<div class=\"action\">#{action}</div>"
-
-
 
     html.html_safe
   end
@@ -53,7 +59,7 @@ module NotificationsHelper
   def parse_response(response)
     action = nil
 
-    link_dest = user_url(current_user) #find a way to go to specific status
+    link_dest = user_url(current_user) + "?nav=status"
 
     user = response.user
     status_excerpt = response.status.excerpt

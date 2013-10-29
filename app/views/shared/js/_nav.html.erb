@@ -2,6 +2,9 @@
 
 $(document).ready( function(root) {
   var OuterLib = root.OuterLib = (root.OuterLib || {});
+  
+  $("#profile-<%= current %>").show();
+  $("li[data-target=\"<%= current %>\"]").addClass("active");
 
   $(".nav li a").on("click", function(event) {
 

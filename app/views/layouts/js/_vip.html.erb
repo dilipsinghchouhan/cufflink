@@ -52,7 +52,7 @@
   <p>Now, click on Stan Sitwell's name (in the top left of each of his update boxes) to visit his profile.</p>
   
   <div class="centered">
-    <img src="/assets/ss1.png">
+    <img src="/assets/tour/ss1.png">
   </div>
 </script>
 
@@ -91,4 +91,51 @@
   
   <p>Click "<i class="icon-user"></i> Request Connection" on the top right and fill out the form.</p>
 
+</script>
+
+<script type="text/template" id="step_7_template">
+  <p><b>Profile</b></p>
+  
+  <p>I hope J Walter Weatherman says yes! In the meantime, let's look at your notifications.</p>
+  
+  <div class="modal-nav centered">
+    <a href="?vip_tour=8">Continue</a>
+  </div>
+
+</script>
+
+<script type="text/template" id="step_8_template">
+  <p><b>Notifications</b></p>
+  
+  <p>Hover over the "4" in the nav bar to see your latest notifications.</p>
+  
+  <div class="centered">
+    <img src="/assets/tour/ss2.png">
+  </div>
+  
+  <p>Click on the first notification to visit the status liked by Lucille.</p>
+
+</script>
+
+<script type="text/template" id="step_9_template">
+  <p><b>Notifications</b></p>
+  
+  <p>We're now on Michael's status stream, where you can see the post Lucille has liked. If you hover over your notifications again, you'll see that the notification for this like is no longer bold.</p>
+  
+  <p>Clear your notifications by clicking the x's on the notifications window, then click below to check out your inbox.</p>
+  
+  <div class="modal-nav centered">
+    <a href="<%= user_messages_url(current_user) %>?vip_tour=10">Visit Inbox</a>
+  </div>
+
+</script>
+
+<script type="text/template" id="step_10_template">
+  <p><b>Messages</b></p>
+  
+  <p>This is the end of the tour so far! Please check back soon as I'm always expanding it.</p>
+  
+  <div class="modal-nav centered">
+    <a href="?vip_tour=end">Close</a>
+  </div>
 </script>

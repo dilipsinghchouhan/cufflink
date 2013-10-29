@@ -62,12 +62,14 @@ class UsersController < ApplicationController
 
   def settings
     @company = params[:company]
+    @current_tab = params[:nav] ? params[:nav] : "main"
 
     render :settings
   end
 
   def show
     @user = user_from_params
+    @current_tab = params[:nav] ? params[:nav] : "main"
 
     render :show
   end

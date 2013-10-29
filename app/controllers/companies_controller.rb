@@ -26,6 +26,8 @@ class CompaniesController < ApplicationController
 
   def show
     @company = company_from_params
+    @current_tab = params[:nav] ? params[:nav] : "main"
+    
     render :show
   end
 
