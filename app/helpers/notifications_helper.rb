@@ -59,7 +59,10 @@ module NotificationsHelper
   def parse_response(response)
     action = nil
 
-    link_dest = user_url(current_user) + "?nav=status"
+    link_dest = _url(current_user) + "?nav=status"
+    
+    p "RESPONSE ISSSS"
+    p response
 
     user = response.user
     status_excerpt = response.status.excerpt
