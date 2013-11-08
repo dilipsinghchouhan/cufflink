@@ -20,6 +20,8 @@ $(document).ready( function(root){
   var $property
 
   $(".profile-box").on("click", ".current-value", function(event) {
+    
+    console.log("im here")
 
     var $target = $(event.target);
     $activeCurrentVal = $target.closest('.current-value')

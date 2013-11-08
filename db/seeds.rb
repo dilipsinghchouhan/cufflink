@@ -5,7 +5,7 @@ michael = User.create(
   email: 'sarah.mogin+michael@gmail.com',
   password: 'password',
   tagline: "Bluth Company President",
-  summary: "Passepartout was not the man to let an idea go begging, and directed his steps towards the docks.  But, as he approached them, his project, which at first had seemed so simple, began to grow more and more formidable to his mind.  What need would they have of a cook or servant on an American steamer, and what confidence would they put in him, dressed as he was?  What references could he give?\n\nAs he was reflecting in this wise, his eyes fell upon an immense placard which a sort of clown was carrying through the streets.  This placard, which was in English, read as follows:\n\nACROBATIC JAPANESE TROUPE,     HONOURABLE WILLIAM BATULCAR, PROPRIETOR,             LAST REPRESENTATIONS,  PRIOR TO THEIR DEPARTURE TO THE UNITED STATES,                   OF THE          LONG NOSES!   LONG NOSES!  UNDER THE DIRECT PATRONAGE OF THE GOD TINGOU!            GREAT ATTRACTION!\n\n'The United States!' said Passepartout; 'that's just what I want!'\n\nHe followed the clown, and soon found himself once more in the Japanese quarter.  A quarter of an hour later he stopped before a large cabin, adorned with several clusters of streamers, the exterior walls of which were designed to represent, in violent colours and without perspective, a company of jugglers.",
+  summary: "Jean shorts anim XOXO, sed twee single-origin coffee narwhal cliche before they sold out excepteur Pinterest Blue Bottle cred. Gastropub cillum beard, Pitchfork cupidatat Neutra irony consectetur irure bitters. Ex scenester mollit, flexitarian sed irony consectetur bespoke. Delectus single-origin coffee sartorial, beard non disrupt nesciunt meggings sed culpa occaecat duis pour-over. Polaroid Banksy Portland, 90's mixtape leggings incididunt paleo readymade iPhone nihil pickled wayfarers ea. Sriracha fanny pack Portland forage. Hashtag fashion axe gluten-free commodo aute.\n\nMustache nostrud voluptate bicycle rights, cardigan beard church-key skateboard seitan try-hard. Tempor 8-bit bitters semiotics Thundercats delectus. Trust fund banjo irure, mollit PBR&B kitsch tote bag bicycle rights hoodie freegan. Truffaut four loko ex Terry Richardson 3 wolf moon. Placeat selvage hella, eiusmod vinyl messenger bag culpa distillery tempor. Vice Helvetica ad, occupy selfies paleo Godard aesthetic viral quinoa Neutra Odd Future Marfa. Dolore VHS pour-over, commodo Intelligentsia craft beer Terry Richardson.\n\nDIY stumptown deserunt cardigan, non kitsch odio. Church-key vero deep v, et selvage labore hella freegan cornhole High Life pop-up. Mollit proident ennui, exercitation Cosby sweater tofu +1. Letterpress craft beer polaroid tousled kogi accusamus. Truffaut fanny pack irony tofu hella ugh. Elit nisi pork belly put a bird on it eiusmod, pickled et do church-key master cleanse bespoke banjo. Nisi wayfarers food truck try-hard laboris Shoreditch.\n\nYr Intelligentsia Blue Bottle leggings deep v. Post-ironic slow-carb tousled occaecat. Scenester adipisicing cliche, delectus hashtag banh mi duis kitsch McSweeney's Shoreditch deep v nulla keffiyeh velit. Next level disrupt selvage, vegan organic cray selfies meh dolore locavore. Art party ugh assumenda, paleo direct trade chambray gastropub. Narwhal mumblecore laboris post-ironic aliqua fugiat. Flannel narwhal pariatur, kale chips est magna jean shorts enim seitan incididunt swag single-origin coffee deserunt selfies.",
   city: "Orange County",
   state: "CA",
   industry: "Real Estate",
@@ -74,11 +74,53 @@ walter = User.create(
   email: 'sarah.mogin+walter@gmail.com',
   password: 'password',
   tagline: "Any that's why you don't teach lessons to your son.",
-  summary: "Passepartout was not the man to let an idea go begging, and directed his steps towards the docks.  But, as he approached them, his project, which at first had seemed so simple, began to grow more and more formidable to his mind.  What need would they have of a cook or servant on an American steamer, and what confidence would they put in him, dressed as he was?  What references could he give?\n\nAs he was reflecting in this wise, his eyes fell upon an immense placard which a sort of clown was carrying through the streets.  This placard, which was in English, read as follows:\n\nACROBATIC JAPANESE TROUPE,     HONOURABLE WILLIAM BATULCAR, PROPRIETOR,             LAST REPRESENTATIONS,  PRIOR TO THEIR DEPARTURE TO THE UNITED STATES,                   OF THE          LONG NOSES!   LONG NOSES!  UNDER THE DIRECT PATRONAGE OF THE GOD TINGOU!            GREAT ATTRACTION!\n\n'The United States!' said Passepartout; 'that's just what I want!'\n\nHe followed the clown, and soon found himself once more in the Japanese quarter.  A quarter of an hour later he stopped before a large cabin, adorned with several clusters of streamers, the exterior walls of which were designed to represent, in violent colours and without perspective, a company of jugglers.",
+  summary: "Jean shorts anim XOXO, sed twee single-origin coffee narwhal cliche before they sold out excepteur Pinterest Blue Bottle cred. Gastropub cillum beard, Pitchfork cupidatat Neutra irony consectetur irure bitters. Ex scenester mollit, flexitarian sed irony consectetur bespoke. Delectus single-origin coffee sartorial, beard non disrupt nesciunt meggings sed culpa occaecat duis pour-over. Polaroid Banksy Portland, 90's mixtape leggings incididunt paleo readymade iPhone nihil pickled wayfarers ea. Sriracha fanny pack Portland forage. Hashtag fashion axe gluten-free commodo aute.\n\nMustache nostrud voluptate bicycle rights, cardigan beard church-key skateboard seitan try-hard. Tempor 8-bit bitters semiotics Thundercats delectus. Trust fund banjo irure, mollit PBR&B kitsch tote bag bicycle rights hoodie freegan. Truffaut four loko ex Terry Richardson 3 wolf moon. Placeat selvage hella, eiusmod vinyl messenger bag culpa distillery tempor. Vice Helvetica ad, occupy selfies paleo Godard aesthetic viral quinoa Neutra Odd Future Marfa. Dolore VHS pour-over, commodo Intelligentsia craft beer Terry Richardson.\n\nDIY stumptown deserunt cardigan, non kitsch odio. Church-key vero deep v, et selvage labore hella freegan cornhole High Life pop-up. Mollit proident ennui, exercitation Cosby sweater tofu +1. Letterpress craft beer polaroid tousled kogi accusamus. Truffaut fanny pack irony tofu hella ugh. Elit nisi pork belly put a bird on it eiusmod, pickled et do church-key master cleanse bespoke banjo. Nisi wayfarers food truck try-hard laboris Shoreditch.\n\nYr Intelligentsia Blue Bottle leggings deep v. Post-ironic slow-carb tousled occaecat. Scenester adipisicing cliche, delectus hashtag banh mi duis kitsch McSweeney's Shoreditch deep v nulla keffiyeh velit. Next level disrupt selvage, vegan organic cray selfies meh dolore locavore. Art party ugh assumenda, paleo direct trade chambray gastropub. Narwhal mumblecore laboris post-ironic aliqua fugiat. Flannel narwhal pariatur, kale chips est magna jean shorts enim seitan incididunt swag single-origin coffee deserunt selfies.",
   city: "Orange County",
   state: "CA",
   industry: "Other",
   pic: File.new("public/images/seeds/walter.jpg")
+)
+
+#George
+george = User.create(
+  first_name: 'George',
+  last_name: 'Bluth (Sr.)',
+  email: 'sarah.mogin+george@gmail.com',
+  password: 'password',
+  tagline: "Gallant and... Goofuth?",
+  summary: "Jean shorts anim XOXO, sed twee single-origin coffee narwhal cliche before they sold out excepteur Pinterest Blue Bottle cred. Gastropub cillum beard, Pitchfork cupidatat Neutra irony consectetur irure bitters. Ex scenester mollit, flexitarian sed irony consectetur bespoke. Delectus single-origin coffee sartorial, beard non disrupt nesciunt meggings sed culpa occaecat duis pour-over. Polaroid Banksy Portland, 90's mixtape leggings incididunt paleo readymade iPhone nihil pickled wayfarers ea. Sriracha fanny pack Portland forage. Hashtag fashion axe gluten-free commodo aute.\n\nMustache nostrud voluptate bicycle rights, cardigan beard church-key skateboard seitan try-hard. Tempor 8-bit bitters semiotics Thundercats delectus. Trust fund banjo irure, mollit PBR&B kitsch tote bag bicycle rights hoodie freegan. Truffaut four loko ex Terry Richardson 3 wolf moon. Placeat selvage hella, eiusmod vinyl messenger bag culpa distillery tempor. Vice Helvetica ad, occupy selfies paleo Godard aesthetic viral quinoa Neutra Odd Future Marfa. Dolore VHS pour-over, commodo Intelligentsia craft beer Terry Richardson.\n\nDIY stumptown deserunt cardigan, non kitsch odio. Church-key vero deep v, et selvage labore hella freegan cornhole High Life pop-up. Mollit proident ennui, exercitation Cosby sweater tofu +1. Letterpress craft beer polaroid tousled kogi accusamus. Truffaut fanny pack irony tofu hella ugh. Elit nisi pork belly put a bird on it eiusmod, pickled et do church-key master cleanse bespoke banjo. Nisi wayfarers food truck try-hard laboris Shoreditch.\n\nYr Intelligentsia Blue Bottle leggings deep v. Post-ironic slow-carb tousled occaecat. Scenester adipisicing cliche, delectus hashtag banh mi duis kitsch McSweeney's Shoreditch deep v nulla keffiyeh velit. Next level disrupt selvage, vegan organic cray selfies meh dolore locavore. Art party ugh assumenda, paleo direct trade chambray gastropub. Narwhal mumblecore laboris post-ironic aliqua fugiat. Flannel narwhal pariatur, kale chips est magna jean shorts enim seitan incididunt swag single-origin coffee deserunt selfies.",
+  city: "Orange County",
+  state: "CA",
+  industry: "Real Estate",
+  pic: File.new("public/images/seeds/george.png")
+)
+
+#Tobias
+tobias = User.create(
+  first_name: 'Tobias',
+  last_name: 'Funke',
+  email: 'sarah.mogin+tobias@gmail.com',
+  password: 'password',
+  tagline: "Actor!",
+  summary: "Jean shorts anim XOXO, sed twee single-origin coffee narwhal cliche before they sold out excepteur Pinterest Blue Bottle cred. Gastropub cillum beard, Pitchfork cupidatat Neutra irony consectetur irure bitters. Ex scenester mollit, flexitarian sed irony consectetur bespoke. Delectus single-origin coffee sartorial, beard non disrupt nesciunt meggings sed culpa occaecat duis pour-over. Polaroid Banksy Portland, 90's mixtape leggings incididunt paleo readymade iPhone nihil pickled wayfarers ea. Sriracha fanny pack Portland forage. Hashtag fashion axe gluten-free commodo aute.\n\nMustache nostrud voluptate bicycle rights, cardigan beard church-key skateboard seitan try-hard. Tempor 8-bit bitters semiotics Thundercats delectus. Trust fund banjo irure, mollit PBR&B kitsch tote bag bicycle rights hoodie freegan. Truffaut four loko ex Terry Richardson 3 wolf moon. Placeat selvage hella, eiusmod vinyl messenger bag culpa distillery tempor. Vice Helvetica ad, occupy selfies paleo Godard aesthetic viral quinoa Neutra Odd Future Marfa. Dolore VHS pour-over, commodo Intelligentsia craft beer Terry Richardson.\n\nDIY stumptown deserunt cardigan, non kitsch odio. Church-key vero deep v, et selvage labore hella freegan cornhole High Life pop-up. Mollit proident ennui, exercitation Cosby sweater tofu +1. Letterpress craft beer polaroid tousled kogi accusamus. Truffaut fanny pack irony tofu hella ugh. Elit nisi pork belly put a bird on it eiusmod, pickled et do church-key master cleanse bespoke banjo. Nisi wayfarers food truck try-hard laboris Shoreditch.\n\nYr Intelligentsia Blue Bottle leggings deep v. Post-ironic slow-carb tousled occaecat. Scenester adipisicing cliche, delectus hashtag banh mi duis kitsch McSweeney's Shoreditch deep v nulla keffiyeh velit. Next level disrupt selvage, vegan organic cray selfies meh dolore locavore. Art party ugh assumenda, paleo direct trade chambray gastropub. Narwhal mumblecore laboris post-ironic aliqua fugiat. Flannel narwhal pariatur, kale chips est magna jean shorts enim seitan incididunt swag single-origin coffee deserunt selfies.",
+  city: "Orange County",
+  state: "CA",
+  industry: "Other",
+  pic: File.new("public/images/seeds/t4.jpg")
+)
+
+#gob
+gob = User.create(
+  first_name: 'GOB',
+  last_name: 'Bluth',
+  email: 'sarah.mogin+gob@gmail.com',
+  password: 'password',
+  tagline: "Come on!",
+  summary: "Jean shorts anim XOXO, sed twee single-origin coffee narwhal cliche before they sold out excepteur Pinterest Blue Bottle cred. Gastropub cillum beard, Pitchfork cupidatat Neutra irony consectetur irure bitters. Ex scenester mollit, flexitarian sed irony consectetur bespoke. Delectus single-origin coffee sartorial, beard non disrupt nesciunt meggings sed culpa occaecat duis pour-over. Polaroid Banksy Portland, 90's mixtape leggings incididunt paleo readymade iPhone nihil pickled wayfarers ea. Sriracha fanny pack Portland forage. Hashtag fashion axe gluten-free commodo aute.\n\nMustache nostrud voluptate bicycle rights, cardigan beard church-key skateboard seitan try-hard. Tempor 8-bit bitters semiotics Thundercats delectus. Trust fund banjo irure, mollit PBR&B kitsch tote bag bicycle rights hoodie freegan. Truffaut four loko ex Terry Richardson 3 wolf moon. Placeat selvage hella, eiusmod vinyl messenger bag culpa distillery tempor. Vice Helvetica ad, occupy selfies paleo Godard aesthetic viral quinoa Neutra Odd Future Marfa. Dolore VHS pour-over, commodo Intelligentsia craft beer Terry Richardson.\n\nDIY stumptown deserunt cardigan, non kitsch odio. Church-key vero deep v, et selvage labore hella freegan cornhole High Life pop-up. Mollit proident ennui, exercitation Cosby sweater tofu +1. Letterpress craft beer polaroid tousled kogi accusamus. Truffaut fanny pack irony tofu hella ugh. Elit nisi pork belly put a bird on it eiusmod, pickled et do church-key master cleanse bespoke banjo. Nisi wayfarers food truck try-hard laboris Shoreditch.\n\nYr Intelligentsia Blue Bottle leggings deep v. Post-ironic slow-carb tousled occaecat. Scenester adipisicing cliche, delectus hashtag banh mi duis kitsch McSweeney's Shoreditch deep v nulla keffiyeh velit. Next level disrupt selvage, vegan organic cray selfies meh dolore locavore. Art party ugh assumenda, paleo direct trade chambray gastropub. Narwhal mumblecore laboris post-ironic aliqua fugiat. Flannel narwhal pariatur, kale chips est magna jean shorts enim seitan incididunt swag single-origin coffee deserunt selfies.",
+  city: "Orange County",
+  state: "CA",
+  industry: "Other",
+  pic: File.new("public/images/seeds/gob3.png")
 )
 
 #The Bluth Company
@@ -127,6 +169,12 @@ the_bluth_company.memberships.create(
   status: 1
 )
 
+#George admins The Bluth Company
+the_bluth_company.memberships.create(
+  member_id: george.id,
+  status: 1
+)
+
 #Michael has The Bluth Company listed as his current position
 michael_bc = michael.experiences.build(
   name: "The Bluth Company",
@@ -169,6 +217,20 @@ lucille_bc = lucille.experiences.build(
 lucille_bc.position = true
 lucille_bc.save
 
+#George Bluth has The Bluth Company listed as his current position
+george_bc = george.experiences.build(
+  name: "The Bluth Company",
+  city: "Orange County",
+  state: "CA",
+  start_date: "01 Jan 1980",
+  current: true,
+  string_1: "Board Member",
+  string_2: "Real Estate",
+  body: "The Bluth Company is a family business specializing in the development of McMansions in and around Orange County, CA. Once we were accused of light treason with Saddam Hussein, but it turned out that my father, George Bluth (Senior), was just a CIA patsy."
+)
+george_bc.position = true
+george_bc.save
+
 #Lucille has the USO listed as a prior position
 lucille_uso = lucille.experiences.build(
   name: "The USO",
@@ -205,10 +267,27 @@ michael.experiences.create(
   body: "No time for musicals here!"
 )
 
+tobias.statuses.create(
+  pic: File.new("public/images/seeds/t.jpg")
+)
+
 #Lucille's statuses
 lucille.statuses.create(
   body: "Wow, this site is cool!",
   link: "http://www.cufflinkapp.com"
+)
+
+gob.statuses.create(
+  pic: File.new("public/images/seeds/gob.jpg")
+)
+
+tobias.statuses.create(
+  body: "Love this site!",
+  link: "http://www.cufflinkapp.com"
+)
+
+george.statuses.create(
+  body: "I have the worst of f@%^ing attorneys."
 )
 
 lucille.statuses.create(
@@ -240,6 +319,10 @@ walter.statuses.create(
   pic: File.new("public/images/seeds/walter3.png")
 )
 
+tobias.statuses.create(
+  pic: File.new("public/images/seeds/t3.jpg")
+)
+
 walter.statuses.create(
   body: "And that's why you always leave a note.",
   pic: File.new("public/images/seeds/walter4.png")
@@ -264,6 +347,10 @@ michael.statuses.create(
 michael.statuses.create(
   body: "I have the worst of !@$%ing attorneys.",
   pic: File.new("public/images/seeds/shark.jpg")
+)
+
+gob.statuses.create(
+  pic: File.new("public/images/seeds/gob2.png")
 )
 
 ms1 = michael.statuses.create!(
@@ -328,6 +415,16 @@ rbs1 = bs1.responses.build
 rbs1.user = lucille
 rbs1.body = "What's with the whistles??"
 rbs1.save
+
+#So did tobias
+rbs2 = bs1.responses.build
+rbs2.user = tobias
+rbs2.body = "Leatherdaddy!"
+rbs2.save
+
+tobias.statuses.create(
+  pic: File.new("public/images/seeds/t2.jpg")
+)
 
 #The Bluth Company's statuses on behalf of Michael
 s1 = Status.new(
@@ -462,6 +559,10 @@ gm.statuses.create(
   pic: File.new("public/images/seeds/gm1.png")
 )
 
+george.statuses.create(
+  pic: File.new("public/images/seeds/utne.png")
+)
+
 gm.statuses.create(
   pic: File.new("public/images/seeds/gm2.jpg")
 )
@@ -475,6 +576,10 @@ gm.statuses.create(
 stan.statuses.create(
   body: "Do I look surprised? I'm not.",
   pic: File.new("public/images/seeds/surprised.png")
+)
+
+george.statuses.create(
+  pic: File.new("public/images/seeds/archer.jpg")
 )
 
 stan.statuses.create(
@@ -601,6 +706,15 @@ f.save
 f = Friendship.new(friendee_id: michael.id, friender_id: lindsay.id, message: "Hi Michael!", connection_type: "Other")
 f.status = 1
 f.save
+
+f = Friendship.new(friendee_id: michael.id, friender_id: tobias.id, message: "Hi Michael!", connection_type: "Other")
+f.status = 1
+f.save
+
+f = Friendship.new(friendee_id: michael.id, friender_id: gob.id, message: "Hi Michael!", connection_type: "Other")
+f.status = 1
+f.save
+
 
 f = Friendship.create(friendee_id: gm.id, friender_id: michael.id, message: "Hi Michael!", connection_type: "Other")
 
